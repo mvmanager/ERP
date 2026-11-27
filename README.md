@@ -242,8 +242,13 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     (junta a solicitação de inutilização da NFe e a do Faturamento).
   - **Distribuição:** Distribuição das notas (envio ao cliente e transportador + histórico
     de envios) · Exportar XML.
-- **Configurações** (só administrador e TI): Conexão com a SEFAZ (serviço + certificado
-  digital) · Parâmetros de NFe (inclui os schemas de validação dos XMLs).
+- **Configurações** (só administrador e TI): Forma de emissão (direto na SEFAZ ou por um
+  provedor externo; certificado digital) · Parâmetros de NFe (inclui os schemas de
+  validação dos XMLs).
+- **Preparado para provedor externo de NFe:** a emissão funciona por uma "peça de encaixe"
+  — direto na SEFAZ ou por um provedor especializado (que se adapta às mudanças da
+  Receita). As telas de uso (Gerenciar notas, Distribuição etc.) são as mesmas nos dois
+  casos, e dá para trocar de provedor sem mexer no resto do sistema.
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Orçamentos:** Orçamentos (chegam de Custos já com preço: consultar, negociar, aprovar e
