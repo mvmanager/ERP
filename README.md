@@ -644,13 +644,15 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   número/OC/cliente e filtros: Em aberto · No crédito · Em produção · Faturados · Todos.
 - **Pedido aberto** mostra a **linha de etapas**: Lançado → Crédito → PCP → Produção → Expedição →
   Faturado → Entregue (etapa atual em destaque; vermelho quando bloqueado), o aviso do cliente,
-  cliente e entrega, itens (produto, medidas, onda, qtde em milheiros, preço/mil, total,
-  entrega), totais com IPI e o **andamento** (quem fez o quê e quando). Ações: Imprimir ·
+  cliente e entrega, itens (produto, medidas, onda, **quantidade em unidades**, **peso** em kg/t,
+  **preço unitário**, total e **entregas**), totais (quantidade, peso, mercadorias, IPI, total) e o **andamento** (quem fez o quê e quando). Ações: Imprimir ·
   Enviar ao cliente · Alterar (abre "Alterar pedido").
 - **Novo pedido** (pela lista ou pelo botão "Novo pedido" da ficha do cliente): escolhe o
   cliente e o sistema **preenche** local de entrega, cobrança, prazo, frete e transportador do
   cadastro; mostra os **produtos que o cliente já compra** com o **último preço**; um clique
-  inclui o item; totais recalculam na hora; **confere o crédito** enquanto digita e, se passar
+  inclui o item; totais recalculam na hora; **cada item pode ter várias entregas** (data +
+  quantidade; "+ entrega"), e o sistema avisa "faltam/sobram" e não grava se a soma das
+  entregas não bater com a quantidade do item; **confere o crédito** enquanto digita e, se passar
   do limite livre, o pedido vai para aprovação do Crédito ao gravar.
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 

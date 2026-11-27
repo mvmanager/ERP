@@ -515,7 +515,7 @@ textarea.falta{border-color:var(--bad)!important}
 .pd-linhas tbody tr{cursor:pointer}
 .pd-linhas tbody tr:hover{background:var(--kraft-soft)}
 .pd-itens td small{display:block;color:var(--muted);font-size:11px}
-.pd-itens input{width:84px;text-align:right;font:inherit;padding:2px 6px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink)}
+.pd-itens input{width:78px;text-align:right;font:inherit;padding:2px 6px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink)}
 .pd-etapas{list-style:none;margin:8px 12px 0;padding:0;display:flex;gap:0;font-size:11.5px;color:var(--muted)}
 .pd-etapas li{flex:1;display:flex;align-items:center;gap:5px;padding:4px 6px;border-top:3px solid var(--line);white-space:nowrap}
 .pd-etapas li span{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;background:var(--surface-2);border:1px solid var(--line-2);flex:none}
@@ -540,6 +540,16 @@ textarea.falta{border-color:var(--bad)!important}
 .pd-cli{max-width:520px}
 .pd-cli select{background:var(--surface)!important}
 .pd-prods{display:flex;flex-wrap:wrap;gap:6px}
+.pd-td-ents{white-space:normal!important}
+.pd-ent{display:inline-block;margin:1px 4px 1px 0;padding:1px 7px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);font-size:11.5px;white-space:nowrap}
+.pd-ents{display:flex;flex-wrap:wrap;gap:3px 8px;align-items:center;font-size:12px;color:var(--muted)}
+.pd-ents span{display:inline-flex;gap:3px;align-items:center;white-space:nowrap}
+.pd-ents .pd-data{width:88px;text-align:left}
+.pd-ents input[data-eqtd]{width:64px}
+.pd-x{border:0;background:transparent;color:var(--bad);cursor:pointer;font-size:14px;padding:0 2px}
+.pd-mais{border:1px dashed var(--line-2);background:transparent;border-radius:6px;padding:1px 7px;font-size:11.5px;cursor:pointer;color:var(--kraft)}
+.pd-ents em{font-style:normal;color:var(--warn);font-weight:600}
+.pd-ents em.neg{color:var(--bad)}
 .pd-prod{display:grid;text-align:left;border:1px dashed var(--line-2);background:var(--surface-2);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}
 .pd-prod small{font-size:11.5px;color:var(--muted)}
 .pd-prod:hover{border-color:var(--kraft);border-style:solid}
@@ -3305,35 +3315,39 @@ function novoProspect(box){
 const ETAPAS = ['Lançado','Crédito','PCP','Produção','Expedição','Faturado','Entregue'];
 const PRODUTOS_CLI = {
   1: [
-    { cod:'CX-1042', desc:'Caixa congelados 5 kg', med:'400×300×200', onda:'BC', comp:'Kraft 2 camadas', un:'mil', preco:2850 },
-    { cod:'CX-1043', desc:'Caixa congelados 10 kg', med:'500×350×250', onda:'BC', comp:'Kraft 2 camadas', un:'mil', preco:3920 },
-    { cod:'CH-0210', desc:'Chapa divisória', med:'380×280', onda:'B', comp:'Miolo reciclado', un:'mil', preco:610 },
+    { cod:'CX-1042', desc:'Caixa congelados 5 kg', med:'400×300×200', onda:'BC', comp:'Kraft 2 camadas', peso:0.62, preco:2.85 },
+    { cod:'CX-1043', desc:'Caixa congelados 10 kg', med:'500×350×250', onda:'BC', comp:'Kraft 2 camadas', peso:0.95, preco:3.92 },
+    { cod:'CH-0210', desc:'Chapa divisória', med:'380×280', onda:'B', comp:'Miolo reciclado', peso:0.11, preco:0.61 },
   ],
   2: [
-    { cod:'CX-2201', desc:'Caixa cortes bovinos 20 kg', med:'600×400×180', onda:'BC', comp:'Kraft resistente à umidade', un:'mil', preco:4710 },
-    { cod:'CX-2205', desc:'Caixa embutidos 6 kg', med:'420×300×150', onda:'C', comp:'Kraft', un:'mil', preco:2340 },
+    { cod:'CX-2201', desc:'Caixa cortes bovinos 20 kg', med:'600×400×180', onda:'BC', comp:'Kraft resistente à umidade', peso:1.20, preco:4.71 },
+    { cod:'CX-2205', desc:'Caixa embutidos 6 kg', med:'420×300×150', onda:'C', comp:'Kraft', peso:0.48, preco:2.34 },
   ],
   3: [], 4: [],
 };
 const PEDIDOS = [
   { n:'4521', cli:1, data:'21/11/2026', oc:'OC-77812', etapa:3, rep:'Matheus', entrega:'Fábrica Campinas', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
-    itens:[ { cod:'CX-1042', qtd:15, preco:2850, ent:'05/12/2026' }, { cod:'CH-0210', qtd:12, preco:610, ent:'05/12/2026' } ],
+    itens:[ { cod:'CX-1042', qtd:15000, preco:2.85, ents:[ { data:'05/12/2026', qtd:10000 }, { data:'19/12/2026', qtd:5000 } ] }, { cod:'CH-0210', qtd:12000, preco:0.61, ents:[ { data:'05/12/2026', qtd:12000 } ] } ],
     hist:[ ['21/11 09:12','Pedido lançado','Matheus'], ['21/11 10:40','Crédito liberado','Crédito'], ['22/11 08:05','Programado na onduladeira (OF 9921)','PCP'], ['26/11 14:20','Em produção','Produção'] ] },
   { n:'4509', cli:2, data:'18/11/2026', oc:'PC 3310', etapa:2, rep:'Matheus', entrega:'Planta Araraquara', cobranca:'Contas a pagar', prazo:'28 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'Câmara fria: entregar em paletes filmados.',
-    itens:[ { cod:'CX-2201', qtd:5, preco:4710, ent:'02/12/2026' }, { cod:'CX-2205', qtd:1.5, preco:2340, ent:'02/12/2026' } ],
+    itens:[ { cod:'CX-2201', qtd:5000, preco:4.71, ents:[ { data:'02/12/2026', qtd:5000 } ] }, { cod:'CX-2205', qtd:1500, preco:2.34, ents:[ { data:'02/12/2026', qtd:1500 } ] } ],
     hist:[ ['18/11 15:30','Pedido lançado','Matheus'], ['19/11 09:00','Crédito liberado pela gerência (limite em 95%)','Crédito'] ] },
   { n:'4488', cli:1, data:'12/11/2026', oc:'OC-77640', etapa:5, rep:'Matheus', entrega:'CD Sumaré', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
-    itens:[ { cod:'CX-1043', qtd:9.9, preco:3920, ent:'25/11/2026' } ],
+    itens:[ { cod:'CX-1043', qtd:9900, preco:3.92, ents:[ { data:'25/11/2026', qtd:9900 } ] } ],
     hist:[ ['12/11','Pedido lançado','Matheus'], ['24/11','Faturado · NF 88430','Faturamento'] ] },
   { n:'4530', cli:2, data:'26/11/2026', oc:'', etapa:1, rep:'Matheus', entrega:'Planta Araraquara', cobranca:'Contas a pagar', prazo:'28 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
-    itens:[ { cod:'CX-2205', qtd:4, preco:2340, ent:'10/12/2026' } ],
+    itens:[ { cod:'CX-2205', qtd:4000, preco:2.34, ents:[ { data:'10/12/2026', qtd:4000 } ] } ],
     hist:[ ['26/11 16:02','Pedido lançado','Matheus'], ['26/11 16:02','Aguardando crédito: limite estourado','Sistema'] ], bloqueio:'Crédito: o pedido passa do limite do cliente.' },
   { n:'4430', cli:1, data:'30/10/2026', oc:'OC-77210', etapa:6, rep:'Matheus', entrega:'Fábrica Campinas', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
-    itens:[ { cod:'CX-1042', qtd:18, preco:2790, ent:'14/11/2026' } ],
+    itens:[ { cod:'CX-1042', qtd:18000, preco:2.79, ents:[ { data:'14/11/2026', qtd:18000 } ] } ],
     hist:[ ['30/10','Pedido lançado','Matheus'], ['13/11','Faturado · NF 88102','Faturamento'], ['14/11','Entregue','Expedição'] ] },
 ];
 const brl = (v) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 });
-const prodDe = (cli, cod) => (PRODUTOS_CLI[cli] || []).find(p => p.cod === cod) || { desc:cod, med:'', onda:'', comp:'', un:'mil' };
+const prodDe = (cli, cod) => (PRODUTOS_CLI[cli] || []).find(p => p.cod === cod) || { desc:cod, med:'', onda:'', comp:'', peso:0, preco:0 };
+const un = (v) => Math.round(v).toLocaleString('pt-BR');
+const kg = (v) => v >= 1000 ? (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits:2 }) + ' t' : Math.round(v).toLocaleString('pt-BR') + ' kg';
+const brl4 = (v) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:4 });
+const pesoPed = (cli, itens) => itens.reduce((a, i) => a + i.qtd * (prodDe(cli, i.cod).peso || 0), 0);
 const totalPed = (p) => p.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
 const cliDe = (id) => CLIENTES.find(c => c.id === id);
 const pillEtapa = (p) => p.bloqueio ? '<span class="pill p-bad">Bloqueado</span>'
@@ -3357,7 +3371,7 @@ function listaPedidos(box, soLinhas){
     .sort((a, b) => b.n.localeCompare(a.n));
   const linhas = l.length ? `<table class="pd-tab"><thead><tr><th>Pedido</th><th>Cliente</th><th>OC do cliente</th><th>Emissão</th><th>Entrega</th><th class="num">Valor</th><th>Etapa</th></tr></thead><tbody>${l.map(p => {
       const c = cliDe(p.cli);
-      return `<tr data-ped="${p.n}"><td class="mono">${p.n}</td><td><b>${esc(nomeExib(c))}</b></td><td>${esc(p.oc || '—')}</td><td>${p.data.slice(0,5)}</td><td>${p.itens[0].ent.slice(0,5)}</td><td class="num">${brl(totalPed(p))}</td><td>${pillEtapa(p)}</td></tr>`;
+      return `<tr data-ped="${p.n}"><td class="mono">${p.n}</td><td><b>${esc(nomeExib(c))}</b></td><td>${esc(p.oc || '—')}</td><td>${p.data.slice(0,5)}</td><td>${p.itens[0].ents[0].data.slice(0,5)}</td><td class="num">${brl(totalPed(p))}</td><td>${pillEtapa(p)}</td></tr>`;
     }).join('')}</tbody></table>` : '<div class="vazio"><b>Nenhum pedido aqui</b><span>Busque pelo número, OC ou cliente.</span></div>';
   if (soLinhas) { box.querySelector('.pd-linhas').innerHTML = linhas; return; }
   box.innerHTML = `<div class="cl-topo">
@@ -3370,17 +3384,22 @@ function etapasHTML(p){
   return `<ol class="pd-etapas">${ETAPAS.map((e, i) => `<li class="${i < p.etapa ? 'feita' : i === p.etapa ? (p.bloqueio ? 'bloq' : 'atual') : ''}"><span>${i < p.etapa ? '✓' : i + 1}</span>${e}</li>`).join('')}</ol>`;
 }
 function itensHTML(cli, itens, editavel){
-  return `<table class="pd-tab pd-itens"><thead><tr><th>Produto</th><th>Medidas (mm)</th><th>Onda</th><th class="num">Qtde</th><th class="num">Preço/mil</th><th class="num">Total</th><th>Entrega</th></tr></thead><tbody>${itens.map((i, k) => {
-      const pr = prodDe(cli, i.cod);
-      return `<tr><td><b>${esc(pr.desc)}</b><small class="mono">${i.cod} · ${esc(pr.comp)}</small></td><td>${pr.med}</td><td>${pr.onda}</td>
-        <td class="num">${editavel ? `<input data-qtd="${k}" value="${String(i.qtd).replace('.', ',')}">` : i.qtd.toLocaleString('pt-BR') + ' mil'}</td>
-        <td class="num">${editavel ? `<input data-preco="${k}" value="${i.preco.toFixed(2).replace('.', ',')}">` : brl(i.preco)}</td>
-        <td class="num" data-tot="${k}">${brl(i.qtd * i.preco)}</td><td>${i.ent}</td></tr>`;
+  return `<table class="pd-tab pd-itens"><thead><tr><th>Produto</th><th>Medidas (mm)</th><th>Onda</th><th class="num">Qtde (un)</th><th class="num">Peso</th><th class="num">Preço unit.</th><th class="num">Total</th><th>Entregas</th></tr></thead><tbody>${itens.map((i, k) => {
+      const pr = prodDe(cli, i.cod), soma = i.ents.reduce((a, e) => a + e.qtd, 0), falta = i.qtd - soma;
+      const ents = editavel
+        ? `<div class="pd-ents">${i.ents.map((e, x) => `<span><input class="pd-data" data-edata="${k}.${x}" value="${e.data}"><input data-eqtd="${k}.${x}" value="${un(e.qtd)}"> un${i.ents.length > 1 ? `<button type="button" class="pd-x" data-erm="${k}.${x}" title="Tirar esta entrega">×</button>` : ''}</span>`).join('')}
+            <button type="button" class="pd-mais" data-eadd="${k}">+ entrega</button>${falta ? `<em class="${falta < 0 ? 'neg' : ''}">${falta > 0 ? 'faltam ' + un(falta) : 'sobram ' + un(-falta)} un</em>` : ''}</div>`
+        : i.ents.map(e => `<span class="pd-ent">${e.data.slice(0,5)} · ${un(e.qtd)} un</span>`).join('');
+      return `<tr><td><b>${esc(pr.desc)}</b><small class="mono">${i.cod} · ${esc(pr.comp)} · ${(pr.peso || 0).toLocaleString('pt-BR')} kg/un</small></td><td>${pr.med}</td><td>${pr.onda}</td>
+        <td class="num">${editavel ? `<input data-qtd="${k}" value="${un(i.qtd)}">` : un(i.qtd)}</td>
+        <td class="num" data-peso="${k}">${kg(i.qtd * (pr.peso || 0))}</td>
+        <td class="num">${editavel ? `<input data-preco="${k}" value="${i.preco.toFixed(2).replace('.', ',')}">` : brl4(i.preco)}</td>
+        <td class="num" data-tot="${k}">${brl(i.qtd * i.preco)}</td><td class="pd-td-ents">${ents}</td></tr>`;
     }).join('')}</tbody></table>`;
 }
-function totaisHTML(itens){
-  const v = itens.reduce((a, i) => a + i.qtd * i.preco, 0), ipi = v * 0.05;
-  return `<div class="pd-totais"><span>Mercadorias <b data-tmerc>${brl(v)}</b></span><span>IPI (5%) <b data-tipi>${brl(ipi)}</b></span><span class="pd-total">Total <b data-ttot>${brl(v + ipi)}</b></span></div>`;
+function totaisHTML(cli, itens){
+  const v = itens.reduce((a, i) => a + i.qtd * i.preco, 0), ipi = v * 0.05, q = itens.reduce((a, i) => a + i.qtd, 0);
+  return `<div class="pd-totais"><span>Quantidade <b data-tqtd>${un(q)} un</b></span><span>Peso <b data-tpeso>${kg(pesoPed(cli, itens))}</b></span><span>Mercadorias <b data-tmerc>${brl(v)}</b></span><span>IPI (5%) <b data-tipi>${brl(ipi)}</b></span><span class="pd-total">Total <b data-ttot>${brl(v + ipi)}</b></span></div>`;
 }
 function abrirPedido(box){
   const p = PEDIDOS.find(x => x.n === box._sel), c = cliDe(p.cli);
@@ -3399,7 +3418,7 @@ function abrirPedido(box){
         <span><small>Cliente</small>${esc(nomeExib(c))}</span><span><small>Local de entrega</small>${esc(p.entrega)}</span>
         <span><small>Cobrança</small>${esc(p.cobranca)}</span><span><small>Representante</small>${esc(p.rep)}</span>
         <span><small>Prazo de pagamento</small>${esc(p.prazo)}</span><span><small>Frete</small>${p.frete} · ${esc(p.transp)}</span></div></section>
-      <section class="cl-bloco"><h4>Itens</h4>${itensHTML(p.cli, p.itens, false)}${totaisHTML(p.itens)}</section>
+      <section class="cl-bloco"><h4>Itens</h4>${itensHTML(p.cli, p.itens, false)}${totaisHTML(p.cli, p.itens)}</section>
       ${p.obs ? `<section class="cl-bloco"><h4>Observações</h4><p class="cl-txt">${esc(p.obs)}</p></section>` : ''}
       <section class="cl-bloco"><h4>Andamento</h4><ul class="cl-tempo">${p.hist.map(h => `<li><span class="mono">${h[0]}</span><div>${esc(h[1])}<small>${esc(h[2])}</small></div></li>`).join('')}</ul></section>
     </div></div>`;
@@ -3427,22 +3446,33 @@ function montarNovo(box, cliId){
       ${f('OC do cliente', '', { ph:'Número da ordem de compra' })}
       ${f('Prazo de pagamento', '28/42/56 dias')}${f('Frete', 'CIF', { opcoes:['CIF','FOB'] })}${f('Transportador', 'Transportes Rápido Sul')}</div></section>
     <section class="cl-bloco"><h4>Itens <small>produtos que este cliente já compra · último preço sugerido</small></h4>
-      <div class="pd-prods">${prods.map(pr => `<button type="button" class="pd-prod" data-add-prod="${pr.cod}"><b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda} · último ${brl(pr.preco)}/mil</small></button>`).join('') || '<p class="cl-txt">Este cliente ainda não tem produtos. Peça o desenvolvimento à Engenharia de produto.</p>'}</div>
+      <div class="pd-prods">${prods.map(pr => `<button type="button" class="pd-prod" data-add-prod="${pr.cod}"><b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda} · ${(pr.peso).toLocaleString('pt-BR')} kg/un · último ${brl4(pr.preco)}/un</small></button>`).join('') || '<p class="cl-txt">Este cliente ainda não tem produtos. Peça o desenvolvimento à Engenharia de produto.</p>'}</div>
       <div id="pdItens"></div></section>
     <div id="pdCredito"></div>`;
   travar(box); box.querySelectorAll('#pdResto input, #pdResto select').forEach(el => el.disabled = false);
   recalcNovo(box);
 }
-function recalcNovo(box){
+const numBR = (v) => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
+function lerNovo(box){
+  const nv = box._novo;
+  box.querySelectorAll('[data-qtd]').forEach(el => { const it = nv.itens[+el.dataset.qtd], ant = it.qtd; it.qtd = numBR(el.value); if (it.ents.length === 1 && it.ents[0].qtd === ant) it.ents[0].qtd = it.qtd; });
+  box.querySelectorAll('[data-preco]').forEach(el => { nv.itens[+el.dataset.preco].preco = numBR(el.value); });
+  box.querySelectorAll('[data-eqtd]').forEach(el => { const [k, x] = el.dataset.eqtd.split('.'); nv.itens[k].ents[x].qtd = numBR(el.value); });
+  box.querySelectorAll('[data-edata]').forEach(el => { const [k, x] = el.dataset.edata.split('.'); nv.itens[k].ents[x].data = el.value; });
+}
+function recalcNovo(box, redesenhar){
   const nv = box._novo; if (!nv || !nv.cli) return;
-  box.querySelectorAll('[data-qtd]').forEach(el => { nv.itens[+el.dataset.qtd].qtd = parseFloat(el.value.replace(',', '.')) || 0; });
-  box.querySelectorAll('[data-preco]').forEach(el => { nv.itens[+el.dataset.preco].preco = parseFloat(el.value.replace(/\./g, '').replace(',', '.')) || 0; });
+  lerNovo(box);
   const alvo = box.querySelector('#pdItens');
-  if (document.activeElement && alvo.contains(document.activeElement)) {
-    nv.itens.forEach((i, k) => { const t = alvo.querySelector(`[data-tot="${k}"]`); if (t) t.textContent = brl(i.qtd * i.preco); });
+  if (!redesenhar && document.activeElement && alvo.contains(document.activeElement)) {
+    nv.itens.forEach((i, k) => { const pr = prodDe(nv.cli, i.cod);
+      const t = alvo.querySelector(`[data-tot="${k}"]`); if (t) t.textContent = brl(i.qtd * i.preco);
+      const w = alvo.querySelector(`[data-peso="${k}"]`); if (w) w.textContent = kg(i.qtd * pr.peso); });
     const v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
+    alvo.querySelector('[data-tqtd]').textContent = un(nv.itens.reduce((a, i) => a + i.qtd, 0)) + ' un';
+    alvo.querySelector('[data-tpeso]').textContent = kg(pesoPed(nv.cli, nv.itens));
     alvo.querySelector('[data-tmerc]').textContent = brl(v); alvo.querySelector('[data-tipi]').textContent = brl(v * .05); alvo.querySelector('[data-ttot]').textContent = brl(v * 1.05);
-  } else alvo.innerHTML = nv.itens.length ? itensHTML(nv.cli, nv.itens, true) + totaisHTML(nv.itens) : '<p class="cl-txt">Clique num produto acima para incluir.</p>';
+  } else alvo.innerHTML = nv.itens.length ? itensHTML(nv.cli, nv.itens, true) + totaisHTML(nv.cli, nv.itens) : '<p class="cl-txt">Clique num produto acima para incluir.</p>';
   const c = cliDe(nv.cli), cr = c.credito, v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0) * 1.05;
   const livre = cr.limite - cr.usado, estoura = v > livre;
   box.querySelector('#pdCredito').innerHTML = nv.itens.length ? `<div class="cl-aviso ${estoura ? 'pd-bloq' : 'pd-ok'}">${IAVISO}<span>${estoura
@@ -3457,19 +3487,30 @@ function cliquePedidos(box, e){
   if (t('[data-novo-ped]')) return novoPedido(box);
   if (t('[data-add-prod]')) {
     const pr = prodDe(box._novo.cli, t('[data-add-prod]').dataset.addProd);
-    box._novo.itens.push({ cod: pr.cod, qtd: 1, preco: pr.preco, ent: '15/12/2026' });
-    if (document.activeElement) document.activeElement.blur();
-    return recalcNovo(box);
+    lerNovo(box);
+    box._novo.itens.push({ cod: pr.cod, qtd: 1000, preco: pr.preco, ents: [ { data:'15/12/2026', qtd:1000 } ] });
+    return recalcNovo(box, true);
+  }
+  if (t('[data-eadd]')) {
+    lerNovo(box); const it = box._novo.itens[+t('[data-eadd]').dataset.eadd];
+    const falta = Math.max(0, it.qtd - it.ents.reduce((a, e) => a + e.qtd, 0));
+    it.ents.push({ data:'30/12/2026', qtd: falta }); return recalcNovo(box, true);
+  }
+  if (t('[data-erm]')) {
+    lerNovo(box); const [k, x] = t('[data-erm]').dataset.erm.split('.'); box._novo.itens[k].ents.splice(+x, 1); return recalcNovo(box, true);
   }
   if (t('[data-gravar-ped]')) {
     const nv = box._novo;
     if (!nv || !nv.cli) return toast('Escolha o cliente');
     if (!nv.itens.length) return toast('Inclua pelo menos um item');
+    lerNovo(box);
+    const ruim = nv.itens.find(i => i.ents.reduce((a, e) => a + e.qtd, 0) !== i.qtd);
+    if (ruim) return toast('A soma das entregas precisa bater com a quantidade de ' + prodDe(nv.cli, ruim.cod).desc);
     const c = cliDe(nv.cli), v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0) * 1.05, estoura = v > c.credito.limite - c.credito.usado;
     const n = String(Math.max(...PEDIDOS.map(p => +p.n)) + 1);
     PEDIDOS.push({ n, cli: nv.cli, data:'27/11/2026', oc: box.querySelector('#pdResto input[placeholder^="Número"]').value, etapa: estoura ? 1 : 2, rep: USUARIO.nome,
       entrega: (c.entregas[0] || {}).nome || '—', cobranca: (c.cobrancas[0] || {}).nome || '—', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
-      itens: nv.itens.map(i => ({ ...i })), hist: [ ['agora','Pedido lançado', USUARIO.nome], estoura ? ['agora','Aguardando crédito: passa do limite','Sistema'] : ['agora','Crédito liberado automaticamente','Sistema'] ],
+      itens: nv.itens.map(i => ({ ...i, ents: i.ents.map(e => ({ ...e })) })), hist: [ ['agora','Pedido lançado', USUARIO.nome], estoura ? ['agora','Aguardando crédito: passa do limite','Sistema'] : ['agora','Crédito liberado automaticamente','Sistema'] ],
       bloqueio: estoura ? 'Crédito: o pedido passa do limite do cliente.' : undefined });
     box._sel = n; box._novo = null; abrirPedido(box);
     return toast(`Pedido ${n} gravado`);
