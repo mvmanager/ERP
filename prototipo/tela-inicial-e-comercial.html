@@ -1208,7 +1208,7 @@ const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const MODULOS = [
   {k:'comercial', nome:'Comercial', badge:4, areas:[
     {k:'vendas', nome:'Vendas', d:'Clientes, pedidos e follow‑up'},
-    {k:'representantes', nome:'Representantes', d:'Cadastro, carteira e comissões'},
+    {k:'representantes', nome:'Representantes', d:'Onde os representantes trabalham: orçamentos, amostras e clichês'},
     {k:'credito', nome:'Crédito', d:'Limites e análise de crédito dos clientes'},
     {k:'faturamento', nome:'Faturamento', d:'Faturar os pedidos'},
     {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
@@ -1287,8 +1287,8 @@ const RELATORIOS = [
   {id:'conversao', nome:'Conversão de orçamentos', mod:'comercial', area:'vendas', d:'Orçamentos enviados × fechados'},
   {id:'carteira', nome:'Carteira de pedidos', mod:'comercial', area:'vendas', d:'Pedidos em aberto por cliente'},
   {id:'followups', nome:'Follow-ups da semana', mod:'comercial', area:'vendas', d:'Contatos marcados com clientes'},
-  {id:'comissoes', nome:'Comissões de representantes', mod:'comercial', area:'representantes', d:'Valores a pagar por representante'},
-  {id:'vendas-rep', nome:'Vendas por representante', mod:'comercial', area:'representantes', d:'Volume e margem de cada carteira'},
+  {id:'comissoes', nome:'Comissões de representantes', mod:'comercial', area:'vendas', d:'Valores a pagar por representante'},
+  {id:'vendas-rep', nome:'Vendas por representante', mod:'comercial', area:'vendas', d:'Volume e margem de cada carteira'},
   {id:'limite', nome:'Clientes com limite estourado', mod:'comercial', area:'credito', d:'Crédito usado acima do liberado'},
   {id:'fat-mes', nome:'Faturamento do mês', mod:'comercial', area:'faturamento', d:'Notas emitidas por dia e por cliente'},
   {id:'entregas', nome:'Entregas por período', mod:'comercial', area:'expedicao', d:'Cargas, romaneios e atrasos'},
@@ -1777,6 +1777,14 @@ const TOPICOS = {
       { ic:'lapis', t:'Alterar pedido', d:'Datas, quantidades, preço, prazo, endereços, frete e mais' },
       { ic:'check', t:'Liberação de pedidos', d:'Liberar pedidos para produção' },
       { ic:'xcirc', t:'Cancelar item ou entrega', d:'Cancelar um item ou uma entrega do pedido' },
+    ]},
+    /* Comissões: 7 itens do sistema atual viraram 4. Fica em Vendas (pessoal interno),
+       não na área Representantes (que é onde os próprios representantes trabalham). */
+    { nome:'Comissões', itens:[
+      { ic:'percent', t:'Regras de comissão', d:'Quanto ganha cada representante e supervisor, inclusive por produto' },
+      { ic:'doc', t:'Notas de crédito de comissão', d:'Emitir e desfazer notas de crédito' },
+      { ic:'cifrao', t:'Acerto de comissões', d:'Fechamento das comissões do período' },
+      { ic:'grafico', t:'Relatório de comissões', d:'Comissões por representante e vendedor' },
     ]},
   ],
 };

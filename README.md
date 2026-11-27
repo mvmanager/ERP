@@ -160,6 +160,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
 
 ### Comercial › Representantes (tópicos definidos até agora)
+- É a área **onde os próprios representantes trabalham** (externos): criar orçamentos,
+  pedir amostras, clichês etc. A administração dos representantes (cadastro, metas,
+  comissões) fica em **Vendas**, que é onde trabalha o pessoal interno.
+- Nome da área ainda pode mudar (ideias: Portal do representante, Área do representante).
 - **Agenda:** Agenda dos representantes.
 
 ### Comercial › Vendas (tópicos definidos até agora)
@@ -197,6 +201,13 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     campos que tiver permissão**.
   - **Não entram:** Importar pedidos via arquivo EDI (já está em Operações) e Gerar
     entrega a partir de pedido horizonte planejado.
+- **Comissões** (7 itens do sistema atual viraram 4):
+  - **Regras de comissão:** quanto ganha cada representante e supervisor, inclusive por
+    produto (junta "Definir comissão de representante", "Definir comissão do supervisor" e
+    "Agente × produtos").
+  - **Notas de crédito de comissão:** emitir e desfazer na mesma janela.
+  - **Acerto de comissões:** fechamento do período.
+  - **Relatório de comissões.**
 - Outros tópicos serão acrescentados conforme forem definidos.
 
 ## Próximos passos
