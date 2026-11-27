@@ -159,6 +159,9 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   pedidos de análise feitos pelo assistente de busca da tela inicial).
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
 
+### Comercial › Representantes (tópicos definidos até agora)
+- **Agenda:** Agenda dos representantes.
+
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Cadastros** (baseado no menu do sistema atual), em grupos:
   - Prospects e clientes · Áreas de vendas · Representantes · Supervisores de vendas ·
@@ -169,10 +172,21 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   prospect e cliente**): Assuntos, Grupo de empresas, Segmento econômico, Meios de
   comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo do cliente, Motivos de
   alteração de data de entrega / quantidade do pedido.
-- Também ficam **dentro da ficha do prospect/cliente** (decidido): **Unidades do cliente**,
+- Também ficam **dentro da ficha do prospect/cliente** (decidido): **Histórico do cliente**,
+  **Produto × endereço de entrega**, **Unidades do cliente**,
   **Alterar nome fantasia**, **Endereços de cobrança**, **Endereços de entrega** (o cliente
   pode ter vários) e os valores dos **Atributos extras** (aba "Informações extras"). Ideia: tudo que é de um cliente específico fica na ficha dele.
 - Listas de tópicos com mais de 8 itens abrem em **duas colunas**, para caber na tela.
+- **Operações** (no sistema atual se chama "Eventos": são ações que a gente executa),
+  com os itens separados por títulos de grupo dentro do menu:
+  - **Preços:** Negociação de preço · Tabela de preços · Preço por intervalo de m²
+  - **Programas do cliente:** Importação de pedidos por EDI · Analisador de programas do cliente
+  - **Liberações:** Bloqueio de entrega de produto · Bloqueio em item de pedido ·
+    Confirmar previsão de embarque (manual)
+  - **Não entram:** Digitação, Revisão e Cancelamento de programa, Marcar programas como
+    transformados, Relacionar convênios produto × prospect.
+  - **Vão para a ficha do cliente:** Histórico do cliente · Produto × endereço de entrega.
+  - **Vai para a área Representantes:** Agenda dos representantes.
 - **Pedidos:** Consultar pedidos; Imprimir pedidos; Alterar pedidos.
 - Outros tópicos serão acrescentados conforme forem definidos.
 

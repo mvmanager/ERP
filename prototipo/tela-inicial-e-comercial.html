@@ -392,6 +392,8 @@ textarea.falta{border-color:var(--bad)!important}
 .mdrop .t{font-weight:600;font-size:14px}
 .mdrop .d{font-size:12.5px;color:var(--muted)}
 .mdrop .msep{height:1px;background:var(--line);margin:4px 8px}
+.mdrop .mgrp{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 12px 4px;border-top:1px solid var(--line);margin-top:4px}
+.mdrop .mgrp:first-child{border-top:0;margin-top:0;padding-top:6px}
 /* listas longas: duas colunas, para caber na tela sem rolar */
 .mdrop.larga{display:block;column-count:2;column-gap:4px;width:min(660px,calc(100vw - 32px))}
 .mdrop.larga button{width:100%;break-inside:avoid;margin-bottom:2px}
@@ -1711,11 +1713,22 @@ const IC = {
   alvo:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
   predio:'<path d="M4 21V5l8-2v18M12 9l8 2v10M2 21h20M7 8h2M7 12h2M7 16h2M15 14h2M15 17h2"/>',
   cifrao:'<path d="M12 3v18M16.5 7.5C16 6 14.3 5 12 5c-2.6 0-4.5 1.3-4.5 3.3 0 4.7 9 2.4 9 7.2 0 2-1.9 3.5-4.5 3.5-2.4 0-4.2-1-4.8-2.8"/>',
+  tabela:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16M15 4v16"/>',
+  regua:'<path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/>',
+  importar:'<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/>',
+  grafico:'<path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/>',
+  cadeado:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  caminhao:'<path d="M2 6h12v10H2zM14 10h4.5l3.5 3.5V16h-8z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/>',
   calendario:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
   engrenagem:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const ico = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const TOPICOS = {
+  'comercial/representantes': [
+    { nome:'Agenda', itens:[
+      { ic:'calendario', t:'Agenda dos representantes', d:'Visitas e compromissos de cada representante' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e
@@ -1731,6 +1744,23 @@ const TOPICOS = {
       { ic:'calendario', t:'Prazos de pagamento', d:'Condições de pagamento oferecidas' },
       { sep:true },
       { ic:'engrenagem', t:'Parâmetros de vendas', d:'Configurações da área de Vendas, como os atributos extras' },
+    ]},
+    /* Operações: o antigo "Eventos" (ações que a gente executa). Sem Digitação, Revisão,
+       Cancelamento e "Marcar como transformados" de programa, nem Convênios produto × prospect.
+       Histórico do cliente e Produto × endereço de entrega vão para a ficha do cliente;
+       Agenda dos representantes vai para a área Representantes. */
+    { nome:'Operações', itens:[
+      { grupo:'Preços' },
+      { ic:'etiqueta', t:'Negociação de preço', d:'Negociar preço com o cliente' },
+      { ic:'tabela', t:'Tabela de preços', d:'Preços vigentes por produto e cliente' },
+      { ic:'regua', t:'Preço por intervalo de m²', d:'Faixas de preço conforme a metragem' },
+      { grupo:'Programas do cliente' },
+      { ic:'importar', t:'Importação de pedidos por EDI', d:'Receber programas e pedidos do cliente' },
+      { ic:'grafico', t:'Analisador de programas do cliente', d:'Comparar e conferir os programas recebidos' },
+      { grupo:'Liberações' },
+      { ic:'cadeado', t:'Bloqueio de entrega de produto', d:'Bloquear ou desbloquear a entrega de um produto' },
+      { ic:'cadeado', t:'Bloqueio em item de pedido', d:'Bloquear ou desbloquear um item do pedido' },
+      { ic:'caminhao', t:'Confirmar previsão de embarque', d:'Confirmar a previsão de embarque manualmente' },
     ]},
     { nome:'Pedidos', itens:[
       { ic:'lupa', t:'Consultar pedidos', d:'Buscar por cliente, número ou período' },
@@ -1752,8 +1782,8 @@ function montarMesa(){
   menubar.innerHTML = topicos.map((tp, i) => `
     <div class="mtop">
       <button class="mbtn" type="button" data-i="${i}" aria-haspopup="true" aria-expanded="false">${tp.nome}${ico('seta')}</button>
-      <div class="mdrop${tp.itens.length > 8 ? ' larga' : ''}" data-i="${i}" role="menu" hidden>
-        ${tp.itens.map((it, j) => it.sep ? '<div class="msep" role="separator"></div>' : `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
+      <div class="mdrop${tp.itens.filter(x => x.t).length > 8 ? ' larga' : ''}" data-i="${i}" role="menu" hidden>
+        ${tp.itens.map((it, j) => it.grupo ? `<div class="mgrp" role="presentation">${it.grupo}</div>` : it.sep ? '<div class="msep" role="separator"></div>' : `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
       </div>
     </div>`).join('') + `<span class="mais">${topicos.length ? 'mais tópicos em breve' : 'tópicos a definir'}</span>`;
   $('fundoTxt').innerHTML = topicos.length
