@@ -506,6 +506,45 @@ textarea.falta{border-color:var(--bad)!important}
 .cl-doc{display:flex}
 .cl-doc .pill{margin-left:auto}
 
+/* ── Pedidos (compacto) ── */
+.pd-linhas{padding:6px 12px 12px}
+.pd-tab{width:100%;border-collapse:collapse;font-size:13px}
+.pd-tab th{text-align:left;font-size:11px;color:var(--muted);font-weight:600;padding:4px 8px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+.pd-tab td{padding:4px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.pd-tab .num{text-align:right;font-variant-numeric:tabular-nums}
+.pd-linhas tbody tr{cursor:pointer}
+.pd-linhas tbody tr:hover{background:var(--kraft-soft)}
+.pd-itens td small{display:block;color:var(--muted);font-size:11px}
+.pd-itens input{width:84px;text-align:right;font:inherit;padding:2px 6px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);color:var(--ink)}
+.pd-etapas{list-style:none;margin:8px 12px 0;padding:0;display:flex;gap:0;font-size:11.5px;color:var(--muted)}
+.pd-etapas li{flex:1;display:flex;align-items:center;gap:5px;padding:4px 6px;border-top:3px solid var(--line);white-space:nowrap}
+.pd-etapas li span{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;background:var(--surface-2);border:1px solid var(--line-2);flex:none}
+.pd-etapas li.feita{border-top-color:var(--ok);color:var(--ink)}
+.pd-etapas li.feita span{background:var(--ok);border-color:var(--ok);color:#fff}
+.pd-etapas li.atual{border-top-color:var(--kraft);color:var(--ink);font-weight:700}
+.pd-etapas li.atual span{background:var(--kraft);border-color:var(--kraft);color:#fff}
+.pd-etapas li.bloq{border-top-color:var(--bad);color:var(--bad);font-weight:700}
+.pd-etapas li.bloq span{background:var(--bad);border-color:var(--bad);color:#fff}
+.pd-corpo{display:grid;gap:8px;padding:8px 12px 14px}
+.pd-corpo .cl-tempo li{grid-template-columns:96px 1fr}
+.pd-info{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:4px 14px;font-size:13.5px}
+.pd-info small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+.pd-totais{display:flex;justify-content:flex-end;gap:18px;font-size:12.5px;color:var(--muted);padding-top:4px}
+.pd-totais b{color:var(--ink);font-variant-numeric:tabular-nums;margin-left:4px}
+.pd-total b{font-size:15px}
+.cl-aviso.pd-bloq{background:var(--bad-soft)}
+.cl-aviso.pd-bloq svg{color:var(--bad)}
+.cl-aviso.pd-ok{background:var(--ok-soft)}
+.cl-aviso.pd-ok svg{color:var(--ok)}
+.pd-av,#pdCredito .cl-aviso{margin:0}
+.pd-cli{max-width:520px}
+.pd-cli select{background:var(--surface)!important}
+.pd-prods{display:flex;flex-wrap:wrap;gap:6px}
+.pd-prod{display:grid;text-align:left;border:1px dashed var(--line-2);background:var(--surface-2);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}
+.pd-prod small{font-size:11.5px;color:var(--muted)}
+.pd-prod:hover{border-color:var(--kraft);border-style:solid}
+@media (max-width:760px){ .pd-etapas li{font-size:0;gap:0;justify-content:center} .pd-etapas li span{font-size:10px} .pd-linhas{overflow-x:auto} }
+
 /* retomada */
 .recent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:820px){ .recent{grid-template-columns:1fr} }
@@ -2484,7 +2523,7 @@ const TOPICOS = {
        entrega a partir de pedido horizonte planejado". As 13 alterações do sistema atual
        viraram uma janela só, "Alterar pedido" (cada usuário altera só o que tiver permissão). */
     { nome:'Pedidos', itens:[
-      { ic:'doc', t:'Pedidos', d:'Lançar, consultar e imprimir pedidos' },
+      { ic:'doc', t:'Pedidos', d:'Lançar, consultar e imprimir pedidos', tela:'pedidos' },
       { ic:'lapis', t:'Alterar pedido', d:'Datas, quantidades, preço, prazo, endereços, frete e mais' },
       { ic:'check', t:'Liberação de pedidos', d:'Liberar pedidos para produção' },
       { ic:'xcirc', t:'Cancelar item ou entrega', d:'Cancelar um item ou uma entrega do pedido' },
@@ -2592,7 +2631,7 @@ function abrirJanela(tp, item){
       <div class="vazio"><b>Tela a desenhar</b><span>Aqui entra a tela de “${item.t}”. Vamos desenhar juntos.</span></div>`}</div>
     <span class="jan-res" title="Arraste para mudar o tamanho" aria-hidden="true"></span>`;
   mesa.appendChild(el);
-  if (item.tela && TELAS[item.tela]) TELAS[item.tela](el.querySelector('.jan-corpo'));
+  if (item.tela && TELAS[item.tela]) { const corpo = el.querySelector('.jan-corpo'); if (TELAS._abrirNovo) { corpo._abrirNovo = TELAS._abrirNovo; TELAS._abrirNovo = null; } TELAS[item.tela](corpo); }
   const jan = { id: ++seq, chave, ctx, item, el, min: false };
   JANELAS.push(jan);
   el.addEventListener('pointerdown', () => focar(jan));
@@ -3225,7 +3264,12 @@ function cliqueClientes(box, e){
   if (t('[data-editar]')) { box._edit = true; return fichaCliente(box); }
   if (t('[data-cancelar]')) { box._edit = false; return fichaCliente(box); }
   if (t('[data-salvar]')) { box._edit = false; fichaCliente(box); return toast('Alterações salvas (protótipo)'); }
-  if (t('[data-pedido]')) return toast('Abriria um novo pedido já com os dados deste cliente');
+  if (t('[data-pedido]')) {
+    const tp = (TOPICOS['comercial/vendas'] || []).find(x => x.nome === 'Pedidos'), it = tp && tp.itens.find(x => x.tela === 'pedidos');
+    const ja = JANELAS.find(j => j.chave === atual.ctx + '›' + tp.nome + '›' + it.t);
+    if (ja) { restaurar(ja); novoPedido(ja.el.querySelector('.jan-corpo'), box._sel); return; }
+    TELAS._abrirNovo = box._sel; abrirJanela(tp, it); return;
+  }
   if (t('[data-virar]')) {
     const c = CLIENTES.find(x => x.id === box._sel);
     Object.assign(c, { tipo:'cliente', credito:{ limite:0, usado:0, aberto:0, atraso:0 }, resumo:{ fat12:'R$ 0', ultimo:'—', abertos:0, margem:'—' }, codOrig:'', nossoCod:'' });
@@ -3252,6 +3296,187 @@ function novoProspect(box){
     <div class="cl-cnpj"><label class="cf"><span>CNPJ</span><input id="nvCnpj" placeholder="00.000.000/0000-00"></label><button class="go" type="button" data-buscar-cnpj>Buscar na Receita</button></div>
     <div class="cl-dica">Se for pessoa física ou não tiver CNPJ, dá para preencher à mão.</div></div>`;
   setTimeout(() => { const i = box.querySelector('#nvCnpj'); if (i) i.focus(); }, 30);
+}
+
+/* ════ Pedidos (Comercial › Vendas › Pedidos) ════
+   Lista + pedido aberto numa tela só, compacta. O pedido mostra em que ETAPA está.
+   Novo pedido puxa do cliente: local de entrega, cobrança, prazo, frete, transportadora,
+   produtos que ele já compra e o último preço. Confere o crédito na hora. Dados fictícios. */
+const ETAPAS = ['Lançado','Crédito','PCP','Produção','Expedição','Faturado','Entregue'];
+const PRODUTOS_CLI = {
+  1: [
+    { cod:'CX-1042', desc:'Caixa congelados 5 kg', med:'400×300×200', onda:'BC', comp:'Kraft 2 camadas', un:'mil', preco:2850 },
+    { cod:'CX-1043', desc:'Caixa congelados 10 kg', med:'500×350×250', onda:'BC', comp:'Kraft 2 camadas', un:'mil', preco:3920 },
+    { cod:'CH-0210', desc:'Chapa divisória', med:'380×280', onda:'B', comp:'Miolo reciclado', un:'mil', preco:610 },
+  ],
+  2: [
+    { cod:'CX-2201', desc:'Caixa cortes bovinos 20 kg', med:'600×400×180', onda:'BC', comp:'Kraft resistente à umidade', un:'mil', preco:4710 },
+    { cod:'CX-2205', desc:'Caixa embutidos 6 kg', med:'420×300×150', onda:'C', comp:'Kraft', un:'mil', preco:2340 },
+  ],
+  3: [], 4: [],
+};
+const PEDIDOS = [
+  { n:'4521', cli:1, data:'21/11/2026', oc:'OC-77812', etapa:3, rep:'Matheus', entrega:'Fábrica Campinas', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
+    itens:[ { cod:'CX-1042', qtd:15, preco:2850, ent:'05/12/2026' }, { cod:'CH-0210', qtd:12, preco:610, ent:'05/12/2026' } ],
+    hist:[ ['21/11 09:12','Pedido lançado','Matheus'], ['21/11 10:40','Crédito liberado','Crédito'], ['22/11 08:05','Programado na onduladeira (OF 9921)','PCP'], ['26/11 14:20','Em produção','Produção'] ] },
+  { n:'4509', cli:2, data:'18/11/2026', oc:'PC 3310', etapa:2, rep:'Matheus', entrega:'Planta Araraquara', cobranca:'Contas a pagar', prazo:'28 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'Câmara fria: entregar em paletes filmados.',
+    itens:[ { cod:'CX-2201', qtd:5, preco:4710, ent:'02/12/2026' }, { cod:'CX-2205', qtd:1.5, preco:2340, ent:'02/12/2026' } ],
+    hist:[ ['18/11 15:30','Pedido lançado','Matheus'], ['19/11 09:00','Crédito liberado pela gerência (limite em 95%)','Crédito'] ] },
+  { n:'4488', cli:1, data:'12/11/2026', oc:'OC-77640', etapa:5, rep:'Matheus', entrega:'CD Sumaré', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
+    itens:[ { cod:'CX-1043', qtd:9.9, preco:3920, ent:'25/11/2026' } ],
+    hist:[ ['12/11','Pedido lançado','Matheus'], ['24/11','Faturado · NF 88430','Faturamento'] ] },
+  { n:'4530', cli:2, data:'26/11/2026', oc:'', etapa:1, rep:'Matheus', entrega:'Planta Araraquara', cobranca:'Contas a pagar', prazo:'28 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
+    itens:[ { cod:'CX-2205', qtd:4, preco:2340, ent:'10/12/2026' } ],
+    hist:[ ['26/11 16:02','Pedido lançado','Matheus'], ['26/11 16:02','Aguardando crédito: limite estourado','Sistema'] ], bloqueio:'Crédito: o pedido passa do limite do cliente.' },
+  { n:'4430', cli:1, data:'30/10/2026', oc:'OC-77210', etapa:6, rep:'Matheus', entrega:'Fábrica Campinas', cobranca:'Financeiro matriz', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
+    itens:[ { cod:'CX-1042', qtd:18, preco:2790, ent:'14/11/2026' } ],
+    hist:[ ['30/10','Pedido lançado','Matheus'], ['13/11','Faturado · NF 88102','Faturamento'], ['14/11','Entregue','Expedição'] ] },
+];
+const brl = (v) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:2 });
+const prodDe = (cli, cod) => (PRODUTOS_CLI[cli] || []).find(p => p.cod === cod) || { desc:cod, med:'', onda:'', comp:'', un:'mil' };
+const totalPed = (p) => p.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
+const cliDe = (id) => CLIENTES.find(c => c.id === id);
+const pillEtapa = (p) => p.bloqueio ? '<span class="pill p-bad">Bloqueado</span>'
+  : `<span class="pill ${p.etapa >= 6 ? 'p-ok' : p.etapa >= 3 ? 'p-warn' : 'p-info'}">${ETAPAS[p.etapa]}</span>`;
+
+TELAS.pedidos = (box) => {
+  box.classList.add('cl-box');
+  box._filtro = 'abertos'; box._busca = ''; box._sel = null; box._edit = false;
+  box.addEventListener('click', (e) => cliquePedidos(box, e));
+  box.addEventListener('input', (e) => {
+    if (e.target.matches('.pd-busca input')) { box._busca = e.target.value; listaPedidos(box, true); }
+    if (e.target.matches('[data-qtd],[data-preco]')) recalcNovo(box);
+  });
+  box.addEventListener('change', (e) => { if (e.target.matches('#pdCli')) montarNovo(box, +e.target.value); });
+  if (box._abrirNovo) novoPedido(box, box._abrirNovo); else listaPedidos(box);
+};
+const FILTROS_PD = [ ['abertos','Em aberto', p => p.etapa < 5], ['credito','No crédito', p => p.etapa <= 1 || p.bloqueio], ['producao','Em produção', p => p.etapa >= 2 && p.etapa <= 4], ['faturados','Faturados', p => p.etapa >= 5], ['todos','Todos', () => true] ];
+function listaPedidos(box, soLinhas){
+  const n = norm(box._busca).trim(), fl = FILTROS_PD.find(x => x[0] === box._filtro);
+  const l = PEDIDOS.filter(fl[2]).filter(p => { const c = cliDe(p.cli); return !n || norm(p.n + ' ' + p.oc + ' ' + c.razao + ' ' + c.fantasia).includes(n); })
+    .sort((a, b) => b.n.localeCompare(a.n));
+  const linhas = l.length ? `<table class="pd-tab"><thead><tr><th>Pedido</th><th>Cliente</th><th>OC do cliente</th><th>Emissão</th><th>Entrega</th><th class="num">Valor</th><th>Etapa</th></tr></thead><tbody>${l.map(p => {
+      const c = cliDe(p.cli);
+      return `<tr data-ped="${p.n}"><td class="mono">${p.n}</td><td><b>${esc(nomeExib(c))}</b></td><td>${esc(p.oc || '—')}</td><td>${p.data.slice(0,5)}</td><td>${p.itens[0].ent.slice(0,5)}</td><td class="num">${brl(totalPed(p))}</td><td>${pillEtapa(p)}</td></tr>`;
+    }).join('')}</tbody></table>` : '<div class="vazio"><b>Nenhum pedido aqui</b><span>Busque pelo número, OC ou cliente.</span></div>';
+  if (soLinhas) { box.querySelector('.pd-linhas').innerHTML = linhas; return; }
+  box.innerHTML = `<div class="cl-topo">
+      <label class="srch pd-busca">${LUPA}<input placeholder="Buscar por número, OC ou cliente…" value="${esc(box._busca)}"></label>
+      ${FILTROS_PD.map(([k, t, fn]) => `<button class="flt" type="button" data-fpd="${k}" aria-pressed="${box._filtro === k}">${t} · ${PEDIDOS.filter(fn).length}</button>`).join('')}
+      <button class="go cl-novo" type="button" data-novo-ped>＋ Novo pedido</button>
+    </div><div class="pd-linhas">${linhas}</div>`;
+}
+function etapasHTML(p){
+  return `<ol class="pd-etapas">${ETAPAS.map((e, i) => `<li class="${i < p.etapa ? 'feita' : i === p.etapa ? (p.bloqueio ? 'bloq' : 'atual') : ''}"><span>${i < p.etapa ? '✓' : i + 1}</span>${e}</li>`).join('')}</ol>`;
+}
+function itensHTML(cli, itens, editavel){
+  return `<table class="pd-tab pd-itens"><thead><tr><th>Produto</th><th>Medidas (mm)</th><th>Onda</th><th class="num">Qtde</th><th class="num">Preço/mil</th><th class="num">Total</th><th>Entrega</th></tr></thead><tbody>${itens.map((i, k) => {
+      const pr = prodDe(cli, i.cod);
+      return `<tr><td><b>${esc(pr.desc)}</b><small class="mono">${i.cod} · ${esc(pr.comp)}</small></td><td>${pr.med}</td><td>${pr.onda}</td>
+        <td class="num">${editavel ? `<input data-qtd="${k}" value="${String(i.qtd).replace('.', ',')}">` : i.qtd.toLocaleString('pt-BR') + ' mil'}</td>
+        <td class="num">${editavel ? `<input data-preco="${k}" value="${i.preco.toFixed(2).replace('.', ',')}">` : brl(i.preco)}</td>
+        <td class="num" data-tot="${k}">${brl(i.qtd * i.preco)}</td><td>${i.ent}</td></tr>`;
+    }).join('')}</tbody></table>`;
+}
+function totaisHTML(itens){
+  const v = itens.reduce((a, i) => a + i.qtd * i.preco, 0), ipi = v * 0.05;
+  return `<div class="pd-totais"><span>Mercadorias <b data-tmerc>${brl(v)}</b></span><span>IPI (5%) <b data-tipi>${brl(ipi)}</b></span><span class="pd-total">Total <b data-ttot>${brl(v + ipi)}</b></span></div>`;
+}
+function abrirPedido(box){
+  const p = PEDIDOS.find(x => x.n === box._sel), c = cliDe(p.cli);
+  box.innerHTML = `<div class="cl-ficha">
+    <div class="cl-cab">
+      <button class="voltar" type="button" data-lista-ped>‹ Lista</button>
+      <div class="cl-nome"><b>Pedido ${p.n}</b><small>${esc(nomeExib(c))} · ${esc(c.razao)} · emitido em ${p.data}${p.oc ? ' · OC ' + esc(p.oc) : ''}</small></div>
+      ${pillEtapa(p)}
+      <span class="cl-acoes"><button class="btn2" type="button" data-imprimir>Imprimir</button><button class="btn2" type="button" data-enviar-cli>Enviar ao cliente</button>${p.etapa < 5 ? '<button class="go" type="button" data-alterar>Alterar</button>' : ''}</span>
+    </div>
+    ${etapasHTML(p)}
+    ${p.bloqueio ? `<div class="cl-aviso pd-bloq">${IAVISO}<span><b>Bloqueado:</b> ${esc(p.bloqueio)}</span></div>` : ''}
+    ${c.advert.vendas ? `<div class="cl-aviso">${IAVISO}<span><b>Aviso do cliente:</b> ${esc(c.advert.vendas)}</span></div>` : ''}
+    <div class="pd-corpo">
+      <section class="cl-bloco"><h4>Cliente e entrega</h4><div class="pd-info">
+        <span><small>Cliente</small>${esc(nomeExib(c))}</span><span><small>Local de entrega</small>${esc(p.entrega)}</span>
+        <span><small>Cobrança</small>${esc(p.cobranca)}</span><span><small>Representante</small>${esc(p.rep)}</span>
+        <span><small>Prazo de pagamento</small>${esc(p.prazo)}</span><span><small>Frete</small>${p.frete} · ${esc(p.transp)}</span></div></section>
+      <section class="cl-bloco"><h4>Itens</h4>${itensHTML(p.cli, p.itens, false)}${totaisHTML(p.itens)}</section>
+      ${p.obs ? `<section class="cl-bloco"><h4>Observações</h4><p class="cl-txt">${esc(p.obs)}</p></section>` : ''}
+      <section class="cl-bloco"><h4>Andamento</h4><ul class="cl-tempo">${p.hist.map(h => `<li><span class="mono">${h[0]}</span><div>${esc(h[1])}<small>${esc(h[2])}</small></div></li>`).join('')}</ul></section>
+    </div></div>`;
+}
+/* ── novo pedido ── */
+function novoPedido(box, cliId){
+  box._novo = { cli: cliId || null, itens: [] };
+  box.innerHTML = `<div class="cl-ficha editando">
+    <div class="cl-cab"><button class="voltar" type="button" data-lista-ped>‹ Lista</button>
+      <div class="cl-nome"><b>Novo pedido</b><small>Escolha o cliente: entrega, cobrança, prazo e frete vêm do cadastro dele.</small></div>
+      <span class="cl-acoes"><button class="btn2" type="button" data-lista-ped>Cancelar</button><button class="go" type="button" data-gravar-ped>Gravar pedido</button></span></div>
+    <div class="pd-corpo"><div class="pd-cli"><label class="cf"><span>Cliente</span><select id="pdCli"><option value="">Escolha…</option>${CLIENTES.filter(c => ehCli(c) && c.status === 'Ativo').map(c => `<option value="${c.id}"${c.id === cliId ? ' selected' : ''}>${esc(nomeExib(c))} · ${c.cnpj}</option>`).join('')}</select></label></div>
+    <div id="pdResto"></div></div></div>`;
+  if (cliId) montarNovo(box, cliId);
+}
+function montarNovo(box, cliId){
+  const c = cliDe(cliId), r = box.querySelector('#pdResto'); box._novo.cli = cliId;
+  if (!c) { r.innerHTML = ''; return; }
+  const prods = PRODUTOS_CLI[cliId] || [];
+  box._novo.itens = [];
+  r.innerHTML = `${c.advert.vendas ? `<div class="cl-aviso pd-av">${IAVISO}<span><b>Aviso do cliente:</b> ${esc(c.advert.vendas)}</span></div>` : ''}
+    <section class="cl-bloco"><h4>Cliente e entrega <small>preenchido pelo cadastro · dá para trocar</small></h4><div class="cl-grade">
+      ${f('Local de entrega', (c.entregas[0] || {}).nome, { opcoes: c.entregas.map(x => x.nome) })}
+      ${f('Cobrança', (c.cobrancas[0] || {}).nome, { opcoes: c.cobrancas.map(x => x.nome) })}
+      ${f('OC do cliente', '', { ph:'Número da ordem de compra' })}
+      ${f('Prazo de pagamento', '28/42/56 dias')}${f('Frete', 'CIF', { opcoes:['CIF','FOB'] })}${f('Transportador', 'Transportes Rápido Sul')}</div></section>
+    <section class="cl-bloco"><h4>Itens <small>produtos que este cliente já compra · último preço sugerido</small></h4>
+      <div class="pd-prods">${prods.map(pr => `<button type="button" class="pd-prod" data-add-prod="${pr.cod}"><b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda} · último ${brl(pr.preco)}/mil</small></button>`).join('') || '<p class="cl-txt">Este cliente ainda não tem produtos. Peça o desenvolvimento à Engenharia de produto.</p>'}</div>
+      <div id="pdItens"></div></section>
+    <div id="pdCredito"></div>`;
+  travar(box); box.querySelectorAll('#pdResto input, #pdResto select').forEach(el => el.disabled = false);
+  recalcNovo(box);
+}
+function recalcNovo(box){
+  const nv = box._novo; if (!nv || !nv.cli) return;
+  box.querySelectorAll('[data-qtd]').forEach(el => { nv.itens[+el.dataset.qtd].qtd = parseFloat(el.value.replace(',', '.')) || 0; });
+  box.querySelectorAll('[data-preco]').forEach(el => { nv.itens[+el.dataset.preco].preco = parseFloat(el.value.replace(/\./g, '').replace(',', '.')) || 0; });
+  const alvo = box.querySelector('#pdItens');
+  if (document.activeElement && alvo.contains(document.activeElement)) {
+    nv.itens.forEach((i, k) => { const t = alvo.querySelector(`[data-tot="${k}"]`); if (t) t.textContent = brl(i.qtd * i.preco); });
+    const v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
+    alvo.querySelector('[data-tmerc]').textContent = brl(v); alvo.querySelector('[data-tipi]').textContent = brl(v * .05); alvo.querySelector('[data-ttot]').textContent = brl(v * 1.05);
+  } else alvo.innerHTML = nv.itens.length ? itensHTML(nv.cli, nv.itens, true) + totaisHTML(nv.itens) : '<p class="cl-txt">Clique num produto acima para incluir.</p>';
+  const c = cliDe(nv.cli), cr = c.credito, v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0) * 1.05;
+  const livre = cr.limite - cr.usado, estoura = v > livre;
+  box.querySelector('#pdCredito').innerHTML = nv.itens.length ? `<div class="cl-aviso ${estoura ? 'pd-bloq' : 'pd-ok'}">${IAVISO}<span>${estoura
+    ? `<b>Crédito:</b> este pedido (${brl(v)}) passa do limite livre do cliente (${brl(livre)}). Ao gravar, vai para aprovação do Crédito.`
+    : `<b>Crédito ok:</b> cabe no limite livre do cliente (${brl(livre)}).`}</span></div>` : '';
+}
+function cliquePedidos(box, e){
+  const t = (s) => e.target.closest(s);
+  if (t('[data-fpd]')) { box._filtro = t('[data-fpd]').dataset.fpd; return listaPedidos(box); }
+  if (t('[data-ped]')) { box._sel = t('[data-ped]').dataset.ped; return abrirPedido(box); }
+  if (t('[data-lista-ped]')) { box._sel = null; box._novo = null; return listaPedidos(box); }
+  if (t('[data-novo-ped]')) return novoPedido(box);
+  if (t('[data-add-prod]')) {
+    const pr = prodDe(box._novo.cli, t('[data-add-prod]').dataset.addProd);
+    box._novo.itens.push({ cod: pr.cod, qtd: 1, preco: pr.preco, ent: '15/12/2026' });
+    if (document.activeElement) document.activeElement.blur();
+    return recalcNovo(box);
+  }
+  if (t('[data-gravar-ped]')) {
+    const nv = box._novo;
+    if (!nv || !nv.cli) return toast('Escolha o cliente');
+    if (!nv.itens.length) return toast('Inclua pelo menos um item');
+    const c = cliDe(nv.cli), v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0) * 1.05, estoura = v > c.credito.limite - c.credito.usado;
+    const n = String(Math.max(...PEDIDOS.map(p => +p.n)) + 1);
+    PEDIDOS.push({ n, cli: nv.cli, data:'27/11/2026', oc: box.querySelector('#pdResto input[placeholder^="Número"]').value, etapa: estoura ? 1 : 2, rep: USUARIO.nome,
+      entrega: (c.entregas[0] || {}).nome || '—', cobranca: (c.cobrancas[0] || {}).nome || '—', prazo:'28/42/56 dias', frete:'CIF', transp:'Transportes Rápido Sul', obs:'',
+      itens: nv.itens.map(i => ({ ...i })), hist: [ ['agora','Pedido lançado', USUARIO.nome], estoura ? ['agora','Aguardando crédito: passa do limite','Sistema'] : ['agora','Crédito liberado automaticamente','Sistema'] ],
+      bloqueio: estoura ? 'Crédito: o pedido passa do limite do cliente.' : undefined });
+    box._sel = n; box._novo = null; abrirPedido(box);
+    return toast(`Pedido ${n} gravado`);
+  }
+  if (t('[data-alterar]')) return toast('Abriria "Alterar pedido" com este pedido (cada um altera só o que tiver permissão)');
+  if (t('[data-imprimir]')) return toast('Geraria o PDF do pedido');
+  if (t('[data-enviar-cli]')) return toast('Enviaria o pedido por e-mail ao contato de compras do cliente');
 }
 
 mostrarTela();
