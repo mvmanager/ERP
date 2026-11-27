@@ -714,8 +714,6 @@ const MODULOS = [
     {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
     {k:'expedicao', nome:'Expedição', d:'Cargas e romaneios'},
   ]},
-  {k:'orcamentos', nome:'Orçamentos', st:'Solicitações, precificação e filas', badge:14},
-  {k:'engenharia', cx:'faca', nome:'Engenharia de Produto', st:'Desenvolvimento, amostras, clicheria e facas', badge:4},
   {k:'industrial', cx:'onda', nome:'Industrial', areas:[
     {k:'engind', nome:'Engenharia industrial', d:'Processos, máquinas e capacidade'},
     {k:'pesagem', nome:'Pesagem', d:'Balança de entrada e saída'},
@@ -756,7 +754,6 @@ const MODULOS = [
   {k:'indicadores', nome:'Gerencial', badge:'novo', calm:true, areas:[
     {k:'relatorios', nome:'Relatórios', d:'Margem, refile, conversão e vendas'},
   ]},
-  {k:'cadastros', nome:'Cadastros', st:'Clientes, produtos e usuários'},
 ];
 MODULOS.forEach(m => { m.slug = m.nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-'); });
 /* Caixinha que entra no canto ao passar o mouse: faca, onda, pilha ou a caixa que abre (padrão) */
@@ -789,7 +786,6 @@ const RELATORIOS = [
   {id:'limite', nome:'Clientes com limite estourado', mod:'comercial', area:'credito', d:'Crédito usado acima do liberado'},
   {id:'fat-mes', nome:'Faturamento do mês', mod:'comercial', area:'faturamento', d:'Notas emitidas por dia e por cliente'},
   {id:'entregas', nome:'Entregas por período', mod:'comercial', area:'expedicao', d:'Cargas, romaneios e atrasos'},
-  {id:'orc-status', nome:'Orçamentos por situação', mod:'orcamentos', d:'Em análise, prontos e devolvidos'},
   {id:'prod-turno', nome:'Produção por turno', mod:'industrial', area:'reporte', d:'Metros e caixas por máquina'},
   {id:'refugo', nome:'Refugo diário', mod:'industrial', area:'reporte', d:'Perdas do dia por máquina'},
   {id:'prog-semana', nome:'Programação da semana', mod:'industrial', area:'pcp', d:'Onduladeira e conversão'},
@@ -931,8 +927,6 @@ const CATALOGO = [
   {tipo:'Relatório', nome:'Margem por cliente', modulo:'Gerencial › Relatórios', ic:'indicadores', chaves:'margem lucro cliente rentabilidade'},
   {tipo:'Relatório', nome:'Vendas por região', modulo:'Comercial › Vendas', ic:'comercial', chaves:'vendas faturamento regiao estado uf cidade'},
   {tipo:'Relatório', nome:'Conversão de orçamentos', modulo:'Comercial › Vendas', ic:'comercial', chaves:'conversao orcamento orcamentos fechados taxa aprovados'},
-  {tipo:'Tela', nome:'Orçamentos parados', modulo:'Orçamentos', ic:'orcamentos', chaves:'orcamento orcamentos parado parados atrasado atrasados fila aguardando'},
-  {tipo:'Tela', nome:'Fila do custo', modulo:'Orçamentos', ic:'orcamentos', chaves:'custo fila preco precificacao'},
   {tipo:'Tela', nome:'Programação da onduladeira', modulo:'Industrial › PCP', ic:'pcp', chaves:'programacao onduladeira pcp sequencia combinacao larguras'},
   {tipo:'Tela', nome:'Saldo de bobinas', modulo:'Suprimentos › Materiais', ic:'estoque', chaves:'bobina bobinas papel estoque saldo toneladas'},
   {tipo:'Relatório', nome:'Consumo de papel por mês', modulo:'Suprimentos › Materiais', ic:'estoque', chaves:'consumo papel bobina mes mensal'},
@@ -940,9 +934,6 @@ const CATALOGO = [
   {tipo:'Relatório', nome:'Testes físicos por qualidade', modulo:'Qualidade › Laboratório', ic:'qualidade', chaves:'teste testes ect coluna mullen qualidade papelao'},
   {tipo:'Tela', nome:'Cargas do dia', modulo:'Comercial › Expedição', ic:'expedicao', chaves:'carga cargas expedicao entrega caminhao hoje'},
   {tipo:'Relatório', nome:'Contas a receber', modulo:'Financeiro › Contas a receber', ic:'financeiro', chaves:'receber contas cobranca vencimento financeiro'},
-  {tipo:'Ação', nome:'Novo orçamento', modulo:'Orçamentos', ic:'orcamentos', chaves:'novo criar orcamento cotacao'},
-  {tipo:'Ação', nome:'Solicitar amostra', modulo:'Engenharia de Produto', ic:'engenharia', chaves:'amostra pedir solicitar nova prototipo'},
-  {tipo:'Tela', nome:'Calculadora de eslote', modulo:'Engenharia de Produto', ic:'engenharia', chaves:'eslote slot cilindro calculadora aba altura maleta'},
 ];
 const PARADAS = new Set('o a os as de do da dos das e em no na nos nas por para pra um uma com que qual quais tem ter existe existem algum alguma ha quero queria preciso ver mostrar onde fica sistema relatorio relatorios tela telas sobre me meu minha'.split(' '));
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9 ]+/g,' ');
@@ -1051,7 +1042,7 @@ function responderNada(texto, vemDePerto){
 }
 
 /* placeholder com exemplos alternando */
-const exemplos = ['Ex.: existe relatório de refile por máquina?','Ex.: onde vejo o saldo de bobinas?','Ex.: quero a margem por vendedor','Ex.: criar novo orçamento'];
+const exemplos = ['Ex.: existe relatório de refile por máquina?','Ex.: onde vejo o saldo de bobinas?','Ex.: quero a margem por vendedor','Ex.: quero a margem por cliente'];
 let ei = 0; setInterval(() => { if (document.activeElement !== q && !q.value) { ei = (ei+1) % exemplos.length; q.placeholder = exemplos[ei]; } }, 3500);
 
 /* ════ Navegação ════
@@ -1062,7 +1053,7 @@ const $ = (id) => document.getElementById(id);
 $('qtdMod').textContent = `${MODULOS.length} disponíveis para o seu perfil`;
 
 /* caixinha de cada área ao passar o mouse (as demais usam a caixa que abre) */
-const CX_AREA = { expedicao:'pilha', materiais:'pilha', pcp:'onda', reporte:'onda' };
+const CX_AREA = { engind:'faca', expedicao:'pilha', materiais:'pilha', pcp:'onda', reporte:'onda' };
 /* pendências de exemplo por área */
 const BADGE_AREA = { 'comercial/vendas':4, 'qualidade/rnc':1 };
 

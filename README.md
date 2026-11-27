@@ -47,8 +47,6 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   | Módulo | Áreas |
   |---|---|
   | Comercial | Vendas, Crédito, Faturamento, NFe, Expedição |
-  | Orçamentos | (sem áreas por enquanto) |
-  | Engenharia de Produto | (sem áreas por enquanto: amostras, clicheria, facas e desenvolvimento) |
   | Industrial | Engenharia industrial, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
   | Suprimentos | Compras, Materiais |
   | Qualidade | Laboratório, Qualidade, RNC, FSC |
@@ -57,13 +55,14 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   | Recursos Humanos | Folha de pagamento, Treinamento |
   | Suporte | Portaria, Suporte |
   | Gerencial | Relatórios |
-  | Cadastros | (sem áreas por enquanto) |
 
   - Cartões **compactos** (metade do tamanho original): ícone ao lado do nome e, embaixo,
     os nomes das áreas em letra pequena. Seis cartões por linha no computador.
   - Ao passar o mouse: o cartão sobe, inclina levemente, ganha uma luz suave e uma
-    **caixinha de papelão** entra pelo canto (faca em Engenharia de Produto, onda em
-    Industrial, pilha no pallet em Suprimentos, caixa que abre nos demais).
+    **caixinha de papelão** entra pelo canto (onda em Industrial, pilha no pallet em
+    Suprimentos, caixa que abre nos demais).
+  - **Só estes 9 módulos.** Orçamentos, Engenharia de Produto e Cadastros foram retirados:
+    o que eles faziam vai virar parte de algum módulo acima (a definir).
   - Selo vermelho com a quantidade de pendências do módulo.
 - A seção **Pendências** foi retirada da tela inicial (o selo vermelho nos cartões continua).
 - **Meus atalhos** (abaixo dos módulos): área personalizada onde cada pessoa deixa os
@@ -81,7 +80,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   inicial**: botão **‹ Voltar** (volta para a tela de onde a pessoa veio; se abriu direto,
   para o Início), título do módulo e uma grade de cartões compactos, um por área, com a mesma caixinha
   ao passar o mouse (pilha no pallet em Expedição e Materiais, onda em PCP e Reporte de
-  produção) e o selo de pendências de cada área.
+  produção, faca em Engenharia industrial) e o selo de pendências de cada área.
 - No sistema real, cada pessoa vê só as áreas liberadas para ela.
 
 ### Dentro de uma área (padrão para todos)
@@ -114,8 +113,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ## Próximos passos
 1. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**
    (Comercial › Vendas › Cadastros).
-2. Definir os tópicos das demais áreas e o que fazer com Orçamentos, Engenharia de
-   Produto e Cadastros (que ainda não têm áreas).
+2. Definir os tópicos das demais áreas e em qual módulo entram orçamentos,
+   engenharia de produto (amostras, clicheria, facas) e os cadastros gerais.
 3. Montar o sistema de verdade:
    - aplicação em Docker, banco PostgreSQL e configurações fora do código, para poder
      trocar de hospedagem sem retrabalho;
