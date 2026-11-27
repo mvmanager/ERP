@@ -188,6 +188,13 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     negocia, aprova e converte em pedido. O representante acompanha cada etapa em
     "Minhas solicitações".
   - **Amostra, clichê e desenvolvimento:** → **Industrial › Engenharia de produto**.
+  - **Automação:** os motores (precificação, calculadora de caixa) ficam **dentro dos módulos
+    internos** e trabalham sozinhos quando a solicitação chega: em Custos, o preço já vem
+    calculado e a pessoa só confere e ajusta exceções. A mesma ideia pode valer para outras
+    solicitações (ex.: amostra já gerar a planificação da caixa).
+  - **A decidir ao desenhar a tela:** preço calculado dentro das regras vai direto para
+    Vendas, ou Custos sempre confere antes? (Meio-termo comum: passa direto se estiver dentro
+    das regras; para em Custos só quando foge delas.)
 
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
