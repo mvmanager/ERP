@@ -59,7 +59,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   | Gerencial | Relatórios |
   | Cadastros | (sem áreas por enquanto) |
 
-  - No cartão do módulo aparecem os nomes das áreas.
+  - Cartões **compactos** (metade do tamanho original): ícone ao lado do nome e, embaixo,
+    os nomes das áreas em letra pequena. Seis cartões por linha no computador.
   - Ao passar o mouse: o cartão sobe, inclina levemente, ganha uma luz suave e uma
     **caixinha de papelão** entra pelo canto (faca em Engenharia de Produto, onda em
     Industrial, pilha no pallet em Suprimentos, caixa que abre nos demais).
@@ -69,7 +70,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
-  inicial**: título do módulo e uma grade de cartões, um por área, com a mesma caixinha
+  inicial**: botão **‹ Voltar** (volta para a tela de onde a pessoa veio; se abriu direto,
+  para o Início), título do módulo e uma grade de cartões compactos, um por área, com a mesma caixinha
   ao passar o mouse (pilha no pallet em Expedição e Materiais, onda em PCP e Reporte de
   produção) e o selo de pendências de cada área.
 - No sistema real, cada pessoa vê só as áreas liberadas para ela.
