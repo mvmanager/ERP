@@ -207,6 +207,15 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   **Facas:** Facas · **Desenvolvimento:** Desenvolvimento de produto (projeto e ficha técnica).
 - Desenho ao passar o mouse: a caixa planificada com as linhas de corte (faca).
 
+### Comercial › Crédito (proposta, a partir do sistema atual)
+- **Análises:** Análise de crédito · Liberação de pedidos pelo crédito (junta "por data de
+  entrega" e "pela gerência" numa fila só) · Documentação de clientes e grupos (junta o
+  cadastro da documentação e a "Situação da documentação").
+- **Consultas:** Itens reprovados pelo crédito.
+- **Configurações:** Política de crédito (com o histórico de alterações dentro) · Parâmetros
+  de crédito.
+- O nome "pelo crédito" evita confusão com a "Liberação de pedidos" de Vendas › Pedidos.
+
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Orçamentos:** Orçamentos (chegam de Custos já com preço: consultar, negociar, aprovar e
   converter em pedido).
