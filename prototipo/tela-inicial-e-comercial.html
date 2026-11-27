@@ -391,6 +391,13 @@ textarea.falta{border-color:var(--bad)!important}
 .mdrop .i svg{width:16px;height:16px}
 .mdrop .t{font-weight:600;font-size:14px}
 .mdrop .d{font-size:12.5px;color:var(--muted)}
+.mdrop .msep{height:1px;background:var(--line);margin:4px 8px}
+/* listas longas: duas colunas, para caber na tela sem rolar */
+.mdrop.larga{display:block;column-count:2;column-gap:4px;width:min(660px,calc(100vw - 32px))}
+.mdrop.larga button{width:100%;break-inside:avoid;margin-bottom:2px}
+.mdrop.larga .msep{break-inside:avoid}
+@media (max-width:700px){ .mdrop.larga{column-count:1} }
+.mdrop{max-height:calc(100vh - 72px);overflow-y:auto}
 .mais{margin-left:6px;font-size:12px;color:var(--muted);border:1px dashed var(--line-2);border-radius:99px;padding:4px 10px}
 /* mesa do módulo: vazia até a pessoa abrir algo */
 .mesa{position:relative;z-index:0;isolation:isolate;min-height:calc(100vh - 72px);overflow:hidden}
@@ -1696,13 +1703,40 @@ const IC = {
   impr:'<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3"/><path d="M7 14h10v7H7z"/>',
   lapis:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
   seta:'<path d="M6 9l6 6 6-6"/>',
+  etiqueta:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+  texto:'<path d="M4 7V5h16v2M12 5v14M9 19h6"/>',
+  mapa:'<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+  maleta:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18"/>',
+  estrela:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+  alvo:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
+  predio:'<path d="M4 21V5l8-2v18M12 9l8 2v10M2 21h20M7 8h2M7 12h2M7 16h2M15 14h2M15 17h2"/>',
+  cifrao:'<path d="M12 3v18M16.5 7.5C16 6 14.3 5 12 5c-2.6 0-4.5 1.3-4.5 3.3 0 4.7 9 2.4 9 7.2 0 2-1.9 3.5-4.5 3.5-2.4 0-4.2-1-4.8-2.8"/>',
+  calendario:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  engrenagem:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
 const ico = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const TOPICOS = {
   'comercial/vendas': [
+    /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
+       Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e
+       Motivos de alteração de data de entrega — esses viram campos dentro do cadastro de
+       prospect e cliente. */
     { nome:'Cadastros', itens:[
       { ic:'pessoa', t:'Prospects e clientes', d:'Cadastrar e consultar prospects e clientes' },
+      { ic:'etiqueta', t:'Atributos extras de cliente', d:'Informações a mais no cadastro do cliente' },
+      { ic:'texto', t:'Alterar nome fantasia', d:'Trocar o nome fantasia de um cliente' },
+      { ic:'mapa', t:'Áreas de vendas', d:'Regiões atendidas pela equipe' },
+      { ic:'maleta', t:'Representantes', d:'Cadastro dos representantes' },
+      { ic:'estrela', t:'Supervisores de vendas', d:'Quem supervisiona cada equipe' },
+      { ic:'alvo', t:'Metas de vendas', d:'Metas por representante e período' },
+      { ic:'predio', t:'Unidades do cliente', d:'Filiais e fábricas de cada cliente' },
+      { sep:true },
+      { ic:'cifrao', t:'Endereços de cobrança', d:'Para onde vai a cobrança de cada cliente' },
       { ic:'local', t:'Endereços de entrega', d:'Locais de entrega de cada cliente' },
+      { sep:true },
+      { ic:'calendario', t:'Prazos de pagamento', d:'Condições de pagamento oferecidas' },
+      { sep:true },
+      { ic:'engrenagem', t:'Parâmetros de vendas', d:'Configurações gerais da área de Vendas' },
     ]},
     { nome:'Pedidos', itens:[
       { ic:'lupa', t:'Consultar pedidos', d:'Buscar por cliente, número ou período' },
@@ -1724,8 +1758,8 @@ function montarMesa(){
   menubar.innerHTML = topicos.map((tp, i) => `
     <div class="mtop">
       <button class="mbtn" type="button" data-i="${i}" aria-haspopup="true" aria-expanded="false">${tp.nome}${ico('seta')}</button>
-      <div class="mdrop" data-i="${i}" role="menu" hidden>
-        ${tp.itens.map((it, j) => `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
+      <div class="mdrop${tp.itens.length > 8 ? ' larga' : ''}" data-i="${i}" role="menu" hidden>
+        ${tp.itens.map((it, j) => it.sep ? '<div class="msep" role="separator"></div>' : `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
       </div>
     </div>`).join('') + `<span class="mais">${topicos.length ? 'mais tópicos em breve' : 'tópicos a definir'}</span>`;
   $('fundoTxt').innerHTML = topicos.length
