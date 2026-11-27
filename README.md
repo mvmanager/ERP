@@ -667,8 +667,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 
 ### Comissões (Comercial › Vendas › Comissões) — primeira versão para aprovar
-- **Regras de comissão:** tabela com quem recebe, vale para (todos / cliente / produto / grupo /
-  grupo), %, base (valor sem IPI, total da nota ou margem), quando paga (no recebimento ou
+- **Regras de comissão:** tabela com quem recebe, vale para (todos / cliente / produto / grupo),
+  %, base (valor sem IPI, total da nota ou margem), quando paga (no recebimento ou
   no faturamento) e vigência. Exceções marcadas. **Supervisão não ganha comissão** (decidido).
   A regra mais
   específica vale primeiro: produto › cliente › padrão do representante.
