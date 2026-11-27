@@ -131,8 +131,29 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Módulo de administração do sistema. **Só o administrador (dono do sistema) e o TI
   veem este módulo.** Os demais usuários não enxergam o cartão do Suporte.
 - No protótipo o cartão aparece para todos, só para demonstração.
-- Os outros usuários abrem chamados sem entrar no módulo (pelo assistente de busca e,
-  a definir, por um botão de ajuda).
+- Os outros usuários abrem chamados sem entrar no módulo: pelo botão **? Ajuda** (abaixo)
+  e pelo "pedir ao desenvolvedor uma análise" do assistente de busca.
+- **Chamados** tem o tópico **Fila de chamados**: lista com todos os chamados (print,
+  texto, quem pediu, de qual tela, data e situação), filtro por situação e, ao abrir um,
+  botões para **marcar em andamento / resolvido / reabrir** e campo para **responder**.
+  Responder um chamado aberto já o passa para "em andamento".
+- O selo da área Chamados mostra quantos estão abertos.
+
+### Ajuda: chamados com print da tela (em todas as telas)
+- Botão **?** na barra de cima, ao lado do sino, com duas opções:
+  **Abrir chamado** e **Meus chamados**.
+- **Abrir chamado** liga o **modo de captura**: a tela ganha uma moldura e aparece uma
+  faixa embaixo. A pessoa navega até a tela que quer mostrar (pode abrir módulo, área,
+  janela) e clica em **Capturar esta tela** (ou Cancelar).
+- Abre o formulário com o **print**, a **tela de onde veio** (preenchida sozinha, ex.:
+  "Comercial › Vendas › Prospects e clientes"), o **tipo** (erro no sistema, dúvida,
+  pedido de melhoria, acesso ou permissão) e **o que você precisa**. Dá para capturar
+  outra tela antes de enviar.
+- Ao enviar, gera um **protocolo** (CH-ano-número, ex.: CH-2026-0004).
+- **Meus chamados**: cada pessoa vê só os seus, com a situação (Aberto, Em andamento,
+  Resolvido), o print, o texto e as respostas do suporte.
+- No protótipo os chamados ficam guardados só no navegador (e já vêm 3 de exemplo);
+  no sistema real ficam no banco de dados e as imagens no armazenamento de arquivos.
 - **Chamados:** onde chegam os pedidos de ajuda e de melhoria dos usuários (inclusive os
   pedidos de análise feitos pelo assistente de busca da tela inicial).
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.

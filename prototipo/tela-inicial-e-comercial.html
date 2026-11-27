@@ -283,6 +283,62 @@ h2{font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:22px;
 .modal-p{display:flex;align-items:center;gap:12px;padding:12px 16px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted)}
 .modal-p .go{margin-left:auto}
 
+/* ── Ajuda: chamados com print da tela ── */
+.ajuda{position:relative}
+.ajuda-menu{left:auto;right:0;min-width:320px}
+.captura{position:fixed;left:0;right:0;margin-inline:auto;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 12px;width:max-content;max-width:calc(100% - 24px);padding:10px 12px 10px 16px;border-radius:14px;background:var(--ink);color:var(--paper);box-shadow:0 20px 40px -12px rgba(0,0,0,.5);font-size:14px;animation:rise .25s ease both}
+.captura .rec{width:10px;height:10px;border-radius:50%;background:#e5533d;animation:pulsoRec 1.6s infinite;flex:none}
+@keyframes pulsoRec{0%{box-shadow:0 0 0 0 rgba(229,83,61,.6)}70%{box-shadow:0 0 0 9px rgba(229,83,61,0)}100%{box-shadow:0 0 0 0 rgba(229,83,61,0)}}
+.captura .go{display:inline-flex;align-items:center;gap:6px}
+.captura .go svg{width:16px;height:16px}
+.captura .sair{border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;border-radius:9px;padding:6px 12px;font-weight:600;cursor:pointer}
+.captura .sair:hover{border-color:#fff}
+.moldura-cap{position:fixed;inset:0;z-index:59;pointer-events:none;box-shadow:inset 0 0 0 4px var(--kraft)}
+.flash{position:fixed;inset:0;z-index:70;background:#fff;pointer-events:none;animation:flash .45s ease-out forwards}
+@keyframes flash{from{opacity:.85}to{opacity:0}}
+.ch-form{display:grid;gap:12px;padding:12px 6px}
+.ch-print{margin:0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden;background:var(--surface-2)}
+.ch-print img{display:block;width:100%;max-height:280px;object-fit:cover;object-position:top}
+.ch-print figcaption{font-size:12.5px;color:var(--muted);padding:7px 10px;border-top:1px solid var(--line)}
+.ch-print figcaption b{color:var(--ink)}
+.ch-sem{padding:26px 16px;text-align:center;color:var(--muted);font-size:13px}
+.ch-semimg{border:1px dashed var(--line-2);border-radius:10px}
+.ch-form label,.ch-resp{display:grid;gap:5px;font-size:13px;font-weight:600}
+.ch-form textarea,.ch-form select,.ch-resp textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:10px;padding:9px 11px}
+.ch-form textarea{min-height:96px;resize:vertical}
+.ch-resp textarea{min-height:76px;resize:vertical}
+.ch-form textarea:focus,.ch-form select:focus,.ch-resp textarea:focus{outline:none;border-color:var(--kraft);box-shadow:0 0 0 3px color-mix(in srgb,var(--kraft) 16%,transparent)}
+textarea.falta{border-color:var(--bad)!important}
+.ch-lista{display:grid;gap:8px;padding:10px 4px}
+.ch-item{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;text-align:left;width:100%;transition:border-color .2s}
+.ch-item:hover{border-color:var(--kraft)}
+.ch-mini{width:76px;height:50px;border-radius:7px;border:1px solid var(--line);background:var(--surface-2);display:grid;place-items:center;color:var(--muted);overflow:hidden}
+.ch-mini img{width:100%;height:100%;object-fit:cover;object-position:top}
+.ch-mini svg{width:18px;height:18px}
+.ch-tx{min-width:0;display:grid;gap:1px}
+.ch-tx .cab{font-size:12px;color:var(--muted)}
+.ch-tx .pr{font-family:var(--f-mono);font-weight:600;color:var(--kraft)}
+.ch-tx .tx{font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ch-tx .md{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:560px){ .ch-item{grid-template-columns:56px minmax(0,1fr)} .ch-mini{width:56px;height:40px} .ch-item .pill{grid-column:2;justify-self:start} }
+.ch-det{display:grid;gap:12px;padding:10px 4px;align-content:start}
+.ch-img{display:block;width:100%;border-radius:10px;border:1px solid var(--line-2)}
+.ch-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.ch-meta b{color:var(--ink);font-weight:600}
+.ch-meta .mono{color:var(--kraft)}
+.ch-hist{display:grid;gap:8px}
+.ch-msg{padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:13.5px}
+.ch-msg.sup{background:var(--kraft-soft);border-color:transparent;margin-left:18px}
+.ch-msg small{display:block;font-size:11.5px;color:var(--muted);margin-bottom:3px}
+.modal-p .btn2{padding:8px 12px;font-size:13.5px}
+/* fila de chamados (Suporte › Chamados) */
+.fila-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.fila{display:grid;gap:8px}
+.fila-det{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);gap:16px;align-items:start}
+.fila-det .ch-det{padding:0}
+@media (max-width:820px){ .fila-det{grid-template-columns:1fr} }
+.ch-acoes{display:flex;gap:8px;flex-wrap:wrap}
+
 /* retomada */
 .recent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:820px){ .recent{grid-template-columns:1fr} }
@@ -994,6 +1050,15 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
     <button class="iconbtn" id="themeBtn" type="button" aria-label="Alternar tema claro e escuro">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
     </button>
+    <div class="ajuda" id="ajuda">
+      <button class="iconbtn" id="ajudaBtn" type="button" aria-label="Ajuda: abrir chamado ou ver meus chamados" aria-haspopup="true" aria-expanded="false" title="Ajuda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/></svg>
+      </button>
+      <div class="mdrop ajuda-menu" id="ajudaMenu" role="menu" hidden>
+        <button type="button" role="menuitem" data-ajuda="novo"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="t">Abrir chamado</span><span class="d">Tire um print da tela e diga o que precisa</span></button>
+        <button type="button" role="menuitem" data-ajuda="meus"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="t">Meus chamados</span><span class="d">Acompanhe suas solicitações pelo protocolo</span></button>
+      </div>
+    </div>
     <button class="iconbtn" type="button" aria-label="Notificações: 3 novas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="dotn"></span>
     </button>
@@ -1471,9 +1536,10 @@ function responderNada(texto, vemDePerto){
     </form></div>`;
   document.getElementById('reqForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const n = String(40 + Math.floor(Math.random()*50)).padStart(4,'0');
-    ans.innerHTML = `<div class="answer">${cab}<div class="okbox"><span>✓</span><span>Pedido enviado. Protocolo <b class="proto">SOL-2026-${n}</b>.<br>O desenvolvedor recebe o pedido com a sua descrição e você vê a resposta no sino de notificações.</span></div>
-      <p class="proto-note">Protótipo: nada foi enviado de verdade. No sistema real, o pedido entra numa fila de melhorias.</p></div>`;
+    const uso = document.getElementById('reqUso').value.trim(), urg = document.getElementById('reqPri').value;
+    const c = criarChamado({ tela:'Tela inicial › assistente de busca', tipo:'Pedido de melhoria', imagem:null,
+      texto: document.getElementById('reqTxt').value.trim() + (uso ? '\nPara que vai usar: ' + uso : '') + '\nUrgência: ' + urg });
+    ans.innerHTML = `<div class="answer">${cab}<div class="okbox"><span>✓</span><span>Pedido enviado. Protocolo <b class="proto">${c.protocolo}</b>.<br>O pedido chega em Suporte › Chamados e você acompanha a resposta em <b>Ajuda › Meus chamados</b>.</span></div></div>`;
   });
 }
 
@@ -1717,10 +1783,11 @@ function abrirJanela(tp, item){
       <button class="jb" type="button" data-acao="min" aria-label="Minimizar ${item.t}" title="Minimizar">${IMIN}</button>
       <button class="jb" type="button" data-acao="max" aria-label="Maximizar ${item.t}" title="Maximizar ou voltar ao tamanho anterior">${IMAX}</button>
       <button class="jb x" type="button" data-acao="fechar" aria-label="Fechar ${item.t}" title="Fechar">${ICX}</button></div>
-    <div class="jan-corpo"><p style="margin:0;color:var(--muted)">${item.d}.</p>
-      <div class="vazio"><b>Tela a desenhar</b><span>Aqui entra a tela de “${item.t}”. Vamos desenhar juntos.</span></div></div>
+    <div class="jan-corpo">${item.tela ? '' : `<p style="margin:0;color:var(--muted)">${item.d}.</p>
+      <div class="vazio"><b>Tela a desenhar</b><span>Aqui entra a tela de “${item.t}”. Vamos desenhar juntos.</span></div>`}</div>
     <span class="jan-res" title="Arraste para mudar o tamanho" aria-hidden="true"></span>`;
   mesa.appendChild(el);
+  if (item.tela && TELAS[item.tela]) TELAS[item.tela](el.querySelector('.jan-corpo'));
   const jan = { id: ++seq, chave, ctx, item, el, min: false };
   JANELAS.push(jan);
   el.addEventListener('pointerdown', () => focar(jan));
@@ -1801,6 +1868,266 @@ function alternarMax(jan){
   if (jan.antes) { Object.assign(st, jan.antes); jan.antes = null; jan.el.classList.remove('maxi'); }
   else { jan.antes = { left: st.left, top: st.top, width: st.width, height: st.height }; Object.assign(st, { left:'0px', top:'0px', width:'100%', height:'100%' }); jan.el.classList.add('maxi'); }
   focar(jan);
+}
+
+/* ════ Ajuda: chamados com print da tela ════
+   Qualquer pessoa abre um chamado pelo botão "?" da barra de cima:
+   entra no modo de captura, vai até a tela que quer mostrar, captura, escreve o que precisa
+   e envia. Recebe um número de protocolo e acompanha em "Meus chamados".
+   Os chamados chegam em Suporte › Chamados (só o administrador e o TI veem esse módulo).
+   No protótipo tudo fica guardado só neste navegador; no sistema real, no banco de dados. */
+const USUARIO = { nome:'Matheus', setor:'Vendedor' };
+const ICAM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg>';
+const ILISTA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>';
+const IIMG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>';
+const STATUS = { aberto:['Aberto','p-info'], andamento:['Em andamento','p-warn'], resolvido:['Resolvido','p-ok'] };
+const pillSt = (s) => `<span class="pill ${STATUS[s][1]}">${STATUS[s][0]}</span>`;
+const dataBR = (iso) => new Date(iso).toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+const escTx = (t) => esc(String(t || '')).replace(/\n/g, '<br>');
+
+/* ── guardar e ler os chamados ── */
+let memCh = null, chSoMemoria = false;
+function semearChamados(){
+  const h = Date.now(), d = (dias, horas) => new Date(h - dias * 864e5 - horas * 36e5).toISOString();
+  return [
+    { protocolo:'CH-2026-0001', quando:d(6,3), usuario:'Matheus', setor:'Vendedor', tela:'Comercial › Vendas › Consultar pedidos', tipo:'Dúvida',
+      texto:'Como filtro os pedidos só da minha carteira?', imagem:null, status:'resolvido',
+      respostas:[{ quem:'Suporte', quando:d(6,1), texto:'No filtro "Vendedor" escolha o seu nome. Na próxima versão isso já vem marcado.' }] },
+    { protocolo:'CH-2026-0002', quando:d(2,5), usuario:'Ana', setor:'Financeiro', tela:'Financeiro › Contas a receber', tipo:'Erro no sistema',
+      texto:'O total do relatório não bate com a soma das linhas.', imagem:null, status:'andamento',
+      respostas:[{ quem:'Suporte', quando:d(1,8), texto:'Recebido, estamos verificando.' }] },
+    { protocolo:'CH-2026-0003', quando:d(0,2), usuario:'Carlos', setor:'PCP', tela:'Industrial › PCP', tipo:'Pedido de melhoria',
+      texto:'Queria ver a programação da onduladeira separada por largura de bobina.', imagem:null, status:'aberto', respostas:[] },
+  ];
+}
+function lerChamados(){
+  if (!chSoMemoria) { try { const v = JSON.parse(localStorage.getItem('chamados')); if (Array.isArray(v)) return v; } catch {} }
+  if (!memCh) { memCh = semearChamados(); salvarChamados(memCh); }
+  return memCh;
+}
+function salvarChamados(l){
+  memCh = l;
+  try { localStorage.setItem('chamados', JSON.stringify(l)); chSoMemoria = false; }
+  catch { chSoMemoria = true; } // navegador sem espaço: fica guardado só nesta aba
+}
+function proximoProtocolo(l){
+  const n = Math.max(0, ...l.map(c => +c.protocolo.slice(-4) || 0)) + 1;
+  return 'CH-' + new Date().getFullYear() + '-' + String(n).padStart(4, '0');
+}
+function criarChamado(dados){
+  const l = lerChamados();
+  const c = { protocolo: proximoProtocolo(l), quando: new Date().toISOString(), usuario: USUARIO.nome, setor: USUARIO.setor,
+              status:'aberto', respostas:[], imagem:null, ...dados };
+  salvarChamados(l.concat(c)); atualizarTelasDeChamados();
+  return c;
+}
+function mudarChamado(p, fn){
+  const l = lerChamados(), c = l.find(x => x.protocolo === p); if (!c) return;
+  fn(c); salvarChamados(l); atualizarTelasDeChamados();
+}
+function atualizarTelasDeChamados(){
+  document.querySelectorAll('[data-fila]').forEach(desenharFila);
+  if (modalCh && modalCh.atualizar) modalCh.atualizar();
+}
+window.addEventListener('storage', (e) => { if (e.key === 'chamados') atualizarTelasDeChamados(); });
+/* selo da área Chamados = quantos estão abertos */
+Object.defineProperty(BADGE_AREA, 'suporte/chamados', { get: () => lerChamados().filter(c => c.status === 'aberto').length || 0 });
+
+/* ── botão de Ajuda na barra de cima ── */
+const ajudaBtn = $('ajudaBtn'), ajudaMenu = $('ajudaMenu');
+function fecharAjuda(){ ajudaMenu.hidden = true; ajudaBtn.setAttribute('aria-expanded', 'false'); }
+ajudaBtn.addEventListener('click', () => {
+  const abrir = ajudaMenu.hidden; fecharMenus(); fecharArea(); fecharAjuda();
+  ajudaMenu.hidden = !abrir; ajudaBtn.setAttribute('aria-expanded', String(abrir));
+});
+ajudaMenu.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-ajuda]'); if (!b) return;
+  fecharAjuda(); if (b.dataset.ajuda === 'novo') entrarCaptura(); else abrirMeusChamados();
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('#ajuda')) fecharAjuda(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  fecharAjuda(); if (modalCh) fecharModalCh(); else if (capEl) sairCaptura();
+});
+
+/* ── modo de captura ── */
+let capEl = null;
+function entrarCaptura(){
+  fecharModalCh(); if (capEl) return;
+  capEl = document.createElement('div'); capEl.className = 'nao-capturar';
+  capEl.innerHTML = `<div class="moldura-cap"></div>
+    <div class="captura" role="status"><span class="rec" aria-hidden="true"></span>
+      <span><b>Modo de captura</b> · abra a tela que quer mostrar e clique em capturar</span>
+      <button class="go" type="button" data-cap>${ICAM}Capturar esta tela</button>
+      <button class="sair" type="button" data-sair>Cancelar</button></div>`;
+  capEl.addEventListener('click', (e) => { if (e.target.closest('[data-sair]')) sairCaptura(); else if (e.target.closest('[data-cap]')) capturar(); });
+  document.body.appendChild(capEl);
+}
+function sairCaptura(){ if (capEl) { capEl.remove(); capEl = null; } }
+function ondeEstou(){
+  if (!atual) return 'Tela inicial';
+  let t = atual.m.nome + (atual.a ? ' › ' + atual.a.nome : '');
+  const j = JANELAS.find(x => x.id === ativaId && !x.min && daqui(x));
+  return j ? t + ' › ' + j.item.t : t;
+}
+let libImg = null;
+function carregarLibImagem(){
+  if (window.htmlToImage) return Promise.resolve(window.htmlToImage);
+  return libImg || (libImg = new Promise((ok, erro) => {
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js';
+    s.onload = () => window.htmlToImage ? ok(window.htmlToImage) : erro(new Error('biblioteca indisponível'));
+    s.onerror = () => { libImg = null; erro(new Error('biblioteca não carregou')); };
+    document.head.appendChild(s);
+  }));
+}
+async function capturar(){
+  const tela = ondeEstou(), btn = capEl.querySelector('[data-cap]');
+  btn.disabled = true; btn.textContent = 'Capturando…';
+  let imagem = null;
+  try {
+    const lib = await carregarLibImagem();
+    const w = document.documentElement.clientWidth, h = innerHeight, alto = Math.max(document.body.scrollHeight, h);
+    const tudo = await lib.toCanvas(document.body, {
+      width: w, height: alto, pixelRatio: 1, skipFonts: true,
+      backgroundColor: getComputedStyle(document.body).backgroundColor,
+      filter: (n) => !(n.classList && (n.classList.contains('nao-capturar') || n.classList.contains('toast'))),
+    });
+    const k = Math.min(1, 1400 / w), vis = document.createElement('canvas');
+    vis.width = Math.round(w * k); vis.height = Math.round(h * k);
+    vis.getContext('2d').drawImage(tudo, 0, scrollY, w, h, 0, 0, vis.width, vis.height); // só o que está na tela
+    imagem = vis.toDataURL('image/jpeg', .72);
+  } catch { imagem = null; }
+  sairCaptura();
+  const f = document.createElement('div'); f.className = 'flash nao-capturar'; document.body.appendChild(f); setTimeout(() => f.remove(), 500);
+  abrirNovoChamado({ tela, imagem });
+}
+
+/* ── janelinha (modal) dos chamados ── */
+let modalCh = null;
+function abrirModalCh(titulo, icone){
+  fecharModalCh();
+  modalCh = document.createElement('div'); modalCh.className = 'modal-fundo nao-capturar';
+  modalCh.innerHTML = `<div class="modal" role="dialog" aria-modal="true" aria-label="${titulo}">
+    <div class="modal-h"><span class="i">${icone}</span><h3>${titulo}</h3><button class="jb x" type="button" data-fecha aria-label="Fechar" title="Fechar">${XP}</button></div>
+    <div class="modal-lista ch-corpo"></div><div class="modal-p ch-pe"></div></div>`;
+  modalCh.addEventListener('click', (e) => { if (e.target === modalCh || e.target.closest('[data-fecha]')) fecharModalCh(); });
+  document.body.appendChild(modalCh);
+  return { corpo: modalCh.querySelector('.ch-corpo'), pe: modalCh.querySelector('.ch-pe') };
+}
+function fecharModalCh(){ if (modalCh) { modalCh.remove(); modalCh = null; } }
+
+function abrirNovoChamado({ tela, imagem }){
+  const m = abrirModalCh('Novo chamado', ICAM);
+  m.corpo.innerHTML = `<div class="ch-form">
+    <figure class="ch-print">${imagem ? `<img src="${imagem}" alt="Print da tela ${esc(tela)}">` : '<div class="ch-sem">Não foi possível capturar a imagem desta tela.<br>Você pode enviar mesmo assim, só com a descrição.</div>'}
+      <figcaption>Tela: <b>${esc(tela)}</b></figcaption></figure>
+    <label for="chTipo">Tipo
+      <select id="chTipo"><option>Erro no sistema</option><option>Dúvida</option><option>Pedido de melhoria</option><option>Acesso ou permissão</option></select></label>
+    <label for="chTexto">O que você precisa?
+      <textarea id="chTexto" placeholder="Descreva o que aconteceu ou o que você precisa…"></textarea></label>
+  </div>`;
+  m.pe.innerHTML = '<button class="btn2" type="button" data-recap>Capturar outra tela</button><button class="go" type="button" data-enviar>Enviar chamado</button>';
+  m.pe.querySelector('[data-recap]').addEventListener('click', entrarCaptura);
+  m.pe.querySelector('[data-enviar]').addEventListener('click', () => {
+    const tx = m.corpo.querySelector('#chTexto');
+    if (!tx.value.trim()) { tx.classList.add('falta'); tx.placeholder = 'Escreva aqui o que você precisa antes de enviar'; tx.focus(); return; }
+    const c = criarChamado({ tela, imagem, tipo: m.corpo.querySelector('#chTipo').value, texto: tx.value.trim() });
+    m.corpo.innerHTML = `<div class="ch-form"><div class="okbox"><span>✓</span><span>Chamado enviado. Protocolo <b class="proto">${c.protocolo}</b>.<br>
+      Você acompanha a resposta em <b>Ajuda › Meus chamados</b> (botão ? lá em cima).</span></div></div>`;
+    m.pe.innerHTML = '<button class="btn2" type="button" data-meus>Ver meus chamados</button><button class="go" type="button" data-fecha>Fechar</button>';
+    m.pe.querySelector('[data-meus]').addEventListener('click', abrirMeusChamados);
+  });
+  setTimeout(() => { const t = m.corpo.querySelector('#chTexto'); if (t) t.focus(); }, 60);
+}
+
+function itemCh(c, comUsuario){
+  return `<button class="ch-item" type="button" data-ch="${c.protocolo}">
+    <span class="ch-mini">${c.imagem ? `<img src="${c.imagem}" alt="">` : IIMG}</span>
+    <span class="ch-tx"><span class="cab"><span class="pr">${c.protocolo}</span> · ${esc(c.tipo)}</span>
+      <span class="tx">${esc(c.texto)}</span>
+      <span class="md">${comUsuario ? esc(c.usuario) + ' (' + esc(c.setor) + ') · ' : ''}${esc(c.tela)} · ${dataBR(c.quando)}</span></span>
+    ${pillSt(c.status)}
+  </button>`;
+}
+function detalheCh(c){
+  return `<div class="ch-meta" data-proto="${c.protocolo}"><b class="mono">${c.protocolo}</b>${pillSt(c.status)}
+      <span>Tipo: <b>${esc(c.tipo)}</b></span><span>Aberto em <b>${dataBR(c.quando)}</b></span>
+      <span>Por <b>${esc(c.usuario)}</b> (${esc(c.setor)})</span><span>Tela: <b>${esc(c.tela)}</b></span></div>
+    ${c.imagem ? `<img class="ch-img" src="${c.imagem}" alt="Print enviado com o chamado">` : '<div class="ch-sem ch-semimg">Chamado sem imagem</div>'}
+    <div class="ch-hist">
+      <div class="ch-msg"><small>${esc(c.usuario)} · ${dataBR(c.quando)}</small>${escTx(c.texto)}</div>
+      ${c.respostas.map(r => `<div class="ch-msg sup"><small>${esc(r.quem)} · ${dataBR(r.quando)}</small>${escTx(r.texto)}</div>`).join('')}
+    </div>`;
+}
+
+/* ── Meus chamados: cada pessoa acompanha os seus ── */
+function abrirMeusChamados(){
+  const m = abrirModalCh('Meus chamados', ILISTA);
+  function lista(){
+    const meus = lerChamados().filter(c => c.usuario === USUARIO.nome).sort((a, b) => b.quando.localeCompare(a.quando));
+    m.corpo.innerHTML = meus.length ? `<div class="ch-lista">${meus.map(c => itemCh(c)).join('')}</div>`
+      : '<div class="vazio" style="margin:14px 6px"><b>Você ainda não abriu chamados</b><span>Use “Abrir chamado” para mandar um print com o que precisa.</span></div>';
+    m.pe.innerHTML = '<span>A resposta do suporte aparece aqui.</span><button class="go" type="button" data-novo-ch>Abrir chamado</button>';
+    m.pe.querySelector('[data-novo-ch]').addEventListener('click', entrarCaptura);
+  }
+  function detalhe(p){
+    const c = lerChamados().find(x => x.protocolo === p); if (!c) return lista();
+    m.corpo.innerHTML = `<div class="ch-det"><div><button class="voltar" type="button" data-lista>‹ Meus chamados</button></div>${detalheCh(c)}</div>`;
+    m.pe.innerHTML = '<span>Quando o suporte responder ou mudar a situação, aparece aqui.</span>';
+  }
+  m.corpo.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-ch]'); if (b) return detalhe(b.dataset.ch);
+    if (e.target.closest('[data-lista]')) lista();
+  });
+  modalCh.atualizar = () => { const d = m.corpo.querySelector('[data-proto]'); if (d) detalhe(d.dataset.proto); else lista(); };
+  lista();
+}
+
+/* ── Suporte › Chamados: fila com todos os chamados ── */
+TOPICOS['suporte/chamados'] = [
+  { nome:'Chamados', itens:[ { ic:'lupa', t:'Fila de chamados', d:'Todos os chamados recebidos, com print e descrição', tela:'fila' } ] },
+];
+const TELAS = {
+  fila: (box) => {
+    box.dataset.fila = ''; box._filtro = 'todos'; box._sel = '';
+    box.addEventListener('click', (e) => cliqueFila(box, e));
+    desenharFila(box);
+  },
+};
+function desenharFila(box){
+  const todos = lerChamados().slice().sort((a, b) => b.quando.localeCompare(a.quando));
+  const sel = box._sel && todos.find(x => x.protocolo === box._sel);
+  if (sel) return desenharDetalheFila(box, sel);
+  const f = box._filtro, conta = (s) => todos.filter(c => s === 'todos' || c.status === s).length;
+  const lista = todos.filter(c => f === 'todos' || c.status === f);
+  box.innerHTML = `<div class="fila-top">${[['todos','Todos'],['aberto','Abertos'],['andamento','Em andamento'],['resolvido','Resolvidos']]
+      .map(([k, n]) => `<button class="flt" type="button" data-filtro="${k}" aria-pressed="${f === k}">${n} · ${conta(k)}</button>`).join('')}</div>
+    <div class="fila">${lista.length ? lista.map(c => itemCh(c, true)).join('') : '<div class="vazio"><b>Nenhum chamado aqui</b></div>'}</div>`;
+}
+function desenharDetalheFila(box, c){
+  box.innerHTML = `<div><button class="voltar" type="button" data-voltafila>‹ Fila de chamados</button></div>
+    <div class="fila-det"><div class="ch-det">${detalheCh(c)}</div>
+      <div class="card"><h3>Atender</h3>
+        <div class="ch-acoes">${c.status !== 'andamento' && c.status !== 'resolvido' ? '<button class="mini" type="button" data-st="andamento">Marcar em andamento</button>' : ''}
+          ${c.status !== 'resolvido' ? '<button class="mini" type="button" data-st="resolvido">Marcar resolvido</button>' : '<button class="mini" type="button" data-st="aberto">Reabrir</button>'}</div>
+        <label class="ch-resp">Responder para ${esc(c.usuario)}<textarea placeholder="A resposta aparece em “Meus chamados” da pessoa…"></textarea></label>
+        <div><button class="go" type="button" data-responder>Enviar resposta</button></div>
+      </div></div>`;
+}
+function cliqueFila(box, e){
+  const f = e.target.closest('[data-filtro]'); if (f) { box._filtro = f.dataset.filtro; return desenharFila(box); }
+  const it = e.target.closest('[data-ch]'); if (it) { box._sel = it.dataset.ch; return desenharFila(box); }
+  if (e.target.closest('[data-voltafila]')) { box._sel = ''; return desenharFila(box); }
+  const st = e.target.closest('[data-st]'); if (st) return mudarChamado(box._sel, (c) => { c.status = st.dataset.st; });
+  if (e.target.closest('[data-responder]')) {
+    const tx = box.querySelector('.ch-resp textarea');
+    if (!tx.value.trim()) { tx.classList.add('falta'); tx.focus(); return; }
+    mudarChamado(box._sel, (c) => {
+      c.respostas.push({ quem:'Suporte', quando:new Date().toISOString(), texto:tx.value.trim() });
+      if (c.status === 'aberto') c.status = 'andamento';
+    });
+  }
 }
 
 mostrarTela();
