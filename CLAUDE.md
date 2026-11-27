@@ -17,8 +17,10 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
 > proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
 > Orçamentos**, **Comercial › Crédito** e uma proposta para **Faturamento** e **NFe**
-> (falta o print de Demonstrativos do Faturamento) e **Expedição**. Próximo: fechar as
-> pendências do Comercial e seguir para os outros módulos (Industrial, Suprimentos…). Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
+> (falta o print de Demonstrativos do Faturamento) e **Expedição** — o Comercial inteiro
+> tem mapa inicial. O mapa geral fica em `docs/mapa-de-funcionalidades.md`. Próximo: os
+> outros módulos (Industrial, Suprimentos, Qualidade, Financeiro, Controladoria, RH,
+> Suporte, Gerencial). Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
@@ -32,7 +34,10 @@ esta seção para a conversa seguinte saber de onde continuar.
   sem jargão técnico, e mostre as telas com fotos/prints quando mudar algo visual.
 - Ele prefere ver e aprovar o visual no protótipo antes de construir de verdade.
 - Níveis do sistema: **Módulo › Área › Tópico › Funcionalidade** (o usuário chamava
-  funcionalidade de "característica"). O mapa completo fica no `README.md`.
+  funcionalidade de "característica"). As decisões ficam no `README.md` e o mapa completo
+  em `docs/mapa-de-funcionalidades.md` (gerado a partir dos dados do protótipo).
+- O usuário autorizou mover funcionalidades para o setor mais apropriado e avisar quando
+  algo parecer fora do lugar.
 - Todas as decisões de tela já aprovadas estão no `README.md`. Siga-as em telas novas
   (cores de papelão, módulos que abrem vazios, itens abrindo em janelas móveis etc.).
 

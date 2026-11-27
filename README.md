@@ -196,6 +196,14 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     Vendas, ou Custos sempre confere antes? (Meio-termo comum: passa direto se estiver dentro
     das regras; para em Custos só quando foge delas.)
 
+### Controladoria › Fiscal (tópicos definidos até agora)
+- **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
+  por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —
+  junta os 4 "Convênios × …" do Faturamento atual).
+
+### Qualidade › Qualidade (tópicos definidos até agora)
+- **Certificados:** Certificados de qualidade (gerar e cancelar; veio do Faturamento).
+
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
   e calculadora de caixa do sistema atual).
@@ -220,19 +228,18 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
 ### Comercial › Faturamento (proposta, a partir do sistema atual)
 - Padrão de nomes para todas as áreas: **Eventos → Operações**, **Demonstrativos → Consultas**.
-- **Cadastros** (13 → 6): Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela,
-  uma aba por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação
-  fiscal — junta os 4 "Convênios × …") · Transações de nota fiscal · Grupos de faturamento ·
-  Mensagens padronizadas · Parâmetros de faturamento.
+- **Cadastros:** Transações de nota fiscal · Grupos de faturamento · Mensagens padronizadas ·
+  Parâmetros de faturamento. (Os convênios de impostos foram para Controladoria › Fiscal.)
 - **Operações** (do antigo Eventos), em grupos:
   - **Faturamento:** Composição de faturas · Notas fiscais (especial, manual, de romaneio ou
     de devolução de cliente — escolhe o tipo na tela) · Desconto no item da nota.
   - **Embarque:** Aviso de embarque (gerar e ajustar) · Informe de material retornado ·
-    Conferência de fretes.
-  - **Documentos:** Certificados de qualidade (gerar e cancelar) · Declaração de exportação.
+    Declaração de exportação.
 - **Consultas:** a definir (falta o print de Demonstrativos).
-- **Sugestões pendentes de aprovação:** Convênios de impostos e Aplicação dos convênios →
-  Controladoria › Fiscal (são regras fiscais); Conferência de fretes → Expedição.
+- **Movidos (decidido):** Convênios de impostos e Aplicação dos convênios → Controladoria ›
+  Fiscal (são regras fiscais; o Faturamento só usa) · Conferência de fretes → Expedição ·
+  Certificados de qualidade → Qualidade › Qualidade (o conteúdo vem do laboratório; o
+  Faturamento só pede o certificado quando a nota precisa).
 - Cancelamento, estorno, inutilização de número e carta de correção **vão para NFe**.
 
 ### Comercial › NFe (proposta, a partir do sistema atual)
@@ -262,7 +269,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Operações:**
   - **Estoque:** Movimentar estoque não embalado · Embalar produto · Manutenção de volumes ·
     Transformação de produtos · Transferir de localização · Reparo e reprocessamento.
-  - **Entregas:** Planejar entregas · Embarques.
+  - **Entregas:** Planejar entregas · Confirmar previsão de embarque (veio de Vendas) ·
+    Embarques · Conferência de fretes (veio do Faturamento).
   - **Terceiros:** Embalagens de terceiros (o antigo "Implanta movimento de embalagens de
     terceiros").
 - **Inventário:** Inventário (abertura, fichas e fechamento) · Coletor e leituras (coletor +
@@ -294,8 +302,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   com os itens separados por títulos de grupo dentro do menu:
   - **Preços:** Negociação de preço · Tabela de preços · Preço por intervalo de m²
   - **Programas do cliente:** Importação de pedidos por EDI · Analisador de programas do cliente
-  - **Liberações:** Bloqueio de entrega de produto · Bloqueio em item de pedido ·
-    Confirmar previsão de embarque (manual)
+  - **Bloqueios:** Bloqueio de entrega de produto · Bloqueio em item de pedido
+  - Confirmar previsão de embarque (manual) **foi para Expedição › Entregas**.
   - **Não entram:** Digitação, Revisão e Cancelamento de programa, Marcar programas como
     transformados, Relacionar convênios produto × prospect.
   - **Vão para a ficha do cliente:** Histórico do cliente · Produto × endereço de entrega.
@@ -332,6 +340,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     a **ficha do cliente**. Relação de entregas geradas de pedidos HP **sai**.
   - "Depois vemos se tiramos algo": a lista pode encolher.
 - Outros tópicos serão acrescentados conforme forem definidos.
+
+## Mapa completo
+- O mapa de todas as áreas e funcionalidades, gerado do protótipo, fica em
+  `docs/mapa-de-funcionalidades.md` (atualizar sempre que o mapa mudar).
 
 ## Próximos passos
 1. **Mapa de funcionalidades (passo atual):** fechar, "no grosso", os tópicos e as

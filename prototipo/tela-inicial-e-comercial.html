@@ -1226,8 +1226,8 @@ const MODULOS = [
     {k:'vendas', nome:'Vendas', d:'Clientes, pedidos e follow‑up'},
     {k:'representantes', nome:'Portal do representante', d:'Orçamentos, amostras e clichês dos representantes'},
     {k:'credito', nome:'Crédito', d:'Limites e análise de crédito dos clientes'},
-    {k:'faturamento', nome:'Faturamento', d:'Faturar os pedidos'},
-    {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
+    {k:'faturamento', nome:'Faturamento', d:'Faturas, notas e avisos de embarque'},
+    {k:'nfe', nome:'NFe', d:'Transmissão e gestão das notas na Receita'},
     {k:'expedicao', nome:'Expedição', d:'Armazém do produto pronto, cargas e entregas'},
   ]},
   {k:'industrial', cx:'onda', nome:'Industrial', areas:[
@@ -1828,8 +1828,6 @@ const TOPICOS = {
      A parte fiscal eletrônica (cancelar, estornar, inutilizar, carta de correção) vai para NFe. */
   'comercial/faturamento': [
     { nome:'Cadastros', itens:[
-      { ic:'percent', t:'Convênios de impostos', d:'ICMS, IPI, PIS, COFINS e IBS/CBS, uma aba por imposto' },
-      { ic:'mapa', t:'Aplicação dos convênios', d:'Por UF, cliente, produto e classificação fiscal' },
       { ic:'troca', t:'Transações de nota fiscal', d:'Tipos de operação das notas próprias' },
       { ic:'caixa', t:'Grupos de faturamento', d:'Como os itens são agrupados para faturar' },
       { ic:'texto', t:'Mensagens padronizadas', d:'Textos que saem impressos na nota' },
@@ -1843,9 +1841,6 @@ const TOPICOS = {
       { grupo:'Embarque' },
       { ic:'caminhao', t:'Aviso de embarque', d:'Gerar e ajustar avisos de embarque' },
       { ic:'troca', t:'Informe de material retornado', d:'Material que voltou do cliente' },
-      { ic:'cifrao', t:'Conferência de fretes', d:'Conferir os valores de frete' },
-      { grupo:'Documentos' },
-      { ic:'check', t:'Certificados de qualidade', d:'Gerar e cancelar certificados que acompanham a nota' },
       { ic:'importar', t:'Declaração de exportação', d:'Documentos de exportação' },
     ]},
   ],
@@ -1886,7 +1881,9 @@ const TOPICOS = {
       { ic:'relogio', t:'Reparo e reprocessamento', d:'Produto que volta para conserto ou reprocesso' },
       { grupo:'Entregas' },
       { ic:'calendario', t:'Planejar entregas', d:'Programar as entregas dos pedidos' },
+      { ic:'check', t:'Confirmar previsão de embarque', d:'Confirmar manualmente a previsão de embarque' },
       { ic:'caminhao', t:'Embarques', d:'Montar e liberar as cargas' },
+      { ic:'cifrao', t:'Conferência de fretes', d:'Conferir o valor cobrado pelas transportadoras' },
       { grupo:'Terceiros' },
       { ic:'troca', t:'Embalagens de terceiros', d:'Movimento de embalagens que pertencem a clientes ou terceiros' },
     ]},
@@ -1900,6 +1897,20 @@ const TOPICOS = {
       { ic:'troca', t:'Embalagens de terceiros', d:'Saldo e movimento das embalagens de terceiros' },
       { ic:'caminhao', t:'Embarques e entregas', d:'Cargas embarcadas e entregas feitas' },
       { ic:'doc', t:'Inventário de produtos', d:'Resultado dos inventários' },
+    ]},
+  ],
+  /* Controladoria › Fiscal: regras de impostos (vieram do Faturamento, que só as usa). */
+  'controladoria/fiscal': [
+    { nome:'Cadastros', itens:[
+      { ic:'percent', t:'Convênios de impostos', d:'ICMS, IPI, PIS, COFINS e IBS/CBS, uma aba por imposto' },
+      { ic:'mapa', t:'Aplicação dos convênios', d:'Por UF, cliente, produto e classificação fiscal' },
+    ]},
+  ],
+  /* Qualidade › Qualidade: certificados (vieram do Faturamento; o conteúdo vem do laboratório
+     e o Faturamento só pede o certificado quando a nota precisa). */
+  'qualidade/qualidade': [
+    { nome:'Certificados', itens:[
+      { ic:'check', t:'Certificados de qualidade', d:'Gerar e cancelar os certificados que acompanham a nota' },
     ]},
   ],
   'comercial/vendas': [
@@ -1935,10 +1946,9 @@ const TOPICOS = {
       { grupo:'Programas do cliente' },
       { ic:'importar', t:'Importação de pedidos por EDI', d:'Receber programas e pedidos do cliente' },
       { ic:'grafico', t:'Analisador de programas do cliente', d:'Comparar e conferir os programas recebidos' },
-      { grupo:'Liberações' },
+      { grupo:'Bloqueios' },
       { ic:'cadeado', t:'Bloqueio de entrega de produto', d:'Bloquear ou desbloquear a entrega de um produto' },
       { ic:'cadeado', t:'Bloqueio em item de pedido', d:'Bloquear ou desbloquear um item do pedido' },
-      { ic:'caminhao', t:'Confirmar previsão de embarque', d:'Confirmar a previsão de embarque manualmente' },
     ]},
     /* Pedidos: sem "Importar pedidos via arquivo EDI" (já está em Operações) e sem "Gerar
        entrega a partir de pedido horizonte planejado". As 13 alterações do sistema atual
