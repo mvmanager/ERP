@@ -658,6 +658,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   por faixa (ex.: 1.000+, 2.000+, 5.000+, 10.000+). Ao digitar a quantidade, o preço unitário
   segue a faixa sozinho ("faixa 5.000+"); se a pessoa digitar outro preço, vira **"negociado"**
   e para de seguir a faixa. As faixas aparecem nos produtos sugeridos.
+- **De onde vêm as faixas (confirmado):** do cálculo de **Custos** (motor de precificação) quando
+  o orçamento é aprovado; ficam valendo para aquele **cliente + produto** até um novo orçamento.
 - **Cobra-se por unidade**, mas cada item mostra o **R$/kg** (parâmetro de mercado) e o rodapé
   mostra o **R$/kg médio** do pedido.
 - **Chapas** também podem ser vendidas por kg (marcadas "chapa · un ou kg"); a precificação é
