@@ -207,10 +207,12 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   **Facas:** Facas · **Desenvolvimento:** Desenvolvimento de produto (projeto e ficha técnica).
 - Desenho ao passar o mouse: a caixa planificada com as linhas de corte (faca).
 
-### Comercial › Crédito (proposta, a partir do sistema atual)
+### Comercial › Crédito (definido, a partir do sistema atual)
 - **Análises:** Análise de crédito · Liberação de pedidos pelo crédito (junta "por data de
-  entrega" e "pela gerência" numa fila só) · Documentação de clientes e grupos (junta o
-  cadastro da documentação e a "Situação da documentação").
+  entrega" e "pela gerência" numa fila só) · Situação da documentação (conferir os
+  documentos de todos os clientes e grupos).
+- A **documentação do cliente** (contrato social, balanço etc.) fica guardada **na ficha do
+  cliente**; o Crédito confere a situação de todos.
 - **Consultas:** Itens reprovados pelo crédito.
 - **Configurações:** Política de crédito (com o histórico de alterações dentro) · Parâmetros
   de crédito.
@@ -228,7 +230,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   prospect e cliente**): Assuntos, Grupo de empresas, Segmento econômico, Meios de
   comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo do cliente, Motivos de
   alteração de data de entrega / quantidade do pedido.
-- Também ficam **dentro da ficha do prospect/cliente** (decidido): **Histórico do cliente**,
+- Também ficam **dentro da ficha do prospect/cliente** (decidido): **Documentação** (contrato
+  social, balanço etc., usada pelo Crédito), **Histórico do cliente**,
   **Produto × endereço de entrega**, **Unidades do cliente**,
   **Alterar nome fantasia**, **Endereços de cobrança**, **Endereços de entrega** (o cliente
   pode ter vários) e os valores dos **Atributos extras** (aba "Informações extras"). Ideia: tudo que é de um cliente específico fica na ficha dele.

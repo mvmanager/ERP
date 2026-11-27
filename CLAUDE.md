@@ -16,8 +16,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > a área **Comercial › Vendas** inteira (Cadastros, Operações, Pedidos, Follow-up,
 > Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
 > proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
-> Orçamentos**. Próximo: as outras
-> áreas do Comercial (Crédito, Faturamento, NFe, Expedição) e depois os outros módulos. Me
+> Orçamentos**, e **Comercial › Crédito**. Próximo: as outras áreas do Comercial
+> (Faturamento, NFe, Expedição) e depois os outros módulos. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
