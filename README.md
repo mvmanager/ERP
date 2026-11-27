@@ -344,10 +344,26 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   Saldos das contas.
 - Conferir com a contabilidade: FCONT e SINCO podem estar extintos.
 
-### Controladoria › Custos (tópicos definidos até agora)
-- **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
-  e calculadora de caixa do sistema atual).
-- **Consultas** (vieram do Fiscal): Custos de venda · Estoque em elaboração.
+### Controladoria › Custos (a partir do sistema atual: ~45 itens → 17)
+- **Área que vai mudar bastante** (aviso do usuário): aqui entram o motor de precificação e a
+  calculadora de caixa do sistema atual.
+- **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (inclui simulação de preço
+  de venda/orçamento, individual e em lote). Alterar, imprimir, enviar e detalhes do orçamento
+  ficam na tela de **Orçamentos de Vendas**.
+- **Custo padrão:** Custo padrão (uma tela, por tipo: mão de obra, célula, máquina, serviço de
+  terceiros, produto em processo, material, tipo de papel).
+- **Custo hora e rateios:** Rateio de gastos fixos (regras C.I.F., gastos fixos não
+  automatizados, MLC GF) · Custo hora das máquinas (apuração + confirmação) · Custo hora da
+  mão de obra (regras de rateio M.O., apuração, confirmação, MLC MO) · Pós-cálculo (alteração +
+  pós-cálculo físico).
+- **Cadastros:** Centros de custo (+ aplicação, setores, altera aplicação × CC, delega domínios)
+  · Mão de obra e cargos (+ cargos × mão de obra) · Mark-up (+ percentuais) · Parâmetros.
+- **Consultas:** Demonstrativo de custos (+ por cliente, custo padrão × última compra) · Margem
+  de contribuição (+ cálculo de preço por cliente) · Custos de venda e Estoque em elaboração
+  (vieram do Fiscal) · Custos indiretos e consumo · Histórico de orçamentos (por
+  representante, por onda, reprovados, simulações, relação).
+- "Utilização da Polícia Federal" → Suprimentos › Materiais › Controle da Polícia Federal.
+  Cargos também existem no RH: ao desenhar, usar um cadastro só.
 
 ### Industrial › Engenharia industrial, Manutenção e Reporte (a partir do sistema atual)
 - No sistema atual, o menu "Engenharia Industrial" é quase todo **manutenção**. Foi dividido

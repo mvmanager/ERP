@@ -1811,15 +1811,35 @@ const TOPICOS = {
   ],
   /* Controladoria › Custos: recebe as solicitações de orçamento (do Portal do representante)
      e calcula custo e preço com o motor de precificação e a calculadora de caixa. */
+  /* Controladoria › Custos (a partir do sistema atual: ~45 itens → 15). Área que vai mudar
+     bastante: aqui entram o motor de precificação e a calculadora de caixa do sistema atual. */
   'controladoria/custos': [
     { nome:'Orçamentos', itens:[
       { ic:'importar', t:'Fila de solicitações de orçamento', d:'Solicitações que chegaram para calcular o preço' },
-      { ic:'etiqueta', t:'Calcular preço', d:'Custo e preço com o motor de precificação e a calculadora de caixa' },
+      { ic:'etiqueta', t:'Calcular preço', d:'Motor de precificação e calculadora de caixa; simulação individual ou em lote' },
     ]},
-    /* vieram dos demonstrativos do Fiscal */
+    { nome:'Custo padrão', itens:[
+      { ic:'tabela', t:'Custo padrão', d:'Material, tipo de papel, mão de obra, célula, máquina, serviço e produto em processo' },
+    ]},
+    { nome:'Custo hora e rateios', itens:[
+      { ic:'percent', t:'Rateio de gastos fixos', d:'Regras de rateio (CIF), gastos não automatizados e mapa de custos' },
+      { ic:'relogio', t:'Custo hora das máquinas', d:'Apurar e confirmar o custo hora de cada máquina' },
+      { ic:'pessoa', t:'Custo hora da mão de obra', d:'Regras de rateio, apurar e confirmar; mapa de custos' },
+      { ic:'check', t:'Pós-cálculo', d:'Custo real depois de produzido, físico e financeiro' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'predio', t:'Centros de custo', d:'Centros de custo, setores, aplicações e responsáveis' },
+      { ic:'pessoa', t:'Mão de obra e cargos', d:'Tipos de mão de obra e cargos ligados a ela' },
+      { ic:'percent', t:'Mark-up', d:'Mark-ups e percentuais usados no preço' },
+      { ic:'engrenagem', t:'Parâmetros de custos', d:'Configurações gerais de Custos' },
+    ]},
     { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Demonstrativo de custos', d:'Por produto e por cliente; custo padrão × última compra' },
+      { ic:'tendencia', t:'Margem de contribuição', d:'Margem e preço de venda por cliente' },
       { ic:'grafico', t:'Custos de venda', d:'Demonstrativo dos custos dos produtos vendidos' },
       { ic:'caixa', t:'Estoque em elaboração', d:'Valor dos produtos em processo de fabricação' },
+      { ic:'tendencia', t:'Custos indiretos e consumo', d:'Evolução dos custos indiretos e consumo de materiais da produção' },
+      { ic:'lupa', t:'Histórico de orçamentos', d:'Por representante, por onda, reprovados e simulações' },
     ]},
   ],
   /* Comercial › Crédito: 9 itens do sistema atual viraram 6. */
@@ -2107,7 +2127,7 @@ const TOPICOS = {
       { ic:'local', t:'Depósitos e localizações', d:'Depósitos, localizador e locais de entrega (cadastro único com a Expedição)' },
       { ic:'caixa', t:'Embalagens internas', d:'Embalagens usadas dentro da fábrica' },
       { ic:'impr', t:'Modelos de etiqueta', d:'Modelos de etiqueta para materiais' },
-      { ic:'cadeado', t:'Controle da Polícia Federal', d:'Grupos e parâmetros de produtos controlados' },
+      { ic:'cadeado', t:'Controle da Polícia Federal', d:'Grupos, parâmetros e utilização de produtos controlados' },
       { ic:'pessoa', t:'Aprovadores de requisição', d:'Quem aprova requisições de material' },
       { ic:'engrenagem', t:'Parâmetros de materiais', d:'Configurações gerais de Materiais' },
     ]},
@@ -2270,7 +2290,7 @@ const TOPICOS = {
     /* Orçamentos: o caminho é Representante solicita → Custos (Controladoria) calcula o
        preço → Vendas negocia, aprova e converte em pedido. */
     { nome:'Orçamentos', itens:[
-      { ic:'etiqueta', t:'Orçamentos', d:'Já com preço de Custos: consultar, negociar, aprovar e converter em pedido' },
+      { ic:'etiqueta', t:'Orçamentos', d:'Já com preço de Custos: consultar, negociar, imprimir, enviar, aprovar e converter' },
     ]},
     /* Operações: o antigo "Eventos" (ações que a gente executa). Sem Digitação, Revisão,
        Cancelamento e "Marcar como transformados" de programa, nem Convênios produto × prospect.

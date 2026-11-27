@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **23 com funcionalidades definidas**, **285 funcionalidades**.
+Situação: **31 áreas**, **23 com funcionalidades definidas**, **298 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -172,7 +172,10 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 ### Custos
 
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço
-- **Consultas:** Custos de venda · Estoque em elaboração
+- **Custo padrão:** Custo padrão
+- **Custo hora e rateios:** Rateio de gastos fixos · Custo hora das máquinas · Custo hora da mão de obra · Pós-cálculo
+- **Cadastros:** Centros de custo · Mão de obra e cargos · Mark-up · Parâmetros de custos
+- **Consultas:** Demonstrativo de custos · Margem de contribuição · Custos de venda · Estoque em elaboração · Custos indiretos e consumo · Histórico de orçamentos
 
 ### Ativo imobilizado — *a definir*
 
