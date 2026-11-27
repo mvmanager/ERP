@@ -62,7 +62,16 @@ do nosso jeito (decisão do usuário: "o nosso diferencial será nesses detalhes
 - Usos do contato: remessa eletrônica de títulos a receber · envio do arquivo de distribuição
   da NF-e · envio de certificado da qualidade · envio do EDI
 
-**Outras abas (conteúdo ainda não enviado):** Entrega / Cobrança · Advertências · Restrições de vencimento ·
+**Aba Entrega / Cobrança**
+- Endereços de entrega (vários; código "Entrega EDI") · Endereços de cobrança (vários)
+- Exigir informe do endereço de entrega no pedido · Exigir informe do endereço de cobrança no pedido
+- Limpar relacionamentos de entrega / de cobrança
+
+**Aba Advertências** (textos livres, um por setor)
+- Expedição · Transporte · Faturamento · Onduladeira · Produção · Contas a receber · Vendas
+- Ideia: aparecer como **aviso automático** na tela de cada setor quando trabalhar com o cliente.
+
+**Outras abas (conteúdo ainda não enviado):** Restrições de vencimento ·
 Padrões EDI · Atributos extras · Certificados · Financeiro · Ocorrências (na consulta).
 
 **Consulta:** navegação registro a registro e "aproximar por" (busca).
