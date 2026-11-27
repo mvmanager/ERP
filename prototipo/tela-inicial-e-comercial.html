@@ -2228,6 +2228,29 @@ const TOPICOS = {
       { ic:'lupa', t:'Alterações em títulos', d:'Quem alterou o quê e quando' },
     ]},
   ],
+  /* Controladoria › Contabilidade (a partir do sistema atual: ~52 itens → 14). As 10
+     "contabilizações" de outras áreas viram automáticas, com um painel para acompanhar. */
+  'controladoria/contabilidade': [
+    { nome:'Operações', itens:[
+      { ic:'lapis', t:'Lançamentos', d:'Lançamentos manuais e em aberto' },
+      { ic:'troca', t:'Contabilização automática', d:'O que veio de estoque, receber, pagar, bancos, custos, folha e ativo' },
+      { ic:'calendario', t:'Períodos e exercício', d:'Abrir, encerrar, fechar exercício e reabrir' },
+      { ic:'importar', t:'Obrigações contábeis', d:'ECD, ECF, FCONT e SINCO' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'tabela', t:'Plano de contas', d:'Grupos, categorias, aglutinação e plano referencial (ECD)' },
+      { ic:'troca', t:'Contas de clientes, fornecedores e outros', d:'Conta contábil de cada cliente, fornecedor, banco, representante e funcionário' },
+      { ic:'texto', t:'Históricos e lançamentos padrão', d:'Textos e lançamentos que se repetem' },
+      { ic:'engrenagem', t:'Parâmetros contábeis', d:'Configurações gerais; regras de conciliação' },
+    ]},
+    { nome:'Relatórios', itens:[
+      { ic:'tabela', t:'Balancete', d:'Normal e pelo plano referencial' },
+      { ic:'doc', t:'Livros contábeis', d:'Diário, razão, livro caixa e termos de abertura e encerramento' },
+      { ic:'grafico', t:'Demonstrações financeiras', d:'Balanço, DRE, DFC, lucros acumulados e custo dos vendidos' },
+      { ic:'lupa', t:'Conciliação contábil', d:'Conferir saldos, inclusive da folha de pagamento' },
+      { ic:'cifrao', t:'Saldos das contas', d:'Demonstrativo de saldos' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e

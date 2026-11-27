@@ -326,6 +326,24 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   acompanhamento por lote da onduladeira).
 - **RNC** e **FSC** ficaram **para depois** (decisão do usuário).
 
+### Controladoria › Contabilidade (a partir do sistema atual: ~52 itens → 13)
+- **Operações:** Lançamentos (+ lançamentos em aberto) · **Contabilização automática** — as 10
+  "Contabilização de…" (requisições, contas a receber, contas pagas, contas correntes, encontro
+  de contas, movimentos de produtos, recálculos de custos e de subproduto/cola/bagaço, folha,
+  ativo imobilizado) e a "Interface contábil" deixam de ser feitas à mão: cada área lança
+  sozinha e aqui há um painel para acompanhar e corrigir · Períodos e exercício (abertura,
+  encerramento, fechamento, reabertura, despublicar demonstrativos) · Obrigações contábeis (ECD,
+  ECF, FCONT parcial, SINCO).
+- **Cadastros:** Plano de contas (grupos contábeis, categorias, aglutinação, plano referencial
+  ECD) · Contas de clientes, fornecedores e outros (os 7 "× Plano de contas" ficam também na
+  ficha de cada um) · Históricos e lançamentos padrão · Parâmetros (inclui classificação para
+  conciliação).
+- **Relatórios:** Balancete (normal e referencial) · Livros contábeis (diário, razão, livro caixa,
+  termos, listagem de lançamentos) · Demonstrações financeiras (balanço, DRE, DFC método direto,
+  lucros/prejuízos acumulados, custo dos produtos vendidos) · Conciliação contábil (+ folha) ·
+  Saldos das contas.
+- Conferir com a contabilidade: FCONT e SINCO podem estar extintos.
+
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
   e calculadora de caixa do sistema atual).
