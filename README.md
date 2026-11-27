@@ -229,6 +229,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   (vieram do PCP): Produção por período (relatório + volume produzido) · Paradas · Refugo
   (por OF + estratificação) · Apontamentos.
 
+### Industrial › Pesagem e apontamentos do Reporte de produção
+- **Deixados para depois** (decisão do usuário). Têm ligação com a balança e com as máquinas
+  (ver "Ligação com equipamentos da fábrica").
+
 ### Industrial › Segurança (a partir do sistema atual: 15 itens → 8)
 - No sistema atual cuida de **EPI e uniforme**.
 - **Entregas:** Entrega de EPI e uniforme (retirada, estorno, implantação e comprovante
