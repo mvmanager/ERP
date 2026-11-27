@@ -676,6 +676,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   nota/título e ajuste manual. "Fechar período" só depois de conferir todos; gera as notas de
   crédito e manda para Contas a pagar.
 - **Notas de crédito:** lista com PDF e **Desfazer** (exige motivo, fica no histórico).
+- **Como a empresa paga hoje (decidido):** comissão **no faturamento** — o que é faturado no mês
+  é pago no **dia 15 do mês seguinte** (vencimento em Contas a pagar). **No futuro** passará a
+  ser **no recebimento** (só o que o cliente pagou): o sistema já tem essa opção em "Quando paga";
+  basta trocar nas regras.
 - **Relatório:** comissão por representante nos últimos meses, total e mini-gráfico de tendência;
   exportar planilha.
 
@@ -702,10 +706,10 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Materiais ↔ Expedição | — | depósitos e localizações (cadastro único) |
 | Compras ↔ Expedição | — | transportadoras (cadastro único) |
 | Ajuda (chamados) | Suporte › Chamados | print, texto, protocolo |
-| Faturamento (notas) + Contas a receber (recebimentos) | Vendas › Comissões › Acerto | base de cálculo da comissão |
+| Faturamento (notas do mês) — no futuro Contas a receber (recebimentos) | Vendas › Comissões › Acerto | base de cálculo da comissão |
 | Comissões › Regras | Acerto de comissões | % por representante, cliente, produto, supervisor |
 | Pedidos › Alterar pedido | Comissões | comissão específica de um item |
-| Acerto (fechar período) | Notas de crédito de comissão + Financeiro › Contas a pagar | valor a pagar a cada representante |
+| Acerto (fechar período) | Notas de crédito de comissão + Financeiro › Contas a pagar | valor a pagar a cada representante, vencimento dia 15 do mês seguinte |
 | Notas de crédito (desfazer) | Contas a pagar | retira o valor |
 | Acerto / Notas | Portal › Minhas comissões | o que cada representante vê |
 | Devoluções (Faturamento) | Acerto | estorno de comissão |
