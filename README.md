@@ -75,6 +75,21 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - Cada pessoa vê só os próprios atalhos. No protótipo eles ficam guardados no
     navegador; no sistema real, no cadastro do usuário (aparecem em qualquer computador).
 
+### Cada módulo na sua própria aba (padrão para todos)
+- Clicar num módulo na tela inicial abre o módulo numa **aba nova** (no aplicativo
+  instalado, numa **janela nova**, agrupada no mesmo ícone da barra de tarefas).
+  Assim a pessoa troca de módulo com **Alt+Tab** sem largar o que estava fazendo.
+- O título da aba mostra o módulo e a área (ex.: "Comercial › Vendas"), para achar fácil.
+- Pedir um módulo que **já está aberto** só traz a aba dele para a frente, do jeito que
+  a pessoa deixou (não abre outra cópia nem volta para o começo).
+- Numa aba de módulo, o **logo** e o **"‹ Início"** levam para a aba da tela inicial.
+- Trocar de área dentro do módulo acontece na mesma aba.
+- Se o navegador bloquear abas novas, o módulo abre na mesma aba.
+- No sistema publicado, o ERP poderá ser **instalado como aplicativo** pelo Chrome ou
+  Edge: ícone próprio na barra de tarefas e na área de trabalho, janela sem barra de
+  endereço. (Não dá para mostrar isso no link do protótipo.)
+- A decidir: se os atalhos de relatório da tela inicial também abrem em aba nova.
+
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
   inicial**: botão **‹ Voltar** (volta para a tela de onde a pessoa veio; se abriu direto,

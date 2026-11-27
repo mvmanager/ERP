@@ -1088,7 +1088,7 @@ function anotarCaminho(){
   if (pilha[pilha.length - 2] === h) pilha.pop();
   else if (pilha[pilha.length - 1] !== h) pilha.push(h);
 }
-function voltar(){ location.hash = pilha.length > 1 ? pilha[pilha.length - 2] : '#inicio'; }
+function voltar(){ if (pilha.length > 1) location.hash = pilha[pilha.length - 2]; else irInicio(); }
 $('voltarBtn').addEventListener('click', voltar);
 function rota(){
   const [ms, as] = decodeURIComponent(location.hash.slice(1)).split('/');
@@ -1121,9 +1121,40 @@ function mostrarTela(){
 window.addEventListener('hashchange', mostrarTela);
 
 /* clicar num módulo abre a tela de áreas dele */
+/* ── Cada módulo abre na sua própria aba (ou janela, no aplicativo instalado) ──
+   Assim a pessoa troca de módulo com Alt+Tab sem largar o que estava fazendo.
+   Cada aba tem um nome fixo (erp-comercial, erp-inicio…): pedir um módulo que já está
+   aberto leva para a aba existente em vez de abrir outra cópia. */
+const BASE = location.href.split('#')[0];
+const ehAbaDeModulo = () => /^erp-/.test(window.name) && window.name !== 'erp-inicio';
+/* Se a aba já existe, só traz para a frente, do jeito que a pessoa deixou
+   (forcar = true leva a aba para a tela pedida; usado para a tela inicial). */
+function abrirAba(hash, nome, forcar){
+  const w = window.open('', nome);
+  if (!w) return false; // navegador bloqueou a aba nova: abre aqui mesmo
+  let nova = true;
+  try { nova = w.location.href === 'about:blank'; } catch { nova = false; }
+  if (nova) w.location.href = BASE + '#' + hash;
+  else if (forcar) { try { w.location.hash = hash; } catch {} }
+  try { w.focus(); } catch {}
+  return true;
+}
+function abrirModulo(slug){ if (!abrirAba(slug, 'erp-' + slug)) location.hash = slug; }
+function irInicio(){
+  if (ehAbaDeModulo() && abrirAba('inicio', 'erp-inicio', true)) return;
+  location.hash = 'inicio';
+}
+/* dá nome à aba aberta direto (a primeira aba vira a "tela inicial") */
+if (!window.name) window.name = (rota() ? 'erp-' + rota().m.slug : 'erp-inicio');
+/* "Início" e o logo, numa aba de módulo, voltam para a aba da tela inicial */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href="#inicio"]'); if (!a) return;
+  e.preventDefault(); irInicio();
+}, true);
+
 apps.addEventListener('click', (e) => {
   const t = e.target.closest('.tile'); if (!t) return;
-  location.hash = t.dataset.mod;
+  abrirModulo(t.dataset.mod);
 });
 
 /* ── tela de áreas: mesmo layout da tela inicial ── */
