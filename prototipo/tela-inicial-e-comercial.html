@@ -1816,6 +1816,11 @@ const TOPICOS = {
       { ic:'importar', t:'Fila de solicitações de orçamento', d:'Solicitações que chegaram para calcular o preço' },
       { ic:'etiqueta', t:'Calcular preço', d:'Custo e preço com o motor de precificação e a calculadora de caixa' },
     ]},
+    /* vieram dos demonstrativos do Fiscal */
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Custos de venda', d:'Demonstrativo dos custos dos produtos vendidos' },
+      { ic:'caixa', t:'Estoque em elaboração', d:'Valor dos produtos em processo de fabricação' },
+    ]},
   ],
   /* Comercial › Crédito: 9 itens do sistema atual viraram 6. */
   'comercial/credito': [
@@ -1908,10 +1913,30 @@ const TOPICOS = {
     ]},
   ],
   /* Controladoria › Fiscal: regras de impostos (vieram do Faturamento, que só as usa). */
+  /* Controladoria › Fiscal (a partir do sistema atual: ~64 itens → 18, mais os convênios que
+     vieram do Faturamento). */
   'controladoria/fiscal': [
+    { nome:'Operações', itens:[
+      { ic:'doc', t:'Escrituração', d:'Entradas (com revisão do boletim) e saídas; conferir notas próprias' },
+      { ic:'percent', t:'Apuração de impostos', d:'ICMS, IPI e PIS/COFINS; ajustes e informações adicionais' },
+      { ic:'importar', t:'Obrigações e arquivos fiscais', d:'EFD ICMS/IPI, EFD Contribuições, EFD-Reinf, GIA, SINCO, DNF, ISS' },
+      { ic:'caixa', t:'Valorização dos estoques', d:'Estoques pelo preço de venda' },
+    ]},
     { nome:'Cadastros', itens:[
       { ic:'percent', t:'Convênios de impostos', d:'ICMS, IPI, PIS, COFINS e IBS/CBS, uma aba por imposto' },
       { ic:'mapa', t:'Aplicação dos convênios', d:'Por UF, cliente, produto e classificação fiscal' },
+      { ic:'tabela', t:'Classificação fiscal e NCM', d:'NCM, unidades Siscomex e tabela IBPT' },
+      { ic:'percent', t:'Alíquotas e tributações', d:'Alíquotas, reduções e tributações de ICMS e IPI; exclusões PIS/COFINS' },
+      { ic:'troca', t:'Naturezas e transações de entrada', d:'Naturezas, transações e a ligação entre elas' },
+      { ic:'predio', t:'Impostos municipais (ISS)', d:'Serviços, atividades e registro municipal' },
+      { ic:'regua', t:'Regras fiscais', d:'Retenção de tributos, regras das notas próprias e fórmulas' },
+      { ic:'texto', t:'Códigos de ajuste e observações', d:'Códigos de ajuste do ICMS, de documento fiscal e observações' },
+      { ic:'engrenagem', t:'Parâmetros fiscais', d:'Configurações gerais do Fiscal' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'tabela', t:'Livros fiscais', d:'Registro de entradas, saídas, inventário e apurações, com termos' },
+      { ic:'doc', t:'Declarações', d:'GI/ICMS, Sintegra, DIPJ e DFC' },
+      { ic:'lupa', t:'Conferências fiscais', d:'Notas × registros, resumo por CFOP/UF, débitos e créditos PIS/COFINS' },
     ]},
   ],
   /* Qualidade › Qualidade: certificados (vieram do Faturamento; o conteúdo vem do laboratório

@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **22 com funcionalidades definidas**, **256 funcionalidades**.
+Situação: **31 áreas**, **22 com funcionalidades definidas**, **272 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -159,13 +159,16 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Fiscal
 
-- **Cadastros:** Convênios de impostos · Aplicação dos convênios
+- **Operações:** Escrituração · Apuração de impostos · Obrigações e arquivos fiscais · Valorização dos estoques
+- **Cadastros:** Convênios de impostos · Aplicação dos convênios · Classificação fiscal e NCM · Alíquotas e tributações · Naturezas e transações de entrada · Impostos municipais (ISS) · Regras fiscais · Códigos de ajuste e observações · Parâmetros fiscais
+- **Consultas:** Livros fiscais · Declarações · Conferências fiscais
 
 ### Contabilidade — *a definir*
 
 ### Custos
 
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço
+- **Consultas:** Custos de venda · Estoque em elaboração
 
 ### Ativo imobilizado — *a definir*
 

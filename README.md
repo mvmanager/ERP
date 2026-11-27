@@ -287,10 +287,25 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Cobrança automática (ideia para depois):** lembrete por e-mail/WhatsApp antes e depois do
   vencimento, com o boleto ou PIX.
 
-### Controladoria › Fiscal (tópicos definidos até agora)
-- **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
-  por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —
-  junta os 4 "Convênios × …" do Faturamento atual).
+### Controladoria › Fiscal (a partir do sistema atual: ~64 itens → 18)
+- **Operações:** Escrituração (entradas + revisão do boletim de entrada + saídas + conferir notas
+  próprias) · Apuração de impostos (IPI, ICMS, PIS/COFINS, exportar apuração, exclusão de
+  resumos, informações adicionais E115) · Obrigações e arquivos fiscais (EFD ICMS/IPI, EFD
+  Contribuições, EFD-Reinf, GIA, SINCO, DNF, ISSQN eletrônico) · Valorização dos estoques.
+- **Cadastros:** Convênios de impostos e Aplicação dos convênios (vieram do Faturamento) ·
+  Classificação fiscal e NCM (+ unidade e NCM Siscomex, tabela IBPT) · Alíquotas e tributações
+  (alíquotas especiais e do ICMS, reduções, tributações ICMS/IPI, exclusões PIS/COFINS) ·
+  Naturezas e transações de entrada (+ natureza × transação) · Impostos municipais (grupos de
+  serviços e atividades, serviços, atividades, registro ISSQN) · Regras fiscais (retenção de
+  tributos, regras das notas próprias, fórmulas sobre boletins) · Códigos de ajuste e
+  observações · Parâmetros (inclui tabela de produtos para o DNF).
+- **Consultas:** Livros fiscais (registros de entradas, saídas e inventário, apurações e
+  termos) · Declarações (GI/ICMS, Sintegra, DIPJ, DFC) · Conferências fiscais (notas ×
+  registros, resumo por CFOP/UF, débitos/créditos PIS/COFINS).
+- **Foram para Custos:** Demonstrativo dos custos de venda · Estoque de produtos em elaboração.
+- **Conferir com a contabilidade:** várias obrigações do menu atual podem não existir mais
+  (Sintegra, DIPJ, GIA em alguns estados, SINCO, DNF). E a **reforma tributária (IBS/CBS)**
+  precisa entrar desde o começo.
 
 ### Qualidade › Qualidade e Laboratório (a partir da "Garantia da Qualidade": 20 itens → 12)
 - **Qualidade** — *Certificados:* Certificados de qualidade (veio do Faturamento).
@@ -314,6 +329,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
   e calculadora de caixa do sistema atual).
+- **Consultas** (vieram do Fiscal): Custos de venda · Estoque em elaboração.
 
 ### Industrial › Engenharia industrial, Manutenção e Reporte (a partir do sistema atual)
 - No sistema atual, o menu "Engenharia Industrial" é quase todo **manutenção**. Foi dividido

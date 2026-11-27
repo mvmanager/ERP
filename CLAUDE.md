@@ -23,7 +23,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > `docs/mapa-de-funcionalidades.md`. Pesagem e apontamentos do Reporte ficaram para
 > depois. Suprimentos (Compras e Materiais) e Qualidade (Qualidade e Laboratório) já têm
 > mapa; RNC e FSC ficaram para depois. O Financeiro inteiro já tem mapa. Próximo:
-> Controladoria (Contabilidade, Ativo imobilizado, resto de Fiscal e Custos); depois RH,
+> Controladoria (Fiscal já tem mapa; faltam Contabilidade, Ativo imobilizado e resto de
+> Custos); depois RH,
 > Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
