@@ -232,6 +232,11 @@ h2{font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:22px;
 .tile .deco.onda{width:52px;height:52px;right:2px;bottom:-4px}
 .tile:hover,.tile:focus-visible{transform:translateY(-3px) rotateX(var(--rx)) rotateY(var(--ry))}
 .tile:hover .ic{transform:rotate(-4deg) scale(1.04)}
+/* título do módulo na tela de áreas: 60% menor */
+#view-areas .mh{gap:8px;margin-top:10px}
+#view-areas .mh .ic{width:24px;height:24px;border-radius:7px;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 4px 8px -5px var(--kraft-deep)}
+#view-areas .mh .ic svg{width:13px;height:13px}
+#view-areas .mh h1{font-size:18px;letter-spacing:-.01em}
 .voltar{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-2);background:var(--surface);border-radius:99px;padding:4px 13px 4px 10px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
 .voltar:hover{color:var(--kraft);border-color:var(--kraft)}
 
@@ -623,12 +628,12 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
   <section class="mod-head gut">
     <div class="max">
       <button class="voltar" id="voltarBtn" type="button">‹ Voltar</button>
-      <div class="mh"><span class="ic" id="areasIc"></span><div><h1 id="areasTit">Comercial</h1><div class="sub" id="areasSub">Escolha a área</div></div></div>
+      <div class="mh"><span class="ic" id="areasIc"></span><h1 id="areasTit">Comercial</h1></div>
     </div>
   </section>
   <section class="gut">
     <div class="max">
-      <div class="secthead" style="margin-top:26px"><h2>Áreas</h2><span>cada pessoa vê só as áreas liberadas para ela</span></div>
+      <div class="secthead" style="margin-top:26px"><h2>Áreas</h2></div>
       <div class="apps" id="areasGrid"></div>
       <div class="wave" aria-hidden="true"></div>
     </div>
@@ -1123,10 +1128,9 @@ apps.addEventListener('click', (e) => {
 
 /* ── tela de áreas: mesmo layout da tela inicial ── */
 function montarAreas(){
-  const m = atual.m, n = m.areas.length;
+  const m = atual.m;
   $('areasIc').innerHTML = svg(m.k);
   $('areasTit').textContent = m.nome;
-  $('areasSub').textContent = `${n} ${n > 1 ? 'áreas' : 'área'} · escolha onde vai trabalhar`;
   areasGrid.innerHTML = m.areas.map(a => {
     const badge = BADGE_AREA[m.slug + '/' + a.k] || (m.calm && m.badge);
     return `<button class="tile" type="button" data-area="${a.k}">
