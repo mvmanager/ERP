@@ -1761,7 +1761,7 @@ const TOPICOS = {
      produto) e o pessoal interno analisa, cadastra o cliente e converte em pedido. */
   'comercial/representantes': [
     { nome:'Solicitações', itens:[
-      { ic:'etiqueta', t:'Solicitar orçamento', d:'Com os dados do cliente e do produto; o interno analisa' },
+      { ic:'etiqueta', t:'Solicitar orçamento', d:'Com os dados do cliente e do produto; Custos calcula o preço' },
       { ic:'caixa', t:'Pedir amostra', d:'Amostra de caixa para o cliente aprovar' },
       { ic:'impr', t:'Pedir clichê', d:'Clichê novo ou alteração de arte' },
       { ic:'regua', t:'Pedir desenvolvimento de produto', d:'Faca, caixa nova ou mudança de projeto' },
@@ -1801,6 +1801,14 @@ const TOPICOS = {
       { ic:'doc', t:'Desenvolvimento de produto', d:'Projeto e ficha técnica de produtos novos' },
     ]},
   ],
+  /* Controladoria › Custos: recebe as solicitações de orçamento (do Portal do representante)
+     e calcula custo e preço com o motor de precificação e a calculadora de caixa. */
+  'controladoria/custos': [
+    { nome:'Orçamentos', itens:[
+      { ic:'importar', t:'Fila de solicitações de orçamento', d:'Solicitações que chegaram para calcular o preço' },
+      { ic:'etiqueta', t:'Calcular preço', d:'Custo e preço com o motor de precificação e a calculadora de caixa' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e
@@ -1817,12 +1825,10 @@ const TOPICOS = {
       { sep:true },
       { ic:'engrenagem', t:'Parâmetros de vendas', d:'Configurações da área de Vendas, como os atributos extras' },
     ]},
-    /* Orçamentos: as solicitações de orçamento dos representantes chegam aqui; o pessoal
-       interno analisa, põe o preço (motor de precificação e calculadora de caixa do sistema
-       atual) e, quando aprovado, converte em pedido. */
+    /* Orçamentos: o caminho é Representante solicita → Custos (Controladoria) calcula o
+       preço → Vendas negocia, aprova e converte em pedido. */
     { nome:'Orçamentos', itens:[
-      { ic:'importar', t:'Solicitações de orçamento', d:'Pedidos de orçamento dos representantes: analisar, aprovar, devolver' },
-      { ic:'etiqueta', t:'Orçamentos', d:'Montar e consultar orçamentos, com cálculo de preço; converter em pedido' },
+      { ic:'etiqueta', t:'Orçamentos', d:'Já com preço de Custos: consultar, negociar, aprovar e converter em pedido' },
     ]},
     /* Operações: o antigo "Eventos" (ações que a gente executa). Sem Digitação, Revisão,
        Cancelamento e "Marcar como transformados" de programa, nem Convênios produto × prospect.

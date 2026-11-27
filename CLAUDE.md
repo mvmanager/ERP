@@ -15,7 +15,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > janelas) existem. Os detalhes de cada tela vêm depois. Já está fechado:
 > a área **Comercial › Vendas** inteira (Cadastros, Operações, Pedidos, Follow-up,
 > Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
-> proposta para **Industrial › Engenharia de produto**. Próximo: as outras
+> proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
+> Orçamentos**. Próximo: as outras
 > áreas do Comercial (Crédito, Faturamento, NFe, Expedição) e depois os outros módulos. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
