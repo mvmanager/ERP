@@ -128,7 +128,11 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Barra de título da janela numa linha só: ícone pequeno, nome e o caminho ao lado.
 
 ### Suporte
-- Módulo de administração do sistema, usado por quem cuida do ERP.
+- Módulo de administração do sistema. **Só o administrador (dono do sistema) e o TI
+  veem este módulo.** Os demais usuários não enxergam o cartão do Suporte.
+- No protótipo o cartão aparece para todos, só para demonstração.
+- Os outros usuários abrem chamados sem entrar no módulo (pelo assistente de busca e,
+  a definir, por um botão de ajuda).
 - **Chamados:** onde chegam os pedidos de ajuda e de melhoria dos usuários (inclusive os
   pedidos de análise feitos pelo assistente de busca da tela inicial).
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
