@@ -559,7 +559,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - **Não entram:** Importar pedidos via arquivo EDI (já está em Operações) e Gerar
     entrega a partir de pedido horizonte planejado.
 - **Comissões** (7 itens do sistema atual viraram 4):
-  - **Regras de comissão:** quanto ganha cada representante e supervisor, inclusive por
+  - **Regras de comissão:** quanto ganha cada representante, inclusive por cliente e
     produto (junta "Definir comissão de representante", "Definir comissão do supervisor" e
     "Agente × produtos").
   - **Notas de crédito de comissão:** emitir e desfazer na mesma janela.
@@ -668,8 +668,9 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
 ### Comissões (Comercial › Vendas › Comissões) — primeira versão para aprovar
 - **Regras de comissão:** tabela com quem recebe, vale para (todos / cliente / produto / grupo /
-  equipe do supervisor), %, base (valor sem IPI, total da nota ou margem), quando paga (no
-  recebimento ou no faturamento) e vigência. Exceções e supervisor marcados. A regra mais
+  grupo), %, base (valor sem IPI, total da nota ou margem), quando paga (no recebimento ou
+  no faturamento) e vigência. Exceções marcadas. **Supervisão não ganha comissão** (decidido).
+  A regra mais
   específica vale primeiro: produto › cliente › padrão do representante.
 - **Acerto de comissões:** por período, uma linha por representante (faturado, recebido,
   comissão, ajustes, a pagar, situação Aberto → Conferido → Nota gerada → Pago), com detalhe por
@@ -707,7 +708,7 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Compras ↔ Expedição | — | transportadoras (cadastro único) |
 | Ajuda (chamados) | Suporte › Chamados | print, texto, protocolo |
 | Faturamento (notas do mês) — no futuro Contas a receber (recebimentos) | Vendas › Comissões › Acerto | base de cálculo da comissão |
-| Comissões › Regras | Acerto de comissões | % por representante, cliente, produto, supervisor |
+| Comissões › Regras | Acerto de comissões | % por representante, cliente e produto |
 | Pedidos › Alterar pedido | Comissões | comissão específica de um item |
 | Acerto (fechar período) | Notas de crédito de comissão + Financeiro › Contas a pagar | valor a pagar a cada representante, vencimento dia 15 do mês seguinte |
 | Notas de crédito (desfazer) | Contas a pagar | retira o valor |

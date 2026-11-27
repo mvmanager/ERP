@@ -2559,7 +2559,7 @@ const TOPICOS = {
     /* Comissões: 7 itens do sistema atual viraram 4. Fica em Vendas (pessoal interno),
        não na área Representantes (que é onde os próprios representantes trabalham). */
     { nome:'Comissões', itens:[
-      { ic:'percent', t:'Regras de comissão', d:'Quanto ganha cada representante e supervisor, inclusive por produto', tela:'comRegras' },
+      { ic:'percent', t:'Regras de comissão', d:'Quanto ganha cada representante, inclusive por cliente e produto', tela:'comRegras' },
       { ic:'doc', t:'Notas de crédito de comissão', d:'Emitir e desfazer notas de crédito', tela:'comNotas' },
       { ic:'cifrao', t:'Acerto de comissões', d:'Fechamento das comissões do período', tela:'comAcerto' },
       { ic:'grafico', t:'Relatório de comissões', d:'Comissões por representante e vendedor', tela:'comRelatorio' },
@@ -3556,14 +3556,12 @@ const REGRAS = [
   { quem:'Juliana Rocha', aplica:'Cliente: Serra Azul', pct:3, base:'Valor sem IPI', quando:'No faturamento', vig:'06/2026 →', exc:true },
   { quem:'Matheus', aplica:'Todos os clientes e produtos', pct:1.5, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →' },
   { quem:'Todos', aplica:'Produto: Chapa divisória', pct:2, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →', exc:true },
-  { quem:'Carla Mendes (supervisora)', aplica:'Sobre a equipe dela', pct:0.8, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →', sup:true },
 ];
 const ACERTO = {
   '2026-11': [
     { rep:'Sandro Lima', fat:412300, rec:388900, com:15556, aj:-420, sit:'conferido', det:[ ['NF 88430','Horizonte','14/11',38900,1556], ['NF 88411','Vale Verde','10/11',0,0], ['Título 88102','Horizonte','05/11',51200,2048] ] },
     { rep:'Juliana Rocha', fat:298700, rec:301500, com:11810, aj:0, sit:'aberto', det:[ ['NF 88402','Serra Azul','08/11',31100,933], ['NF 88399','Passo Firme','07/11',12000,480] ] },
     { rep:'Matheus', fat:186200, rec:0, com:2793, aj:0, sit:'aberto', det:[ ['NF 88430','Horizonte','14/11',38900,584] ] },
-    { rep:'Carla Mendes (supervisora)', fat:897200, rec:690400, com:5523, aj:0, sit:'aberto', det:[] },
   ],
 };
 const NOTAS_COM = [
@@ -3572,7 +3570,7 @@ const NOTAS_COM = [
   { n:'NC-1029', rep:'Sandro Lima', per:'09/2026', valor:13710, sit:'desfeita', data:'04/10/2026', motivo:'Valor errado: refeita na NC-1030' },
   { n:'NC-1030', rep:'Sandro Lima', per:'09/2026', valor:13290, sit:'emitida', data:'06/10/2026' },
 ];
-const HIST_COM = { 'Sandro Lima':[11200,12800,13290,14980,15136], 'Juliana Rocha':[9800,10400,11020,12240,11810], 'Matheus':[2100,2450,2380,2610,2793], 'Carla Mendes (supervisora)':[4300,4700,4980,5260,5523] };
+const HIST_COM = { 'Sandro Lima':[11200,12800,13290,14980,15136], 'Juliana Rocha':[9800,10400,11020,12240,11810], 'Matheus':[2100,2450,2380,2610,2793] };
 const MESES_COM = ['07/26','08/26','09/26','10/26','11/26'];
 
 TELAS.comRegras = (box) => {
@@ -3586,8 +3584,8 @@ TELAS.comRegras = (box) => {
       box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><button class="voltar" type="button" data-volta-regras>‹ Regras</button><div class="cl-nome"><b>${r.quem ? 'Editar regra' : 'Nova regra'}</b><small>Quem recebe, sobre o quê, quanto e quando</small></div>
         <span class="cl-acoes"><button class="btn2" type="button" data-volta-regras>Cancelar</button><button class="go" type="button" data-salva-regra>Salvar</button></span></div>
         <div class="pd-corpo"><section class="cl-bloco"><div class="cl-grade">
-          ${f('Quem recebe', r.quem, { opcoes: ['', ...REPS.map(x => x.nome), 'Carla Mendes (supervisora)', 'Todos'] })}
-          ${f('Vale para', r.aplica.split(':')[0], { opcoes:['Todos os clientes e produtos','Cliente','Produto','Grupo de produtos','Sobre a equipe dela'] })}
+          ${f('Quem recebe', r.quem, { opcoes: ['', ...REPS.map(x => x.nome), 'Todos'] })}
+          ${f('Vale para', r.aplica.split(':')[0], { opcoes:['Todos os clientes e produtos','Cliente','Produto','Grupo de produtos'] })}
           ${f('Qual (cliente/produto)', (r.aplica.split(': ')[1] || ''))}
           ${f('Percentual (%)', r.pct ? r.pct.toLocaleString('pt-BR') : '')}
           ${f('Base de cálculo', r.base, { opcoes:['Valor sem IPI','Valor total da nota','Margem de contribuição'] })}
