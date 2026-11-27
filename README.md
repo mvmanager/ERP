@@ -59,8 +59,11 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - Cartões **compactos** (metade do tamanho original): ícone ao lado do nome e, embaixo,
     os nomes das áreas em letra pequena. Seis cartões por linha no computador.
   - Ao passar o mouse: o cartão sobe, inclina levemente, ganha uma luz suave e uma
-    **caixinha de papelão** entra pelo canto (onda em Industrial, pilha no pallet em
-    Suprimentos, caixa que abre nos demais).
+    **desenho que representa o módulo** entra pelo canto, no estilo papelão: caixa com
+    etiqueta de preço (Comercial), fábrica (Industrial), bobina de papel (Suprimentos),
+    selo (Qualidade), nota e moedas (Financeiro), balança de pratos (Controladoria),
+    pessoas (Recursos Humanos), boia (Suporte), gráfico subindo (Gerencial).
+    Todos os desenhos estão em `docs/fotos/11-desenhos-dos-modulos.png`.
   - **Só estes 9 módulos.** Orçamentos, Engenharia de Produto e Cadastros foram retirados:
     o que eles faziam vai virar parte de algum módulo acima (a definir).
   - Selo vermelho com a quantidade de pendências do módulo.
@@ -88,15 +91,16 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - No sistema publicado, o ERP poderá ser **instalado como aplicativo** pelo Chrome ou
   Edge: ícone próprio na barra de tarefas e na área de trabalho, janela sem barra de
   endereço. (Não dá para mostrar isso no link do protótipo.)
-- A decidir: se os atalhos de relatório da tela inicial também abrem em aba nova.
+- Os **atalhos de relatório** da tela inicial abrem na **mesma aba** (decidido).
 
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
   inicial**: botão **‹ Voltar** (volta para a tela de onde a pessoa veio; se abriu direto,
   para o Início), título do módulo **pequeno** (ícone e nome na mesma linha do Voltar, sem frases de apoio) e
-  uma grade de cartões compactos, um por área, com a mesma caixinha
-  ao passar o mouse (pilha no pallet em Expedição e Materiais, onda em PCP e Reporte de
-  produção, faca em Engenharia industrial) e o selo de pendências de cada área.
+  uma grade de cartões compactos, um por área. Cada área também tem o **seu desenho**
+  ao passar o mouse (ex.: caminhão com caixas em Expedição, capacete em Segurança,
+  balança com display em Pesagem, frasco em Laboratório, cancela em Portaria) e o selo
+  de pendências de cada área.
 - No sistema real, cada pessoa vê só as áreas liberadas para ela.
 
 ### Dentro de uma área (padrão para todos)
