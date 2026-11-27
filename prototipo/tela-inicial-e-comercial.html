@@ -1769,27 +1769,14 @@ const TOPICOS = {
       { ic:'cadeado', t:'Bloqueio em item de pedido', d:'Bloquear ou desbloquear um item do pedido' },
       { ic:'caminhao', t:'Confirmar previsão de embarque', d:'Confirmar a previsão de embarque manualmente' },
     ]},
-    /* Pedidos: como no sistema atual, sem "Importar pedidos via arquivo EDI" (já está em
-       Operações) e sem "Gerar entrega a partir de pedido horizonte planejado". */
+    /* Pedidos: sem "Importar pedidos via arquivo EDI" (já está em Operações) e sem "Gerar
+       entrega a partir de pedido horizonte planejado". As 13 alterações do sistema atual
+       viraram uma janela só, "Alterar pedido" (cada usuário altera só o que tiver permissão). */
     { nome:'Pedidos', itens:[
-      { grupo:'Pedidos' },
       { ic:'doc', t:'Pedidos', d:'Lançar, consultar e imprimir pedidos' },
+      { ic:'lapis', t:'Alterar pedido', d:'Datas, quantidades, preço, prazo, endereços, frete e mais' },
       { ic:'check', t:'Liberação de pedidos', d:'Liberar pedidos para produção' },
       { ic:'xcirc', t:'Cancelar item ou entrega', d:'Cancelar um item ou uma entrega do pedido' },
-      { grupo:'Alterações no pedido' },
-      { ic:'calendario', t:'Data de entrega e quantidade', d:'Alterar a data de entrega ou a quantidade' },
-      { ic:'relogio', t:'Prazo de pagamento do item', d:'Alterar o prazo de pagamento de um item' },
-      { ic:'etiqueta', t:'Preço do pedido', d:'Alterar o preço do pedido' },
-      { ic:'doc', t:'OC de uma entrega', d:'Alterar a ordem de compra de uma entrega' },
-      { ic:'alerta', t:'Advertência por entrega', d:'Registrar advertência numa entrega do pedido' },
-      { ic:'percent', t:'Comissão do item', d:'Alterar a comissão de um item do pedido' },
-      { ic:'maleta', t:'Representante do pedido', d:'Trocar o representante do pedido' },
-      { ic:'local', t:'Endereço de entrega', d:'Trocar o endereço de entrega do pedido' },
-      { ic:'cifrao', t:'Endereço de cobrança', d:'Trocar o endereço de cobrança do pedido' },
-      { ic:'troca', t:'Destinação do item', d:'Alterar a destinação de um item' },
-      { ic:'pessoa', t:'Cliente do pedido', d:'Trocar o cliente do pedido' },
-      { ic:'troca', t:'Transação do item', d:'Alterar a transação de um item do pedido' },
-      { ic:'caminhao', t:'Transportador e tipo de frete', d:'Alterar transportador ou tipo de frete' },
     ]},
   ],
 };
