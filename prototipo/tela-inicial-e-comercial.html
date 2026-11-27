@@ -1228,7 +1228,7 @@ const MODULOS = [
     {k:'credito', nome:'Crédito', d:'Limites e análise de crédito dos clientes'},
     {k:'faturamento', nome:'Faturamento', d:'Faturar os pedidos'},
     {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
-    {k:'expedicao', nome:'Expedição', d:'Cargas e romaneios'},
+    {k:'expedicao', nome:'Expedição', d:'Armazém do produto pronto, cargas e entregas'},
   ]},
   {k:'industrial', cx:'onda', nome:'Industrial', areas:[
     {k:'engind', nome:'Engenharia industrial', d:'Processos, máquinas e capacidade'},
@@ -1241,7 +1241,7 @@ const MODULOS = [
   ]},
   {k:'compras', cx:'pilha', nome:'Suprimentos', areas:[
     {k:'compras', nome:'Compras', d:'Papel, tintas e insumos'},
-    {k:'materiais', nome:'Materiais', d:'Bobinas, chapas e produto acabado'},
+    {k:'materiais', nome:'Materiais', d:'Matéria-prima: bobinas, chapas e insumos'},
   ]},
   {k:'qualidade', nome:'Qualidade', badge:1, areas:[
     {k:'laboratorio', nome:'Laboratório', d:'Testes físicos: coluna, ECT, Mullen'},
@@ -1864,6 +1864,42 @@ const TOPICOS = {
     { nome:'Configurações', itens:[
       { ic:'troca', t:'Forma de emissão', d:'Direto na SEFAZ ou por um provedor externo; certificado digital' },
       { ic:'engrenagem', t:'Parâmetros de NFe', d:'Configurações e validação dos XMLs (só administrador e TI)' },
+    ]},
+  ],
+  /* Comercial › Expedição (proposta a partir do sistema atual): o produto pronto, do armazém
+     até o cliente. Inclui o armazém de produto acabado e o inventário dele. */
+  'comercial/expedicao': [
+    { nome:'Cadastros', itens:[
+      { ic:'predio', t:'Armazéns e localizações', d:'Armazéns e onde cada produto fica guardado' },
+      { ic:'caixa', t:'Embalagens', d:'Embalagens, embalagens móveis e qual embalagem cada produto usa' },
+      { ic:'etiqueta', t:'Etiquetas e volumes', d:'Modelos de etiqueta e tipos de volume' },
+      { ic:'caminhao', t:'Transporte de cargas', d:'Veículos, transportadoras e tipos de carga' },
+      { ic:'engrenagem', t:'Parâmetros de expedição', d:'Configurações gerais da Expedição' },
+    ]},
+    { nome:'Operações', itens:[
+      { grupo:'Estoque' },
+      { ic:'troca', t:'Movimentar estoque não embalado', d:'Entradas e saídas de produto ainda sem embalagem' },
+      { ic:'caixa', t:'Embalar produto', d:'Embalar e formar os volumes' },
+      { ic:'lapis', t:'Manutenção de volumes', d:'Ajustar, juntar ou desfazer volumes' },
+      { ic:'troca', t:'Transformação de produtos', d:'Transformar um produto em outro' },
+      { ic:'local', t:'Transferir de localização', d:'Mudar produto ou subproduto de lugar no armazém' },
+      { ic:'relogio', t:'Reparo e reprocessamento', d:'Produto que volta para conserto ou reprocesso' },
+      { grupo:'Entregas' },
+      { ic:'calendario', t:'Planejar entregas', d:'Programar as entregas dos pedidos' },
+      { ic:'caminhao', t:'Embarques', d:'Montar e liberar as cargas' },
+      { grupo:'Terceiros' },
+      { ic:'troca', t:'Embalagens de terceiros', d:'Movimento de embalagens que pertencem a clientes ou terceiros' },
+    ]},
+    { nome:'Inventário', itens:[
+      { ic:'check', t:'Inventário', d:'Abrir, contar (fichas) e fechar o inventário' },
+      { ic:'lupa', t:'Coletor e leituras', d:'Leituras do coletor e comprovação das contagens' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Movimentação e saldos', d:'Entradas, saídas e saldo de cada produto' },
+      { ic:'caixa', t:'Volumes', d:'Volumes formados e onde estão' },
+      { ic:'troca', t:'Embalagens de terceiros', d:'Saldo e movimento das embalagens de terceiros' },
+      { ic:'caminhao', t:'Embarques e entregas', d:'Cargas embarcadas e entregas feitas' },
+      { ic:'doc', t:'Inventário de produtos', d:'Resultado dos inventários' },
     ]},
   ],
   'comercial/vendas': [

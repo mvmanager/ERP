@@ -17,8 +17,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
 > proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
 > Orçamentos**, **Comercial › Crédito** e uma proposta para **Faturamento** e **NFe**
-> (falta o print de Demonstrativos do Faturamento). Próximo: Expedição e depois os outros
-> módulos. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
+> (falta o print de Demonstrativos do Faturamento) e **Expedição**. Próximo: fechar as
+> pendências do Comercial e seguir para os outros módulos (Industrial, Suprimentos…). Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize

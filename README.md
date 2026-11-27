@@ -231,6 +231,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     Conferência de fretes.
   - **Documentos:** Certificados de qualidade (gerar e cancelar) · Declaração de exportação.
 - **Consultas:** a definir (falta o print de Demonstrativos).
+- **Sugestões pendentes de aprovação:** Convênios de impostos e Aplicação dos convênios →
+  Controladoria › Fiscal (são regras fiscais); Conferência de fretes → Expedição.
 - Cancelamento, estorno, inutilização de número e carta de correção **vão para NFe**.
 
 ### Comercial › NFe (proposta, a partir do sistema atual)
@@ -249,6 +251,26 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   — direto na SEFAZ ou por um provedor especializado (que se adapta às mudanças da
   Receita). As telas de uso (Gerenciar notas, Distribuição etc.) são as mesmas nos dois
   casos, e dá para trocar de provedor sem mexer no resto do sistema.
+
+### Comercial › Expedição (proposta, a partir do sistema atual)
+- Expedição cuida do **produto pronto, do armazém até o cliente** (inclui o armazém de produto
+  acabado e o inventário dele). A matéria-prima (bobinas, chapas, insumos) fica em
+  **Suprimentos › Materiais**.
+- **Cadastros:** Armazéns e localizações (Armazém + SISLOC) · Embalagens (Embalagens +
+  Embalagens móveis + Produto × Embalagem) · Etiquetas e volumes · Transporte de cargas ·
+  Parâmetros de expedição.
+- **Operações:**
+  - **Estoque:** Movimentar estoque não embalado · Embalar produto · Manutenção de volumes ·
+    Transformação de produtos · Transferir de localização · Reparo e reprocessamento.
+  - **Entregas:** Planejar entregas · Embarques.
+  - **Terceiros:** Embalagens de terceiros (o antigo "Implanta movimento de embalagens de
+    terceiros").
+- **Inventário:** Inventário (abertura, fichas e fechamento) · Coletor e leituras (coletor +
+  comprovação de leituras).
+- **Consultas** (o antigo Demonstrativos + Demonstrativo de inventário): Movimentação e saldos ·
+  Volumes · Embalagens de terceiros · Embarques e entregas · Inventário de produtos.
+- Os submenus do sistema atual (Etiquetas e volumes, Transporte de cargas, Planejar entregas,
+  Embarques, Coletor, Fichas…) serão detalhados quando desenharmos as telas.
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Orçamentos:** Orçamentos (chegam de Custos já com preço: consultar, negociar, aprovar e
