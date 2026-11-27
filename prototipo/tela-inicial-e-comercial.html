@@ -1550,7 +1550,11 @@ const BASE = location.href.split('#')[0];
 const ehAbaDeModulo = () => /^erp-/.test(window.name) && window.name !== 'erp-inicio';
 /* Se a aba já existe, só traz para a frente, do jeito que a pessoa deixou
    (forcar = true leva a aba para a tela pedida; usado para a tela inicial). */
+/* Dentro da página de visualização do Claude (o protótipo roda "embutido") não dá para
+   abrir aba nova: nesse caso abre aqui mesmo e avisa. No sistema publicado não existe isso. */
+const embutido = (() => { try { return window.self !== window.top; } catch { return true; } })();
 function abrirAba(hash, nome, forcar){
+  if (embutido) { if (nome !== 'erp-inicio') toast('No sistema publicado, o módulo abre numa aba nova'); return false; }
   const w = window.open('', nome);
   if (!w) return false; // navegador bloqueou a aba nova: abre aqui mesmo
   let nova = true;

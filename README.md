@@ -88,6 +88,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Numa aba de módulo, o **logo** e o **"‹ Início"** levam para a aba da tela inicial.
 - Trocar de área dentro do módulo acontece na mesma aba.
 - Se o navegador bloquear abas novas, o módulo abre na mesma aba.
+  No link de visualização do Claude o protótipo roda dentro de outra página, que não deixa
+  abrir aba nova: ali o módulo abre na mesma aba e aparece um aviso.
 - No sistema publicado, o ERP poderá ser **instalado como aplicativo** pelo Chrome ou
   Edge: ícone próprio na barra de tarefas e na área de trabalho, janela sem barra de
   endereço. (Não dá para mostrar isso no link do protótipo.)
