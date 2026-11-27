@@ -666,6 +666,29 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   sempre conjunta (unidade e kg).
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 
+## Integrações entre módulos (anotadas até agora)
+Lista viva: cada tela desenhada acrescenta aqui o que recebe e entrega. Quando todos os
+módulos tiverem suas funcionalidades, faremos uma **revisão geral de integrações**.
+
+| De | Para | O quê |
+|---|---|---|
+| Portal do representante (solicitação de orçamento) | Controladoria › Custos | dados do cliente e do produto para calcular |
+| Custos (motor de precificação) | Vendas › Orçamentos | orçamento com faixas de preço |
+| Vendas › Orçamentos (aprovado) | Pedidos | faixas de preço por cliente + produto |
+| Portal (amostra, clichê, desenvolvimento) | Industrial › Engenharia de produto | solicitações |
+| Ficha do cliente | Pedidos | entrega, cobrança, prazo, frete, transportador, avisos |
+| Ficha do cliente (crédito) ↔ Crédito | Pedidos | limite livre; pedido acima do limite vai para aprovação |
+| Avisos do cliente | todas as áreas (Expedição, Faturamento, Produção…) | aviso automático ao trabalhar com o cliente |
+| Pedidos | PCP › Pedidos a programar | pedido liberado pelo crédito |
+| PCP / Produção / Expedição / Faturamento | Pedidos (etapas) | andamento do pedido |
+| Pedidos (andamento) | Portal › Meus pedidos | etapa de cada pedido do representante |
+| Faturamento | NFe | notas para transmitir |
+| Todas as áreas | Contabilidade | lançamentos automáticos |
+| Engenharia industrial (máquinas) ↔ Ativo imobilizado | — | mesma máquina, um cadastro ligado |
+| Materiais ↔ Expedição | — | depósitos e localizações (cadastro único) |
+| Compras ↔ Expedição | — | transportadoras (cadastro único) |
+| Ajuda (chamados) | Suporte › Chamados | print, texto, protocolo |
+
 ## Ligação com equipamentos da fábrica (plano)
 - O sistema poderá receber dados de **máquinas** (velocidade, metros, caixas, paradas),
   **balança**, **leitores de código de barras / impressoras de etiquetas** e **sensores**

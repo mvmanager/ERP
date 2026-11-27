@@ -38,6 +38,10 @@ esta seção para a conversa seguinte saber de onde continuar.
   algo parecer fora do lugar.
 - **Regra de desenho: telas compactas, sem espaço ocioso** (quadros e campos juntos, rótulos
   curtos, vários campos por linha). Vale para tudo.
+- **Integrações entre módulos:** à medida que cada tela é desenhada, anotar no README
+  (seção "Integrações entre módulos") o que ela recebe e entrega para outras áreas. Quando os
+  módulos tiverem suas funcionalidades desenhadas, fazer uma **revisão geral de integrações**
+  (pedido do usuário) para conferir que tudo se conecta e nada é digitado duas vezes.
 - Todas as decisões de tela já aprovadas estão no `README.md`. Siga-as em telas novas
   (cores de papelão, módulos que abrem vazios, itens abrindo em janelas móveis etc.).
 
