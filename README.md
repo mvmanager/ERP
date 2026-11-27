@@ -253,6 +253,23 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   Financeiro e a Contabilidade conversam sozinhos (lançamento automático).
 - A pensar: Feriados pode ser um cadastro único da empresa, usado também pelo calendário do PCP.
 
+### Financeiro › Contas a pagar (a partir do sistema atual: 46 itens → 17)
+- CCP (conta a pagar) passa a se chamar só **conta a pagar**.
+- **Contas a pagar:** Contas a pagar (registro, alteração, transformação, aprovação/conferência,
+  prorrogação, revisão de vencimentos, imprimir) · Chegada de boletos e PIX (registro de
+  chegada de bloquetos/PIX QR Code + leitura de arquivo de boletos) · Obrigações.
+- **Pagamentos:** Agenda e autorização de pagamentos (agenda, autorização, desfazer
+  agendamento, pagamentos × vencimentos) · Liquidação e retorno bancário (liquidação, retorno
+  de pagamentos eletrônicos, estorno) · Cheques (avulsos, reemissão, cancelamento, cópia,
+  blocos, controle) · Créditos com fornecedores (acertos, desfazer, transferir entre parceiros
+  do grupo) · Fundo fixo.
+- **Cadastros:** Tipos e formas de pagamento (tipos, formas e × banco) · Classificação de
+  despesas · Parâmetros.
+- **Consultas:** Posição de contas a pagar (consulta geral, consulta, pendentes, distribuição no
+  tempo, por classificação de despesa) · Pagamentos realizados (diários, com fundo fixo,
+  pré-datados, emissão de recibos) · Remessa e retorno bancário (+ bloquetos não recebidos) ·
+  Títulos em cartório · DARFs no período · Saldos de créditos dos parceiros.
+
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
   por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —

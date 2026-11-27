@@ -2148,6 +2148,34 @@ const TOPICOS = {
       { ic:'relogio', t:'Prazo médio de recebimento e pagamento', d:'Em quantos dias se recebe e se paga' },
     ]},
   ],
+  /* Financeiro › Contas a pagar (a partir do sistema atual: 46 itens → 17). CCP = conta a pagar. */
+  'financeiro/pagar': [
+    { nome:'Contas a pagar', itens:[
+      { ic:'doc', t:'Contas a pagar', d:'Registrar, alterar, aprovar/conferir, prorrogar e transformar' },
+      { ic:'importar', t:'Chegada de boletos e PIX', d:'Registrar boletos e QR Code PIX; ler arquivo de boletos' },
+      { ic:'calendario', t:'Obrigações', d:'Contas que se repetem (aluguel, impostos, contratos)' },
+    ]},
+    { nome:'Pagamentos', itens:[
+      { ic:'agenda', t:'Agenda e autorização de pagamentos', d:'Agendar, autorizar, desfazer agendamento; pagamentos × vencimentos' },
+      { ic:'check', t:'Liquidação e retorno bancário', d:'Baixar pagamentos, retorno eletrônico do banco e estorno' },
+      { ic:'texto', t:'Cheques', d:'Emitir avulso, reemitir, cancelar, cópia; blocos de cheques' },
+      { ic:'troca', t:'Créditos com fornecedores', d:'Acertos, desfazer acerto e transferir entre empresas do grupo' },
+      { ic:'cifrao', t:'Fundo fixo', d:'Caixa para pequenas despesas' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'cifrao', t:'Tipos e formas de pagamento', d:'Tipos e formas de pagamento, e quais bancos aceitam cada um' },
+      { ic:'etiqueta', t:'Classificação de despesas', d:'Em que tipo de despesa cada conta entra' },
+      { ic:'engrenagem', t:'Parâmetros de contas a pagar', d:'Configurações gerais' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'tabela', t:'Posição de contas a pagar', d:'Pendentes, por vencimento, por despesa e distribuição no tempo' },
+      { ic:'grafico', t:'Pagamentos realizados', d:'Diários, com fundo fixo, pré-datados; emissão de recibos' },
+      { ic:'importar', t:'Remessa e retorno bancário', d:'Arquivos enviados e recebidos; boletos não recebidos' },
+      { ic:'alerta', t:'Títulos em cartório', d:'Títulos protestados' },
+      { ic:'doc', t:'DARFs no período', d:'Guias de impostos pagas' },
+      { ic:'troca', t:'Saldos de créditos dos parceiros', d:'Créditos em aberto com fornecedores' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e
