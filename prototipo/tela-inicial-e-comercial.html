@@ -1913,6 +1913,41 @@ const TOPICOS = {
       { ic:'check', t:'Certificados de qualidade', d:'Gerar e cancelar os certificados que acompanham a nota' },
     ]},
   ],
+  /* Industrial: o menu "Engenharia Industrial" do sistema atual é quase todo manutenção.
+     Foi dividido entre Engenharia industrial (máquinas e padrões), Manutenção e Reporte. */
+  'industrial/engind': [
+    { nome:'Cadastros', itens:[
+      { ic:'engrenagem', t:'Máquinas', d:'Unidades operacionais, com tipos e grupos' },
+      { ic:'relogio', t:'Motivos de parada', d:'Por que uma máquina parou' },
+      { ic:'alerta', t:'Motivos de refugo e perda', d:'Por que houve refugo ou perda' },
+      { ic:'engrenagem', t:'Parâmetros de engenharia industrial', d:'Configurações gerais da área' },
+    ]},
+    { nome:'Capacidade', itens:[
+      { ic:'grafico', t:'Previsão de utilização das máquinas', d:'Quanto cada máquina vai ser usada, com detalhe' },
+    ]},
+  ],
+  'industrial/manutencao': [
+    { nome:'Ordens de serviço', itens:[
+      { ic:'doc', t:'Ordens de serviço', d:'Abrir, autorizar, prometer prazo, emitir e alocar pessoal' },
+      { ic:'lupa', t:'Fila de OS a atender', d:'Ordens pendentes, por prioridade' },
+    ]},
+    { nome:'Preventiva', itens:[
+      { ic:'calendario', t:'Programa de preventiva e lubrificação', d:'Plano e agenda das preventivas' },
+      { ic:'check', t:'Tarefas de preventiva e lubrificação', d:'O que fazer em cada preventiva' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'pessoa', t:'Grupos de manutenção', d:'Equipes de manutenção' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Histórico e análise de OS', d:'Encerradas, por máquina e por período' },
+      { ic:'engrenagem', t:'Histórico dos componentes', d:'Trocas e reparos de cada componente das máquinas' },
+    ]},
+  ],
+  'industrial/reporte': [
+    { nome:'Apontamentos', itens:[
+      { ic:'relogio', t:'Ajuste de paradas e máquina ociosa', d:'Corrigir paradas e tempo ocioso apontados' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e

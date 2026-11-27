@@ -208,6 +208,20 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
   e calculadora de caixa do sistema atual).
 
+### Industrial › Engenharia industrial, Manutenção e Reporte (a partir do sistema atual)
+- No sistema atual, o menu "Engenharia Industrial" é quase todo **manutenção**. Foi dividido
+  (21 itens → 13), e **UO** (unidade operacional) passou a se chamar **Máquina**:
+- **Engenharia industrial** — *Cadastros:* Máquinas (UO + tipos + grupos) · Motivos de
+  parada · Motivos de refugo e perda · Parâmetros. *Capacidade:* Previsão de utilização das
+  máquinas (previsão + detalhe).
+- **Manutenção** — *Ordens de serviço:* Ordens de serviço (abrir, autorizar, prometer prazo,
+  emitir e alocar pessoal na mesma tela) · Fila de OS a atender (inclui as pendentes).
+  *Preventiva:* Programa de preventiva e lubrificação (com a agenda) · Tarefas de preventiva e
+  lubrificação. *Cadastros:* Grupos de manutenção. *Consultas:* Histórico e análise de OS
+  (encerradas, por máquina, por período) · Histórico dos componentes.
+- **Reporte de produção** — *Apontamentos:* Ajuste de paradas e máquina ociosa (o resto da
+  área ainda a definir).
+
 ### Industrial › Engenharia de produto (proposta inicial)
 - Área nova (no lugar do antigo módulo "Engenharia de Produto"). Recebe as solicitações
   de amostra, clichê e desenvolvimento do Portal do representante e do pessoal interno.

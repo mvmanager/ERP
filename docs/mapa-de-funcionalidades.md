@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **11 com funcionalidades definidas**, **101 funcionalidades**.
+Situação: **31 áreas**, **14 com funcionalidades definidas**, **114 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -50,7 +50,10 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Industrial
 
-### Engenharia industrial — *a definir*
+### Engenharia industrial
+
+- **Cadastros:** Máquinas · Motivos de parada · Motivos de refugo e perda · Parâmetros de engenharia industrial
+- **Capacidade:** Previsão de utilização das máquinas
 
 ### Engenharia de produto
 
@@ -66,9 +69,16 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Segurança — *a definir*
 
-### Reporte de produção — *a definir*
+### Reporte de produção
 
-### Manutenção — *a definir*
+- **Apontamentos:** Ajuste de paradas e máquina ociosa
+
+### Manutenção
+
+- **Ordens de serviço:** Ordens de serviço · Fila de OS a atender
+- **Preventiva:** Programa de preventiva e lubrificação · Tarefas de preventiva e lubrificação
+- **Cadastros:** Grupos de manutenção
+- **Consultas:** Histórico e análise de OS · Histórico dos componentes
 
 ## Suprimentos
 
