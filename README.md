@@ -161,9 +161,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Cadastros** (baseado no menu do sistema atual), em grupos:
-  - Prospects e clientes · Atributos extras de cliente · Alterar nome fantasia ·
-    Áreas de vendas · Representantes · Supervisores de vendas · Metas de vendas ·
-    Unidades do cliente
+  - Prospects e clientes · Atributos extras de cliente · Áreas de vendas ·
+    Representantes · Supervisores de vendas · Metas de vendas
   - Endereços de cobrança · Endereços de entrega
   - Prazos de pagamento
   - Parâmetros de vendas
@@ -171,6 +170,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   prospect e cliente**): Assuntos, Grupo de empresas, Segmento econômico, Meios de
   comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo do cliente, Motivos de
   alteração de data de entrega / quantidade do pedido.
+- Também ficam **dentro da ficha do prospect/cliente** (decidido): **Unidades do cliente**
+  e **Alterar nome fantasia**. Ideia: tudo que é de um cliente específico fica na ficha dele.
 - Listas de tópicos com mais de 8 itens abrem em **duas colunas**, para caber na tela.
 - **Pedidos:** Consultar pedidos; Imprimir pedidos; Alterar pedidos.
 - Outros tópicos serão acrescentados conforme forem definidos.
