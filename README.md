@@ -66,7 +66,15 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     Industrial, pilha no pallet em Suprimentos, caixa que abre nos demais).
   - Selo vermelho com a quantidade de pendências do módulo.
 - A seção **Pendências** foi retirada da tela inicial (o selo vermelho nos cartões continua).
-  O que entra no lugar ainda será decidido.
+- **Meus atalhos** (abaixo dos módulos): área personalizada onde cada pessoa deixa os
+  **relatórios** que mais usa, para abrir com um clique.
+  - Cada atalho mostra o nome do relatório e onde ele fica (ex.: "Comercial › Vendas").
+  - Botão **＋ Criar atalho** abre uma janela com a lista de relatórios, separados por
+    módulo e área, com busca. "+ Adicionar" coloca nos atalhos; clicar de novo tira.
+  - Só aparecem relatórios dos **módulos e áreas liberados para a pessoa**.
+  - Para tirar um atalho: passar o mouse e clicar no ✕.
+  - Cada pessoa vê só os próprios atalhos. No protótipo eles ficam guardados no
+    navegador; no sistema real, no cadastro do usuário (aparecem em qualquer computador).
 
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
