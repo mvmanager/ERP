@@ -365,6 +365,20 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - "Utilização da Polícia Federal" → Suprimentos › Materiais › Controle da Polícia Federal.
   Cargos também existem no RH: ao desenhar, usar um cadastro só.
 
+### Controladoria › Ativo imobilizado (a partir do sistema atual: 29 itens → 10)
+- **Bens:** Bens (implantação, confirmação de inclusão, ativação, reclassificação, apólice) ·
+  Movimentação de bens (transferência interna, desmembramento, baixa total) · Construção em
+  andamento.
+- **Cálculos:** Depreciação e créditos (depreciação acelerada normal e incentivada, cálculo de
+  depreciação/amortização/exaustão/CIAP/PIS/COFINS, desfazer cálculo).
+- **Cadastros:** Grupos e classificação de bens · Leis e apólices · Parâmetros (inclui
+  implantação do CIAP, PIS e COFINS).
+- **Consultas:** Inventário de bens (inventário, bens do ativo, ficha do bem, aquisições,
+  baixas, reclassificações) · Resumo dos cálculos (cálculos, CIAP, PIS, COFINS) · Histórico de
+  movimentos.
+- Ligação: as **máquinas** da Engenharia industrial são bens do ativo — ao desenhar, ligar os
+  dois cadastros.
+
 ### Industrial › Engenharia industrial, Manutenção e Reporte (a partir do sistema atual)
 - No sistema atual, o menu "Engenharia Industrial" é quase todo **manutenção**. Foi dividido
   (21 itens → 13), e **UO** (unidade operacional) passou a se chamar **Máquina**:

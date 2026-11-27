@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **23 com funcionalidades definidas**, **298 funcionalidades**.
+Situação: **31 áreas**, **24 com funcionalidades definidas**, **308 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -177,7 +177,12 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 - **Cadastros:** Centros de custo · Mão de obra e cargos · Mark-up · Parâmetros de custos
 - **Consultas:** Demonstrativo de custos · Margem de contribuição · Custos de venda · Estoque em elaboração · Custos indiretos e consumo · Histórico de orçamentos
 
-### Ativo imobilizado — *a definir*
+### Ativo imobilizado
+
+- **Bens:** Bens · Movimentação de bens · Construção em andamento
+- **Cálculos:** Depreciação e créditos
+- **Cadastros:** Grupos e classificação de bens · Leis e apólices · Parâmetros do ativo imobilizado
+- **Consultas:** Inventário de bens · Resumo dos cálculos · Histórico de movimentos
 
 ## Recursos Humanos
 
