@@ -3551,12 +3551,12 @@ const REPS = [
   { id:'jul', nome:'Juliana Rocha', tipo:'Representante', sup:'Carla Mendes' },
 ];
 const REGRAS = [
-  { quem:'Sandro Lima', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →' },
-  { quem:'Juliana Rocha', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →' },
-  { quem:'Juliana Rocha', aplica:'Cliente: Serra Azul', pct:3, base:'Valor sem IPI', quando:'No recebimento', vig:'06/2026 →', exc:true },
+  { quem:'Sandro Lima', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →' },
+  { quem:'Juliana Rocha', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →' },
+  { quem:'Juliana Rocha', aplica:'Cliente: Serra Azul', pct:3, base:'Valor sem IPI', quando:'No faturamento', vig:'06/2026 →', exc:true },
   { quem:'Matheus', aplica:'Todos os clientes e produtos', pct:1.5, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →' },
-  { quem:'Todos', aplica:'Produto: Chapa divisória', pct:2, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →', exc:true },
-  { quem:'Carla Mendes (supervisora)', aplica:'Sobre a equipe dela', pct:0.8, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →', sup:true },
+  { quem:'Todos', aplica:'Produto: Chapa divisória', pct:2, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →', exc:true },
+  { quem:'Carla Mendes (supervisora)', aplica:'Sobre a equipe dela', pct:0.8, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →', sup:true },
 ];
 const ACERTO = {
   '2026-11': [
@@ -3577,12 +3577,12 @@ const MESES_COM = ['07/26','08/26','09/26','10/26','11/26'];
 
 TELAS.comRegras = (box) => {
   box.classList.add('cl-box');
-  const desenha = () => { box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Regra mais específica vale primeiro: <b>produto</b> › <b>cliente</b> › padrão do representante.</span><button class="go cl-novo" type="button" data-nova-regra>＋ Nova regra</button></div>
+  const desenha = () => { box.innerHTML = `<div class="cl-topo"><span class="cl-txt"><b>Hoje:</b> faturado no mês, pago no dia <b>15 do mês seguinte</b>. Regra mais específica vale primeiro: <b>produto</b> › <b>cliente</b> › padrão do representante.</span><button class="go cl-novo" type="button" data-nova-regra>＋ Nova regra</button></div>
     <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Quem recebe</th><th>Vale para</th><th class="num">%</th><th>Base</th><th>Quando paga</th><th>Vigência</th><th></th></tr></thead><tbody>${REGRAS.map((r, i) => `<tr><td><b>${esc(r.quem)}</b></td><td>${esc(r.aplica)} ${r.exc ? '<span class="pill p-warn">exceção</span>' : r.sup ? '<span class="pill p-info">supervisor</span>' : ''}</td><td class="num">${r.pct.toLocaleString('pt-BR')}%</td><td>${r.base}</td><td>${r.quando}</td><td>${r.vig}</td><td><button class="mini" type="button" data-ed-regra="${i}">Editar</button></td></tr>`).join('')}</tbody></table>
     <div class="cl-dica" style="margin-top:8px">A comissão de um item específico de um pedido pode ser trocada em <b>Pedidos › Alterar pedido</b> (por quem tiver permissão).</div></div>`; };
   box.addEventListener('click', (e) => {
     if (e.target.closest('[data-nova-regra]') || e.target.closest('[data-ed-regra]')) {
-      const r = e.target.closest('[data-ed-regra]') ? REGRAS[+e.target.closest('[data-ed-regra]').dataset.edRegra] : { quem:'', aplica:'Todos os clientes e produtos', pct:0, base:'Valor sem IPI', quando:'No recebimento', vig:'' };
+      const r = e.target.closest('[data-ed-regra]') ? REGRAS[+e.target.closest('[data-ed-regra]').dataset.edRegra] : { quem:'', aplica:'Todos os clientes e produtos', pct:0, base:'Valor sem IPI', quando:'No faturamento', vig:'' };
       box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><button class="voltar" type="button" data-volta-regras>‹ Regras</button><div class="cl-nome"><b>${r.quem ? 'Editar regra' : 'Nova regra'}</b><small>Quem recebe, sobre o quê, quanto e quando</small></div>
         <span class="cl-acoes"><button class="btn2" type="button" data-volta-regras>Cancelar</button><button class="go" type="button" data-salva-regra>Salvar</button></span></div>
         <div class="pd-corpo"><section class="cl-bloco"><div class="cl-grade">
@@ -3591,7 +3591,7 @@ TELAS.comRegras = (box) => {
           ${f('Qual (cliente/produto)', (r.aplica.split(': ')[1] || ''))}
           ${f('Percentual (%)', r.pct ? r.pct.toLocaleString('pt-BR') : '')}
           ${f('Base de cálculo', r.base, { opcoes:['Valor sem IPI','Valor total da nota','Margem de contribuição'] })}
-          ${f('Quando paga', r.quando, { opcoes:['No recebimento','No faturamento'], ajuda:'No recebimento: só comissiona o que o cliente pagou' })}
+          ${f('Quando paga', r.quando, { opcoes:['No faturamento','No recebimento'], ajuda:'Hoje: no faturamento. No futuro: no recebimento (só o que o cliente pagou)' })}
           ${f('Vigência desde', r.vig.replace(' →', '') || '12/2026')}${f('Até', '')}</div></section></div></div>`;
       box.querySelectorAll('input,select').forEach(el => el.disabled = false); return;
     }
@@ -3606,17 +3606,17 @@ TELAS.comAcerto = (box) => {
   const desenha = () => {
     const l = ACERTO[box._per], tot = (k) => l.reduce((a, x) => a + x[k], 0);
     box.innerHTML = `<div class="cl-topo"><label class="cf" style="flex-direction:row;display:flex;gap:6px;align-items:center"><span>Período</span><select id="caPer" style="width:auto;background:var(--surface)"><option>11/2026</option></select></label>
-      <span class="cl-txt">Base: notas faturadas (Faturamento) e títulos recebidos (Contas a receber) no período.</span>
+      <span class="cl-txt">Base: notas <b>faturadas</b> no mês. Pagamento: <b>dia 15/12/2026</b>.</span>
       <button class="btn2" type="button" data-ca-conf>Marcar todos conferidos</button><button class="go cl-novo" type="button" data-ca-fechar>Fechar período e gerar notas</button></div>
     <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Representante</th><th class="num">Faturado</th><th class="num">Recebido</th><th class="num">Comissão</th><th class="num">Ajustes</th><th class="num">A pagar</th><th>Situação</th><th></th></tr></thead><tbody>
       ${l.map((x, i) => `<tr data-ca="${i}"><td><b>${esc(x.rep)}</b></td><td class="num">${brl(x.fat)}</td><td class="num">${brl(x.rec)}</td><td class="num">${brl(x.com)}</td><td class="num">${x.aj ? brl(x.aj) : '—'}</td><td class="num"><b>${brl(x.com + x.aj)}</b></td>
         <td><span class="pill ${x.sit === 'pago' ? 'p-ok' : x.sit === 'conferido' ? 'p-info' : x.sit === 'fechado' ? 'p-ok' : 'p-warn'}">${{ aberto:'Aberto', conferido:'Conferido', fechado:'Nota gerada', pago:'Pago' }[x.sit]}</span></td>
         <td><button class="mini" type="button" data-ca-ver="${i}">${box._abre === i ? 'Fechar' : 'Detalhe'}</button></td></tr>
-        ${box._abre === i ? `<tr class="ca-det"><td colspan="8">${x.det.length ? `<table class="pd-tab"><thead><tr><th>Documento</th><th>Cliente</th><th>Data</th><th class="num">Base</th><th class="num">Comissão</th></tr></thead><tbody>${x.det.map(d => `<tr><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td class="num">${brl(d[3])}</td><td class="num">${brl(d[4])}</td></tr>`).join('')}</tbody></table>` : '<span class="cl-txt">Calculado sobre a equipe: soma dos recebimentos dos representantes.</span>'}
+        ${box._abre === i ? `<tr class="ca-det"><td colspan="8">${x.det.length ? `<table class="pd-tab"><thead><tr><th>Documento</th><th>Cliente</th><th>Data</th><th class="num">Base</th><th class="num">Comissão</th></tr></thead><tbody>${x.det.map(d => `<tr><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td class="num">${brl(d[3])}</td><td class="num">${brl(d[4])}</td></tr>`).join('')}</tbody></table>` : '<span class="cl-txt">Calculado sobre a equipe: soma do faturamento dos representantes.</span>'}
           ${x.aj ? '<div class="cl-txt">Ajuste: estorno de comissão de devolução (NF 88301).</div>' : ''}<button class="mini" type="button">+ Ajuste manual</button></td></tr>` : ''}`).join('')}
       <tr class="ca-tot"><td>Total</td><td class="num">${brl(tot('fat'))}</td><td class="num">${brl(tot('rec'))}</td><td class="num">${brl(tot('com'))}</td><td class="num">${brl(tot('aj'))}</td><td class="num"><b>${brl(tot('com') + tot('aj'))}</b></td><td colspan="2"></td></tr>
     </tbody></table>
-    <div class="cl-dica" style="margin-top:8px">Ao fechar o período: gera uma <b>nota de crédito</b> por representante e manda o valor para <b>Contas a pagar</b>. Cada representante vê o dele em <b>Portal › Minhas comissões</b>.</div></div>`;
+    <div class="cl-dica" style="margin-top:8px">Ao fechar o período: gera uma <b>nota de crédito</b> por representante e manda o valor para <b>Contas a pagar</b> com vencimento no <b>dia 15 do mês seguinte</b>. Quando a empresa passar a pagar no recebimento, basta trocar "Quando paga" nas regras. Cada representante vê o dele em <b>Portal › Minhas comissões</b>.</div></div>`;
   };
   box.addEventListener('click', (e) => {
     const v = e.target.closest('[data-ca-ver]'); if (v) { box._abre = box._abre === +v.dataset.caVer ? null : +v.dataset.caVer; return desenha(); }
