@@ -19,8 +19,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > Orçamentos**, **Comercial › Crédito** e uma proposta para **Faturamento** e **NFe**
 > (falta o print de Demonstrativos do Faturamento) e **Expedição** — o Comercial inteiro
 > tem mapa inicial. No Industrial já estão Engenharia industrial, Engenharia de produto,
-> PCP, Manutenção e parte do Reporte de produção. O mapa geral fica em
-> `docs/mapa-de-funcionalidades.md`. Próximo: Pesagem, Segurança e resto do Reporte; depois
+> PCP, Manutenção, Segurança e parte do Reporte de produção. O mapa geral fica em
+> `docs/mapa-de-funcionalidades.md`. Próximo: Pesagem e resto do Reporte; depois
 > Suprimentos, Qualidade, Financeiro, Controladoria, RH, Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 

@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **17 com funcionalidades definidas**, **146 funcionalidades**.
+Situação: **31 áreas**, **18 com funcionalidades definidas**, **154 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -75,7 +75,12 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 - **Cadastros:** Calendário, turnos e equipes · Regras de produção · Corrugado · Parâmetros de PCP
 - **Consultas:** Painel de atividades (PCA) · Andamento das OFs · Carga máquina e utilização
 
-### Segurança — *a definir*
+### Segurança
+
+- **Entregas:** Entrega de EPI e uniforme · Revalidação de EPI
+- **Planejamento:** Previsão de consumo de EPI
+- **Cadastros:** EPIs por função · EPIs e uniformes por funcionário · Parâmetros de segurança
+- **Consultas:** Alertas de EPI · Consumo de EPI (curva ABC)
 
 ### Reporte de produção
 

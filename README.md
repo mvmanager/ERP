@@ -229,6 +229,19 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   (vieram do PCP): Produção por período (relatório + volume produzido) · Paradas · Refugo
   (por OF + estratificação) · Apontamentos.
 
+### Industrial › Segurança (a partir do sistema atual: 15 itens → 8)
+- No sistema atual cuida de **EPI e uniforme**.
+- **Entregas:** Entrega de EPI e uniforme (retirada, estorno, implantação e comprovante
+  assinado) · Revalidação de EPI.
+- **Planejamento:** Previsão de consumo de EPI.
+- **Cadastros:** EPIs por função (Funções + Função × EPI) · EPIs e uniformes por funcionário
+  (Usuário × EPI/uniforme + Usuário × função) · Parâmetros.
+- **Consultas:** Alertas de EPI (tempo de uso esgotado, CA vencido, retirada pendente) ·
+  Consumo de EPI (curva ABC).
+- Observação: funções e funcionários são dados de RH; a Segurança usa esses cadastros.
+- Possíveis acréscimos (não existem hoje, a decidir): registro de acidentes/incidentes,
+  inspeções de segurança, CIPA.
+
 ### Industrial › PCP (a partir do sistema atual: ~60 itens → 16)
 - Tudo de uma **OF (ordem de fabricação)** fica dentro da própria OF.
 - **Pedidos:** Pedidos a programar (liberar no PCP ou devolver para Vendas).
