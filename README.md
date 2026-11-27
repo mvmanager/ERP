@@ -654,6 +654,14 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   quantidade; "+ entrega"), e o sistema avisa "faltam/sobram" e não grava se a soma das
   entregas não bater com a quantidade do item; **confere o crédito** enquanto digita e, se passar
   do limite livre, o pedido vai para aprovação do Crédito ao gravar.
+- **Preço por faixa de quantidade** (como a empresa trabalha): cada produto tem preço unitário
+  por faixa (ex.: 1.000+, 2.000+, 5.000+, 10.000+). Ao digitar a quantidade, o preço unitário
+  segue a faixa sozinho ("faixa 5.000+"); se a pessoa digitar outro preço, vira **"negociado"**
+  e para de seguir a faixa. As faixas aparecem nos produtos sugeridos.
+- **Cobra-se por unidade**, mas cada item mostra o **R$/kg** (parâmetro de mercado) e o rodapé
+  mostra o **R$/kg médio** do pedido.
+- **Chapas** também podem ser vendidas por kg (marcadas "chapa · un ou kg"); a precificação é
+  sempre conjunta (unidade e kg).
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 
 ## Ligação com equipamentos da fábrica (plano)

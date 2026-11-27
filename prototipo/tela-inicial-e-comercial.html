@@ -550,6 +550,11 @@ textarea.falta{border-color:var(--bad)!important}
 .pd-mais{border:1px dashed var(--line-2);background:transparent;border-radius:6px;padding:1px 7px;font-size:11.5px;cursor:pointer;color:var(--kraft)}
 .pd-ents em{font-style:normal;color:var(--warn);font-weight:600}
 .pd-ents em.neg{color:var(--bad)}
+.pd-fx{display:block;font-size:10.5px;color:var(--muted)}
+.pd-kg{color:var(--muted)}
+.pd-faixas{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.pd-faixas b{color:var(--ink);font-weight:600}
+.pd-itens .pill{font-size:10px;padding:1px 6px}
 .pd-prod{display:grid;text-align:left;border:1px dashed var(--line-2);background:var(--surface-2);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}
 .pd-prod small{font-size:11.5px;color:var(--muted)}
 .pd-prod:hover{border-color:var(--kraft);border-style:solid}
@@ -3315,13 +3320,13 @@ function novoProspect(box){
 const ETAPAS = ['Lançado','Crédito','PCP','Produção','Expedição','Faturado','Entregue'];
 const PRODUTOS_CLI = {
   1: [
-    { cod:'CX-1042', desc:'Caixa congelados 5 kg', med:'400×300×200', onda:'BC', comp:'Kraft 2 camadas', peso:0.62, preco:2.85 },
-    { cod:'CX-1043', desc:'Caixa congelados 10 kg', med:'500×350×250', onda:'BC', comp:'Kraft 2 camadas', peso:0.95, preco:3.92 },
-    { cod:'CH-0210', desc:'Chapa divisória', med:'380×280', onda:'B', comp:'Miolo reciclado', peso:0.11, preco:0.61 },
+    { cod:'CX-1042', desc:'Caixa congelados 5 kg', med:'400×300×200', onda:'BC', comp:'Kraft 2 camadas', peso:0.62, preco:2.85, tipo:'caixa', faixas:[{ min:1000, preco:3.08 }, { min:2000, preco:2.94 }, { min:5000, preco:2.85 }, { min:10000, preco:2.74 }] },
+    { cod:'CX-1043', desc:'Caixa congelados 10 kg', med:'500×350×250', onda:'BC', comp:'Kraft 2 camadas', peso:0.95, preco:3.92, tipo:'caixa', faixas:[{ min:1000, preco:4.23 }, { min:2000, preco:4.04 }, { min:5000, preco:3.92 }, { min:10000, preco:3.76 }] },
+    { cod:'CH-0210', desc:'Chapa divisória', med:'380×280', onda:'B', comp:'Miolo reciclado', peso:0.11, preco:0.61, tipo:'chapa', faixas:[{ min:1000, preco:0.66 }, { min:2000, preco:0.63 }, { min:5000, preco:0.61 }, { min:10000, preco:0.59 }] },
   ],
   2: [
-    { cod:'CX-2201', desc:'Caixa cortes bovinos 20 kg', med:'600×400×180', onda:'BC', comp:'Kraft resistente à umidade', peso:1.20, preco:4.71 },
-    { cod:'CX-2205', desc:'Caixa embutidos 6 kg', med:'420×300×150', onda:'C', comp:'Kraft', peso:0.48, preco:2.34 },
+    { cod:'CX-2201', desc:'Caixa cortes bovinos 20 kg', med:'600×400×180', onda:'BC', comp:'Kraft resistente à umidade', peso:1.20, preco:4.71, tipo:'caixa', faixas:[{ min:1000, preco:5.09 }, { min:2000, preco:4.85 }, { min:5000, preco:4.71 }, { min:10000, preco:4.52 }] },
+    { cod:'CX-2205', desc:'Caixa embutidos 6 kg', med:'420×300×150', onda:'C', comp:'Kraft', peso:0.48, preco:2.34, tipo:'caixa', faixas:[{ min:1000, preco:2.53 }, { min:2000, preco:2.41 }, { min:5000, preco:2.34 }, { min:10000, preco:2.25 }] },
   ],
   3: [], 4: [],
 };
@@ -3347,6 +3352,9 @@ const prodDe = (cli, cod) => (PRODUTOS_CLI[cli] || []).find(p => p.cod === cod) 
 const un = (v) => Math.round(v).toLocaleString('pt-BR');
 const kg = (v) => v >= 1000 ? (v / 1000).toLocaleString('pt-BR', { maximumFractionDigits:2 }) + ' t' : Math.round(v).toLocaleString('pt-BR') + ' kg';
 const brl4 = (v) => 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits:2, maximumFractionDigits:4 });
+/* preço da faixa de quantidade (1.000, 2.000, 5.000, 10.000…) */
+const precoFaixa = (pr, q) => { let r = pr.faixas ? pr.faixas[0] : { min:0, preco:pr.preco }; (pr.faixas || []).forEach(f => { if (q >= f.min) r = f; }); return r; };
+const rkg = (pr, i) => pr.peso ? i.preco / pr.peso : 0;
 const pesoPed = (cli, itens) => itens.reduce((a, i) => a + i.qtd * (prodDe(cli, i.cod).peso || 0), 0);
 const totalPed = (p) => p.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
 const cliDe = (id) => CLIENTES.find(c => c.id === id);
@@ -3384,22 +3392,23 @@ function etapasHTML(p){
   return `<ol class="pd-etapas">${ETAPAS.map((e, i) => `<li class="${i < p.etapa ? 'feita' : i === p.etapa ? (p.bloqueio ? 'bloq' : 'atual') : ''}"><span>${i < p.etapa ? '✓' : i + 1}</span>${e}</li>`).join('')}</ol>`;
 }
 function itensHTML(cli, itens, editavel){
-  return `<table class="pd-tab pd-itens"><thead><tr><th>Produto</th><th>Medidas (mm)</th><th>Onda</th><th class="num">Qtde (un)</th><th class="num">Peso</th><th class="num">Preço unit.</th><th class="num">Total</th><th>Entregas</th></tr></thead><tbody>${itens.map((i, k) => {
+  return `<table class="pd-tab pd-itens"><thead><tr><th>Produto</th><th>Medidas (mm)</th><th>Onda</th><th class="num">Qtde (un)</th><th class="num">Peso</th><th class="num">Preço unit.</th><th class="num">R$/kg</th><th class="num">Total</th><th>Entregas</th></tr></thead><tbody>${itens.map((i, k) => {
       const pr = prodDe(cli, i.cod), soma = i.ents.reduce((a, e) => a + e.qtd, 0), falta = i.qtd - soma;
       const ents = editavel
         ? `<div class="pd-ents">${i.ents.map((e, x) => `<span><input class="pd-data" data-edata="${k}.${x}" value="${e.data}"><input data-eqtd="${k}.${x}" value="${un(e.qtd)}"> un${i.ents.length > 1 ? `<button type="button" class="pd-x" data-erm="${k}.${x}" title="Tirar esta entrega">×</button>` : ''}</span>`).join('')}
             <button type="button" class="pd-mais" data-eadd="${k}">+ entrega</button>${falta ? `<em class="${falta < 0 ? 'neg' : ''}">${falta > 0 ? 'faltam ' + un(falta) : 'sobram ' + un(-falta)} un</em>` : ''}</div>`
         : i.ents.map(e => `<span class="pd-ent">${e.data.slice(0,5)} · ${un(e.qtd)} un</span>`).join('');
-      return `<tr><td><b>${esc(pr.desc)}</b><small class="mono">${i.cod} · ${esc(pr.comp)} · ${(pr.peso || 0).toLocaleString('pt-BR')} kg/un</small></td><td>${pr.med}</td><td>${pr.onda}</td>
+      return `<tr><td><b>${esc(pr.desc)}</b>${pr.tipo === 'chapa' ? ' <span class="pill p-info">chapa · un ou kg</span>' : ''}<small class="mono">${i.cod} · ${esc(pr.comp)} · ${(pr.peso || 0).toLocaleString('pt-BR')} kg/un</small></td><td>${pr.med}</td><td>${pr.onda}</td>
         <td class="num">${editavel ? `<input data-qtd="${k}" value="${un(i.qtd)}">` : un(i.qtd)}</td>
         <td class="num" data-peso="${k}">${kg(i.qtd * (pr.peso || 0))}</td>
-        <td class="num">${editavel ? `<input data-preco="${k}" value="${i.preco.toFixed(2).replace('.', ',')}">` : brl4(i.preco)}</td>
+        <td class="num">${editavel ? `<input data-preco="${k}" value="${i.preco.toFixed(2).replace('.', ',')}">${i.manual ? '<small class="pd-fx">negociado</small>' : `<small class="pd-fx">faixa ${un(precoFaixa(pr, i.qtd).min)}+</small>`}` : brl4(i.preco)}</td>
+        <td class="num pd-kg" data-rkg="${k}" title="Preço por kg: parâmetro de mercado">${pr.peso ? brl(rkg(pr, i)) : '—'}</td>
         <td class="num" data-tot="${k}">${brl(i.qtd * i.preco)}</td><td class="pd-td-ents">${ents}</td></tr>`;
     }).join('')}</tbody></table>`;
 }
 function totaisHTML(cli, itens){
   const v = itens.reduce((a, i) => a + i.qtd * i.preco, 0), ipi = v * 0.05, q = itens.reduce((a, i) => a + i.qtd, 0);
-  return `<div class="pd-totais"><span>Quantidade <b data-tqtd>${un(q)} un</b></span><span>Peso <b data-tpeso>${kg(pesoPed(cli, itens))}</b></span><span>Mercadorias <b data-tmerc>${brl(v)}</b></span><span>IPI (5%) <b data-tipi>${brl(ipi)}</b></span><span class="pd-total">Total <b data-ttot>${brl(v + ipi)}</b></span></div>`;
+  return `<div class="pd-totais"><span>Quantidade <b data-tqtd>${un(q)} un</b></span><span>Peso <b data-tpeso>${kg(pesoPed(cli, itens))}</b></span><span>R$/kg médio <b data-tkg>${pesoPed(cli, itens) ? brl(v / pesoPed(cli, itens)) : '—'}</b></span><span>Mercadorias <b data-tmerc>${brl(v)}</b></span><span>IPI (5%) <b data-tipi>${brl(ipi)}</b></span><span class="pd-total">Total <b data-ttot>${brl(v + ipi)}</b></span></div>`;
 }
 function abrirPedido(box){
   const p = PEDIDOS.find(x => x.n === box._sel), c = cliDe(p.cli);
@@ -3446,7 +3455,7 @@ function montarNovo(box, cliId){
       ${f('OC do cliente', '', { ph:'Número da ordem de compra' })}
       ${f('Prazo de pagamento', '28/42/56 dias')}${f('Frete', 'CIF', { opcoes:['CIF','FOB'] })}${f('Transportador', 'Transportes Rápido Sul')}</div></section>
     <section class="cl-bloco"><h4>Itens <small>produtos que este cliente já compra · último preço sugerido</small></h4>
-      <div class="pd-prods">${prods.map(pr => `<button type="button" class="pd-prod" data-add-prod="${pr.cod}"><b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda} · ${(pr.peso).toLocaleString('pt-BR')} kg/un · último ${brl4(pr.preco)}/un</small></button>`).join('') || '<p class="cl-txt">Este cliente ainda não tem produtos. Peça o desenvolvimento à Engenharia de produto.</p>'}</div>
+      <div class="pd-prods">${prods.map(pr => `<button type="button" class="pd-prod" data-add-prod="${pr.cod}"><b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda} · ${(pr.peso).toLocaleString('pt-BR')} kg/un</small><span class="pd-faixas">${pr.faixas.map(f => `${un(f.min)}+ <b>${brl(f.preco)}</b>`).join(' · ')}</span></button>`).join('') || '<p class="cl-txt">Este cliente ainda não tem produtos. Peça o desenvolvimento à Engenharia de produto.</p>'}</div>
       <div id="pdItens"></div></section>
     <div id="pdCredito"></div>`;
   travar(box); box.querySelectorAll('#pdResto input, #pdResto select').forEach(el => el.disabled = false);
@@ -3455,10 +3464,12 @@ function montarNovo(box, cliId){
 const numBR = (v) => parseFloat(String(v).replace(/\./g, '').replace(',', '.')) || 0;
 function lerNovo(box){
   const nv = box._novo;
-  box.querySelectorAll('[data-qtd]').forEach(el => { const it = nv.itens[+el.dataset.qtd], ant = it.qtd; it.qtd = numBR(el.value); if (it.ents.length === 1 && it.ents[0].qtd === ant) it.ents[0].qtd = it.qtd; });
-  box.querySelectorAll('[data-preco]').forEach(el => { nv.itens[+el.dataset.preco].preco = numBR(el.value); });
   box.querySelectorAll('[data-eqtd]').forEach(el => { const [k, x] = el.dataset.eqtd.split('.'); nv.itens[k].ents[x].qtd = numBR(el.value); });
   box.querySelectorAll('[data-edata]').forEach(el => { const [k, x] = el.dataset.edata.split('.'); nv.itens[k].ents[x].data = el.value; });
+  box.querySelectorAll('[data-qtd]').forEach(el => { const k = +el.dataset.qtd, it = nv.itens[k], ant = it.qtd; it.qtd = numBR(el.value);
+    if (it.ents.length === 1 && it.ents[0].qtd === ant && it.qtd !== ant) { it.ents[0].qtd = it.qtd; const e = box.querySelector(`[data-eqtd="${k}.0"]`); if (e) e.value = un(it.qtd); } });
+  box.querySelectorAll('[data-preco]').forEach(el => { const it = nv.itens[+el.dataset.preco], v = numBR(el.value); if (Math.abs(v - it.preco) > 0.0001) { it.preco = v; it.manual = true; } if (it.manual && el.nextElementSibling) el.nextElementSibling.textContent = 'negociado'; });
+  nv.itens.forEach((it, k) => { if (!it.manual) { it.preco = precoFaixa(prodDe(nv.cli, it.cod), it.qtd).preco; const el = box.querySelector(`[data-preco="${k}"]`); if (el && el !== document.activeElement) el.value = it.preco.toFixed(2).replace('.', ','); const fx = el && el.nextElementSibling; if (fx) fx.textContent = 'faixa ' + un(precoFaixa(prodDe(nv.cli, it.cod), it.qtd).min) + '+'; } });
 }
 function recalcNovo(box, redesenhar){
   const nv = box._novo; if (!nv || !nv.cli) return;
@@ -3467,10 +3478,12 @@ function recalcNovo(box, redesenhar){
   if (!redesenhar && document.activeElement && alvo.contains(document.activeElement)) {
     nv.itens.forEach((i, k) => { const pr = prodDe(nv.cli, i.cod);
       const t = alvo.querySelector(`[data-tot="${k}"]`); if (t) t.textContent = brl(i.qtd * i.preco);
-      const w = alvo.querySelector(`[data-peso="${k}"]`); if (w) w.textContent = kg(i.qtd * pr.peso); });
+      const w = alvo.querySelector(`[data-peso="${k}"]`); if (w) w.textContent = kg(i.qtd * pr.peso);
+      const r = alvo.querySelector(`[data-rkg="${k}"]`); if (r) r.textContent = pr.peso ? brl(rkg(pr, i)) : '—'; });
     const v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0);
     alvo.querySelector('[data-tqtd]').textContent = un(nv.itens.reduce((a, i) => a + i.qtd, 0)) + ' un';
     alvo.querySelector('[data-tpeso]').textContent = kg(pesoPed(nv.cli, nv.itens));
+    alvo.querySelector('[data-tkg]').textContent = pesoPed(nv.cli, nv.itens) ? brl(v / pesoPed(nv.cli, nv.itens)) : '—';
     alvo.querySelector('[data-tmerc]').textContent = brl(v); alvo.querySelector('[data-tipi]').textContent = brl(v * .05); alvo.querySelector('[data-ttot]').textContent = brl(v * 1.05);
   } else alvo.innerHTML = nv.itens.length ? itensHTML(nv.cli, nv.itens, true) + totaisHTML(nv.cli, nv.itens) : '<p class="cl-txt">Clique num produto acima para incluir.</p>';
   const c = cliDe(nv.cli), cr = c.credito, v = nv.itens.reduce((a, i) => a + i.qtd * i.preco, 0) * 1.05;
@@ -3488,7 +3501,7 @@ function cliquePedidos(box, e){
   if (t('[data-add-prod]')) {
     const pr = prodDe(box._novo.cli, t('[data-add-prod]').dataset.addProd);
     lerNovo(box);
-    box._novo.itens.push({ cod: pr.cod, qtd: 1000, preco: pr.preco, ents: [ { data:'15/12/2026', qtd:1000 } ] });
+    box._novo.itens.push({ cod: pr.cod, qtd: 1000, preco: precoFaixa(pr, 1000).preco, ents: [ { data:'15/12/2026', qtd:1000 } ] });
     return recalcNovo(box, true);
   }
   if (t('[data-eadd]')) {
