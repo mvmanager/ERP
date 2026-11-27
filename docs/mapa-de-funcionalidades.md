@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **18 com funcionalidades definidas**, **191 funcionalidades**.
+Situação: **31 áreas**, **19 com funcionalidades definidas**, **202 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -115,11 +115,17 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Qualidade
 
-### Laboratório — *a definir*
+### Laboratório
+
+- **Instrumentos:** Instrumentos de medição · Aferições
+- **Análises:** Métodos de análise · Contratipos
 
 ### Qualidade
 
 - **Certificados:** Certificados de qualidade
+- **Padrões:** Padrões de qualidade · Lista mestra dos padrões · Arquivo inativo
+- **Cadastros:** Tipos e famílias de padrões · Homologação de marcas · Parâmetros de qualidade
+- **Consultas:** Rastreabilidade de lotes
 
 ### RNC — *a definir*
 

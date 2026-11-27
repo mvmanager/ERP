@@ -245,8 +245,17 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —
   junta os 4 "Convênios × …" do Faturamento atual).
 
-### Qualidade › Qualidade (tópicos definidos até agora)
-- **Certificados:** Certificados de qualidade (gerar e cancelar; veio do Faturamento).
+### Qualidade › Qualidade e Laboratório (a partir da "Garantia da Qualidade": 20 itens → 12)
+- **Qualidade** — *Certificados:* Certificados de qualidade (veio do Faturamento).
+  *Padrões:* Padrões de qualidade (proposta, análise, consenso e padrões × setores na mesma
+  tela) · Lista mestra dos padrões · Arquivo inativo (controle + destruição).
+  *Cadastros:* Tipos e famílias de padrões · Homologação de marcas · Parâmetros (inclui
+  personalização do código do relatório). *Consultas:* Rastreabilidade de lotes (lote de
+  fabricação × lotes de insumos).
+- **Laboratório** — *Instrumentos:* Instrumentos de medição (cadastro + movimentação) ·
+  Aferições (a vencer + demonstrativo). *Análises:* Métodos de análise · Contratipos.
+- **A confirmar:** onde ficam hoje os **testes físicos** (coluna, ECT, Mullen…) e as
+  **RNC** e o **FSC** — não aparecem neste menu.
 
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação
