@@ -451,6 +451,61 @@ textarea.falta{border-color:var(--bad)!important}
   .cl-acoes{margin-left:0}
 }
 
+/* ── Regra: telas compactas (sem espaço ocioso). Vale para todas as janelas. ── */
+.cl-topo{padding:8px 12px;gap:6px}
+.cl-topo .srch input{padding:6px 0}
+.cl-topo .flt{padding:4px 10px;font-size:12.5px}
+.cl-topo .go{padding:6px 12px;font-size:13px}
+.cl-linhas{gap:4px;padding:8px 12px 12px}
+.cl-linha{padding:6px 10px;gap:10px;border-radius:9px}
+.cl-linha .av,.cl-contato .av{width:30px;height:30px;font-size:11.5px;border-radius:8px}
+.cl-linha b{font-size:13.5px}
+.cl-cab{padding:6px 12px;gap:8px 10px}
+.cl-cab .voltar{padding:2px 10px 2px 8px;font-size:12px}
+.av.grande{width:34px;height:34px;font-size:12.5px}
+.cl-nome b{font-size:17px}
+.cl-nome small{font-size:12px}
+.cl-acoes .btn2,.cl-acoes .go{padding:5px 11px;font-size:13px}
+.cl-aviso{margin:8px 12px 0;padding:6px 10px;font-size:12.5px;border-radius:9px}
+.cl-corpo{grid-template-columns:170px minmax(0,1fr);gap:12px;padding:8px 12px 14px}
+.cl-nav{top:56px;gap:0}
+.cl-nav button{padding:5px 10px;font-size:12.5px;border-radius:7px}
+.cl-sec{gap:8px}
+.cl-sec h3{display:none}
+.cl-bloco{padding:8px 12px 10px;gap:6px;border-radius:10px}
+.cl-bloco h4{font-size:11px}
+.cl-grade{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 14px}
+.cf{gap:0;font-size:11.5px;font-weight:600}
+.cf input,.cf select,.cf textarea,.cl-tab input{font-size:13.5px;padding:4px 8px;border-radius:7px}
+.cf input:disabled,.cf select:disabled,.cf textarea:disabled,.cl-tab input:disabled{padding:2px 0}
+.cf textarea{min-height:44px}
+.cf textarea:disabled{min-height:0;height:auto}
+.cf-bt{display:none}
+.editando .cf-bt{display:inline-flex;bottom:2px;padding:2px 7px}
+.cf-sn{font-size:13px;gap:6px}
+.cl-kpis{gap:6px}
+.cl-kpi{padding:6px 10px;border-radius:10px}
+.cl-kpi span{font-size:11.5px}
+.cl-kpi b{font-size:17px}
+.cl-credito{padding:6px 10px;gap:3px;border-radius:10px}
+.cl-duas{gap:8px}
+.cl-tab th{padding:3px 6px}
+.cl-tab td{padding:4px 6px}
+.cl-tempo{gap:5px}
+.cl-tempo li{font-size:13px}
+.cl-dica{padding:6px 10px;font-size:12.5px;border-radius:9px}
+.cl-lista{gap:4px}
+.cl-item{padding:5px 10px;border-radius:8px}
+.cl-contatos{gap:6px}
+.cl-contato{padding:8px 10px;gap:8px;border-radius:10px}
+.cl-txt{font-size:13px}
+.cf.dupla{grid-column:span 2}
+@media (max-width:760px){ .cf.dupla{grid-column:1/-1} }
+.cl-item{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.cl-item small{margin-left:auto}
+.cl-doc{display:flex}
+.cl-doc .pill{margin-left:auto}
+
 /* retomada */
 .recent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:820px){ .recent{grid-template-columns:1fr} }
@@ -2961,7 +3016,7 @@ const SECOES = [
 ];
 
 /* pedaços de formulário (ficam travados até clicar em Editar) */
-const f = (rot, val, o = {}) => `<label class="cf${o.larga ? ' larga' : ''}"><span>${rot}${o.ajuda ? ` <i title="${esc(o.ajuda)}">?</i>` : ''}</span>${
+const f = (rot, val, o = {}) => `<label class="cf${o.larga ? ' larga' : ''}${o.dupla ? ' dupla' : ''}"><span>${rot}${o.ajuda ? ` <i title="${esc(o.ajuda)}">?</i>` : ''}</span>${
   o.opcoes ? `<select disabled>${o.opcoes.map(x => `<option${x === val ? ' selected' : ''}>${esc(x)}</option>`).join('')}</select>`
   : o.texto ? `<textarea disabled>${esc(val || '')}</textarea>`
   : `<input disabled value="${esc(val || '')}"${o.ph ? ` placeholder="${esc(o.ph)}"` : ''}>`}${o.botao ? `<button class="mini cf-bt" type="button" data-acao-f="${o.botao[1]}">${o.botao[0]}</button>` : ''}</label>`;
@@ -3000,7 +3055,7 @@ function secDados(c){
   return bloco('Identificação', `
       ${f('CNPJ / CPF', c.cnpj, { botao:['Buscar na Receita','receita'], ajuda:'Preenche razão social, endereço e situação automaticamente' })}
       ${f('Natureza jurídica', c.nat, { opcoes:['Sociedade limitada','Sociedade anônima','Empresário individual','Pessoa física'] })}
-      ${f('Razão social', c.razao, { larga:true })}
+      ${f('Razão social', c.razao, { dupla:true })}
       ${f('Nome fantasia', c.fantasia, { ajuda:'Toda troca de nome fantasia fica registrada no histórico' })}
       ${f('Situação', c.status, { opcoes:['Ativo','Inativo','Bloqueado'] })}
       ${f('Indicador de I.E.', c.ieInd, { opcoes:['Contribuinte','Isento','Não contribuinte'] })}
@@ -3017,7 +3072,7 @@ function secEnderecos(c){
   const e = c.end;
   return bloco('Endereço principal', `
       ${f('CEP', e.cep, { botao:['Buscar','cep'], ajuda:'Preenche rua, bairro, cidade e estado' })}
-      ${f('Logradouro', e.log, { larga:true })}
+      ${f('Logradouro', e.log, { dupla:true })}
       ${f('Número', e.num)}${f('Complemento', e.comp)}
       ${f('Bairro', e.bairro)}${f('Cidade', e.cidade)}${f('Estado', e.uf)}`)
   + (ehCli(c) ? bloco('Locais de entrega', listaEnd(c.entregas, 'entrega') + sn('Exigir o local de entrega no pedido', true), 'o cliente pode ter vários')
@@ -3047,14 +3102,14 @@ function secComercial(c){
 }
 function secEntrega(c){
   return bloco('Prazos e tolerâncias', `
-      ${f('Tolerância de quantidade para menos (%)', '10')}${f('Tolerância de quantidade para mais (%)', '10')}
-      ${ehCli(c) ? f('Tolerância de data: dias antes', '2') + f('Tolerância de data: dias depois', '0') + f('Regra para data de embarque', 'Data de entrega − dias de transporte') + f('Dias de transporte', '1') : ''}`)
+      ${f('Tolerância qtde − (%)', '10')}${f('Tolerância qtde + (%)', '10')}
+      ${ehCli(c) ? f('Tolerância data − (dias)', '2') + f('Tolerância data + (dias)', '0') + f('Regra da data de embarque', 'Entrega − dias de transporte', { dupla:true }) + f('Dias de transporte', '1') : ''}`)
   + bloco('FSC', `${f('Exige selo FSC', 'Não', { opcoes:SIMNAO })}${f('Aceita impressão do selo FSC', 'Sim', { opcoes:SIMNAO })}`)
   + (ehCli(c) ? bloco('Transporte', `
       ${f('Transportador', 'Transportes Rápido Sul')}${f('Redespacho', '')}${f('Frete', 'CIF', { opcoes:['CIF','FOB'] })}
       ${f('Avisar embarque', 'Por e-mail', { opcoes:['Por e-mail','Não avisar'] })}`)
   + bloco('Regras de entrega', `
-      ${f('Controle de embalagens retornáveis', 'Paletes PBR')}
+      ${f('Embalagens retornáveis', 'Paletes PBR')}
       ${f('Quantos produtos por nota', '')}${f('Quantos pedidos por nota', '')}
       ${sn('Aceita entrega com data anterior à de hoje', false)}
       ${sn('Mesmo volume para vários itens do romaneio', false)}
@@ -3062,7 +3117,7 @@ function secEntrega(c){
   + bloco('Bloqueios e prazos combinados', `
       ${f('Tipos de bloqueio na entrega', 'Nenhum')}
       ${f('Nosso prazo × prazo do cliente', '15 dias × 20 dias')}
-      ${f('Motivos de alteração de data/quantidade', 'Usar a lista padrão')}`) : '');
+      ${f('Motivos de alteração', 'Lista padrão')}`) : '');
 }
 function secFiscal(){
   return bloco('Impostos', `

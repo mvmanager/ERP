@@ -30,6 +30,9 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ## Decisões aprovadas
 
 ### Visual
+- **Regra para todas as telas: compacto, sem espaço ocioso** (pedido do usuário). Quadros,
+  campos e listas bem juntos, rótulos curtos, vários campos por linha, listas em uma linha por
+  item. Espaço sobrando gera confusão visual.
 - Cores puxadas para o papelão (kraft), com tema claro e escuro.
 - Textura leve de papel no fundo e a **onda do papelão** (flute) como detalhe da marca.
 - Na barra de cima aparece só o **logo**, sem o nome do sistema.

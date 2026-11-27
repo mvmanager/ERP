@@ -35,6 +35,8 @@ esta seção para a conversa seguinte saber de onde continuar.
   em `docs/mapa-de-funcionalidades.md` (gerado a partir dos dados do protótipo).
 - O usuário autorizou mover funcionalidades para o setor mais apropriado e avisar quando
   algo parecer fora do lugar.
+- **Regra de desenho: telas compactas, sem espaço ocioso** (quadros e campos juntos, rótulos
+  curtos, vários campos por linha). Vale para tudo.
 - Todas as decisões de tela já aprovadas estão no `README.md`. Siga-as em telas novas
   (cores de papelão, módulos que abrem vazios, itens abrindo em janelas móveis etc.).
 
