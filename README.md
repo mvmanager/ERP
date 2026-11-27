@@ -196,6 +196,11 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     Vendas, ou Custos sempre confere antes? (Meio-termo comum: passa direto se estiver dentro
     das regras; para em Custos só quando foge delas.)
 
+### Suprimentos (o que já veio de outras áreas)
+- **Materiais › Estoque de segurança:** Previsão de consumo e estoque de segurança (com
+  parâmetros por subgrupo) · Análise do estoque de segurança (composição e previsão mensal).
+- **Compras › Serviços:** Serviços de terceiros.
+
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
   por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —
@@ -212,7 +217,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - No sistema atual, o menu "Engenharia Industrial" é quase todo **manutenção**. Foi dividido
   (21 itens → 13), e **UO** (unidade operacional) passou a se chamar **Máquina**:
 - **Engenharia industrial** — *Cadastros:* Máquinas (UO + tipos + grupos) · Motivos de
-  parada · Motivos de refugo e perda · Parâmetros. *Capacidade:* Previsão de utilização das
+  parada · Motivos de refugo e perda · Operações e células · Roteiros de produção (os dois
+  vieram da Engenharia de produto) · Parâmetros. *Capacidade:* Previsão de utilização das
   máquinas (previsão + detalhe).
 - **Manutenção** — *Ordens de serviço:* Ordens de serviço (abrir, autorizar, prometer prazo,
   emitir e alocar pessoal na mesma tela) · Fila de OS a atender (inclui as pendentes).
@@ -222,11 +228,24 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Reporte de produção** — *Apontamentos:* Ajuste de paradas e máquina ociosa (o resto da
   área ainda a definir).
 
-### Industrial › Engenharia de produto (proposta inicial)
-- Área nova (no lugar do antigo módulo "Engenharia de Produto"). Recebe as solicitações
-  de amostra, clichê e desenvolvimento do Portal do representante e do pessoal interno.
-- **Solicitações:** Solicitações recebidas · **Amostras:** Amostras · **Clicheria:** Clichês ·
-  **Facas:** Facas · **Desenvolvimento:** Desenvolvimento de produto (projeto e ficha técnica).
+### Industrial › Engenharia de produto (a partir do sistema atual, enxuto)
+- Recebe as solicitações de amostra, clichê e desenvolvimento do Portal do representante.
+  O menu atual tem 38 itens: 12 ficam aqui e 5 vão para outras áreas (o resto foi juntado).
+- **Desenvolvimento:** Requisições de desenvolvimento (RD) (inclui as solicitações do Portal) ·
+  Amostras.
+- **Produtos:** Produtos — a **ficha técnica completa** numa tela (Produtos + Estruturas +
+  Atributos extras + Extrair componentes + Alteração de subgrupo).
+- **Ferramental:** Facas (com imagem e tipos de lâmina) · Clichês (fichas de impressão) ·
+  Ferramental de terceiros (solicitar, acompanhar, concluir).
+- **Cadastros:** Classificação de produtos (família, grupo, subgrupo, segmento de mercado,
+  grupo FSC) · Corrugado (ondas, papéis e composições) · Textos padrão de advertência ·
+  Parâmetros (inclui motivos e conteúdo padrão da RD).
+- **Consultas:** Estrutura e onde é usado · Produtos por cliente (cliente × produto,
+  relacionamentos, facas e fichas de impressão por cliente).
+- **Foram para outras áreas:** Operações, Células e Roteiros de produção → Engenharia
+  industrial · Estoque de segurança (previsão, alteração de consumo, parâmetros, análises) →
+  Suprimentos › Materiais · Serviços de terceiros → Suprimentos › Compras.
+- O usuário avisou que muita coisa daqui vai mudar; a lista pode encolher mais.
 - Desenho ao passar o mouse: a caixa planificada com as linhas de corte (faca).
 
 ### Comercial › Crédito (definido, a partir do sistema atual)

@@ -1782,23 +1782,30 @@ const TOPICOS = {
       { ic:'alvo', t:'Minhas vendas × meta', d:'Quanto vendeu e quanto falta para a meta' },
     ]},
   ],
-  /* Engenharia de produto (Industrial): recebe as solicitações de amostra, clichê e
-     desenvolvimento do Portal do representante (e do pessoal interno). Proposta inicial. */
+  /* Industrial › Engenharia de produto (a partir do sistema atual, enxuto: 38 itens → 12 aqui).
+     Recebe as solicitações de amostra, clichê e desenvolvimento do Portal do representante. */
   'industrial/engprod': [
-    { nome:'Solicitações', itens:[
-      { ic:'importar', t:'Solicitações recebidas', d:'Amostras, clichês e desenvolvimentos pedidos' },
-    ]},
-    { nome:'Amostras', itens:[
+    { nome:'Desenvolvimento', itens:[
+      { ic:'importar', t:'Requisições de desenvolvimento (RD)', d:'Inclui as solicitações de amostra, clichê e desenvolvimento do Portal' },
       { ic:'caixa', t:'Amostras', d:'Fazer e acompanhar amostras até a aprovação do cliente' },
     ]},
-    { nome:'Clicheria', itens:[
-      { ic:'impr', t:'Clichês', d:'Clichês novos, alterações de arte e controle' },
+    { nome:'Produtos', itens:[
+      { ic:'doc', t:'Produtos', d:'Ficha técnica completa: medidas, composição, estrutura e atributos' },
     ]},
-    { nome:'Facas', itens:[
-      { ic:'regua', t:'Facas', d:'Facas de corte: cadastro e controle' },
+    { nome:'Ferramental', itens:[
+      { ic:'regua', t:'Facas', d:'Facas de corte, com imagem e tipos de lâmina' },
+      { ic:'impr', t:'Clichês', d:'Clichês e fichas de impressão' },
+      { ic:'troca', t:'Ferramental de terceiros', d:'Solicitar, acompanhar e concluir ferramental feito fora' },
     ]},
-    { nome:'Desenvolvimento', itens:[
-      { ic:'doc', t:'Desenvolvimento de produto', d:'Projeto e ficha técnica de produtos novos' },
+    { nome:'Cadastros', itens:[
+      { ic:'etiqueta', t:'Classificação de produtos', d:'Família, grupo, subgrupo, segmento de mercado e grupo FSC' },
+      { ic:'caixa', t:'Corrugado', d:'Ondas, papéis e composições de chapa' },
+      { ic:'texto', t:'Textos padrão de advertência', d:'Avisos que acompanham o produto' },
+      { ic:'engrenagem', t:'Parâmetros de engenharia de produto', d:'Inclui motivos e conteúdo padrão da RD' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'tabela', t:'Estrutura e onde é usado', d:'Estrutura por níveis e em quais produtos um componente entra' },
+      { ic:'pessoa', t:'Produtos por cliente', d:'Produtos, facas e fichas de impressão de cada cliente' },
     ]},
   ],
   /* Controladoria › Custos: recebe as solicitações de orçamento (do Portal do representante)
@@ -1920,6 +1927,8 @@ const TOPICOS = {
       { ic:'engrenagem', t:'Máquinas', d:'Unidades operacionais, com tipos e grupos' },
       { ic:'relogio', t:'Motivos de parada', d:'Por que uma máquina parou' },
       { ic:'alerta', t:'Motivos de refugo e perda', d:'Por que houve refugo ou perda' },
+      { ic:'predio', t:'Operações e células', d:'Etapas de fabricação e células de trabalho' },
+      { ic:'troca', t:'Roteiros de produção', d:'Por quais máquinas cada produto passa' },
       { ic:'engrenagem', t:'Parâmetros de engenharia industrial', d:'Configurações gerais da área' },
     ]},
     { nome:'Capacidade', itens:[
@@ -1946,6 +1955,18 @@ const TOPICOS = {
   'industrial/reporte': [
     { nome:'Apontamentos', itens:[
       { ic:'relogio', t:'Ajuste de paradas e máquina ociosa', d:'Corrigir paradas e tempo ocioso apontados' },
+    ]},
+  ],
+  /* Suprimentos: vieram da Engenharia de produto do sistema atual. */
+  'suprimentos/materiais': [
+    { nome:'Estoque de segurança', itens:[
+      { ic:'grafico', t:'Previsão de consumo e estoque de segurança', d:'Quanto manter de cada material, com parâmetros por subgrupo' },
+      { ic:'tendencia', t:'Análise do estoque de segurança', d:'Composição e previsão mensal' },
+    ]},
+  ],
+  'suprimentos/compras': [
+    { nome:'Serviços', itens:[
+      { ic:'troca', t:'Serviços de terceiros', d:'Serviços contratados de fora' },
     ]},
   ],
   'comercial/vendas': [

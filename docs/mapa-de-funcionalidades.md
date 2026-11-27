@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **14 com funcionalidades definidas**, **114 funcionalidades**.
+Situação: **31 áreas**, **16 com funcionalidades definidas**, **126 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -52,16 +52,16 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Engenharia industrial
 
-- **Cadastros:** Máquinas · Motivos de parada · Motivos de refugo e perda · Parâmetros de engenharia industrial
+- **Cadastros:** Máquinas · Motivos de parada · Motivos de refugo e perda · Operações e células · Roteiros de produção · Parâmetros de engenharia industrial
 - **Capacidade:** Previsão de utilização das máquinas
 
 ### Engenharia de produto
 
-- **Solicitações:** Solicitações recebidas
-- **Amostras:** Amostras
-- **Clicheria:** Clichês
-- **Facas:** Facas
-- **Desenvolvimento:** Desenvolvimento de produto
+- **Desenvolvimento:** Requisições de desenvolvimento (RD) · Amostras
+- **Produtos:** Produtos
+- **Ferramental:** Facas · Clichês · Ferramental de terceiros
+- **Cadastros:** Classificação de produtos · Corrugado · Textos padrão de advertência · Parâmetros de engenharia de produto
+- **Consultas:** Estrutura e onde é usado · Produtos por cliente
 
 ### Pesagem — *a definir*
 
@@ -82,9 +82,13 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Suprimentos
 
-### Compras — *a definir*
+### Compras
 
-### Materiais — *a definir*
+- **Serviços:** Serviços de terceiros
+
+### Materiais
+
+- **Estoque de segurança:** Previsão de consumo e estoque de segurança · Análise do estoque de segurança
 
 ## Qualidade
 
