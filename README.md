@@ -287,6 +287,19 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
      conferido contra demonstrativos de custo do ERP;
    - trazer a calculadora de caixa (eslote por cilindro de cada impressora).
 
+## Ligação com equipamentos da fábrica (plano)
+- O sistema poderá receber dados de **máquinas** (velocidade, metros, caixas, paradas),
+  **balança**, **leitores de código de barras / impressoras de etiquetas** e **sensores**
+  instalados em máquinas antigas.
+- Como o sistema fica na nuvem, um **pequeno computador na fábrica (gateway)** lê os
+  equipamentos na rede local e envia os dados. No começo **só leitura** (o sistema não
+  comanda as máquinas).
+- Ordem sugerida: balança → código de barras e etiquetas → onduladeira → demais máquinas.
+- Usos: Industrial › Reporte de produção e Manutenção automáticos, Pesagem sem digitação,
+  faixa "Fábrica agora" da tela inicial com dados reais.
+- Para começar será preciso a lista das máquinas (marca, modelo, ano, se têm CLP/IHM).
+- Construir o sistema já preparado para receber esses dados.
+
 ## Hospedagem (plano)
 - **Durante a construção:** Render, na mesma conta já usada, com dados fictícios.
 - **Quando estiver pronto:** migrar para o **Google Cloud, região São Paulo**
