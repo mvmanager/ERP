@@ -47,7 +47,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   | Módulo | Áreas |
   |---|---|
   | Comercial | Vendas, Portal do representante, Crédito, Faturamento, NFe, Expedição |
-  | Industrial | Engenharia industrial, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
+  | Industrial | Engenharia industrial, Engenharia de produto, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
   | Suprimentos | Compras, Materiais |
   | Qualidade | Laboratório, Qualidade, RNC, FSC |
   | Financeiro | Administração financeira, Contas a pagar, Contas a receber |
@@ -110,6 +110,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   módulo), ícone e nome do módulo, **› nome da área** e os **tópicos** da área (cada
   um abre uma lista com seus itens).
 - **Logo** → tela inicial. **Ícone do módulo** → início do módulo (tela de áreas).
+- Se os tópicos não couberem numa linha, a página percebe sozinha e passa os tópicos para
+  uma segunda linha (vale para qualquer quantidade de tópicos).
 - Dentro da área a barra fica enxuta para caber todos os tópicos numa linha: sem relógio,
   sem o nome do usuário (só a bolinha com a inicial) e sem o aviso "mais tópicos". Em telas
   estreitas os tópicos descem para uma segunda linha; no celular as listas ocupam a largura
@@ -180,11 +182,20 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Agenda:** Agenda · Registrar visita ou contato (aparece para o interno em
   Vendas › Follow-up › Atividades dos representantes).
 - **Meus números:** Minhas comissões · Minhas vendas × meta.
-- **A definir:** quem, dentro da empresa, recebe e trata as solicitações de orçamento,
-  amostra, clichê e desenvolvimento (isso decide onde ficam Orçamentos e Engenharia de
-  Produto).
+- **Quem trata as solicitações (decidido):** orçamento → **Comercial › Vendas › Orçamentos**;
+  amostra, clichê e desenvolvimento → **Industrial › Engenharia de produto**.
+
+### Industrial › Engenharia de produto (proposta inicial)
+- Área nova (no lugar do antigo módulo "Engenharia de Produto"). Recebe as solicitações
+  de amostra, clichê e desenvolvimento do Portal do representante e do pessoal interno.
+- **Solicitações:** Solicitações recebidas · **Amostras:** Amostras · **Clicheria:** Clichês ·
+  **Facas:** Facas · **Desenvolvimento:** Desenvolvimento de produto (projeto e ficha técnica).
+- Desenho ao passar o mouse: a caixa planificada com as linhas de corte (faca).
 
 ### Comercial › Vendas (tópicos definidos até agora)
+- **Orçamentos:** Solicitações de orçamento (chegam do Portal do representante: analisar,
+  aprovar, devolver) · Orçamentos (montar e consultar, com o motor de precificação e a
+  calculadora de caixa do sistema atual; converter em pedido quando aprovado).
 - **Cadastros** (baseado no menu do sistema atual), em grupos:
   - Prospects e clientes · Áreas de vendas · Representantes · Supervisores de vendas ·
     Metas de vendas
@@ -249,6 +260,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
    qual módulo entram orçamentos, engenharia de produto (amostras, clicheria, facas) e os
    cadastros gerais.
    Níveis: **Módulo › Área › Tópico › Funcionalidade**.
+   Decidido: orçamentos ficam em Comercial › Vendas › Orçamentos; engenharia de produto
+   virou área do Industrial. Falta decidir onde ficam os cadastros gerais.
 2. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**
    (Comercial › Vendas › Cadastros).
 3. Montar o sistema de verdade:
