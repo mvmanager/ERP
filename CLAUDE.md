@@ -55,6 +55,20 @@ esta seção para a conversa seguinte saber de onde continuar.
   naquele repositório) e a calculadora de caixa (`shared/calculadoraCaixa.ts`).
 - O resto é construído do zero neste repositório.
 
+## Segurança (regra de construção)
+
+- O protótipo é só visual, com dados fictícios; não tem segredo nem dado real.
+- No sistema de verdade, **tudo que é sensível fica no servidor (back-end)**; a tela só recebe
+  o que aquele usuário pode ver. A tela nunca é confiável: o servidor confere tudo de novo.
+- Segredos (certificado digital NFe, SEFAZ, banco, e-mail, chaves de API) num cofre de
+  segredos / variáveis de ambiente; **nunca** no código, no repositório ou no front-end.
+- Senhas de usuário com hash forte; HTTPS sempre.
+- Custos, margens e o motor de precificação rodam no servidor; o representante vê preço, nunca
+  custo. Comissões: cada um recebe só a sua.
+- Permissões (módulo, área, carteira do representante, campos editáveis) conferidas **no
+  servidor** a cada leitura e gravação — não basta esconder botão.
+- Histórico/auditoria de alterações sensíveis (preço, limite de crédito, comissão, permissões).
+
 ## Hospedagem (plano)
 
 - Construção na Render (mesma conta do sistema atual), com dados fictícios.

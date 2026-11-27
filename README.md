@@ -728,6 +728,14 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 - Para começar será preciso a lista das máquinas (marca, modelo, ano, se têm CLP/IHM).
 - Construir o sistema já preparado para receber esses dados.
 
+## Segurança (regra de construção)
+- Protótipo: só visual, dados fictícios.
+- Sistema de verdade: dados e regras sensíveis **só no servidor**; a tela recebe só o que o
+  usuário pode ver; permissões conferidas no servidor a cada ação; segredos (certificado
+  digital, senhas de serviços, chaves) em cofre de segredos, nunca no código; senhas com hash;
+  HTTPS; custos/margens/precificação nunca vão para a tela de quem não pode ver; auditoria de
+  alterações sensíveis.
+
 ## Hospedagem (plano)
 - **Durante a construção:** Render, na mesma conta já usada, com dados fictícios.
 - **Quando estiver pronto:** migrar para o **Google Cloud, região São Paulo**
