@@ -73,6 +73,15 @@ esta seção para a conversa seguinte saber de onde continuar.
   nenhuma empresa vê dado de outra). Usar também para **carteira do representante** e
   **comissões**. Acesso de manutenção do TI separado e controlado.
 
+## Checagem de segurança (pedido do usuário)
+
+- **Quando o sistema estiver pronto** (antes de ir para os usuários) e a cada versão importante,
+  fazer a checagem de `docs/seguranca/checagem-de-seguranca.docx` (versão texto: `.md`):
+  Gitleaks → Opengrep (e Bandit se houver Python) → revisão atrás das falhas "banco sem tranca",
+  "chave exposta", "input sem tratamento" e "rota entregando dado pelo ID", listando arquivo por
+  arquivo e linha por linha → OWASP ZAP no ambiente de testes.
+- Se o usuário pedir "o documento de checagem de segurança", enviar esse .docx.
+
 ## Hospedagem (plano)
 
 - Construção na Render (mesma conta do sistema atual), com dados fictícios.
