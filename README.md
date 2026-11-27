@@ -667,7 +667,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 
 ## Integrações entre módulos (anotadas até agora)
-Lista viva: cada tela desenhada acrescenta aqui o que recebe e entrega. Quando todos os
+**Regra:** ao desenhar ou construir qualquer tela, as integrações dela são anotadas aqui **na
+mesma hora**. Lista viva: cada tela desenhada acrescenta aqui o que recebe e entrega. Quando todos os
 módulos tiverem suas funcionalidades, faremos uma **revisão geral de integrações**.
 
 | De | Para | O quê |

@@ -38,6 +38,9 @@ esta seção para a conversa seguinte saber de onde continuar.
   algo parecer fora do lugar.
 - **Regra de desenho: telas compactas, sem espaço ocioso** (quadros e campos juntos, rótulos
   curtos, vários campos por linha). Vale para tudo.
+- **Regra: mapear integrações no ato.** Ao desenhar ou construir qualquer tela, anotar na
+  mesma hora, na tabela "Integrações entre módulos" do README, o que ela recebe e entrega para
+  outras áreas (de onde vem cada dado e para onde vai). Não deixar para depois.
 - **Integrações entre módulos:** à medida que cada tela é desenhada, anotar no README
   (seção "Integrações entre módulos") o que ela recebe e entrega para outras áreas. Quando os
   módulos tiverem suas funcionalidades desenhadas, fazer uma **revisão geral de integrações**
