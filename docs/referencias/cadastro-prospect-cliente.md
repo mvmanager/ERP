@@ -71,8 +71,24 @@ do nosso jeito (decisão do usuário: "o nosso diferencial será nesses detalhes
 - Expedição · Transporte · Faturamento · Onduladeira · Produção · Contas a receber · Vendas
 - Ideia: aparecer como **aviso automático** na tela de cada setor quando trabalhar com o cliente.
 
-**Outras abas (conteúdo ainda não enviado):** Restrições de vencimento ·
-Padrões EDI · Atributos extras · Certificados · Financeiro · Ocorrências (na consulta).
+**Aba Restrições de vencimento** (três tipos de regra; vários por cliente)
+- Por **dia do mês** (dia · operação · qtde de dias) · por **dia da semana** · por **período**
+- Serve para ajustar vencimentos que caem em dias que o cliente não paga.
+
+**Aba Padrões EDI** (sub-abas: Envio · Integração com VAN · Integração com FTP · Espécie NF × CFOP ·
+Recebimento)
+- Envio: lista de preços · aviso de embarque · prefixo do nome do arquivo · onde gerar o aviso de
+  embarque · código interno do receptor do EDI · código da fábrica destino · onde salvar o arquivo
+  de distribuição da NF-e · sigla da extensão do arquivo EDI.
+
+**Aba Atributos extras**
+- Lista: ordem · obrigatório · atributo · conteúdo (ex.: "Condição de entrega").
+
+**Aba Certificados**
+- E-mail do certificado de qualidade: assunto · corpo · nome do anexo (com campos variáveis) ·
+  gerar arquivo único com todos os certificados da série/NF/item.
+
+**Outras abas (conteúdo ainda não enviado):** Financeiro · Ocorrências (na consulta).
 
 **Consulta:** navegação registro a registro e "aproximar por" (busca).
 **Relatório:** filtros por faixa de clientes, UF, município, representante, segmento; situação
