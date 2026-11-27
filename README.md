@@ -262,7 +262,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   *Consultas:* ARs e histórico de inspeção (ARs por vencimento, movimentação do AR, histórico,
   skip lote) · Rejeitados e material para testes · Inspeção de produtos (inclui
   acompanhamento por lote da onduladeira).
-- **A confirmar:** se existe menu de **RNC** e de **FSC** no sistema atual.
+- **RNC** e **FSC** ficaram **para depois** (decisão do usuário).
 
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação

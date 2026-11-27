@@ -21,8 +21,9 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > tem mapa inicial. No Industrial já estão Engenharia industrial, Engenharia de produto,
 > PCP, Manutenção, Segurança e parte do Reporte de produção. O mapa geral fica em
 > `docs/mapa-de-funcionalidades.md`. Pesagem e apontamentos do Reporte ficaram para
-> depois. Suprimentos (Compras e Materiais) já tem mapa. Próximo: Qualidade; depois
-> Financeiro, Controladoria, RH, Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
+> depois. Suprimentos (Compras e Materiais) e Qualidade (Qualidade e Laboratório) já têm
+> mapa; RNC e FSC ficaram para depois. Próximo: Financeiro; depois Controladoria, RH,
+> Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
