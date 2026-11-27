@@ -1757,9 +1757,30 @@ const IC = {
 };
 const ico = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
 const TOPICOS = {
+  /* Portal do representante: onde os representantes (externos) trabalham. Ele não lança
+     pedido nem cadastra cliente: faz SOLICITAÇÕES (com todos os dados do cliente e do
+     produto) e o pessoal interno analisa, cadastra o cliente e converte em pedido. */
   'comercial/representantes': [
+    { nome:'Solicitações', itens:[
+      { ic:'etiqueta', t:'Solicitar orçamento', d:'Com os dados do cliente e do produto; o interno analisa' },
+      { ic:'caixa', t:'Pedir amostra', d:'Amostra de caixa para o cliente aprovar' },
+      { ic:'impr', t:'Pedir clichê', d:'Clichê novo ou alteração de arte' },
+      { ic:'regua', t:'Pedir desenvolvimento de produto', d:'Faca, caixa nova ou mudança de projeto' },
+      { ic:'lupa', t:'Minhas solicitações', d:'Acompanhar todas: em análise, aprovada, virou pedido' },
+    ]},
+    { nome:'Meus clientes', itens:[
+      { ic:'pessoa', t:'Carteira de clientes', d:'Só os clientes dele, com resumo e últimas compras' },
+    ]},
+    { nome:'Meus pedidos', itens:[
+      { ic:'caminhao', t:'Acompanhar pedidos', d:'Em que etapa está cada pedido: programado, produção, expedição' },
+    ]},
     { nome:'Agenda', itens:[
-      { ic:'calendario', t:'Agenda dos representantes', d:'Visitas e compromissos de cada representante' },
+      { ic:'calendario', t:'Agenda', d:'Visitas e compromissos' },
+      { ic:'agenda', t:'Registrar visita ou contato', d:'Aparece para o interno em Vendas › Follow-up' },
+    ]},
+    { nome:'Meus números', itens:[
+      { ic:'percent', t:'Minhas comissões', d:'Comissões do período' },
+      { ic:'alvo', t:'Minhas vendas × meta', d:'Quanto vendeu e quanto falta para a meta' },
     ]},
   ],
   'comercial/vendas': [

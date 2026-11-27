@@ -164,10 +164,25 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
 
 ### Comercial › Portal do representante (tópicos definidos até agora)
-- É a área **onde os próprios representantes trabalham** (externos): criar orçamentos,
-  pedir amostras, clichês etc. A administração dos representantes (cadastro, metas,
-  comissões) fica em **Vendas**, que é onde trabalha o pessoal interno.
-- **Agenda:** Agenda dos representantes.
+- É a área **onde os próprios representantes trabalham** (externos). A administração dos
+  representantes (cadastro, metas, comissões) fica em **Vendas**, onde trabalha o pessoal
+  interno.
+- O representante **não lança pedido e não cadastra cliente**. Ele faz **solicitações**,
+  preenchendo todos os dados do cliente e do produto; o pessoal interno analisa, cadastra o
+  prospect/cliente e, quando a solicitação de orçamento é aprovada, **converte em pedido**.
+  (A forma de deixar isso "autêntico e dinâmico" será pensada ao desenhar a tela.)
+- **Solicitações:** Solicitar orçamento · Pedir amostra · Pedir clichê · Pedir
+  desenvolvimento de produto (faca, caixa nova, mudança de projeto) · Minhas solicitações
+  (acompanha todas: em análise, aprovada, virou pedido).
+- **Meus clientes:** Carteira de clientes (só os dele, com resumo e últimas compras).
+- **Meus pedidos:** Acompanhar pedidos — **em que etapa** cada pedido está (programado,
+  produção, expedição…). Sem as notas fiscais.
+- **Agenda:** Agenda · Registrar visita ou contato (aparece para o interno em
+  Vendas › Follow-up › Atividades dos representantes).
+- **Meus números:** Minhas comissões · Minhas vendas × meta.
+- **A definir:** quem, dentro da empresa, recebe e trata as solicitações de orçamento,
+  amostra, clichê e desenvolvimento (isso decide onde ficam Orçamentos e Engenharia de
+  Produto).
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Cadastros** (baseado no menu do sistema atual), em grupos:
@@ -193,7 +208,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - **Não entram:** Digitação, Revisão e Cancelamento de programa, Marcar programas como
     transformados, Relacionar convênios produto × prospect.
   - **Vão para a ficha do cliente:** Histórico do cliente · Produto × endereço de entrega.
-  - **Vai para o Portal do representante:** Agenda dos representantes.
+  - **Vai para o Portal do representante:** Agenda dos representantes (lá se chama "Agenda").
 - **Pedidos** (baseado no menu do sistema atual): Pedidos (lançar, consultar, imprimir) ·
   **Alterar pedido** · Liberação de pedidos · Cancelar item ou entrega
   - **Alterar pedido** é uma janela só que junta as 13 alterações do sistema atual: data de
