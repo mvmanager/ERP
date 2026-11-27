@@ -270,6 +270,23 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   pré-datados, emissão de recibos) · Remessa e retorno bancário (+ bloquetos não recebidos) ·
   Títulos em cartório · DARFs no período · Saldos de créditos dos parceiros.
 
+### Financeiro › Contas a receber (a partir do sistema atual: 41 itens → 16)
+- **Títulos a receber:** Títulos a receber (registros, cancelar título, abatimentos,
+  prorrogações, redestinação de portador/carteira, histórico) · Pagamento antecipado.
+- **Cobrança:** Agenda de recebimentos (+ desfazer agendamento) · Cobrança bancária (retorno da
+  cobrança eletrônica, instruções de alteração escritural, solicitação de baixa, reemissão de
+  boletos) · Baixa de recebimentos (informe de liquidação individual e agrupado) · Cartório
+  (movimentação) · Créditos com clientes (acerto, desfazer, transferir entre parceiros do grupo;
+  saldos de créditos).
+- **Cadastros:** Taxas bancárias (+ bancos × taxas) · Parâmetros.
+- **Consultas:** Posição de títulos a receber (consulta de títulos, distribuição no tempo,
+  resumo por banco, situação, pendentes, por agendar; e os "Meus relatórios" por parceiro, por
+  banco e por data de emissão) · Títulos em atraso · Duplicatas e borderôs · Limites de caução
+  e desconto · Remessa e retorno bancário · Faturamento × contas a receber · Alterações em
+  títulos.
+- **Cobrança automática (ideia para depois):** lembrete por e-mail/WhatsApp antes e depois do
+  vencimento, com o boleto ou PIX.
+
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
   por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —

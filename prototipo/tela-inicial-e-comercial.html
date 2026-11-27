@@ -2176,6 +2176,33 @@ const TOPICOS = {
       { ic:'troca', t:'Saldos de créditos dos parceiros', d:'Créditos em aberto com fornecedores' },
     ]},
   ],
+  /* Financeiro › Contas a receber (a partir do sistema atual: 41 itens → 16). */
+  'financeiro/receber': [
+    { nome:'Títulos a receber', itens:[
+      { ic:'doc', t:'Títulos a receber', d:'Registrar, cancelar, abater, prorrogar, mudar portador e histórico' },
+      { ic:'check', t:'Pagamento antecipado', d:'Confirmar recebimentos feitos antes do vencimento' },
+    ]},
+    { nome:'Cobrança', itens:[
+      { ic:'agenda', t:'Agenda de recebimentos', d:'Agendar e desfazer agendamento de títulos' },
+      { ic:'importar', t:'Cobrança bancária', d:'Retorno do banco, instruções ao banco, pedido de baixa, boletos' },
+      { ic:'cifrao', t:'Baixa de recebimentos', d:'Informe de liquidação, individual ou agrupado' },
+      { ic:'alerta', t:'Cartório', d:'Títulos enviados para cartório e seu andamento' },
+      { ic:'troca', t:'Créditos com clientes', d:'Acertos, desfazer acerto e transferir entre empresas do grupo' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'percent', t:'Taxas bancárias', d:'Taxas de cobrança e de cada banco' },
+      { ic:'engrenagem', t:'Parâmetros de contas a receber', d:'Configurações gerais' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'tabela', t:'Posição de títulos a receber', d:'Por cliente, banco, emissão, situação e distribuição no tempo' },
+      { ic:'relogio', t:'Títulos em atraso', d:'O que está vencido e não foi pago' },
+      { ic:'doc', t:'Duplicatas e borderôs', d:'Duplicatas emitidas e borderôs enviados ao banco' },
+      { ic:'cadeado', t:'Limites de caução e desconto', d:'Uso dos limites de contas caução e desconto' },
+      { ic:'importar', t:'Remessa e retorno bancário', d:'Arquivos enviados e recebidos do banco' },
+      { ic:'grafico', t:'Faturamento × contas a receber', d:'Comparar o faturado com o que entrou' },
+      { ic:'lupa', t:'Alterações em títulos', d:'Quem alterou o quê e quando' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e

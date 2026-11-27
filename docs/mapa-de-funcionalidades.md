@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **21 com funcionalidades definidas**, **240 funcionalidades**.
+Situação: **31 áreas**, **22 com funcionalidades definidas**, **256 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -148,7 +148,12 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 - **Cadastros:** Tipos e formas de pagamento · Classificação de despesas · Parâmetros de contas a pagar
 - **Consultas:** Posição de contas a pagar · Pagamentos realizados · Remessa e retorno bancário · Títulos em cartório · DARFs no período · Saldos de créditos dos parceiros
 
-### Contas a receber — *a definir*
+### Contas a receber
+
+- **Títulos a receber:** Títulos a receber · Pagamento antecipado
+- **Cobrança:** Agenda de recebimentos · Cobrança bancária · Baixa de recebimentos · Cartório · Créditos com clientes
+- **Cadastros:** Taxas bancárias · Parâmetros de contas a receber
+- **Consultas:** Posição de títulos a receber · Títulos em atraso · Duplicatas e borderôs · Limites de caução e desconto · Remessa e retorno bancário · Faturamento × contas a receber · Alterações em títulos
 
 ## Controladoria
 
