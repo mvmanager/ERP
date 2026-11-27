@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **19 com funcionalidades definidas**, **209 funcionalidades**.
+Situação: **31 áreas**, **20 com funcionalidades definidas**, **223 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -135,7 +135,11 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Financeiro
 
-### Administração financeira — *a definir*
+### Administração financeira
+
+- **Operações:** Conta corrente · Orçamento e verbas · Projetos
+- **Cadastros:** Bancos e contas · Rubricas e responsáveis · Operações e tipos de documento · Arquivos bancários · Indicadores e índices financeiros · Feriados · Parâmetros financeiros
+- **Consultas:** Saldos bancários · Fluxo de caixa · Orçamento, verbas e projetos · Prazo médio de recebimento e pagamento
 
 ### Contas a pagar — *a definir*
 

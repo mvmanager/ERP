@@ -2125,6 +2125,29 @@ const TOPICOS = {
       { ic:'grafico', t:'Gestão de compras', d:'Compras por período, fornecedor e grupo' },
     ]},
   ],
+  /* Financeiro › Administração financeira (a partir do sistema atual: 29 itens → 15). */
+  'financeiro/admfin': [
+    { nome:'Operações', itens:[
+      { ic:'cifrao', t:'Conta corrente', d:'Movimento das contas bancárias' },
+      { ic:'grafico', t:'Orçamento e verbas', d:'Planejamento orçamentário, distribuição e transferência de verbas' },
+      { ic:'doc', t:'Projetos', d:'Projetos com verba própria, até o encerramento' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'predio', t:'Bancos e contas', d:'Bancos/portadores, agências e contas bancárias' },
+      { ic:'etiqueta', t:'Rubricas e responsáveis', d:'Grupos de rubricas, rubricas, administradores e níveis' },
+      { ic:'troca', t:'Operações e tipos de documento', d:'Operações de conta corrente e tipos de documento' },
+      { ic:'importar', t:'Arquivos bancários', d:'Layouts de remessa e retorno (GAE) e códigos de ocorrência' },
+      { ic:'tendencia', t:'Indicadores e índices financeiros', d:'Índices usados nos cálculos' },
+      { ic:'calendario', t:'Feriados', d:'Feriados que afetam vencimentos e pagamentos' },
+      { ic:'engrenagem', t:'Parâmetros financeiros', d:'Configurações gerais do Financeiro' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'cifrao', t:'Saldos bancários', d:'Saldo de cada conta' },
+      { ic:'tendencia', t:'Fluxo de caixa', d:'Entradas e saídas previstas e realizadas' },
+      { ic:'grafico', t:'Orçamento, verbas e projetos', d:'Previsto × realizado por verba e projeto' },
+      { ic:'relogio', t:'Prazo médio de recebimento e pagamento', d:'Em quantos dias se recebe e se paga' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e

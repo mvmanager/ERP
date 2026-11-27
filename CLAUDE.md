@@ -22,7 +22,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > PCP, Manutenção, Segurança e parte do Reporte de produção. O mapa geral fica em
 > `docs/mapa-de-funcionalidades.md`. Pesagem e apontamentos do Reporte ficaram para
 > depois. Suprimentos (Compras e Materiais) e Qualidade (Qualidade e Laboratório) já têm
-> mapa; RNC e FSC ficaram para depois. Próximo: Financeiro; depois Controladoria, RH,
+> mapa; RNC e FSC ficaram para depois. Financeiro › Administração financeira já tem mapa.
+> Próximo: Contas a pagar e a receber; depois Controladoria, RH,
 > Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 

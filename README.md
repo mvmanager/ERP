@@ -240,6 +240,19 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - A pensar depois: Condições de pagamento (Compras) e Prazos de pagamento (Vendas) podem ser
   um cadastro só.
 
+### Financeiro › Administração financeira (a partir do sistema atual: 29 itens → 15)
+- **Operações:** Conta corrente · Orçamento e verbas (planejamento orçamentário + distribuição e
+  transferência de verbas + cadastro de verbas) · Projetos (com o encerramento).
+- **Cadastros:** Bancos e contas (bancos/portador + agências + contas) · Rubricas e
+  responsáveis (grupos, rubricas, administradores, níveis, rubricas × administradores) ·
+  Operações e tipos de documento · Arquivos bancários (GAE + códigos de ocorrência de retorno) ·
+  Indicadores e índices financeiros · Feriados · Parâmetros.
+- **Consultas:** Saldos bancários · Fluxo de caixa (inclui comparativo ingressos × desembolsos) ·
+  Orçamento, verbas e projetos · Prazo médio de recebimento e pagamento.
+- **"Exportar dados das contas correntes p/ contabilidade" sai do menu:** no sistema novo o
+  Financeiro e a Contabilidade conversam sozinhos (lançamento automático).
+- A pensar: Feriados pode ser um cadastro único da empresa, usado também pelo calendário do PCP.
+
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
   por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação fiscal —
