@@ -740,6 +740,15 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
   **carteira de cada representante** e as **comissões**. É uma segunda tranca, além da
   conferência no servidor.
 
+### Segurança automática na construção (decidido)
+- Gitleaks antes de cada envio de código e na checagem automática do GitHub; Opengrep e
+  verificação de bibliotecas a cada mudança (falha grave barra); OWASP ZAP toda noite no
+  ambiente de testes; revisão completa antes de cada versão
+  (`docs/seguranca/checagem-de-seguranca.docx`).
+- Testes automáticos de isolamento (empresa × empresa, representante × carteira, rota por ID).
+- Validação de entradas no servidor, limite de tentativas de login, verificação em duas etapas
+  obrigatória para administrador e TI, auditoria, backup criptografado com teste de restauração.
+
 ## Hospedagem (plano)
 - **Durante a construção:** Render, na mesma conta já usada, com dados fictícios.
 - **Quando estiver pronto:** migrar para o **Google Cloud, região São Paulo**

@@ -81,6 +81,18 @@ esta seção para a conversa seguinte saber de onde continuar.
   "chave exposta", "input sem tratamento" e "rota entregando dado pelo ID", listando arquivo por
   arquivo e linha por linha → OWASP ZAP no ambiente de testes.
 - Se o usuário pedir "o documento de checagem de segurança", enviar esse .docx.
+- **Segurança desde o primeiro dia (pedido do usuário: o sistema terá muitos dados).** Na
+  construção, deixar as ferramentas trabalhando sozinhas:
+  - **Gitleaks** antes de cada commit (pre-commit) e na CI: segredo no código barra o envio.
+  - **Opengrep** + auditoria de dependências (ex.: npm audit / Dependabot) na CI a cada mudança;
+    falha grave ou biblioteca vulnerável barra o merge. **Bandit** se houver Python.
+  - **OWASP ZAP** (baseline) toda noite contra o ambiente de testes, com relatório.
+  - Revisão completa com o pedido do documento antes de cada versão.
+  - **Testes automáticos de isolamento**: empresa A não vê dados da empresa B; representante não
+    vê cliente de outro; rota por ID sem permissão devolve erro. Falhou, barra o merge.
+  - Validação de toda entrada no servidor; limite de tentativas de login; **2 etapas (2FA)**
+    obrigatório para administrador e TI; auditoria de ações sensíveis; backup automático
+    criptografado com teste de restauração.
 
 ## Hospedagem (plano)
 
