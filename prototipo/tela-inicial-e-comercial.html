@@ -555,6 +555,13 @@ textarea.falta{border-color:var(--bad)!important}
 .pd-faixas{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 .pd-faixas b{color:var(--ink);font-weight:600}
 .pd-itens .pill{font-size:10px;padding:1px 6px}
+.ca-det>td{background:var(--surface-2);padding:6px 10px 8px!important}
+.ca-det .pd-tab th{background:transparent;position:static}
+.ca-tot td{font-weight:700;border-top:2px solid var(--line-2)}
+.pd-tab td .mini{padding:2px 8px;font-size:11.5px}
+.cl-topo .btn2{padding:5px 11px;font-size:13px;border-radius:8px}
+.rel-barras{display:inline-flex;align-items:flex-end;gap:2px;height:22px}
+.rel-barras i{display:block;width:6px;border-radius:2px 2px 0 0;background:var(--kraft)}
 .pd-prod{display:grid;text-align:left;border:1px dashed var(--line-2);background:var(--surface-2);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:13px}
 .pd-prod small{font-size:11.5px;color:var(--muted)}
 .pd-prod:hover{border-color:var(--kraft);border-style:solid}
@@ -2552,10 +2559,10 @@ const TOPICOS = {
     /* Comissões: 7 itens do sistema atual viraram 4. Fica em Vendas (pessoal interno),
        não na área Representantes (que é onde os próprios representantes trabalham). */
     { nome:'Comissões', itens:[
-      { ic:'percent', t:'Regras de comissão', d:'Quanto ganha cada representante e supervisor, inclusive por produto' },
-      { ic:'doc', t:'Notas de crédito de comissão', d:'Emitir e desfazer notas de crédito' },
-      { ic:'cifrao', t:'Acerto de comissões', d:'Fechamento das comissões do período' },
-      { ic:'grafico', t:'Relatório de comissões', d:'Comissões por representante e vendedor' },
+      { ic:'percent', t:'Regras de comissão', d:'Quanto ganha cada representante e supervisor, inclusive por produto', tela:'comRegras' },
+      { ic:'doc', t:'Notas de crédito de comissão', d:'Emitir e desfazer notas de crédito', tela:'comNotas' },
+      { ic:'cifrao', t:'Acerto de comissões', d:'Fechamento das comissões do período', tela:'comAcerto' },
+      { ic:'grafico', t:'Relatório de comissões', d:'Comissões por representante e vendedor', tela:'comRelatorio' },
     ]},
     /* Consultas e Relatórios: o antigo "Demonstrativos" (27 itens) dividido em dois.
        Consulta/relação de pedidos, pedidos por cliente e pedidos faturados ficam em
@@ -3532,6 +3539,124 @@ function cliquePedidos(box, e){
   if (t('[data-imprimir]')) return toast('Geraria o PDF do pedido');
   if (t('[data-enviar-cli]')) return toast('Enviaria o pedido por e-mail ao contato de compras do cliente');
 }
+
+/* ════ Comissões (Comercial › Vendas › Comissões) ════
+   Regras de comissão · Notas de crédito · Acerto do período · Relatório. Compacto. Dados fictícios.
+   Integrações: base vem do Faturamento (notas) e do Contas a receber (recebimentos); o acerto
+   gera a nota de crédito e manda o valor para Contas a pagar; o representante vê o dele em
+   Portal › Minhas comissões; a comissão do item pode ser ajustada em Alterar pedido. */
+const REPS = [
+  { id:'mat', nome:'Matheus', tipo:'Vendedor interno', sup:'Carla Mendes' },
+  { id:'san', nome:'Sandro Lima', tipo:'Representante', sup:'Carla Mendes' },
+  { id:'jul', nome:'Juliana Rocha', tipo:'Representante', sup:'Carla Mendes' },
+];
+const REGRAS = [
+  { quem:'Sandro Lima', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →' },
+  { quem:'Juliana Rocha', aplica:'Todos os clientes e produtos', pct:4, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →' },
+  { quem:'Juliana Rocha', aplica:'Cliente: Serra Azul', pct:3, base:'Valor sem IPI', quando:'No recebimento', vig:'06/2026 →', exc:true },
+  { quem:'Matheus', aplica:'Todos os clientes e produtos', pct:1.5, base:'Valor sem IPI', quando:'No faturamento', vig:'01/2026 →' },
+  { quem:'Todos', aplica:'Produto: Chapa divisória', pct:2, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →', exc:true },
+  { quem:'Carla Mendes (supervisora)', aplica:'Sobre a equipe dela', pct:0.8, base:'Valor sem IPI', quando:'No recebimento', vig:'01/2026 →', sup:true },
+];
+const ACERTO = {
+  '2026-11': [
+    { rep:'Sandro Lima', fat:412300, rec:388900, com:15556, aj:-420, sit:'conferido', det:[ ['NF 88430','Horizonte','14/11',38900,1556], ['NF 88411','Vale Verde','10/11',0,0], ['Título 88102','Horizonte','05/11',51200,2048] ] },
+    { rep:'Juliana Rocha', fat:298700, rec:301500, com:11810, aj:0, sit:'aberto', det:[ ['NF 88402','Serra Azul','08/11',31100,933], ['NF 88399','Passo Firme','07/11',12000,480] ] },
+    { rep:'Matheus', fat:186200, rec:0, com:2793, aj:0, sit:'aberto', det:[ ['NF 88430','Horizonte','14/11',38900,584] ] },
+    { rep:'Carla Mendes (supervisora)', fat:897200, rec:690400, com:5523, aj:0, sit:'aberto', det:[] },
+  ],
+};
+const NOTAS_COM = [
+  { n:'NC-1031', rep:'Sandro Lima', per:'10/2026', valor:14980, sit:'emitida', data:'05/11/2026' },
+  { n:'NC-1032', rep:'Juliana Rocha', per:'10/2026', valor:12240, sit:'emitida', data:'05/11/2026' },
+  { n:'NC-1029', rep:'Sandro Lima', per:'09/2026', valor:13710, sit:'desfeita', data:'04/10/2026', motivo:'Valor errado: refeita na NC-1030' },
+  { n:'NC-1030', rep:'Sandro Lima', per:'09/2026', valor:13290, sit:'emitida', data:'06/10/2026' },
+];
+const HIST_COM = { 'Sandro Lima':[11200,12800,13290,14980,15136], 'Juliana Rocha':[9800,10400,11020,12240,11810], 'Matheus':[2100,2450,2380,2610,2793], 'Carla Mendes (supervisora)':[4300,4700,4980,5260,5523] };
+const MESES_COM = ['07/26','08/26','09/26','10/26','11/26'];
+
+TELAS.comRegras = (box) => {
+  box.classList.add('cl-box');
+  const desenha = () => { box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Regra mais específica vale primeiro: <b>produto</b> › <b>cliente</b> › padrão do representante.</span><button class="go cl-novo" type="button" data-nova-regra>＋ Nova regra</button></div>
+    <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Quem recebe</th><th>Vale para</th><th class="num">%</th><th>Base</th><th>Quando paga</th><th>Vigência</th><th></th></tr></thead><tbody>${REGRAS.map((r, i) => `<tr><td><b>${esc(r.quem)}</b></td><td>${esc(r.aplica)} ${r.exc ? '<span class="pill p-warn">exceção</span>' : r.sup ? '<span class="pill p-info">supervisor</span>' : ''}</td><td class="num">${r.pct.toLocaleString('pt-BR')}%</td><td>${r.base}</td><td>${r.quando}</td><td>${r.vig}</td><td><button class="mini" type="button" data-ed-regra="${i}">Editar</button></td></tr>`).join('')}</tbody></table>
+    <div class="cl-dica" style="margin-top:8px">A comissão de um item específico de um pedido pode ser trocada em <b>Pedidos › Alterar pedido</b> (por quem tiver permissão).</div></div>`; };
+  box.addEventListener('click', (e) => {
+    if (e.target.closest('[data-nova-regra]') || e.target.closest('[data-ed-regra]')) {
+      const r = e.target.closest('[data-ed-regra]') ? REGRAS[+e.target.closest('[data-ed-regra]').dataset.edRegra] : { quem:'', aplica:'Todos os clientes e produtos', pct:0, base:'Valor sem IPI', quando:'No recebimento', vig:'' };
+      box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><button class="voltar" type="button" data-volta-regras>‹ Regras</button><div class="cl-nome"><b>${r.quem ? 'Editar regra' : 'Nova regra'}</b><small>Quem recebe, sobre o quê, quanto e quando</small></div>
+        <span class="cl-acoes"><button class="btn2" type="button" data-volta-regras>Cancelar</button><button class="go" type="button" data-salva-regra>Salvar</button></span></div>
+        <div class="pd-corpo"><section class="cl-bloco"><div class="cl-grade">
+          ${f('Quem recebe', r.quem, { opcoes: ['', ...REPS.map(x => x.nome), 'Carla Mendes (supervisora)', 'Todos'] })}
+          ${f('Vale para', r.aplica.split(':')[0], { opcoes:['Todos os clientes e produtos','Cliente','Produto','Grupo de produtos','Sobre a equipe dela'] })}
+          ${f('Qual (cliente/produto)', (r.aplica.split(': ')[1] || ''))}
+          ${f('Percentual (%)', r.pct ? r.pct.toLocaleString('pt-BR') : '')}
+          ${f('Base de cálculo', r.base, { opcoes:['Valor sem IPI','Valor total da nota','Margem de contribuição'] })}
+          ${f('Quando paga', r.quando, { opcoes:['No recebimento','No faturamento'], ajuda:'No recebimento: só comissiona o que o cliente pagou' })}
+          ${f('Vigência desde', r.vig.replace(' →', '') || '12/2026')}${f('Até', '')}</div></section></div></div>`;
+      box.querySelectorAll('input,select').forEach(el => el.disabled = false); return;
+    }
+    if (e.target.closest('[data-volta-regras]')) return desenha();
+    if (e.target.closest('[data-salva-regra]')) { desenha(); return toast('Regra salva (protótipo)'); }
+  });
+  desenha();
+};
+
+TELAS.comAcerto = (box) => {
+  box.classList.add('cl-box'); box._per = '2026-11'; box._abre = null;
+  const desenha = () => {
+    const l = ACERTO[box._per], tot = (k) => l.reduce((a, x) => a + x[k], 0);
+    box.innerHTML = `<div class="cl-topo"><label class="cf" style="flex-direction:row;display:flex;gap:6px;align-items:center"><span>Período</span><select id="caPer" style="width:auto;background:var(--surface)"><option>11/2026</option></select></label>
+      <span class="cl-txt">Base: notas faturadas (Faturamento) e títulos recebidos (Contas a receber) no período.</span>
+      <button class="btn2" type="button" data-ca-conf>Marcar todos conferidos</button><button class="go cl-novo" type="button" data-ca-fechar>Fechar período e gerar notas</button></div>
+    <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Representante</th><th class="num">Faturado</th><th class="num">Recebido</th><th class="num">Comissão</th><th class="num">Ajustes</th><th class="num">A pagar</th><th>Situação</th><th></th></tr></thead><tbody>
+      ${l.map((x, i) => `<tr data-ca="${i}"><td><b>${esc(x.rep)}</b></td><td class="num">${brl(x.fat)}</td><td class="num">${brl(x.rec)}</td><td class="num">${brl(x.com)}</td><td class="num">${x.aj ? brl(x.aj) : '—'}</td><td class="num"><b>${brl(x.com + x.aj)}</b></td>
+        <td><span class="pill ${x.sit === 'pago' ? 'p-ok' : x.sit === 'conferido' ? 'p-info' : x.sit === 'fechado' ? 'p-ok' : 'p-warn'}">${{ aberto:'Aberto', conferido:'Conferido', fechado:'Nota gerada', pago:'Pago' }[x.sit]}</span></td>
+        <td><button class="mini" type="button" data-ca-ver="${i}">${box._abre === i ? 'Fechar' : 'Detalhe'}</button></td></tr>
+        ${box._abre === i ? `<tr class="ca-det"><td colspan="8">${x.det.length ? `<table class="pd-tab"><thead><tr><th>Documento</th><th>Cliente</th><th>Data</th><th class="num">Base</th><th class="num">Comissão</th></tr></thead><tbody>${x.det.map(d => `<tr><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td class="num">${brl(d[3])}</td><td class="num">${brl(d[4])}</td></tr>`).join('')}</tbody></table>` : '<span class="cl-txt">Calculado sobre a equipe: soma dos recebimentos dos representantes.</span>'}
+          ${x.aj ? '<div class="cl-txt">Ajuste: estorno de comissão de devolução (NF 88301).</div>' : ''}<button class="mini" type="button">+ Ajuste manual</button></td></tr>` : ''}`).join('')}
+      <tr class="ca-tot"><td>Total</td><td class="num">${brl(tot('fat'))}</td><td class="num">${brl(tot('rec'))}</td><td class="num">${brl(tot('com'))}</td><td class="num">${brl(tot('aj'))}</td><td class="num"><b>${brl(tot('com') + tot('aj'))}</b></td><td colspan="2"></td></tr>
+    </tbody></table>
+    <div class="cl-dica" style="margin-top:8px">Ao fechar o período: gera uma <b>nota de crédito</b> por representante e manda o valor para <b>Contas a pagar</b>. Cada representante vê o dele em <b>Portal › Minhas comissões</b>.</div></div>`;
+  };
+  box.addEventListener('click', (e) => {
+    const v = e.target.closest('[data-ca-ver]'); if (v) { box._abre = box._abre === +v.dataset.caVer ? null : +v.dataset.caVer; return desenha(); }
+    if (e.target.closest('[data-ca-conf]')) { ACERTO[box._per].forEach(x => { if (x.sit === 'aberto') x.sit = 'conferido'; }); return desenha(); }
+    if (e.target.closest('[data-ca-fechar]')) {
+      const l = ACERTO[box._per]; if (l.some(x => x.sit === 'aberto')) return toast('Confira todos antes de fechar o período');
+      let n = Math.max(...NOTAS_COM.map(x => +x.n.slice(3)));
+      l.forEach(x => { if (x.sit === 'conferido') { x.sit = 'fechado'; NOTAS_COM.unshift({ n:'NC-' + (++n), rep:x.rep, per:'11/2026', valor:x.com + x.aj, sit:'emitida', data:'27/11/2026' }); } });
+      desenha(); document.querySelectorAll('[data-com-notas]').forEach(b => b._redesenha && b._redesenha());
+      return toast('Período fechado: notas de crédito geradas e enviadas a Contas a pagar');
+    }
+  });
+  desenha();
+};
+
+TELAS.comNotas = (box) => {
+  box.classList.add('cl-box'); box.dataset.comNotas = '';
+  const desenha = () => { box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Notas geradas no fechamento do acerto. Desfazer exige motivo e fica no histórico.</span></div>
+    <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Nota</th><th>Representante</th><th>Período</th><th>Emissão</th><th class="num">Valor</th><th>Situação</th><th></th></tr></thead><tbody>${NOTAS_COM.map((x, i) => `<tr><td class="mono">${x.n}</td><td><b>${esc(x.rep)}</b></td><td>${x.per}</td><td>${x.data}</td><td class="num">${brl(x.valor)}</td>
+      <td>${x.sit === 'emitida' ? '<span class="pill p-ok">Emitida</span>' : `<span class="pill p-bad" title="${esc(x.motivo || '')}">Desfeita</span>`}</td>
+      <td>${x.sit === 'emitida' ? `<button class="mini" type="button" data-nc-pdf>PDF</button> <button class="mini" type="button" data-nc-desf="${i}">Desfazer</button>` : `<small class="cl-txt">${esc(x.motivo || '')}</small>`}</td></tr>`).join('')}</tbody></table></div>`; };
+  box._redesenha = desenha;
+  box.addEventListener('click', (e) => {
+    const d = e.target.closest('[data-nc-desf]');
+    if (d) { const m = prompt('Motivo para desfazer a nota de crédito:'); if (!m) return; const x = NOTAS_COM[+d.dataset.ncDesf]; x.sit = 'desfeita'; x.motivo = m; desenha(); return toast('Nota desfeita e valor retirado de Contas a pagar'); }
+    if (e.target.closest('[data-nc-pdf]')) return toast('Geraria o PDF da nota de crédito');
+  });
+  desenha();
+};
+
+TELAS.comRelatorio = (box) => {
+  box.classList.add('cl-box');
+  const max = Math.max(...Object.values(HIST_COM).flat());
+  box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Comissões dos últimos 5 meses, por representante.</span><button class="btn2" type="button" data-rel-xls>Exportar planilha</button></div>
+    <div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Representante</th>${MESES_COM.map(m => `<th class="num">${m}</th>`).join('')}<th class="num">Total</th><th>Tendência</th></tr></thead><tbody>
+    ${Object.entries(HIST_COM).map(([r, v]) => `<tr><td><b>${esc(r)}</b></td>${v.map(x => `<td class="num">${brl(x)}</td>`).join('')}<td class="num"><b>${brl(v.reduce((a, b) => a + b, 0))}</b></td>
+      <td><span class="rel-barras">${v.map(x => `<i style="height:${Math.max(4, Math.round(x / Math.max(...v) * 22))}px"></i>`).join('')}</span></td></tr>`).join('')}
+    </tbody></table></div>`;
+  box.addEventListener('click', (e) => { if (e.target.closest('[data-rel-xls]')) toast('Exportaria para planilha'); });
+};
 
 mostrarTela();
 </script>

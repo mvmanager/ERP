@@ -666,6 +666,19 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   sempre conjunta (unidade e kg).
 - Fotos: `docs/fotos/39-pedidos-lista.png` a `42-pedido-bloqueado.png`.
 
+### Comissões (Comercial › Vendas › Comissões) — primeira versão para aprovar
+- **Regras de comissão:** tabela com quem recebe, vale para (todos / cliente / produto / grupo /
+  equipe do supervisor), %, base (valor sem IPI, total da nota ou margem), quando paga (no
+  recebimento ou no faturamento) e vigência. Exceções e supervisor marcados. A regra mais
+  específica vale primeiro: produto › cliente › padrão do representante.
+- **Acerto de comissões:** por período, uma linha por representante (faturado, recebido,
+  comissão, ajustes, a pagar, situação Aberto → Conferido → Nota gerada → Pago), com detalhe por
+  nota/título e ajuste manual. "Fechar período" só depois de conferir todos; gera as notas de
+  crédito e manda para Contas a pagar.
+- **Notas de crédito:** lista com PDF e **Desfazer** (exige motivo, fica no histórico).
+- **Relatório:** comissão por representante nos últimos meses, total e mini-gráfico de tendência;
+  exportar planilha.
+
 ## Integrações entre módulos (anotadas até agora)
 **Regra:** ao desenhar ou construir qualquer tela, as integrações dela são anotadas aqui **na
 mesma hora**. Lista viva: cada tela desenhada acrescenta aqui o que recebe e entrega. Quando todos os
@@ -689,6 +702,13 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Materiais ↔ Expedição | — | depósitos e localizações (cadastro único) |
 | Compras ↔ Expedição | — | transportadoras (cadastro único) |
 | Ajuda (chamados) | Suporte › Chamados | print, texto, protocolo |
+| Faturamento (notas) + Contas a receber (recebimentos) | Vendas › Comissões › Acerto | base de cálculo da comissão |
+| Comissões › Regras | Acerto de comissões | % por representante, cliente, produto, supervisor |
+| Pedidos › Alterar pedido | Comissões | comissão específica de um item |
+| Acerto (fechar período) | Notas de crédito de comissão + Financeiro › Contas a pagar | valor a pagar a cada representante |
+| Notas de crédito (desfazer) | Contas a pagar | retira o valor |
+| Acerto / Notas | Portal › Minhas comissões | o que cada representante vê |
+| Devoluções (Faturamento) | Acerto | estorno de comissão |
 
 ## Ligação com equipamentos da fábrica (plano)
 - O sistema poderá receber dados de **máquinas** (velocidade, metros, caixas, paradas),
