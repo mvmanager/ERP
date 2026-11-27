@@ -218,6 +218,26 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   de crédito.
 - O nome "pelo crédito" evita confusão com a "Liberação de pedidos" de Vendas › Pedidos.
 
+### Comercial › Faturamento (proposta, a partir do sistema atual)
+- Padrão de nomes para todas as áreas: **Eventos → Operações**, **Demonstrativos → Consultas**.
+- **Cadastros** (13 → 6): Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela,
+  uma aba por imposto) · Aplicação dos convênios (por UF, cliente, produto e classificação
+  fiscal — junta os 4 "Convênios × …") · Transações de nota fiscal · Grupos de faturamento ·
+  Mensagens padronizadas · Parâmetros de faturamento.
+- **Operações** (do antigo Eventos), em grupos:
+  - **Faturamento:** Composição de faturas · Notas fiscais (especial, manual, de romaneio ou
+    de devolução de cliente — escolhe o tipo na tela) · Desconto no item da nota.
+  - **Embarque:** Aviso de embarque (gerar e ajustar) · Informe de material retornado ·
+    Conferência de fretes.
+  - **Documentos:** Certificados de qualidade (gerar e cancelar) · Declaração de exportação.
+- **Consultas:** a definir (falta o print de Demonstrativos).
+- Cancelamento, estorno, inutilização de número e carta de correção **vão para NFe**.
+
+### Comercial › NFe (tópicos definidos até agora)
+- Parte fiscal eletrônica das notas (o que se faz com a Receita).
+- **Operações:** Cancelamento de nota fiscal · Estorno de nota autorizada · Inutilizar
+  número de nota · Carta de correção.
+
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Orçamentos:** Orçamentos (chegam de Custos já com preço: consultar, negociar, aprovar e
   converter em pedido).

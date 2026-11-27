@@ -16,8 +16,9 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > a área **Comercial › Vendas** inteira (Cadastros, Operações, Pedidos, Follow-up,
 > Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
 > proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
-> Orçamentos**, e **Comercial › Crédito**. Próximo: as outras áreas do Comercial
-> (Faturamento, NFe, Expedição) e depois os outros módulos. Me
+> Orçamentos**, **Comercial › Crédito** e uma proposta para **Faturamento** e **NFe**
+> (falta o print de Demonstrativos do Faturamento). Próximo: Expedição e depois os outros
+> módulos. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
 > mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize

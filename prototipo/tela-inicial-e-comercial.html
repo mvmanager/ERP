@@ -1824,6 +1824,40 @@ const TOPICOS = {
       { ic:'engrenagem', t:'Parâmetros de crédito', d:'Configurações gerais da área de Crédito' },
     ]},
   ],
+  /* Comercial › Faturamento (proposta a partir do sistema atual). Eventos → Operações.
+     A parte fiscal eletrônica (cancelar, estornar, inutilizar, carta de correção) vai para NFe. */
+  'comercial/faturamento': [
+    { nome:'Cadastros', itens:[
+      { ic:'percent', t:'Convênios de impostos', d:'ICMS, IPI, PIS, COFINS e IBS/CBS, uma aba por imposto' },
+      { ic:'mapa', t:'Aplicação dos convênios', d:'Por UF, cliente, produto e classificação fiscal' },
+      { ic:'troca', t:'Transações de nota fiscal', d:'Tipos de operação das notas próprias' },
+      { ic:'caixa', t:'Grupos de faturamento', d:'Como os itens são agrupados para faturar' },
+      { ic:'texto', t:'Mensagens padronizadas', d:'Textos que saem impressos na nota' },
+      { ic:'engrenagem', t:'Parâmetros de faturamento', d:'Configurações gerais do Faturamento' },
+    ]},
+    { nome:'Operações', itens:[
+      { grupo:'Faturamento' },
+      { ic:'doc', t:'Composição de faturas', d:'Montar a fatura a partir dos pedidos prontos' },
+      { ic:'doc', t:'Notas fiscais', d:'Especial, manual, de romaneio ou de devolução de cliente' },
+      { ic:'percent', t:'Desconto no item da nota', d:'Conceder desconto num item da nota' },
+      { grupo:'Embarque' },
+      { ic:'caminhao', t:'Aviso de embarque', d:'Gerar e ajustar avisos de embarque' },
+      { ic:'troca', t:'Informe de material retornado', d:'Material que voltou do cliente' },
+      { ic:'cifrao', t:'Conferência de fretes', d:'Conferir os valores de frete' },
+      { grupo:'Documentos' },
+      { ic:'check', t:'Certificados de qualidade', d:'Gerar e cancelar certificados que acompanham a nota' },
+      { ic:'importar', t:'Declaração de exportação', d:'Documentos de exportação' },
+    ]},
+  ],
+  /* Comercial › NFe: a parte fiscal eletrônica das notas (vinda do Faturamento atual). */
+  'comercial/nfe': [
+    { nome:'Operações', itens:[
+      { ic:'xcirc', t:'Cancelamento de nota fiscal', d:'Cancelar uma nota já emitida' },
+      { ic:'troca', t:'Estorno de nota autorizada', d:'Estornar uma nota autorizada pela Receita' },
+      { ic:'alerta', t:'Inutilizar número de nota', d:'Inutilizar formulário ou número de nota' },
+      { ic:'lapis', t:'Carta de correção', d:'Corrigir informações de uma nota emitida' },
+    ]},
+  ],
   'comercial/vendas': [
     /* Cadastros: como no sistema atual, sem Assuntos, Grupo de empresas, Segmento econômico,
        Meios de comunicação, Tipos de bloqueio na entrega, Nosso prazo × prazo cliente e
