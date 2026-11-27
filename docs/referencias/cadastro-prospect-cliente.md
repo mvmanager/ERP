@@ -88,7 +88,12 @@ Recebimento)
 - E-mail do certificado de qualidade: assunto · corpo · nome do anexo (com campos variáveis) ·
   gerar arquivo único com todos os certificados da série/NF/item.
 
-**Outras abas (conteúdo ainda não enviado):** Financeiro · Ocorrências (na consulta).
+**Aba Financeiro**
+- Banco · Agência · Usar floating (para a data na nossa conta de novos títulos)
+- Utilizar carteira depósito · Análise de crédito antes do embarque · Desprezar tarifa bancária
+  no título a receber · Bloquear o desconto de títulos a receber
+
+**Não enviado:** Ocorrências (na consulta).
 
 **Consulta:** navegação registro a registro e "aproximar por" (busca).
 **Relatório:** filtros por faixa de clientes, UF, município, representante, segmento; situação

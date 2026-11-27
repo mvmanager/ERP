@@ -603,6 +603,33 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
      conferido contra demonstrativos de custo do ERP;
    - trazer a calculadora de caixa (eslote por cilindro de cada impressora).
 
+## Telas desenhadas por dentro
+
+### Prospects e clientes (Comercial › Vendas › Cadastros) — primeira versão para aprovar
+- Feita **do nosso jeito** (o diferencial está nesses detalhes). O sistema atual serviu só de
+  referência de campos: `docs/referencias/cadastro-prospect-cliente.md`.
+- **Lista** com busca (nome, CNPJ, cidade), filtros (todos, clientes, prospects, inativos) e
+  botão **＋ Novo prospect**.
+- **Novo prospect começa pelo CNPJ:** o sistema busca razão social, endereço e situação na
+  Receita; a pessoa só completa. CEP também preenche o endereço sozinho.
+- **Prospect e cliente na mesma ficha:** botão **Virar cliente** — nada é recadastrado; aparecem
+  as seções de fiscal, financeiro e crédito.
+- **Abre num resumo**, não num formulário: faturamento 12 meses, margem, pedidos em aberto,
+  atraso, crédito usado × limite, últimos pedidos e histórico. Para prospect: interesse e
+  últimos contatos.
+- **Seções** na lateral (no lugar das 14 abas do sistema atual): Resumo · Dados da empresa ·
+  Endereços e unidades · Contatos · Comercial · Entrega e logística · Fiscal e nota ·
+  Financeiro e crédito · Advertências · Informações extras · Histórico · Integrações (só TI).
+- **Ver primeiro, editar depois:** os campos aparecem como texto; o botão **Editar** libera e
+  mostra **Salvar / Cancelar**.
+- **Advertências por setor viram aviso automático** na tela de cada setor quando trabalhar com
+  o cliente (a de Vendas já aparece no topo da ficha).
+- **Contatos** marcados para receber automaticamente cobrança, NF-e, certificado e EDI.
+- **Configurações técnicas** (EDI, e-mail do certificado) ficam na seção **Integrações**, só
+  para administrador e TI.
+- Fotos: `docs/fotos/34-clientes-lista.png` a `37-prospect.png`.
+- Ajuste pendente: no celular, a barra de cima cobre o cabeçalho da ficha ao rolar.
+
 ## Ligação com equipamentos da fábrica (plano)
 - O sistema poderá receber dados de **máquinas** (velocidade, metros, caixas, paradas),
   **balança**, **leitores de código de barras / impressoras de etiquetas** e **sensores**

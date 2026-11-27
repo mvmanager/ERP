@@ -355,6 +355,102 @@ textarea.falta{border-color:var(--bad)!important}
 @media (max-width:820px){ .fila-det{grid-template-columns:1fr} }
 .ch-acoes{display:flex;gap:8px;flex-wrap:wrap}
 
+/* ── Prospects e clientes ── */
+.jan-corpo.cl-box{padding:0;display:block}
+.cl-topo{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 18px;background:var(--surface);border-bottom:1px solid var(--line)}
+.cl-topo .srch{flex:1 1 260px}
+.cl-topo .cl-novo{margin-left:auto}
+.cl-linhas{display:grid;gap:6px;padding:12px 18px 18px}
+.cl-linha{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,180px) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-align:left;cursor:pointer;width:100%;transition:border-color .2s,transform .2s}
+.cl-linha:hover{border-color:var(--kraft);transform:translateY(-1px)}
+.cl-linha .tx,.cl-linha .cid{display:grid;min-width:0}
+.cl-linha b{font-size:14.5px}
+.cl-linha small,.cl-linha .cid{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cl-linha .cid small{font-size:11.5px}
+.av.grande{width:44px;height:44px;font-size:15px}
+.cl-ficha{display:flex;flex-direction:column;min-height:100%}
+.cl-cab{position:sticky;top:0;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;padding:12px 18px;background:var(--surface);border-bottom:1px solid var(--line)}
+.cl-nome{display:grid;min-width:0;flex:1 1 220px}
+.cl-nome b{font-family:var(--f-display);font-weight:800;font-stretch:92%;font-size:21px;line-height:1.1}
+.cl-nome small{font-size:12.5px;color:var(--muted)}
+.cl-acoes{display:flex;gap:8px;margin-left:auto}
+.cl-acoes .btn2,.cl-acoes .go{padding:8px 14px;font-size:13.5px}
+.cl-aviso{display:flex;gap:10px;align-items:center;margin:12px 18px 0;padding:10px 14px;border-radius:12px;background:var(--warn-soft);color:var(--ink);font-size:13.5px}
+.cl-aviso svg{width:18px;height:18px;color:var(--warn);flex:none}
+.cl-corpo{display:grid;grid-template-columns:200px minmax(0,1fr);gap:18px;padding:14px 18px 22px;flex:1}
+.cl-nav{display:flex;flex-direction:column;gap:2px;position:sticky;top:84px;align-self:start}
+.cl-nav button{border:0;background:transparent;text-align:left;padding:8px 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.cl-nav button:hover{background:var(--surface-2);color:var(--ink)}
+.cl-nav button[aria-current="true"]{background:var(--kraft-soft);color:var(--ink)}
+.cl-nav i{font-style:normal;font-size:10px;padding:1px 5px;border-radius:5px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted);margin-left:4px}
+.cl-sec{display:grid;gap:14px;align-content:start;min-width:0}
+.cl-sec h3{margin:0;font-family:var(--f-display);font-weight:700;font-stretch:94%;font-size:19px}
+.cl-bloco{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:grid;gap:10px}
+.cl-bloco h4{margin:0;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;gap:8px;align-items:baseline}
+.cl-bloco h4 small{text-transform:none;letter-spacing:0;font-weight:500}
+.cl-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 14px;align-items:end}
+.cf{display:grid;gap:4px;font-size:12.5px;font-weight:600;color:var(--muted);position:relative}
+.cf.larga{grid-column:1/-1}
+.cf i{font-style:normal;display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--line-2);font-size:10px;cursor:help}
+.cf input,.cf select,.cf textarea,.cl-tab input{font:inherit;font-weight:500;font-size:14px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:8px 10px;width:100%}
+.cf textarea{min-height:64px;resize:vertical}
+.cf input:disabled,.cf select:disabled,.cf textarea:disabled,.cl-tab input:disabled{background:transparent;border-color:transparent;padding-left:0;color:var(--ink);opacity:1;-webkit-text-fill-color:var(--ink);appearance:none;resize:none}
+.cf input:disabled:placeholder-shown{border-bottom:1px dashed var(--line)}
+.editando .cf input,.editando .cf select,.editando .cf textarea{background:var(--surface)}
+.editando .cf input:focus,.editando .cf select:focus,.editando .cf textarea:focus{outline:none;border-color:var(--kraft);box-shadow:0 0 0 3px color-mix(in srgb,var(--kraft) 16%,transparent)}
+.cf-bt{position:absolute;right:4px;bottom:4px;padding:4px 8px;font-size:11.5px}
+.cf-sn{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--ink);grid-column:1/-1}
+.cf-sn i{font-style:normal;display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--line-2);font-size:10px;color:var(--muted);cursor:help}
+.so-edicao{display:none}
+.editando .so-edicao{display:inline-flex}
+.cl-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cl-kpi{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface);display:grid;gap:2px}
+.cl-kpi span{font-size:12px;color:var(--muted)}
+.cl-kpi b{font-family:var(--f-display);font-weight:800;font-stretch:92%;font-size:22px}
+.cl-kpi.ruim b{color:var(--bad)}
+.cl-credito{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface);display:grid;gap:6px}
+.cl-credito div:first-child{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13.5px}
+.cl-credito span,.cl-credito small{color:var(--muted);font-size:12.5px}
+.cl-credito.alto .meta i{background:linear-gradient(90deg,var(--warn),var(--bad))}
+.cl-duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.cl-tab{width:100%;border-collapse:collapse;font-size:13.5px}
+.cl-grade>.cl-tab,.cl-grade>.cl-tempo,.cl-grade>.cl-txt,.cl-grade>.cl-dica{grid-column:1/-1}
+.cl-tab td{white-space:nowrap}
+.cl-tab th{text-align:left;font-size:11.5px;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+.cl-tab td{padding:7px 8px;border-bottom:1px dashed var(--line)}
+.cl-tab tr:last-child td{border-bottom:0}
+.cl-tempo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cl-tempo li{display:grid;grid-template-columns:58px 1fr;gap:10px;font-size:13.5px}
+.cl-tempo .mono{color:var(--kraft);font-size:12px;padding-top:2px}
+.cl-tempo small{display:block;color:var(--muted);font-size:12px}
+.cl-txt{margin:0;font-size:13.5px;color:var(--muted)}
+.cl-dica{padding:10px 14px;border-radius:12px;background:var(--info-soft);font-size:13px;color:var(--ink)}
+.cl-lista{display:grid;gap:6px;grid-column:1/-1}
+.cl-item{display:grid;gap:1px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:13.5px}
+.cl-item span,.cl-item small{color:var(--muted);font-size:12.5px}
+.cl-doc{grid-template-columns:1fr auto;align-items:center}
+.cl-chips{display:flex;flex-wrap:wrap;gap:6px;grid-column:1/-1}
+.cl-chips .chip{cursor:default}
+.cl-contatos{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.cl-contato{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.cl-contato>div:last-child{display:grid;gap:2px;font-size:13px;min-width:0}
+.cl-contato small,.cl-contato span{color:var(--muted);font-size:12.5px;overflow:hidden;text-overflow:ellipsis}
+.cl-novo-reg{gap:8px;grid-column:1/-1}
+.cl-novo-reg input{flex:1;font:inherit;border:1px solid var(--line-2);border-radius:9px;padding:8px 10px;background:var(--surface);color:var(--ink)}
+.cl-novo-tela{padding:18px;display:grid;gap:12px;max-width:560px}
+.cl-novo-tela h3{margin:0;font-family:var(--f-display);font-size:21px}
+.cl-cnpj{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+.cl-cnpj .cf{flex:1 1 220px}
+.cl-cnpj .cf input{background:var(--surface)}
+@media (max-width:760px){
+  .cl-corpo{grid-template-columns:1fr}
+  .cl-nav{position:static;flex-direction:row;overflow-x:auto;scrollbar-width:none}
+  .cl-nav button{white-space:nowrap}
+  .cl-linha{grid-template-columns:auto minmax(0,1fr) auto}
+  .cl-linha .cid{display:none}
+  .cl-acoes{margin-left:0}
+}
+
 /* retomada */
 .recent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media (max-width:820px){ .recent{grid-template-columns:1fr} }
@@ -2298,7 +2394,7 @@ const TOPICOS = {
        Motivos de alteração de data de entrega — esses viram campos dentro do cadastro de
        prospect e cliente. */
     { nome:'Cadastros', itens:[
-      { ic:'pessoa', t:'Prospects e clientes', d:'Cadastrar e consultar prospects e clientes' },
+      { ic:'pessoa', t:'Prospects e clientes', d:'Cadastrar e consultar prospects e clientes', tela:'clientes' },
       { ic:'mapa', t:'Áreas de vendas', d:'Regiões atendidas pela equipe' },
       { ic:'maleta', t:'Representantes', d:'Cadastro dos representantes' },
       { ic:'estrela', t:'Supervisores de vendas', d:'Quem supervisiona cada equipe' },
@@ -2782,6 +2878,325 @@ function cliqueFila(box, e){
       if (c.status === 'aberto') c.status = 'andamento';
     });
   }
+}
+
+/* ════ Prospects e clientes (Comercial › Vendas › Cadastros) ════
+   Ficha única: prospect e cliente na mesma ficha (o prospect vira cliente sem recadastrar).
+   Abre num RESUMO; o detalhe fica em seções. Tudo que é do cliente fica aqui dentro.
+   Campos levantados do sistema atual (docs/referencias/cadastro-prospect-cliente.md),
+   reorganizados do nosso jeito. Dados de exemplo, fictícios. */
+const CLIENTES = [
+  { id:1, tipo:'cliente', status:'Ativo', razao:'Embalagens Horizonte Ltda', fantasia:'Horizonte', cnpj:'12.345.678/0001-90',
+    nat:'Sociedade limitada', ieInd:'Contribuinte', ie:'244.512.880.114', segmento:'Alimentos', grupo:'Grupo Horizonte',
+    rep:'Matheus', sup:'Carla Mendes', area:'SP Interior', desde:'03/2019', origem:'Indicação de cliente', codOrig:'C-0142', nossoCod:'FORN-88',
+    end:{ cep:'13010-000', log:'Rua das Indústrias', num:'450', comp:'Galpão 2', bairro:'Distrito Industrial', cidade:'Campinas', uf:'SP' },
+    entregas:[ { nome:'Fábrica Campinas', end:'Rua das Indústrias, 450 · Campinas/SP', edi:'E01' }, { nome:'CD Sumaré', end:'Av. da Logística, 1200 · Sumaré/SP', edi:'E02' } ],
+    cobrancas:[ { nome:'Financeiro matriz', end:'Rua das Indústrias, 450 · Campinas/SP' } ],
+    unidades:[ 'Matriz Campinas', 'Filial Sumaré' ],
+    contatos:[
+      { nome:'Renata Lopes', depto:'Compras', tel:'(19) 3232-1000', cel:'(19) 99876-5432', email:'renata@horizonte.exemplo', aniv:'12/04', usos:['NF-e','Certificado'] },
+      { nome:'Paulo Reis', depto:'Financeiro', tel:'(19) 3232-1010', cel:'', email:'financeiro@horizonte.exemplo', aniv:'', usos:['Cobrança'] },
+    ],
+    credito:{ limite:250000, usado:182000, aberto:96400, atraso:0 },
+    resumo:{ fat12:'R$ 1,84 mi', ultimo:'21/11/2026', abertos:3, margem:'18,4%' },
+    pedidos:[ { n:'4521', data:'21/11', valor:'R$ 42.300', sit:'Em produção' }, { n:'4488', data:'12/11', valor:'R$ 38.900', sit:'Faturado' }, { n:'4430', data:'30/10', valor:'R$ 51.200', sit:'Entregue' } ],
+    advert:{ vendas:'Pedidos acima de R$ 20 mil precisam do OK da Renata (Compras).', expedicao:'Recebe só até 15h. Agendar descarga com 1 dia de antecedência.', faturamento:'Sempre informar o número da OC na nota.' },
+    historico:[ { data:'21/11', txt:'Pedido 4521 lançado', quem:'Matheus' }, { data:'14/11', txt:'Visita técnica: nova caixa para linha de congelados', quem:'Matheus' }, { data:'02/10', txt:'Limite de crédito revisto para R$ 250 mil', quem:'Crédito' } ],
+    docs:[ { nome:'Contrato social', sit:'ok', val:'—' }, { nome:'Balanço 2025', sit:'ok', val:'30/06/2027' }, { nome:'Ficha cadastral', sit:'vence', val:'15/12/2026' } ],
+    extras:[ { attr:'Condição de entrega', val:'Palete PBR, altura máx. 1,6 m', obrig:true } ],
+  },
+  { id:2, tipo:'cliente', status:'Ativo', razao:'Frigorífico Serra Azul S.A.', fantasia:'Serra Azul', cnpj:'23.456.789/0001-01',
+    nat:'Sociedade anônima', ieInd:'Contribuinte', ie:'455.120.330.010', segmento:'Carnes e frios', grupo:'—',
+    rep:'Matheus', sup:'Carla Mendes', area:'SP Interior', desde:'08/2021', origem:'Feira do setor', codOrig:'C-0311', nossoCod:'',
+    end:{ cep:'14800-000', log:'Rodovia SP-255, km 12', num:'s/n', comp:'', bairro:'Zona Rural', cidade:'Araraquara', uf:'SP' },
+    entregas:[ { nome:'Planta Araraquara', end:'Rodovia SP-255, km 12 · Araraquara/SP', edi:'' } ],
+    cobrancas:[ { nome:'Contas a pagar', end:'Rodovia SP-255, km 12 · Araraquara/SP' } ],
+    unidades:[ 'Planta Araraquara' ],
+    contatos:[ { nome:'Jorge Almeida', depto:'Suprimentos', tel:'(16) 3301-2200', cel:'(16) 98111-2233', email:'jorge@serraazul.exemplo', aniv:'03/09', usos:['NF-e'] } ],
+    credito:{ limite:180000, usado:171500, aberto:88000, atraso:12400 },
+    resumo:{ fat12:'R$ 960 mil', ultimo:'18/11/2026', abertos:2, margem:'14,1%' },
+    pedidos:[ { n:'4509', data:'18/11', valor:'R$ 27.800', sit:'Programado' }, { n:'4470', data:'05/11', valor:'R$ 31.100', sit:'Entregue' } ],
+    advert:{ vendas:'Título vencido em aberto: confirmar com o Crédito antes de prometer prazo.', contas:'Paga sempre na sexta-feira seguinte ao vencimento.' },
+    historico:[ { data:'18/11', txt:'Pedido 4509 lançado', quem:'Matheus' }, { data:'10/11', txt:'Título 88412 vencido (R$ 12.400)', quem:'Contas a receber' } ],
+    docs:[ { nome:'Contrato social', sit:'ok', val:'—' }, { nome:'Balanço 2025', sit:'falta', val:'—' } ],
+    extras:[ { attr:'Condição de entrega', val:'Câmara fria, entregar em paletes filmados', obrig:true } ],
+  },
+  { id:3, tipo:'prospect', status:'Ativo', razao:'Calçados Passo Firme Ltda', fantasia:'Passo Firme', cnpj:'34.567.890/0001-12',
+    nat:'Sociedade limitada', ieInd:'Contribuinte', ie:'', segmento:'Calçados', grupo:'—',
+    rep:'Matheus', sup:'Carla Mendes', area:'SP Interior', desde:'11/2026', origem:'Site', codOrig:'', nossoCod:'',
+    end:{ cep:'14400-000', log:'Av. dos Sapateiros', num:'88', comp:'', bairro:'Centro', cidade:'Franca', uf:'SP' },
+    entregas:[], cobrancas:[], unidades:[],
+    contatos:[ { nome:'Luciana Prado', depto:'Compras', tel:'(16) 3722-4400', cel:'(16) 99444-1100', email:'luciana@passofirme.exemplo', aniv:'', usos:[] } ],
+    interesse:'Caixas de papelão para calçados (caixa individual e master).',
+    historico:[ { data:'25/11', txt:'Primeiro contato pelo site', quem:'Matheus' }, { data:'26/11', txt:'Solicitação de orçamento enviada a Custos', quem:'Matheus' } ],
+    pedidos:[], docs:[], extras:[], advert:{},
+  },
+  { id:4, tipo:'cliente', status:'Inativo', razao:'Laticínios Vale Verde Ltda', fantasia:'Vale Verde', cnpj:'45.678.901/0001-23',
+    nat:'Sociedade limitada', ieInd:'Contribuinte', ie:'210.445.778.001', segmento:'Laticínios', grupo:'—',
+    rep:'Sandro', sup:'Carla Mendes', area:'MG Sul', desde:'02/2017', origem:'Representante', codOrig:'C-0058', nossoCod:'',
+    end:{ cep:'37500-000', log:'Rua do Leite', num:'15', comp:'', bairro:'Industrial', cidade:'Itajubá', uf:'MG' },
+    entregas:[ { nome:'Fábrica Itajubá', end:'Rua do Leite, 15 · Itajubá/MG', edi:'' } ], cobrancas:[], unidades:[ 'Fábrica Itajubá' ],
+    contatos:[], credito:{ limite:60000, usado:0, aberto:0, atraso:0 },
+    resumo:{ fat12:'R$ 0', ultimo:'04/03/2025', abertos:0, margem:'—' },
+    pedidos:[], advert:{}, historico:[ { data:'04/03/25', txt:'Último pedido (3880)', quem:'Sandro' } ], docs:[], extras:[],
+  },
+];
+const ehCli = (c) => c.tipo === 'cliente';
+const nomeExib = (c) => c.fantasia || c.razao;
+
+/* Seções da ficha: (cli = só aparece para cliente; adm = só administrador e TI) */
+const SECOES = [
+  { id:'resumo', nome:'Resumo' },
+  { id:'dados', nome:'Dados da empresa' },
+  { id:'enderecos', nome:'Endereços e unidades' },
+  { id:'contatos', nome:'Contatos' },
+  { id:'comercial', nome:'Comercial' },
+  { id:'entrega', nome:'Entrega e logística' },
+  { id:'fiscal', nome:'Fiscal e nota', cli:true },
+  { id:'financeiro', nome:'Financeiro e crédito', cli:true },
+  { id:'advertencias', nome:'Advertências' },
+  { id:'extras', nome:'Informações extras' },
+  { id:'historico', nome:'Histórico' },
+  { id:'integracoes', nome:'Integrações', cli:true, adm:true },
+];
+
+/* pedaços de formulário (ficam travados até clicar em Editar) */
+const f = (rot, val, o = {}) => `<label class="cf${o.larga ? ' larga' : ''}"><span>${rot}${o.ajuda ? ` <i title="${esc(o.ajuda)}">?</i>` : ''}</span>${
+  o.opcoes ? `<select disabled>${o.opcoes.map(x => `<option${x === val ? ' selected' : ''}>${esc(x)}</option>`).join('')}</select>`
+  : o.texto ? `<textarea disabled>${esc(val || '')}</textarea>`
+  : `<input disabled value="${esc(val || '')}"${o.ph ? ` placeholder="${esc(o.ph)}"` : ''}>`}${o.botao ? `<button class="mini cf-bt" type="button" data-acao-f="${o.botao[1]}">${o.botao[0]}</button>` : ''}</label>`;
+const sn = (rot, on, ajuda) => `<label class="cf-sn"><input type="checkbox" disabled${on ? ' checked' : ''}> <span>${rot}</span>${ajuda ? ` <i title="${esc(ajuda)}">?</i>` : ''}</label>`;
+const bloco = (tit, corpo, sub) => `<section class="cl-bloco"><h4>${tit}${sub ? `<small>${sub}</small>` : ''}</h4><div class="cl-grade">${corpo}</div></section>`;
+const SIMNAO = ['Sim', 'Não'];
+
+function secResumo(c){
+  if (!ehCli(c)) return `
+    <div class="cl-kpis">
+      <div class="cl-kpi"><span>Prospect desde</span><b>${c.desde}</b></div>
+      <div class="cl-kpi"><span>Representante</span><b>${esc(c.rep)}</b></div>
+      <div class="cl-kpi"><span>Origem</span><b>${esc(c.origem)}</b></div>
+    </div>
+    ${bloco('Produtos e serviços de interesse', `<p class="cl-txt">${esc(c.interesse || '—')}</p>`)}
+    ${bloco('Últimos contatos', linhaTempo(c.historico))}
+    <div class="cl-dica">Quando fechar o primeiro pedido, use <b>Virar cliente</b>: tudo que já foi preenchido continua, e aparecem as seções de fiscal, financeiro e crédito.</div>`;
+  const cr = c.credito, pct = cr.limite ? Math.round(cr.usado / cr.limite * 100) : 0;
+  return `
+    <div class="cl-kpis">
+      <div class="cl-kpi"><span>Faturamento 12 meses</span><b>${c.resumo.fat12}</b></div>
+      <div class="cl-kpi"><span>Margem média</span><b>${c.resumo.margem}</b></div>
+      <div class="cl-kpi"><span>Pedidos em aberto</span><b>${c.resumo.abertos}</b></div>
+      <div class="cl-kpi${cr.atraso ? ' ruim' : ''}"><span>Em atraso</span><b>${cr.atraso ? 'R$ ' + cr.atraso.toLocaleString('pt-BR') : 'Nada'}</b></div>
+    </div>
+    <div class="cl-credito${pct >= 90 ? ' alto' : ''}"><div><span>Crédito usado</span><b>R$ ${cr.usado.toLocaleString('pt-BR')} de R$ ${cr.limite.toLocaleString('pt-BR')}</b></div><div class="meta"><i style="width:${pct}%"></i></div><small>${pct}% do limite${pct >= 90 ? ' · perto do limite' : ''}</small></div>
+    <div class="cl-duas">
+      ${bloco('Últimos pedidos', c.pedidos.length ? `<table class="cl-tab"><tr><th>Pedido</th><th>Data</th><th>Valor</th><th>Situação</th></tr>${c.pedidos.map(p => `<tr><td class="mono">${p.n}</td><td>${p.data}</td><td>${p.valor}</td><td>${p.sit}</td></tr>`).join('')}</table>` : '<p class="cl-txt">Nenhum pedido recente.</p>')}
+      ${bloco('Histórico recente', linhaTempo(c.historico))}
+    </div>`;
+}
+function linhaTempo(h){
+  return h && h.length ? `<ul class="cl-tempo">${h.map(x => `<li><span class="mono">${x.data}</span><div>${esc(x.txt)}<small>${esc(x.quem)}</small></div></li>`).join('')}</ul>` : '<p class="cl-txt">Sem registros.</p>';
+}
+function secDados(c){
+  return bloco('Identificação', `
+      ${f('CNPJ / CPF', c.cnpj, { botao:['Buscar na Receita','receita'], ajuda:'Preenche razão social, endereço e situação automaticamente' })}
+      ${f('Natureza jurídica', c.nat, { opcoes:['Sociedade limitada','Sociedade anônima','Empresário individual','Pessoa física'] })}
+      ${f('Razão social', c.razao, { larga:true })}
+      ${f('Nome fantasia', c.fantasia, { ajuda:'Toda troca de nome fantasia fica registrada no histórico' })}
+      ${f('Situação', c.status, { opcoes:['Ativo','Inativo','Bloqueado'] })}
+      ${f('Indicador de I.E.', c.ieInd, { opcoes:['Contribuinte','Isento','Não contribuinte'] })}
+      ${f('Inscrição estadual', c.ie)}`)
+  + bloco('Classificação', `
+      ${f('Segmento econômico', c.segmento)}
+      ${f('Grupo de empresas', c.grupo)}
+      ${f('Como conheceu a empresa', c.origem)}
+      ${f('Cliente desde', c.desde)}
+      ${ehCli(c) ? f('Código no sistema antigo', c.codOrig) + f('Nosso código no cliente', c.nossoCod, { ajuda:'Como o cliente nos identifica (ex.: código de fornecedor dele)' }) : ''}
+      ${!ehCli(c) ? f('Produtos e serviços de interesse', c.interesse, { texto:true, larga:true }) : ''}`);
+}
+function secEnderecos(c){
+  const e = c.end;
+  return bloco('Endereço principal', `
+      ${f('CEP', e.cep, { botao:['Buscar','cep'], ajuda:'Preenche rua, bairro, cidade e estado' })}
+      ${f('Logradouro', e.log, { larga:true })}
+      ${f('Número', e.num)}${f('Complemento', e.comp)}
+      ${f('Bairro', e.bairro)}${f('Cidade', e.cidade)}${f('Estado', e.uf)}`)
+  + (ehCli(c) ? bloco('Locais de entrega', listaEnd(c.entregas, 'entrega') + sn('Exigir o local de entrega no pedido', true), 'o cliente pode ter vários')
+  + bloco('Endereços de cobrança', listaEnd(c.cobrancas, 'cobrança') + sn('Exigir o endereço de cobrança no pedido', false))
+  + bloco('Unidades do cliente', c.unidades.length ? `<div class="cl-chips">${c.unidades.map(u => `<span class="chip">${esc(u)}</span>`).join('')}</div>` : '<p class="cl-txt">Nenhuma unidade cadastrada.</p>', 'filiais e fábricas')
+  + bloco('Produto × local de entrega', '<p class="cl-txt">Quais produtos vão para cada local (preenchido a partir dos pedidos).</p>') : '');
+}
+const listaEnd = (l, tipo) => `<div class="cl-lista">${l.length ? l.map(x => `<div class="cl-item"><b>${esc(x.nome)}</b><span>${esc(x.end)}</span>${x.edi ? `<small>Código EDI ${x.edi}</small>` : ''}</div>`).join('') : `<p class="cl-txt">Nenhum endereço de ${tipo}.</p>`}<button class="mini so-edicao" type="button">+ Adicionar</button></div>`;
+function secContatos(c){
+  return `<div class="cl-contatos">${c.contatos.map(k => `<div class="cl-contato"><div class="av">${k.nome.split(' ').map(x => x[0]).slice(0,2).join('')}</div>
+      <div><b>${esc(k.nome)}</b><small>${esc(k.depto)}${k.aniv ? ' · aniversário ' + k.aniv : ''}</small>
+      <span>${esc(k.tel)}${k.cel ? ' · ' + esc(k.cel) : ''}</span><span>${esc(k.email)}</span>
+      ${k.usos.length ? `<div class="cl-chips">${k.usos.map(u => `<span class="pill p-info">recebe ${u}</span>`).join('')}</div>` : ''}</div></div>`).join('') || '<p class="cl-txt">Nenhum contato.</p>'}
+    <button class="mini so-edicao" type="button">+ Adicionar contato</button></div>
+    <div class="cl-dica">Cada contato pode ser marcado para receber automaticamente: <b>cobrança</b> (boletos), <b>NF-e</b>, <b>certificado de qualidade</b> e <b>EDI</b>.</div>`;
+}
+function secComercial(c){
+  return bloco('Quem atende', `${f('Representante', c.rep)}${f('Supervisor', c.sup)}${f('Área de vendas', c.area)}`)
+  + (ehCli(c) ? bloco('Condições de venda', `
+      ${f('Política de preço', 'Tabela padrão 2026', { opcoes:['Tabela padrão 2026','Tabela grandes contas'] })}
+      ${f('Índice de encargos (%)', '2,5')}
+      ${f('Prazo de pagamento', '28/42/56 dias')}
+      ${f('Transação para pedidos', 'Venda de produção própria')}
+      ${f('Tipo de pedido', 'Normal', { opcoes:['Normal','Programado','Amostra'] })}
+      ${f('Confirmar pedido com o cliente', 'Sim', { opcoes:SIMNAO })}
+      ${f('Mensagem padrão no pedido', '')}`) : '');
+}
+function secEntrega(c){
+  return bloco('Prazos e tolerâncias', `
+      ${f('Tolerância de quantidade para menos (%)', '10')}${f('Tolerância de quantidade para mais (%)', '10')}
+      ${ehCli(c) ? f('Tolerância de data: dias antes', '2') + f('Tolerância de data: dias depois', '0') + f('Regra para data de embarque', 'Data de entrega − dias de transporte') + f('Dias de transporte', '1') : ''}`)
+  + bloco('FSC', `${f('Exige selo FSC', 'Não', { opcoes:SIMNAO })}${f('Aceita impressão do selo FSC', 'Sim', { opcoes:SIMNAO })}`)
+  + (ehCli(c) ? bloco('Transporte', `
+      ${f('Transportador', 'Transportes Rápido Sul')}${f('Redespacho', '')}${f('Frete', 'CIF', { opcoes:['CIF','FOB'] })}
+      ${f('Avisar embarque', 'Por e-mail', { opcoes:['Por e-mail','Não avisar'] })}`)
+  + bloco('Regras de entrega', `
+      ${f('Controle de embalagens retornáveis', 'Paletes PBR')}
+      ${f('Quantos produtos por nota', '')}${f('Quantos pedidos por nota', '')}
+      ${sn('Aceita entrega com data anterior à de hoje', false)}
+      ${sn('Mesmo volume para vários itens do romaneio', false)}
+      ${sn('Emite certificado de qualidade', true)}`)
+  + bloco('Bloqueios e prazos combinados', `
+      ${f('Tipos de bloqueio na entrega', 'Nenhum')}
+      ${f('Nosso prazo × prazo do cliente', '15 dias × 20 dias')}
+      ${f('Motivos de alteração de data/quantidade', 'Usar a lista padrão')}`) : '');
+}
+function secFiscal(){
+  return bloco('Impostos', `
+      ${f('Convênio ICMS', 'Padrão SP')}${f('Convênio IPI', 'Padrão')}
+      ${f('Regime especial ICMS: número', '')}${f('Regime especial: válido até', '')}
+      ${f('Termo de acordo IPI: número', '')}${f('Termo de acordo: válido até', '')}
+      ${f('Suframa', '')}${f('Conta contábil', '1.1.2.01.0142', { ajuda:'Preenchida pela Contabilidade' })}
+      ${sn('Obedece regra de crédito de ICMS', true)}`)
+  + bloco('Nota fiscal eletrônica', `
+      ${sn('Usar a referência do cliente no item da NF-e', true)}
+      ${sn('Enviar "grupo de compra" no XML', false)}
+      ${sn('Enviar a OC nos dados complementares', true)}
+      ${sn('Substituição tributária total na primeira parcela', false)}
+      ${sn('Não mostrar a revisão do produto no XML e no DANFE', false)}
+      ${f('Casas decimais na nota', 'Padrão', { opcoes:['Padrão','2','3','4'] })}`);
+}
+function secFinanceiro(c){
+  return bloco('Crédito', `
+      ${f('Limite de crédito', 'R$ ' + c.credito.limite.toLocaleString('pt-BR'), { ajuda:'Definido pela área de Crédito' })}
+      ${sn('Analisar crédito antes do embarque', true)}`)
+  + bloco('Documentação', `<div class="cl-lista">${c.docs.map(d => `<div class="cl-item cl-doc"><b>${esc(d.nome)}</b><span class="pill ${d.sit === 'ok' ? 'p-ok' : d.sit === 'vence' ? 'p-warn' : 'p-bad'}">${d.sit === 'ok' ? 'Em dia' : d.sit === 'vence' ? 'Vence ' + d.val : 'Falta enviar'}</span></div>`).join('') || '<p class="cl-txt">Nenhum documento.</p>'}<button class="mini so-edicao" type="button">+ Anexar documento</button></div>`, 'usada pelo Crédito')
+  + bloco('Cobrança', `
+      ${f('Banco', 'Banco do Brasil')}${f('Agência', '1234-5')}
+      ${f('Usar floating', 'Não', { opcoes:['Não','1 dia','2 dias'], ajuda:'Dias até o dinheiro cair na nossa conta' })}
+      ${sn('Usar carteira depósito', false)}${sn('Desprezar tarifa bancária no título', false)}${sn('Bloquear desconto de títulos', false)}`)
+  + bloco('Restrições de vencimento', `<table class="cl-tab"><tr><th>Regra</th><th>Quando</th><th>O que fazer</th></tr>
+      <tr><td>Dia da semana</td><td>Vence no sábado ou domingo</td><td>Passar para segunda</td></tr>
+      <tr><td>Dia do mês</td><td>Vence entre os dias 25 e 31</td><td>Passar para o dia 5</td></tr></table>`, 'quando o cliente não paga em certos dias');
+}
+const SETORES_ADV = [ ['vendas','Vendas'], ['expedicao','Expedição'], ['transporte','Transporte'], ['faturamento','Faturamento'], ['onduladeira','Onduladeira'], ['producao','Produção'], ['contas','Contas a receber'] ];
+function secAdvertencias(c){
+  return `<div class="cl-dica">Cada aviso <b>aparece sozinho</b> para o setor quando alguém trabalhar com este cliente (ao montar carga, emitir nota, programar a onduladeira…). Ninguém precisa lembrar de abrir a ficha.</div>
+    <div class="cl-grade">${SETORES_ADV.map(([k, n]) => f('Aviso para ' + n, c.advert[k] || '', { texto:true })).join('')}</div>`;
+}
+function secExtras(c){
+  return `<table class="cl-tab"><tr><th>Informação</th><th>Conteúdo</th><th>Obrigatória</th></tr>${(c.extras.length ? c.extras : [{ attr:'Condição de entrega', val:'', obrig:false }]).map(x => `<tr><td>${esc(x.attr)}</td><td><input disabled value="${esc(x.val)}"></td><td>${x.obrig ? 'Sim' : 'Não'}</td></tr>`).join('')}</table>
+    <div class="cl-dica">Quais informações extras existem é definido em <b>Vendas › Cadastros › Parâmetros de vendas</b>.</div>`;
+}
+function secHistorico(c){
+  return bloco('Linha do tempo', linhaTempo(c.historico) + `<div class="so-edicao cl-novo-reg"><input placeholder="Registrar contato, visita ou ocorrência…"><button class="mini" type="button">Registrar</button></div>`)
+  + bloco('Também aparecem aqui', '<p class="cl-txt">Pedidos, orçamentos, alterações de nome fantasia, ocorrências, assuntos tratados e meio de contato usado (telefone, e-mail, visita, WhatsApp).</p>');
+}
+function secIntegracoes(){
+  return `<div class="cl-dica">Configurações técnicas. Só o administrador e o TI veem esta seção.</div>`
+  + bloco('EDI', `${f('Lista de preços', '')}${f('Aviso de embarque', '')}${f('Prefixo do arquivo', '')}${f('Pasta do aviso de embarque', '', { larga:true })}${f('Código do receptor', '')}${f('Código da fábrica destino', '')}${f('Extensão do arquivo', '')}`, 'envio, VAN, FTP, espécie NF × CFOP, recebimento')
+  + bloco('E-mail do certificado de qualidade', `${f('Assunto', 'Certificado de qualidade · NF {nota}', { larga:true })}${f('Texto', 'Segue o certificado de qualidade referente à nota {nota}.', { texto:true, larga:true })}${f('Nome do anexo', 'certificado-{nota}.pdf')}${sn('Um arquivo único com todos os certificados da nota', true)}`);
+}
+const RENDER_SEC = { resumo:secResumo, dados:secDados, enderecos:secEnderecos, contatos:secContatos, comercial:secComercial, entrega:secEntrega, fiscal:secFiscal, financeiro:secFinanceiro, advertencias:secAdvertencias, extras:secExtras, historico:secHistorico, integracoes:secIntegracoes };
+
+TELAS.clientes = (box) => {
+  box.classList.add('cl-box');
+  box._filtro = 'todos'; box._busca = ''; box._sel = null; box._sec = 'resumo'; box._edit = false;
+  box.addEventListener('click', (e) => cliqueClientes(box, e));
+  box.addEventListener('input', (e) => { if (e.target.matches('.cl-busca input')) { box._busca = e.target.value; listaClientes(box, true); } });
+  listaClientes(box);
+};
+function listaClientes(box, soLinhas){
+  const n = norm(box._busca).trim(), fl = box._filtro;
+  const l = CLIENTES.filter(c => (fl === 'todos' || (fl === 'inativos' ? c.status !== 'Ativo' : c.tipo === fl && c.status === 'Ativo'))
+    && (!n || norm(c.razao + ' ' + c.fantasia + ' ' + c.cnpj + ' ' + c.end.cidade).includes(n)));
+  const linhas = l.map(c => `<button class="cl-linha" type="button" data-cli="${c.id}">
+      <span class="av">${esc(nomeExib(c)).slice(0,2).toUpperCase()}</span>
+      <span class="tx"><b>${esc(nomeExib(c))}</b><small>${esc(c.razao)} · ${c.cnpj}</small></span>
+      <span class="cid">${esc(c.end.cidade)}/${c.end.uf}<small>${esc(c.rep)}</small></span>
+      <span class="pill ${c.status !== 'Ativo' ? 'p-bad' : ehCli(c) ? 'p-ok' : 'p-info'}">${c.status !== 'Ativo' ? 'Inativo' : ehCli(c) ? 'Cliente' : 'Prospect'}</span>
+    </button>`).join('') || '<div class="vazio"><b>Nada encontrado</b><span>Busque por nome, CNPJ ou cidade.</span></div>';
+  if (soLinhas) { box.querySelector('.cl-linhas').innerHTML = linhas; return; }
+  const conta = (k) => CLIENTES.filter(c => k === 'todos' || (k === 'inativos' ? c.status !== 'Ativo' : c.tipo === k && c.status === 'Ativo')).length;
+  box.innerHTML = `<div class="cl-topo">
+      <label class="srch cl-busca">${LUPA}<input placeholder="Buscar por nome, CNPJ ou cidade…" value="${esc(box._busca)}"></label>
+      ${[['todos','Todos'],['cliente','Clientes'],['prospect','Prospects'],['inativos','Inativos']].map(([k, t]) => `<button class="flt" type="button" data-flt="${k}" aria-pressed="${fl === k}">${t} · ${conta(k)}</button>`).join('')}
+      <button class="go cl-novo" type="button" data-novo-cli>＋ Novo prospect</button>
+    </div><div class="cl-linhas">${linhas}</div>`;
+}
+function fichaCliente(box){
+  const c = CLIENTES.find(x => x.id === box._sel);
+  const secs = SECOES.filter(s => (!s.cli || ehCli(c)));
+  if (!secs.some(s => s.id === box._sec)) box._sec = 'resumo';
+  const adv = c.advert.vendas;
+  box.innerHTML = `<div class="cl-ficha${box._edit ? ' editando' : ''}">
+    <div class="cl-cab">
+      <button class="voltar" type="button" data-lista-cli>‹ Lista</button>
+      <span class="av grande">${esc(nomeExib(c)).slice(0,2).toUpperCase()}</span>
+      <div class="cl-nome"><b>${esc(nomeExib(c))}</b><small>${esc(c.razao)} · ${c.cnpj} · ${esc(c.end.cidade)}/${c.end.uf}</small></div>
+      <span class="pill ${c.status !== 'Ativo' ? 'p-bad' : ehCli(c) ? 'p-ok' : 'p-info'}">${c.status !== 'Ativo' ? 'Inativo' : ehCli(c) ? 'Cliente' : 'Prospect'}</span>
+      <span class="cl-acoes">${box._edit
+        ? '<button class="btn2" type="button" data-cancelar>Cancelar</button><button class="go" type="button" data-salvar>Salvar</button>'
+        : `${!ehCli(c) ? '<button class="btn2" type="button" data-virar>Virar cliente</button>' : '<button class="btn2" type="button" data-pedido>Novo pedido</button>'}<button class="go" type="button" data-editar>Editar</button>`}</span>
+    </div>
+    ${adv ? `<div class="cl-aviso">${IAVISO}<span><b>Aviso para Vendas:</b> ${esc(adv)}</span></div>` : ''}
+    <div class="cl-corpo">
+      <nav class="cl-nav">${secs.map(s => `<button type="button" data-sec="${s.id}" aria-current="${box._sec === s.id}">${s.nome}${s.adm ? ' <i>TI</i>' : ''}</button>`).join('')}</nav>
+      <div class="cl-sec"><h3>${secs.find(s => s.id === box._sec).nome}</h3>${RENDER_SEC[box._sec](c)}</div>
+    </div></div>`;
+  travar(box);
+}
+const IAVISO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 2.5 20h19z"/><path d="M12 10v4.5M12 17.5h.01"/></svg>';
+function travar(box){ box.querySelectorAll('.cl-sec input, .cl-sec select, .cl-sec textarea').forEach(el => { el.disabled = !box._edit; }); }
+function cliqueClientes(box, e){
+  const t = (sel) => e.target.closest(sel);
+  if (t('[data-flt]')) { box._filtro = t('[data-flt]').dataset.flt; return listaClientes(box); }
+  if (t('[data-cli]')) { box._sel = +t('[data-cli]').dataset.cli; box._sec = 'resumo'; box._edit = false; return fichaCliente(box); }
+  if (t('[data-lista-cli]')) { box._sel = null; box._edit = false; return listaClientes(box); }
+  if (t('[data-sec]')) { box._sec = t('[data-sec]').dataset.sec; fichaCliente(box); box.scrollTop = 0; return; }
+  if (t('[data-editar]')) { box._edit = true; return fichaCliente(box); }
+  if (t('[data-cancelar]')) { box._edit = false; return fichaCliente(box); }
+  if (t('[data-salvar]')) { box._edit = false; fichaCliente(box); return toast('Alterações salvas (protótipo)'); }
+  if (t('[data-pedido]')) return toast('Abriria um novo pedido já com os dados deste cliente');
+  if (t('[data-virar]')) {
+    const c = CLIENTES.find(x => x.id === box._sel);
+    Object.assign(c, { tipo:'cliente', credito:{ limite:0, usado:0, aberto:0, atraso:0 }, resumo:{ fat12:'R$ 0', ultimo:'—', abertos:0, margem:'—' }, codOrig:'', nossoCod:'' });
+    c.historico.unshift({ data:'hoje', txt:'Virou cliente', quem:USUARIO.nome });
+    box._sec = 'resumo'; fichaCliente(box);
+    return toast('Agora é cliente. Complete fiscal, financeiro e crédito.');
+  }
+  if (t('[data-acao-f="receita"]')) return toast('Buscaria razão social, endereço e situação na Receita pelo CNPJ');
+  if (t('[data-acao-f="cep"]')) return toast('Preencheria rua, bairro, cidade e estado pelo CEP');
+  if (t('[data-novo-cli]')) return novoProspect(box);
+  if (t('[data-buscar-cnpj]')) {
+    const v = box.querySelector('#nvCnpj').value.trim() || '56.789.012/0001-34';
+    const novo = { id: Math.max(...CLIENTES.map(c => c.id)) + 1, tipo:'prospect', status:'Ativo', razao:'Indústria de Exemplo Ltda', fantasia:'Exemplo', cnpj:v,
+      nat:'Sociedade limitada', ieInd:'Contribuinte', ie:'', segmento:'', grupo:'—', rep:USUARIO.nome, sup:'Carla Mendes', area:'SP Interior', desde:'11/2026', origem:'', codOrig:'', nossoCod:'',
+      end:{ cep:'13400-000', log:'Av. Industrial', num:'1000', comp:'', bairro:'Distrito', cidade:'Piracicaba', uf:'SP' },
+      entregas:[], cobrancas:[], unidades:[], contatos:[], interesse:'', historico:[ { data:'hoje', txt:'Prospect cadastrado', quem:USUARIO.nome } ], pedidos:[], docs:[], extras:[], advert:{} };
+    CLIENTES.push(novo); box._sel = novo.id; box._sec = 'dados'; box._edit = true; fichaCliente(box);
+    return toast('Dados trazidos da Receita (exemplo). Confira e complete.');
+  }
+}
+function novoProspect(box){
+  box.innerHTML = `<div class="cl-novo-tela"><button class="voltar" type="button" data-lista-cli>‹ Lista</button>
+    <h3>Novo prospect</h3><p class="cl-txt">Comece pelo CNPJ: o sistema busca razão social, endereço e situação na Receita. Depois é só completar.</p>
+    <div class="cl-cnpj"><label class="cf"><span>CNPJ</span><input id="nvCnpj" placeholder="00.000.000/0000-00"></label><button class="go" type="button" data-buscar-cnpj>Buscar na Receita</button></div>
+    <div class="cl-dica">Se for pessoa física ou não tiver CNPJ, dá para preencher à mão.</div></div>`;
+  setTimeout(() => { const i = box.querySelector('#nvCnpj'); if (i) i.focus(); }, 30);
 }
 
 mostrarTela();

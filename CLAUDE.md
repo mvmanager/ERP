@@ -15,8 +15,10 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > Ficaram para depois: Pesagem, apontamentos do Reporte, RNC, FSC, RH (Folha e
 > Treinamento), Suporte › Usuários e permissões e Gerencial › Relatórios.
 >
-> Agora começa a fase de **construção**: desenhar cada tela por dentro (começando pela ficha
-> de **Prospects e clientes**) e montar a base do sistema de verdade.
+> Agora estamos na fase de **construção**: desenhar cada tela por dentro e montar a base do
+> sistema de verdade. A **ficha de Prospects e clientes** já tem uma primeira versão no
+> protótipo, esperando a aprovação do usuário (ver README › Telas desenhadas por dentro).
+> Regra: o sistema atual é só referência de campos; o desenho é do nosso jeito.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
 esta seção para a conversa seguinte saber de onde continuar.
