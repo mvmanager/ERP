@@ -53,7 +53,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   | Financeiro | Administração financeira, Contas a pagar, Contas a receber |
   | Controladoria | Fiscal, Contabilidade, Custos, Ativo imobilizado |
   | Recursos Humanos | Folha de pagamento, Treinamento |
-  | Suporte | Portaria, Suporte |
+  | Suporte | Chamados, Usuários e permissões |
   | Gerencial | Relatórios |
 
   - Cartões **compactos** (metade do tamanho original): ícone ao lado do nome e, embaixo,
@@ -101,7 +101,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   para o Início), título do módulo **pequeno** (ícone e nome na mesma linha do Voltar, sem frases de apoio) e
   uma grade de cartões compactos, um por área. Cada área também tem o **seu desenho**
   ao passar o mouse (ex.: caminhão com caixas em Expedição, capacete em Segurança,
-  balança com display em Pesagem, frasco em Laboratório, cancela em Portaria) e o selo
+  balança com display em Pesagem, frasco em Laboratório, crachá com cadeado em Usuários e permissões) e o selo
   de pendências de cada área.
 - No sistema real, cada pessoa vê só as áreas liberadas para ela.
 
@@ -126,6 +126,12 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     as minimizadas); clicar traz de volta;
   - "–" minimiza e "✕" fecha, sempre visíveis.
 - Barra de título da janela numa linha só: ícone pequeno, nome e o caminho ao lado.
+
+### Suporte
+- Módulo de administração do sistema, usado por quem cuida do ERP.
+- **Chamados:** onde chegam os pedidos de ajuda e de melhoria dos usuários (inclusive os
+  pedidos de análise feitos pelo assistente de busca da tela inicial).
+- **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Cadastros:** Prospects e clientes; Endereços de entrega.

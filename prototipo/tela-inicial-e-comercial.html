@@ -931,17 +931,19 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
       <path d="M60 32 L98 38 V58" fill="none" stroke="var(--tape)" stroke-width="2.5"/>
       <circle cx="98" cy="62" r="4.5" fill="var(--tape)"/>
     </g>
-    <!-- Portaria: guarita e cancela -->
-    <g id="il-cancela">
-      <ellipse cx="60" cy="106" rx="54" ry="5" fill="var(--shadow)"/>
-      <rect x="72" y="44" width="36" height="60" fill="var(--k3)"/>
-      <rect x="68" y="36" width="44" height="10" rx="2" fill="var(--k4)"/>
-      <rect x="78" y="54" width="24" height="18" rx="2" fill="var(--info-soft)"/>
-      <rect x="84" y="80" width="12" height="24" fill="var(--k5)"/>
-      <rect x="54" y="70" width="10" height="34" fill="var(--k5)"/>
-      <rect x="4" y="67" width="56" height="10" rx="3" fill="#f7f1e7" stroke="var(--k5)" stroke-width="1.5"/>
-      <path d="M8 72 H56" stroke="var(--bad)" stroke-width="9" stroke-dasharray="8 8"/>
-      <circle cx="59" cy="72" r="5" fill="var(--k4)"/>
+    <!-- Usuários e permissões: crachá e cadeado -->
+    <g id="il-usuarios">
+      <ellipse cx="60" cy="106" rx="50" ry="6" fill="var(--shadow)"/>
+      <rect x="8" y="24" width="72" height="56" rx="7" fill="var(--k1)"/>
+      <rect x="8" y="24" width="72" height="12" rx="6" fill="var(--k3)"/>
+      <rect x="36" y="18" width="16" height="10" rx="3" fill="var(--k5)"/>
+      <circle cx="30" cy="54" r="9" fill="var(--k4)"/>
+      <path d="M16 76 c0 -10 6 -14 14 -14 s14 4 14 14z" fill="var(--k4)"/>
+      <path d="M50 50 h22 M50 60 h16" stroke="var(--k3)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M80 66 v-10 a12 12 0 0 1 24 0 v10" fill="none" stroke="var(--k5)" stroke-width="6"/>
+      <rect x="70" y="64" width="44" height="38" rx="6" fill="var(--k3)"/>
+      <circle cx="92" cy="80" r="5" fill="var(--k5)"/>
+      <path d="M92 82 v10" stroke="var(--k5)" stroke-width="4" stroke-linecap="round"/>
     </g>
     <!-- Suporte (área): fone de atendimento -->
     <g id="il-fone">
@@ -1122,9 +1124,9 @@ const I = {
   seguranca:'<path d="M3 17h18M4.5 17a7.5 7.5 0 0 1 15 0"/><path d="M10 9.7V6.5h4v3.2M3 17v2.5h18V17"/>',
   reporte:'<rect x="5" y="4" width="14" height="17.5" rx="2"/><path d="M9 2.5h6v3H9zM8.5 11h7M8.5 14.5h7M8.5 18h4"/>',
   manutencao:'<path d="M15 3.5a5 5 0 0 0-4.6 6.9L3.5 17.3a2.1 2.1 0 0 0 3 3l6.9-6.9A5 5 0 0 0 20.5 9l-3 3-3.5-1-1-3.5 3-3a5 5 0 0 0-1-1z"/>',
-  portaria:'<path d="M3 21V8h4v13M7 11h14M7 11l3 3M11 11l3 3M15 11l3 3"/><path d="M2 21h20"/>',
 };
-Object.assign(I, { admfin:I.financeiro, materiais:I.estoque, custos:I.orcamentos, laboratorio:I.amostras, engind:I.engenharia, relatorios:I.rel });
+I.usuarios = '<circle cx="9" cy="7.5" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-6 6.5-6 1.2 0 2.3.3 3.2.8"/><rect x="14" y="14" width="8" height="7" rx="1.5"/><path d="M15.5 14v-2a2.5 2.5 0 0 1 5 0v2"/>';
+Object.assign(I, { chamados:I.suporte, admfin:I.financeiro, materiais:I.estoque, custos:I.orcamentos, laboratorio:I.amostras, engind:I.engenharia, relatorios:I.rel });
 const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[k]}</svg>`;
 
 /* ── Módulos (exemplos de protótipo) ── */
@@ -1174,8 +1176,8 @@ const MODULOS = [
     {k:'treinamento', nome:'Treinamento', d:'Cursos e registros de treinamento'},
   ]},
   {k:'suporte', nome:'Suporte', areas:[
-    {k:'portaria', nome:'Portaria', d:'Entrada de pessoas e veículos'},
-    {k:'suporte', nome:'Suporte', d:'Chamados de ajuda'},
+    {k:'chamados', nome:'Chamados', d:'Pedidos de ajuda e melhorias dos usuários'},
+    {k:'usuarios', nome:'Usuários e permissões', d:'Criar usuários e definir o que cada um vê'},
   ]},
   {k:'indicadores', nome:'Gerencial', badge:'novo', calm:true, areas:[
     {k:'relatorios', nome:'Relatórios', d:'Margem, refile, conversão e vendas'},
@@ -1231,6 +1233,8 @@ const RELATORIOS = [
   {id:'inadimplencia', nome:'Inadimplência', mod:'financeiro', area:'receber', d:'Clientes com títulos vencidos'},
   {id:'pagar-semana', nome:'Contas a pagar da semana', mod:'financeiro', area:'pagar', d:'O que vence nos próximos 7 dias'},
   {id:'custo-maquina', nome:'Custo por máquina', mod:'controladoria', area:'custos', d:'Custo hora e por metro'},
+  {id:'chamados-sit', nome:'Chamados por situação', mod:'suporte', area:'chamados', d:'Abertos, em andamento e resolvidos'},
+  {id:'acessos', nome:'Usuários e acessos', mod:'suporte', area:'usuarios', d:'Quem pode ver cada módulo e área'},
   {id:'horas-extras', nome:'Horas extras por setor', mod:'recursos-humanos', area:'folha', d:'Horas e valores do mês'},
   {id:'margem-vendedor', nome:'Margem por vendedor', mod:'gerencial', area:'relatorios', d:'Margem e volume de cada vendedor'},
   {id:'margem-cliente', nome:'Margem por cliente', mod:'gerencial', area:'relatorios', d:'Rentabilidade de cada cliente'},
@@ -1493,7 +1497,7 @@ const CX_AREA = {
   admfin:'il-banco', pagar:'il-pagar', receber:'il-receber',
   fiscal:'il-fiscal', contabilidade:'il-livro', custos:'il-calculadora', ativo:'il-ativo',
   folha:'il-envelope', treinamento:'il-diploma',
-  portaria:'il-cancela', suporte:'il-fone',
+  chamados:'il-fone', usuarios:'il-usuarios',
   relatorios:'il-relatorio',
 };
 /* pendências de exemplo por área */
