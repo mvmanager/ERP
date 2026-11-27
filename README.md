@@ -65,8 +65,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     **caixinha de papelão** entra pelo canto (faca em Engenharia de Produto, onda em
     Industrial, pilha no pallet em Suprimentos, caixa que abre nos demais).
   - Selo vermelho com a quantidade de pendências do módulo.
-- **Pendências** abaixo dos módulos: só aparecem os módulos com solicitações esperando
-  o usuário, com a quantidade por tipo.
+- A seção **Pendências** foi retirada da tela inicial (o selo vermelho nos cartões continua).
+  O que entra no lugar ainda será decidido.
 
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela

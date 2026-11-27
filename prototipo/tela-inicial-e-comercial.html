@@ -562,12 +562,6 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
 
       <div class="wave" aria-hidden="true"></div>
 
-      <div class="secthead"><h2>Pendências</h2><span>só módulos com solicitações esperando você · atualizado agora</span></div>
-      <div class="dia">
-        <div class="pend" id="pend"></div>
-
-      </div>
-
       <div class="factory" role="status">
         <span class="fl">Fábrica agora</span>
         <span><span class="live pulse" style="background:var(--ok)"></span>Onduladeira <b>182 m/min</b></span>
@@ -736,21 +730,6 @@ apps.innerHTML = MODULOS.map(m => `
     ${m.badge ? `<span class="badge${m.calm?' calm':''}">${m.badge}</span>` : ''}
     ${caixinha(m.cx)}
   </button>`).join('');
-
-/* Pendências: só módulos com solicitações esperando (exemplo de protótipo) */
-const PENDENCIAS = [
-  {k:'orcamentos', nome:'Orçamentos', itens:[['Preço pronto para enviar ao cliente',2,'c-ok'],['Devolvidos para correção',1,'c-bad'],['Aguardando análise da orçamentista',11,'c-info']]},
-  {k:'engenharia', nome:'Engenharia de Produto', itens:[['Amostras para aprovar',3,'c-warn'],['Clichê aguardando aprovação do cliente',1,'c-info']]},
-  {k:'comercial', nome:'Comercial', itens:[['Follow-ups para hoje',4,'c-warn']]},
-  {k:'qualidade', nome:'Qualidade', itens:[['RNC aberta aguardando resposta',1,'c-bad']]},
-];
-document.getElementById('pend').innerHTML = PENDENCIAS.filter(m => m.itens.some(i => i[1] > 0)).map(m => {
-  const tot = m.itens.reduce((a,i) => a + i[1], 0);
-  return `<div class="pg"><span class="mi">${svg(m.k)}</span><div>
-    <div class="mn">${m.nome}<span class="tot">${tot}</span></div>
-    <ul>${m.itens.filter(i => i[1] > 0).map(i => `<li><button type="button" data-open="${m.nome} · ${i[0]}">${i[0]}</button><span class="cnt ${i[2]}">${i[1]}</span></li>`).join('')}</ul>
-  </div></div>`;
-}).join('');
 
 /* Luz que segue o mouse + inclinação leve */
 const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
