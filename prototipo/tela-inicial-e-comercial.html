@@ -1751,6 +1751,7 @@ const IC = {
   fone:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="4" height="6" rx="1.5"/><rect x="17" y="13.5" width="4" height="6" rx="1.5"/>',
   tendencia:'<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
   caixa:'<path d="M3 8l9-5 9 5-9 5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/>',
+  fsc:'<path d="M12 3 7 10h3l-4 6h12l-4-6h3z"/><path d="M12 16v5"/>',
   calendario:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
   engrenagem:'<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
 };
@@ -1872,7 +1873,7 @@ const TOPICOS = {
      até o cliente. Inclui o armazém de produto acabado e o inventário dele. */
   'comercial/expedicao': [
     { nome:'Cadastros', itens:[
-      { ic:'predio', t:'Armazéns e localizações', d:'Armazéns e onde cada produto fica guardado' },
+      { ic:'predio', t:'Armazéns e localizações', d:'Onde cada produto fica guardado (cadastro único com Materiais)' },
       { ic:'caixa', t:'Embalagens', d:'Embalagens, embalagens móveis e qual embalagem cada produto usa' },
       { ic:'etiqueta', t:'Etiquetas e volumes', d:'Modelos de etiqueta e tipos de volume' },
       { ic:'caminhao', t:'Transporte de cargas', d:'Transportadoras (cadastro único), veículos e tipos de carga' },
@@ -2017,10 +2018,43 @@ const TOPICOS = {
     ]},
   ],
   /* Suprimentos: vieram da Engenharia de produto do sistema atual. */
+  /* Suprimentos › Materiais (a partir do sistema atual: ~60 itens → 23). Estoque de matéria-prima.
+     Tudo de um material fica na ficha do material; cada inventário é uma tela com as etapas. */
   'suprimentos/materiais': [
+    { nome:'Operações', itens:[
+      { ic:'importar', t:'Recebimento', d:'Receber materiais, com justificativa quando precisar liberar' },
+      { ic:'troca', t:'Movimentação do estoque', d:'Requisições, baixas e ajustes' },
+      { ic:'caminhao', t:'Remessas, transferências e devoluções', d:'Saídas e retornos de material' },
+      { ic:'engrenagem', t:'Administração do estoque', d:'Custo médio (CMU) e acertos de estoque' },
+      { ic:'etiqueta', t:'Emissão de etiquetas', d:'Etiquetas de bobinas e materiais' },
+    ]},
+    { nome:'Materiais', itens:[
+      { ic:'caixa', t:'Materiais', d:'Ficha completa: classificação, qualificações, tipo de papel, embalagens, FSC' },
+    ]},
     { nome:'Estoque de segurança', itens:[
-      { ic:'grafico', t:'Previsão de consumo e estoque de segurança', d:'Quanto manter de cada material, com parâmetros por subgrupo' },
-      { ic:'tendencia', t:'Análise do estoque de segurança', d:'Composição e previsão mensal' },
+      { ic:'grafico', t:'Previsão de consumo e estoque de segurança', d:'Quanto manter de cada material; política por subgrupo' },
+      { ic:'tendencia', t:'Análise do estoque de segurança', d:'Composição, previsão mensal e políticas de estoque' },
+    ]},
+    { nome:'Inventário', itens:[
+      { ic:'calendario', t:'Inventário rotativo', d:'Programar, emitir, registrar, ver resultado e encerrar' },
+      { ic:'check', t:'Inventário geral', d:'Abrir, fichas, registro, auditoria, ajustes e encerramento' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'etiqueta', t:'Classificação de materiais', d:'Grupos e subgrupos' },
+      { ic:'regua', t:'Unidades de medida e conversões', d:'Unidades e fatores de conversão' },
+      { ic:'local', t:'Depósitos e localizações', d:'Depósitos, localizador e locais de entrega (cadastro único com a Expedição)' },
+      { ic:'caixa', t:'Embalagens internas', d:'Embalagens usadas dentro da fábrica' },
+      { ic:'impr', t:'Modelos de etiqueta', d:'Modelos de etiqueta para materiais' },
+      { ic:'cadeado', t:'Controle da Polícia Federal', d:'Grupos e parâmetros de produtos controlados' },
+      { ic:'pessoa', t:'Aprovadores de requisição', d:'Quem aprova requisições de material' },
+      { ic:'engrenagem', t:'Parâmetros de materiais', d:'Configurações gerais de Materiais' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Movimentação e saldos', d:'Entradas, saídas, saldos e boletins' },
+      { ic:'tendencia', t:'Consumos e requisições', d:'Consumo por período, requisitados e devolvidos' },
+      { ic:'alerta', t:'Materiais críticos', d:'Materiais críticos e importantes' },
+      { ic:'troca', t:'Industrialização e consignação', d:'Material de terceiros e em terceiros' },
+      { ic:'fsc', t:'FSC', d:'Controle de material certificado' },
     ]},
   ],
   /* Suprimentos › Compras (a partir do sistema atual: ~48 itens → 17). A compra anda em etapas

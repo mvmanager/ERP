@@ -197,8 +197,26 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     das regras; para em Custos só quando foge delas.)
 
 ### Suprimentos (o que já veio de outras áreas)
-- **Materiais › Estoque de segurança:** Previsão de consumo e estoque de segurança (com
-  parâmetros por subgrupo) · Análise do estoque de segurança (composição e previsão mensal).
+
+### Suprimentos › Materiais (a partir do sistema atual: ~60 itens → 23)
+- Estoque de **matéria-prima**. Tudo de um material fica na **ficha do material**; cada
+  inventário é uma tela com as etapas dentro.
+- **Operações:** Recebimento (+ justificativas para liberar) · Movimentação do estoque ·
+  Remessas, transferências e devoluções · Administração do estoque (inclui implantar/alterar
+  CMU) · Emissão de etiquetas.
+- **Materiais:** Materiais (ficha: classificação, qualificações, crítico/importante, tipo de
+  papel, embalagens × materiais, categoria FSC, alteração de subgrupo).
+- **Estoque de segurança:** Previsão de consumo e estoque de segurança (inclui política por
+  subgrupo; veio da Engenharia de produto) · Análise do estoque de segurança (inclui
+  políticas de estoque).
+- **Inventário:** Inventário rotativo (8 itens atuais) · Inventário geral (11 itens atuais).
+- **Cadastros:** Classificação de materiais · Unidades de medida e conversões · Depósitos e
+  localizações · Embalagens internas · Modelos de etiqueta · Controle da Polícia Federal ·
+  Aprovadores de requisição · Parâmetros.
+- **Consultas:** Movimentação e saldos (+ boletins) · Consumos e requisições · Materiais
+  críticos · Industrialização e consignação · FSC.
+- **Cadastro único:** Depósitos e localizações (Materiais) e Armazéns e localizações
+  (Expedição) serão o mesmo cadastro, aparecendo nas duas áreas.
 
 ### Suprimentos › Compras (a partir do sistema atual: ~48 itens → 17)
 - A compra anda em etapas (requisição → cotação → ordem de compra); cada etapa é uma tela.

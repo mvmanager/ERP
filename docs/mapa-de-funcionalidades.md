@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **18 com funcionalidades definidas**, **170 funcionalidades**.
+Situação: **31 áreas**, **18 com funcionalidades definidas**, **191 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -106,7 +106,12 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Materiais
 
+- **Operações:** Recebimento · Movimentação do estoque · Remessas, transferências e devoluções · Administração do estoque · Emissão de etiquetas
+- **Materiais:** Materiais
 - **Estoque de segurança:** Previsão de consumo e estoque de segurança · Análise do estoque de segurança
+- **Inventário:** Inventário rotativo · Inventário geral
+- **Cadastros:** Classificação de materiais · Unidades de medida e conversões · Depósitos e localizações · Embalagens internas · Modelos de etiqueta · Controle da Polícia Federal · Aprovadores de requisição · Parâmetros de materiais
+- **Consultas:** Movimentação e saldos · Consumos e requisições · Materiais críticos · Industrialização e consignação · FSC
 
 ## Qualidade
 
