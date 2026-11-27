@@ -995,7 +995,7 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
     <button class="iconbtn" type="button" aria-label="Notificações: 3 novas">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="dotn"></span>
     </button>
-    <div class="avatar"><b>NS</b><span>Nilson · Vendedor</span></div>
+    <div class="avatar"><b>M</b><span>Matheus · Vendedor</span></div>
   </div>
 </header>
 
@@ -1004,7 +1004,7 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
     <div class="max hero-grid">
       <div class="hello">
         <div class="eyebrow" id="today">quinta, 26 de novembro</div>
-        <h1 id="greet">Boa tarde, Nilson</h1>
+        <h1 id="greet">Boa tarde, Matheus</h1>
       </div>
 
       <div class="buscar">
@@ -1334,7 +1334,7 @@ document.addEventListener('click', (e) => {
 /* ── Saudação e relógio ── */
 (function(){
   const d = new Date(); const h = d.getHours();
-  document.getElementById('greet').textContent = (h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite') + ', Nilson';
+  document.getElementById('greet').textContent = (h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite') + ', Matheus';
   const dia = d.toLocaleDateString('pt-BR', { weekday:'long', day:'numeric', month:'long' });
   document.getElementById('today').textContent = dia;
   const ck = () => document.getElementById('clock').textContent = new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
