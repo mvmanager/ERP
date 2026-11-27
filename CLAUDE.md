@@ -10,22 +10,13 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > https://claude.ai/artifact/KrHFXtBn5s9YtySNMPGRM1, fotos em
 > `docs/fotos/` e todas as decisões no `README.md`).
 >
-> Agora estamos montando o **mapa de funcionalidades** de todo o sistema, "no grosso":
-> para cada módulo e área, quais **tópicos** (menus) e **funcionalidades** (itens que abrem
-> janelas) existem. Os detalhes de cada tela vêm depois. Já está fechado:
-> a área **Comercial › Vendas** inteira (Cadastros, Operações, Pedidos, Follow-up,
-> Comissões, Consultas, Relatórios, Orçamentos), o **Portal do representante** e uma
-> proposta para **Industrial › Engenharia de produto** e **Controladoria › Custos ›
-> Orçamentos**, **Comercial › Crédito** e uma proposta para **Faturamento** e **NFe**
-> (falta o print de Demonstrativos do Faturamento) e **Expedição** — o Comercial inteiro
-> tem mapa inicial. No Industrial já estão Engenharia industrial, Engenharia de produto,
-> PCP, Manutenção, Segurança e parte do Reporte de produção. O mapa geral fica em
-> `docs/mapa-de-funcionalidades.md`. Pesagem e apontamentos do Reporte ficaram para
-> depois. Suprimentos (Compras e Materiais) e Qualidade (Qualidade e Laboratório) já têm
-> mapa; RNC e FSC ficaram para depois. O Financeiro e a Controladoria inteiros já têm
-> mapa. Próximo: RH;
-> Suporte e Gerencial. Padrão de nomes: Eventos → Operações, Demonstrativos → Consultas. Me
-> mande o print do menu equivalente no sistema atual, ou peça uma proposta.
+> O **mapa de funcionalidades** "no grosso" está fechado por enquanto: 24 das 31 áreas,
+> ~308 funcionalidades, em `docs/mapa-de-funcionalidades.md` (decisões no `README.md`).
+> Ficaram para depois: Pesagem, apontamentos do Reporte, RNC, FSC, RH (Folha e
+> Treinamento), Suporte › Usuários e permissões e Gerencial › Relatórios.
+>
+> Agora começa a fase de **construção**: desenhar cada tela por dentro (começando pela ficha
+> de **Prospects e clientes**) e montar a base do sistema de verdade.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
 esta seção para a conversa seguinte saber de onde continuar.

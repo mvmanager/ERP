@@ -583,7 +583,8 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   `docs/mapa-de-funcionalidades.md` (atualizar sempre que o mapa mudar).
 
 ## Próximos passos
-1. **Mapa de funcionalidades (passo atual):** fechar, "no grosso", os tópicos e as
+1. **Mapa de funcionalidades (fechado por enquanto; faltam Pesagem, apontamentos, RNC, FSC,
+   RH, Usuários e permissões e Relatórios gerenciais):** fechar, "no grosso", os tópicos e as
    funcionalidades de **todas** as áreas de todos os módulos, a partir dos menus do
    sistema atual (prints) e de propostas onde não houver equivalente. Decidir também em
    qual módulo entram orçamentos, engenharia de produto (amostras, clicheria, facas) e os
