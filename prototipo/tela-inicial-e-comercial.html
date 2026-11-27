@@ -227,7 +227,7 @@ h2{font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:22px;
 .tile .nm{font-size:14.5px;line-height:1.2;padding-right:20px}
 .tile .st{grid-column:1/-1;align-self:end;font-size:11.5px;line-height:1.35;max-width:80%}
 .tile .badge{top:8px;right:8px;min-width:19px;height:19px;font-size:10.5px;padding:0 5px}
-.tile .deco{width:60px;height:60px;right:-6px;bottom:-8px}
+.tile .deco{width:68px;height:68px;right:-4px;bottom:-6px}
 .tile .deco.faca{width:48px;height:48px;right:4px;bottom:-4px}
 .tile .deco.onda{width:52px;height:52px;right:2px;bottom:-4px}
 .tile:hover,.tile:focus-visible{transform:translateY(-3px) rotateX(var(--rx)) rotateY(var(--ry))}
@@ -547,6 +547,413 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
       <g><path d="M60 64 h46 v34 h-46z" fill="var(--k3)"/><path d="M60 64 l8 -6 h46 l-8 6z" fill="var(--k1)"/><path d="M106 64 l8 -6 v34 l-8 6z" fill="var(--k4)"/></g>
       <g class="cx3"><path d="M34 30 h46 v34 h-46z" fill="var(--k2)"/><path d="M34 30 l8 -6 h46 l-8 6z" fill="var(--k1)"/><path d="M80 30 l8 -6 v34 l-8 6z" fill="var(--k4)"/><path d="M52 30 l8 -6" stroke="var(--tape)" stroke-width="5"/></g>
     </g>
+    <!-- ═══ Desenhos de cada módulo e área (aparecem ao passar o mouse) ═══ -->
+    <!-- Comercial: caixa com etiqueta de preço -->
+    <g id="il-etiqueta">
+      <ellipse cx="58" cy="106" rx="42" ry="6" fill="var(--shadow)"/>
+      <path d="M18 56 h60 v48 h-60z" fill="var(--k3)"/>
+      <path d="M78 56 l16 -10 v48 l-16 10z" fill="var(--k4)"/>
+      <path d="M18 56 l16 -10 h60 l-16 10z" fill="var(--k1)"/>
+      <path d="M42 56 l16 -10 h8 l-16 10z" fill="var(--tape)"/>
+      <path d="M88 46 C92 36 92 30 90 24" fill="none" stroke="var(--k5)" stroke-width="1.6"/>
+      <path d="M62 12 h28 l10 10 -10 10 h-28z" fill="var(--tape)" stroke="var(--k5)" stroke-width="1.6" stroke-linejoin="round"/>
+      <circle cx="91" cy="22" r="2.6" fill="var(--k5)"/>
+      <text x="67" y="27" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="12" fill="var(--k5)">R$</text>
+    </g>
+    <!-- Industrial: fábrica com chaminé -->
+    <g id="il-industrial">
+      <ellipse cx="60" cy="106" rx="50" ry="6" fill="var(--shadow)"/>
+      <path d="M90 58 V24 h12 V58z" fill="var(--k4)"/>
+      <circle cx="98" cy="16" r="5" fill="var(--line-2)" opacity=".8"/><circle cx="106" cy="8" r="4" fill="var(--line-2)" opacity=".6"/>
+      <path d="M12 58 V38 L38 58 V38 L64 58 V38 L90 58z" fill="var(--k2)"/>
+      <path d="M12 58 h96 v46 h-96z" fill="var(--k3)"/>
+      <path d="M20 70 h12 v12 h-12z M38 70 h12 v12 h-12z M56 70 h12 v12 h-12z" fill="var(--k5)" opacity=".75"/>
+      <path d="M84 78 h16 v26 h-16z" fill="var(--k5)"/>
+      <path d="M12 58 h96" stroke="var(--k5)" stroke-width="1.5" opacity=".5"/>
+    </g>
+    <!-- Suprimentos: bobina de papel -->
+    <g id="il-bobina">
+      <ellipse cx="58" cy="106" rx="48" ry="6" fill="var(--shadow)"/>
+      <path d="M26 100 L6 104 L44 104 L56 100z" fill="var(--k1)" opacity=".9"/>
+      <ellipse cx="26" cy="70" rx="13" ry="30" fill="var(--k3)"/>
+      <path d="M26 40 h62 v60 h-62z" fill="var(--k2)"/>
+      <path d="M30 48 h56 M30 92 h56" stroke="var(--k3)" stroke-width="1.4" opacity=".6"/>
+      <ellipse cx="88" cy="70" rx="13" ry="30" fill="var(--k1)"/>
+      <ellipse cx="88" cy="70" rx="9" ry="21" fill="none" stroke="var(--k3)" stroke-width="1.4"/>
+      <ellipse cx="88" cy="70" rx="5" ry="11" fill="none" stroke="var(--k3)" stroke-width="1.4"/>
+      <ellipse cx="88" cy="70" rx="3" ry="6" fill="var(--hole)"/>
+    </g>
+    <!-- Qualidade: selo com fita -->
+    <g id="il-selo">
+      <ellipse cx="60" cy="108" rx="30" ry="5" fill="var(--shadow)"/>
+      <path d="M44 66 L34 104 L45 98 L51 108 L60 74z" fill="var(--bad)"/>
+      <path d="M76 66 L86 104 L75 98 L69 108 L60 74z" fill="var(--bad)" opacity=".85"/>
+      <circle cx="60" cy="50" r="32" fill="var(--k3)"/>
+      <circle cx="60" cy="50" r="32" fill="none" stroke="var(--k2)" stroke-width="6" stroke-dasharray="5 5"/>
+      <circle cx="60" cy="50" r="23" fill="var(--k1)"/>
+      <path d="M48 50 l8 8 l16 -16" fill="none" stroke="var(--ok)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Financeiro: nota e moedas -->
+    <g id="il-moedas">
+      <ellipse cx="60" cy="106" rx="48" ry="6" fill="var(--shadow)"/>
+      <g transform="rotate(-10 44 56)">
+        <rect x="10" y="38" width="68" height="38" rx="4" fill="var(--ok-soft)" stroke="var(--ok)" stroke-width="2.5"/>
+        <circle cx="44" cy="57" r="10" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
+        <path d="M18 46 h8 M62 68 h8" stroke="var(--ok)" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <path d="M62 64 v34 a20 6 0 0 0 40 0 v-34z" fill="var(--k3)"/>
+      <path d="M62 75 a20 6 0 0 0 40 0 M62 86 a20 6 0 0 0 40 0" fill="none" stroke="var(--k4)" stroke-width="1.6"/>
+      <ellipse cx="82" cy="64" rx="20" ry="6" fill="var(--k1)"/>
+      <ellipse cx="82" cy="64" rx="13" ry="3.6" fill="none" stroke="var(--k3)" stroke-width="1.4"/>
+    </g>
+    <!-- Controladoria: balança de pratos -->
+    <g id="il-justica">
+      <ellipse cx="60" cy="108" rx="34" ry="5" fill="var(--shadow)"/>
+      <path d="M36 104 h48 l-6 -10 h-36z" fill="var(--k5)"/>
+      <path d="M57 30 h6 v66 h-6z" fill="var(--k4)"/>
+      <rect x="18" y="28" width="84" height="6" rx="3" fill="var(--k3)"/>
+      <circle cx="60" cy="26" r="6" fill="var(--k2)"/>
+      <path d="M24 34 L12 64 M24 34 L36 64 M96 34 L84 58 M96 34 L108 58" stroke="var(--k5)" stroke-width="1.6"/>
+      <path d="M8 64 h32 a16 9 0 0 1 -32 0z" fill="var(--k1)"/>
+      <path d="M80 58 h32 a16 9 0 0 1 -32 0z" fill="var(--k1)"/>
+      <circle cx="18" cy="60" r="5" fill="var(--tape)"/><circle cx="28" cy="61" r="4" fill="var(--tape)"/>
+    </g>
+    <!-- Recursos Humanos: pessoas -->
+    <g id="il-pessoas">
+      <ellipse cx="60" cy="106" rx="46" ry="6" fill="var(--shadow)"/>
+      <circle cx="80" cy="38" r="13" fill="var(--k2)"/>
+      <path d="M56 98 c0 -24 11 -34 24 -34 s24 10 24 34z" fill="var(--k3)"/>
+      <circle cx="44" cy="46" r="15" fill="var(--k1)"/>
+      <path d="M16 104 c0 -28 13 -38 28 -38 s28 10 28 38z" fill="var(--k4)"/>
+      <path d="M40 68 l4 10 l4 -10" fill="var(--tape)"/>
+    </g>
+    <!-- Suporte: boia salva-vidas -->
+    <g id="il-boia">
+      <ellipse cx="60" cy="108" rx="34" ry="5" fill="var(--shadow)"/>
+      <circle cx="60" cy="58" r="28" fill="none" stroke="var(--k1)" stroke-width="16"/>
+      <circle cx="60" cy="58" r="28" fill="none" stroke="var(--bad)" stroke-width="16" stroke-dasharray="22 22" transform="rotate(-24 60 58)"/>
+      <circle cx="60" cy="58" r="36" fill="none" stroke="var(--k4)" stroke-width="1.6"/>
+      <circle cx="60" cy="58" r="20" fill="none" stroke="var(--k4)" stroke-width="1.6"/>
+      <path d="M26 42 q-8 -14 4 -24 M94 74 q8 14 -4 24" fill="none" stroke="var(--tape)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- Gerencial: gráfico subindo -->
+    <g id="il-grafico">
+      <ellipse cx="60" cy="108" rx="48" ry="5" fill="var(--shadow)"/>
+      <path d="M14 104 h92" stroke="var(--k5)" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="20" y="74" width="15" height="30" rx="2" fill="var(--k1)"/>
+      <rect x="41" y="60" width="15" height="44" rx="2" fill="var(--k2)"/>
+      <rect x="62" y="48" width="15" height="56" rx="2" fill="var(--k3)"/>
+      <rect x="83" y="32" width="15" height="72" rx="2" fill="var(--k4)"/>
+      <path d="M16 62 L44 44 L62 50 L96 16" fill="none" stroke="var(--ok)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M84 14 h14 v14" fill="none" stroke="var(--ok)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- ── áreas ── -->
+    <!-- Vendas: prancheta de pedido e caixa -->
+    <g id="il-pedido">
+      <ellipse cx="62" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <rect x="20" y="14" width="58" height="84" rx="6" fill="var(--k3)"/>
+      <rect x="26" y="22" width="46" height="70" rx="2" fill="var(--surface)"/>
+      <rect x="38" y="9" width="22" height="11" rx="3" fill="var(--k5)"/>
+      <path d="M31 36 l3 3 l6 -6 M31 52 l3 3 l6 -6 M31 68 l3 3 l6 -6" fill="none" stroke="var(--ok)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M45 36 h22 M45 52 h22 M45 68 h16" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M68 80 h28 v26 h-28z" fill="var(--k3)"/>
+      <path d="M96 80 l10 -7 v26 l-10 7z" fill="var(--k4)"/>
+      <path d="M68 80 l10 -7 h28 l-10 7z" fill="var(--k1)"/>
+      <path d="M79 80 l10 -7 h5 l-10 7z" fill="var(--tape)"/>
+    </g>
+    <!-- Crédito: cartão e escudo -->
+    <g id="il-cartao">
+      <ellipse cx="58" cy="106" rx="46" ry="5" fill="var(--shadow)"/>
+      <g transform="rotate(-10 48 62)">
+        <rect x="8" y="36" width="80" height="52" rx="7" fill="var(--k3)"/>
+        <rect x="8" y="48" width="80" height="10" fill="var(--k5)"/>
+        <rect x="18" y="66" width="15" height="11" rx="2" fill="var(--tape)"/>
+        <path d="M42 74 h30" stroke="var(--k1)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <path d="M90 50 l20 7 v15 c0 15 -9 24 -20 28 c-11 -4 -20 -13 -20 -28 v-15z" fill="var(--ok)"/>
+      <path d="M81 74 l6 6 l11 -12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Faturamento: cupom com total e moeda -->
+    <g id="il-fatura">
+      <ellipse cx="62" cy="108" rx="40" ry="5" fill="var(--shadow)"/>
+      <path d="M26 10 h54 v86 l-6.75 6 -6.75 -6 -6.75 6 -6.75 -6 -6.75 6 -6.75 -6 -6.75 6 -6.75 -6z" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2"/>
+      <path d="M34 24 h38 M34 36 h30 M34 48 h34 M34 60 h24" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="34" y="70" width="38" height="10" rx="2" fill="var(--k3)"/>
+      <circle cx="90" cy="86" r="16" fill="var(--k1)" stroke="var(--k4)" stroke-width="2.5"/>
+      <text x="90" y="92" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="17" fill="var(--k5)">$</text>
+    </g>
+    <!-- NFe: nota fiscal com código de barras -->
+    <g id="il-nfe">
+      <ellipse cx="60" cy="108" rx="40" ry="5" fill="var(--shadow)"/>
+      <path d="M24 10 h46 l18 18 v76 h-64z" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M70 10 v18 h18" fill="var(--line)" stroke="var(--line-2)" stroke-width="2" stroke-linejoin="round"/>
+      <text x="32" y="44" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="16" fill="var(--kraft)">NF-e</text>
+      <path d="M32 54 h40 M32 62 h30" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M32 76 v16 M36 76 v16 M41 76 v16 M44 76 v16 M49 76 v16 M53 76 v16 M58 76 v16 M61 76 v16" stroke="var(--k5)" stroke-width="2"/>
+      <circle cx="88" cy="90" r="15" fill="var(--ok)"/>
+      <path d="M81 90 l5 5 l9 -10" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Expedição: caminhão com caixas -->
+    <g id="il-caminhao">
+      <ellipse cx="60" cy="106" rx="52" ry="5" fill="var(--shadow)"/>
+      <path d="M44 50 h30 v32 h-30z" fill="var(--k2)"/>
+      <path d="M48 50 h6 v32 h-6z" fill="var(--tape)" opacity=".8"/>
+      <path d="M12 58 h30 v24 h-30z" fill="var(--k3)"/>
+      <path d="M18 38 h22 v20 h-22z" fill="var(--k1)"/>
+      <path d="M8 82 h72 v10 h-72z" fill="var(--k5)"/>
+      <path d="M78 56 h18 l12 16 v20 h-30z" fill="var(--kraft-deep)"/>
+      <path d="M83 61 h11 l8 11 h-19z" fill="var(--info-soft)"/>
+      <circle cx="26" cy="96" r="9" fill="var(--k5)"/><circle cx="26" cy="96" r="3.5" fill="var(--tape)"/>
+      <circle cx="92" cy="96" r="9" fill="var(--k5)"/><circle cx="92" cy="96" r="3.5" fill="var(--tape)"/>
+    </g>
+    <!-- Engenharia industrial: planta e engrenagem -->
+    <g id="il-planta">
+      <ellipse cx="60" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <g transform="rotate(-7 48 56)">
+        <rect x="12" y="18" width="72" height="72" rx="3" fill="var(--info-soft)" stroke="var(--info)" stroke-width="2.5"/>
+        <path d="M22 76 V50 l14 9 v-9 l14 9 V36 h10 v40z" fill="none" stroke="var(--info)" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M22 82 h52 M22 80 v4 M74 80 v4" stroke="var(--info)" stroke-width="1.6"/>
+      </g>
+      <circle cx="84" cy="78" r="19" fill="none" stroke="var(--k3)" stroke-width="8" stroke-dasharray="6.2 5.7"/>
+      <circle cx="84" cy="78" r="16" fill="var(--k3)"/>
+      <circle cx="84" cy="78" r="6" fill="var(--surface)"/>
+    </g>
+    <!-- Pesagem: balança com caixa e display -->
+    <g id="il-balanca">
+      <ellipse cx="60" cy="108" rx="50" ry="5" fill="var(--shadow)"/>
+      <path d="M8 92 l8 -6 h80 l8 6z" fill="var(--k2)"/>
+      <rect x="8" y="92" width="96" height="10" rx="2" fill="var(--k4)"/>
+      <path d="M30 56 h36 v32 h-36z" fill="var(--k3)"/>
+      <path d="M66 56 l8 -6 v32 l-8 6z" fill="var(--k4)"/>
+      <path d="M30 56 l8 -6 h36 l-8 6z" fill="var(--k1)"/>
+      <path d="M44 56 l8 -6 h6 l-8 6z" fill="var(--tape)"/>
+      <path d="M100 86 V40" stroke="var(--k5)" stroke-width="4"/>
+      <rect x="80" y="18" width="36" height="22" rx="4" fill="var(--k5)"/>
+      <text x="98" y="33" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="10" fill="#9fe0a8">850kg</text>
+    </g>
+    <!-- PCP: quadro de programação -->
+    <g id="il-quadro">
+      <ellipse cx="60" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <path d="M30 86 L22 106 M90 86 L98 106" stroke="var(--k5)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="12" y="16" width="96" height="72" rx="6" fill="var(--surface)" stroke="var(--k3)" stroke-width="3"/>
+      <path d="M12 22 a6 6 0 0 1 6 -6 h84 a6 6 0 0 1 6 6 v8 h-96z" fill="var(--k3)"/>
+      <path d="M36 30 v54 M60 30 v54 M84 30 v54" stroke="var(--line)" stroke-width="1.5"/>
+      <rect x="18" y="38" width="44" height="9" rx="3" fill="var(--k2)"/>
+      <rect x="44" y="53" width="54" height="9" rx="3" fill="var(--k4)"/>
+      <rect x="24" y="68" width="34" height="9" rx="3" fill="var(--info)"/>
+    </g>
+    <!-- Segurança: capacete -->
+    <g id="il-capacete">
+      <ellipse cx="60" cy="104" rx="46" ry="6" fill="var(--shadow)"/>
+      <path d="M22 80 a38 36 0 0 1 76 0z" fill="var(--warn)"/>
+      <path d="M54 44 h12 v36 h-12z" fill="#fff" opacity=".28"/>
+      <path d="M34 80 a26 30 0 0 1 14 -28" fill="none" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+      <rect x="10" y="78" width="100" height="12" rx="6" fill="var(--k4)"/>
+    </g>
+    <!-- Manutenção: chave e engrenagem -->
+    <g id="il-chave">
+      <ellipse cx="60" cy="108" rx="40" ry="5" fill="var(--shadow)"/>
+      <circle cx="74" cy="54" r="24" fill="none" stroke="var(--k2)" stroke-width="10" stroke-dasharray="7.5 7.5"/>
+      <circle cx="74" cy="54" r="20" fill="var(--k2)"/>
+      <circle cx="74" cy="54" r="8" fill="var(--surface)"/>
+      <g transform="translate(40 70) rotate(-45)">
+        <rect x="-6" y="-4" width="12" height="52" rx="6" fill="var(--k4)"/>
+        <circle cx="0" cy="-14" r="15" fill="var(--k4)"/>
+        <rect x="-5.5" y="-32" width="11" height="18" rx="2" fill="var(--surface)"/>
+      </g>
+    </g>
+    <!-- Compras: carrinho com caixas -->
+    <g id="il-carrinho">
+      <ellipse cx="62" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <path d="M34 22 h26 v20 h-26z" fill="var(--k3)"/>
+      <path d="M58 14 h26 v28 h-26z" fill="var(--k2)"/>
+      <path d="M66 14 h6 v28 h-6z" fill="var(--tape)" opacity=".8"/>
+      <path d="M24 40 h84 l-10 38 h-62z" fill="var(--k1)" stroke="var(--k4)" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M46 42 l2 34 M66 42 v34 M86 42 l-2 34 M30 58 h74" stroke="var(--k3)" stroke-width="2"/>
+      <path d="M6 28 h14 l14 58 h62" fill="none" stroke="var(--k5)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="42" cy="98" r="7" fill="var(--k5)"/><circle cx="90" cy="98" r="7" fill="var(--k5)"/>
+    </g>
+    <!-- Laboratório: frasco -->
+    <g id="il-frasco">
+      <ellipse cx="60" cy="108" rx="38" ry="5" fill="var(--shadow)"/>
+      <path d="M48 16 h24 v6 h-4 v22 l26 46 a6 6 0 0 1 -5 9 h-58 a6 6 0 0 1 -5 -9 l26 -46 v-22 h-4z" fill="var(--info-soft)"/>
+      <path d="M36 72 h48 l10 18 a6 6 0 0 1 -5 9 h-58 a6 6 0 0 1 -5 -9z" fill="var(--k2)"/>
+      <path d="M48 16 h24 v6 h-4 v22 l26 46 a6 6 0 0 1 -5 9 h-58 a6 6 0 0 1 -5 -9 l26 -46 v-22 h-4z" fill="none" stroke="var(--info)" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="54" cy="62" r="3.5" fill="var(--info)"/><circle cx="64" cy="52" r="2.8" fill="var(--info)"/><circle cx="58" cy="40" r="2.2" fill="var(--info)"/>
+      <path d="M44 84 h10 M66 88 h12" stroke="#fff" stroke-width="2.5" opacity=".45" stroke-linecap="round"/>
+    </g>
+    <!-- Qualidade (área): lupa sobre caixa -->
+    <g id="il-lupa">
+      <ellipse cx="54" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <path d="M12 64 h46 v40 h-46z" fill="var(--k3)"/>
+      <path d="M58 64 l12 -8 v40 l-12 8z" fill="var(--k4)"/>
+      <path d="M12 64 l12 -8 h46 l-12 8z" fill="var(--k1)"/>
+      <circle cx="70" cy="46" r="24" fill="var(--info-soft)" opacity=".85" stroke="var(--k5)" stroke-width="6"/>
+      <path d="M87 63 L106 84" stroke="var(--k5)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M59 46 l8 8 l14 -14" fill="none" stroke="var(--ok)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- RNC: caixa amassada e alerta -->
+    <g id="il-rnc">
+      <ellipse cx="52" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <path d="M10 60 h54 v44 h-54z" fill="var(--k3)"/>
+      <path d="M64 60 l14 -9 v44 l-14 9z" fill="var(--k4)"/>
+      <path d="M10 60 l14 -9 h54 l-14 9z" fill="var(--k1)"/>
+      <path d="M22 60 l8 12 l-6 8 l10 10 l-4 14" fill="none" stroke="var(--k5)" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M48 72 l6 6 M54 72 l-6 6" stroke="var(--k5)" stroke-width="2" opacity=".6"/>
+      <path d="M88 10 l24 42 h-48z" fill="var(--bad)" stroke="var(--bad)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M88 24 v14" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="88" cy="46" r="3" fill="#fff"/>
+    </g>
+    <!-- FSC: árvore com selo -->
+    <g id="il-arvore">
+      <ellipse cx="58" cy="106" rx="40" ry="5" fill="var(--shadow)"/>
+      <path d="M52 68 h12 v38 h-12z" fill="var(--k4)"/>
+      <circle cx="58" cy="42" r="26" fill="var(--ok)"/>
+      <circle cx="38" cy="60" r="17" fill="var(--ok)"/>
+      <circle cx="78" cy="60" r="17" fill="var(--ok)"/>
+      <circle cx="50" cy="34" r="9" fill="#fff" opacity=".18"/>
+      <circle cx="94" cy="88" r="14" fill="var(--surface)" stroke="var(--ok)" stroke-width="3.5"/>
+      <path d="M87 88 l5 5 l9 -10" fill="none" stroke="var(--ok)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Administração financeira: banco -->
+    <g id="il-banco">
+      <ellipse cx="60" cy="108" rx="50" ry="5" fill="var(--shadow)"/>
+      <path d="M12 42 L60 14 L108 42z" fill="var(--k2)"/>
+      <circle cx="60" cy="32" r="6" fill="var(--tape)"/>
+      <rect x="16" y="42" width="88" height="8" fill="var(--k3)"/>
+      <path d="M22 50 h12 v40 h-12z M44 50 h12 v40 h-12z M64 50 h12 v40 h-12z M86 50 h12 v40 h-12z" fill="var(--k1)"/>
+      <rect x="12" y="90" width="96" height="8" fill="var(--k4)"/>
+      <rect x="6" y="98" width="108" height="7" rx="1" fill="var(--k5)"/>
+    </g>
+    <!-- Contas a pagar: conta e seta saindo -->
+    <g id="il-pagar">
+      <ellipse cx="56" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <rect x="14" y="18" width="56" height="80" rx="5" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2"/>
+      <text x="22" y="40" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="14" fill="var(--kraft)">R$</text>
+      <path d="M22 54 h40 M22 64 h32 M22 74 h36" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="22" y="82" width="40" height="8" rx="2" fill="var(--bad-soft)"/>
+      <path d="M94 92 V30" stroke="var(--bad)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M80 42 L94 26 L108 42" fill="none" stroke="var(--bad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Contas a receber: moedas e seta entrando -->
+    <g id="il-receber">
+      <ellipse cx="60" cy="108" rx="44" ry="5" fill="var(--shadow)"/>
+      <path d="M14 70 v28 a22 6.5 0 0 0 44 0 v-28z" fill="var(--k3)"/>
+      <path d="M14 80 a22 6.5 0 0 0 44 0 M14 90 a22 6.5 0 0 0 44 0" fill="none" stroke="var(--k4)" stroke-width="1.6"/>
+      <ellipse cx="36" cy="70" rx="22" ry="6.5" fill="var(--k1)"/>
+      <path d="M64 82 v18 a20 6 0 0 0 40 0 v-18z" fill="var(--k3)"/>
+      <ellipse cx="84" cy="82" rx="20" ry="6" fill="var(--k1)"/>
+      <path d="M84 12 V64" stroke="var(--ok)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M70 52 L84 68 L98 52" fill="none" stroke="var(--ok)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Fiscal: documento com carimbo de % -->
+    <g id="il-fiscal">
+      <ellipse cx="58" cy="108" rx="42" ry="5" fill="var(--shadow)"/>
+      <path d="M18 10 h46 l18 18 v76 h-64z" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M64 10 v18 h18" fill="var(--line)" stroke="var(--line-2)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M26 38 h30 M26 48 h40 M26 58 h22" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <g transform="rotate(-14 82 80)">
+        <circle cx="82" cy="80" r="21" fill="var(--surface)" stroke="var(--bad)" stroke-width="4"/>
+        <circle cx="82" cy="80" r="15" fill="none" stroke="var(--bad)" stroke-width="1.5"/>
+        <text x="82" y="88" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="21" fill="var(--bad)">%</text>
+      </g>
+    </g>
+    <!-- Contabilidade: livro-razão aberto -->
+    <g id="il-livro">
+      <ellipse cx="60" cy="108" rx="50" ry="5" fill="var(--shadow)"/>
+      <path d="M6 32 v66 c18 -5 38 -3 54 6 c16 -9 36 -11 54 -6 v-66z" fill="var(--k4)"/>
+      <path d="M60 36 c-14 -9 -32 -10 -48 -6 v62 c16 -4 34 -3 48 6z" fill="var(--surface)"/>
+      <path d="M60 36 c14 -9 32 -10 48 -6 v62 c-16 -4 -34 -3 -48 6z" fill="var(--surface-2)"/>
+      <path d="M60 36 v62" stroke="var(--k4)" stroke-width="2"/>
+      <path d="M20 44 h30 M20 54 h30 M20 64 h30 M20 74 h24" stroke="var(--line-2)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M70 44 h12 M88 44 h12 M70 54 h12 M88 54 h12 M70 64 h12 M88 64 h12" stroke="var(--k3)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M70 76 h30" stroke="var(--ok)" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- Custos: calculadora -->
+    <g id="il-calculadora">
+      <ellipse cx="60" cy="108" rx="36" ry="5" fill="var(--shadow)"/>
+      <rect x="30" y="12" width="60" height="92" rx="9" fill="var(--k4)"/>
+      <rect x="38" y="21" width="44" height="19" rx="3" fill="var(--k5)"/>
+      <text x="78" y="35" text-anchor="end" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="11" fill="#9fe0a8">1.250</text>
+      <g fill="var(--k1)">
+        <rect x="38" y="48" width="10" height="9" rx="2"/><rect x="52" y="48" width="10" height="9" rx="2"/><rect x="66" y="48" width="10" height="9" rx="2"/>
+        <rect x="38" y="62" width="10" height="9" rx="2"/><rect x="52" y="62" width="10" height="9" rx="2"/><rect x="66" y="62" width="10" height="9" rx="2"/>
+        <rect x="38" y="76" width="10" height="9" rx="2"/><rect x="52" y="76" width="10" height="9" rx="2"/><rect x="66" y="76" width="10" height="9" rx="2"/>
+        <rect x="38" y="90" width="24" height="8" rx="2"/>
+      </g>
+      <rect x="66" y="90" width="10" height="8" rx="2" fill="var(--kraft-hi)"/>
+      <rect x="79" y="48" width="5" height="50" rx="2" fill="var(--kraft-hi)"/>
+    </g>
+    <!-- Ativo imobilizado: máquina com plaqueta de patrimônio -->
+    <g id="il-ativo">
+      <ellipse cx="58" cy="108" rx="48" ry="5" fill="var(--shadow)"/>
+      <rect x="10" y="50" width="76" height="46" rx="4" fill="var(--k3)"/>
+      <circle cx="30" cy="72" r="12" fill="var(--k1)" stroke="var(--k4)" stroke-width="3"/>
+      <circle cx="58" cy="72" r="12" fill="var(--k1)" stroke="var(--k4)" stroke-width="3"/>
+      <path d="M30 72 h28" stroke="var(--k4)" stroke-width="3"/>
+      <rect x="16" y="40" width="40" height="10" rx="2" fill="var(--k4)"/>
+      <path d="M14 96 v8 M82 96 v8" stroke="var(--k5)" stroke-width="5"/>
+      <path d="M84 52 C90 46 92 40 92 34" fill="none" stroke="var(--k5)" stroke-width="1.6"/>
+      <rect x="80" y="12" width="34" height="22" rx="3" fill="var(--tape)" stroke="var(--k5)" stroke-width="1.6"/>
+      <path d="M85 18 v10 M88 18 v10 M92 18 v10 M94 18 v10 M98 18 v10 M101 18 v10 M105 18 v10 M108 18 v10" stroke="var(--k5)" stroke-width="1.5"/>
+    </g>
+    <!-- Folha de pagamento: envelope com dinheiro -->
+    <g id="il-envelope">
+      <ellipse cx="60" cy="108" rx="46" ry="5" fill="var(--shadow)"/>
+      <g transform="rotate(-6 58 36)">
+        <rect x="28" y="16" width="60" height="36" rx="3" fill="var(--ok-soft)" stroke="var(--ok)" stroke-width="2.5"/>
+        <circle cx="58" cy="34" r="8" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
+      </g>
+      <rect x="14" y="44" width="92" height="58" rx="5" fill="var(--k1)"/>
+      <path d="M14 98 l34 -26 M106 98 l-34 -26" stroke="var(--k3)" stroke-width="2.5"/>
+      <path d="M16 48 l44 30 l44 -30" fill="none" stroke="var(--k3)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+    <!-- Treinamento: capelo sobre livros -->
+    <g id="il-diploma">
+      <ellipse cx="60" cy="108" rx="46" ry="5" fill="var(--shadow)"/>
+      <rect x="18" y="88" width="84" height="14" rx="2" fill="var(--k4)"/>
+      <rect x="24" y="74" width="72" height="14" rx="2" fill="var(--k2)"/>
+      <path d="M96 91 h4 M90 77 h4" stroke="var(--surface)" stroke-width="8"/>
+      <path d="M38 44 v16 c0 7 10 12 22 12 s22 -5 22 -12 v-16 l-22 8z" fill="var(--k5)" opacity=".9"/>
+      <path d="M60 14 L106 32 L60 50 L14 32z" fill="var(--k5)"/>
+      <path d="M60 32 L98 38 V58" fill="none" stroke="var(--tape)" stroke-width="2.5"/>
+      <circle cx="98" cy="62" r="4.5" fill="var(--tape)"/>
+    </g>
+    <!-- Portaria: guarita e cancela -->
+    <g id="il-cancela">
+      <ellipse cx="60" cy="106" rx="54" ry="5" fill="var(--shadow)"/>
+      <rect x="72" y="44" width="36" height="60" fill="var(--k3)"/>
+      <rect x="68" y="36" width="44" height="10" rx="2" fill="var(--k4)"/>
+      <rect x="78" y="54" width="24" height="18" rx="2" fill="var(--info-soft)"/>
+      <rect x="84" y="80" width="12" height="24" fill="var(--k5)"/>
+      <rect x="54" y="70" width="10" height="34" fill="var(--k5)"/>
+      <rect x="4" y="67" width="56" height="10" rx="3" fill="#f7f1e7" stroke="var(--k5)" stroke-width="1.5"/>
+      <path d="M8 72 H56" stroke="var(--bad)" stroke-width="9" stroke-dasharray="8 8"/>
+      <circle cx="59" cy="72" r="5" fill="var(--k4)"/>
+    </g>
+    <!-- Suporte (área): fone de atendimento -->
+    <g id="il-fone">
+      <ellipse cx="58" cy="108" rx="40" ry="5" fill="var(--shadow)"/>
+      <path d="M26 70 v-12 a32 32 0 0 1 64 0 v12" fill="none" stroke="var(--k4)" stroke-width="7" stroke-linecap="round"/>
+      <rect x="16" y="58" width="18" height="30" rx="7" fill="var(--k3)"/>
+      <rect x="82" y="58" width="18" height="30" rx="7" fill="var(--k3)"/>
+      <path d="M25 88 c0 10 10 16 26 16" fill="none" stroke="var(--k4)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="50" y="99" width="12" height="9" rx="4" fill="var(--k5)"/>
+      <path d="M76 6 h34 a6 6 0 0 1 6 6 v14 a6 6 0 0 1 -6 6 h-20 l-8 7 v-7 h-6 a6 6 0 0 1 -6 -6 v-14 a6 6 0 0 1 6 -6z" fill="var(--ok)"/>
+      <circle cx="84" cy="19" r="2.5" fill="#fff"/><circle cx="93" cy="19" r="2.5" fill="#fff"/><circle cx="102" cy="19" r="2.5" fill="#fff"/>
+    </g>
+    <!-- Relatórios: folha com gráficos -->
+    <g id="il-relatorio">
+      <ellipse cx="58" cy="108" rx="40" ry="5" fill="var(--shadow)"/>
+      <rect x="22" y="10" width="72" height="94" rx="6" fill="var(--surface)" stroke="var(--line-2)" stroke-width="2"/>
+      <circle cx="46" cy="38" r="15" fill="var(--k1)"/>
+      <path d="M46 38 V23 A15 15 0 0 1 60.3 42.6z" fill="var(--k4)"/>
+      <path d="M68 30 h18 M68 38 h14 M68 46 h18" stroke="var(--line-2)" stroke-width="3" stroke-linecap="round"/>
+      <rect x="32" y="78" width="10" height="16" rx="1.5" fill="var(--k2)"/>
+      <rect x="46" y="70" width="10" height="24" rx="1.5" fill="var(--k3)"/>
+      <rect x="60" y="74" width="10" height="20" rx="1.5" fill="var(--k2)"/>
+      <rect x="74" y="62" width="10" height="32" rx="1.5" fill="var(--k4)"/>
+    </g>
   </defs>
 </svg>
 
@@ -760,12 +1167,16 @@ const MODULOS = [
     {k:'relatorios', nome:'Relatórios', d:'Margem, refile, conversão e vendas'},
   ]},
 ];
-MODULOS.forEach(m => { m.slug = m.nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-'); });
+/* desenho de cada módulo ao passar o mouse */
+const CX_MOD = { comercial:'il-etiqueta', industrial:'il-industrial', suprimentos:'il-bobina', qualidade:'il-selo', financeiro:'il-moedas',
+  controladoria:'il-justica', 'recursos-humanos':'il-pessoas', suporte:'il-boia', gerencial:'il-grafico' };
+MODULOS.forEach(m => { m.slug = m.nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-'); m.cx = CX_MOD[m.slug] || m.cx; });
 /* Caixinha que entra no canto ao passar o mouse: faca, onda, pilha ou a caixa que abre (padrão) */
 function caixinha(tipo){
   if (tipo === 'faca') return '<span class="deco faca" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#cx-faca"/></svg></span>';
   if (tipo === 'onda') return '<span class="deco onda" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#cx-onda"/></svg></span>';
   if (tipo === 'pilha') return '<span class="deco" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#cx-pilha"/></svg></span>';
+  if (tipo && tipo.startsWith('il-')) return `<span class="deco" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#${tipo}"/></svg></span>`;
   return '<span class="deco" aria-hidden="true"><svg viewBox="0 0 120 120" class="abre"><g class="fechada"><use href="#cx-fechada"/></g><g class="aberta"><use href="#cx-aberta"/></g></svg></span>';
 }
 const apps = document.getElementById('apps');
@@ -1058,7 +1469,17 @@ const $ = (id) => document.getElementById(id);
 $('qtdMod').textContent = `${MODULOS.length} disponíveis para o seu perfil`;
 
 /* caixinha de cada área ao passar o mouse (as demais usam a caixa que abre) */
-const CX_AREA = { engind:'faca', expedicao:'pilha', materiais:'pilha', pcp:'onda', reporte:'onda' };
+const CX_AREA = {
+  vendas:'il-pedido', credito:'il-cartao', faturamento:'il-fatura', nfe:'il-nfe', expedicao:'il-caminhao',
+  engind:'il-planta', pesagem:'il-balanca', pcp:'il-quadro', seguranca:'il-capacete', reporte:'onda', manutencao:'il-chave',
+  compras:'il-carrinho', materiais:'pilha',
+  laboratorio:'il-frasco', qualidade:'il-lupa', rnc:'il-rnc', fsc:'il-arvore',
+  admfin:'il-banco', pagar:'il-pagar', receber:'il-receber',
+  fiscal:'il-fiscal', contabilidade:'il-livro', custos:'il-calculadora', ativo:'il-ativo',
+  folha:'il-envelope', treinamento:'il-diploma',
+  portaria:'il-cancela', suporte:'il-fone',
+  relatorios:'il-relatorio',
+};
 /* pendências de exemplo por área */
 const BADGE_AREA = { 'comercial/vendas':4, 'qualidade/rnc':1 };
 
