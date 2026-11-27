@@ -13,9 +13,10 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > Agora estamos montando o **mapa de funcionalidades** de todo o sistema, "no grosso":
 > para cada módulo e área, quais **tópicos** (menus) e **funcionalidades** (itens que abrem
 > janelas) existem. Os detalhes de cada tela vêm depois. Já está fechado:
-> Comercial › Vendas › Cadastros, Operações (o antigo "Eventos"), Pedidos e Comissões.
-> Me mande o print do próximo menu do sistema atual (ex.: Vendas › Demonstrativos)
-> dizendo o que tirar ou juntar.
+> a área **Comercial › Vendas** inteira (Cadastros, Operações, Pedidos, Follow-up,
+> Comissões, Consultas, Relatórios). Próximo: as outras áreas do Comercial (Portal do
+> representante, Crédito, Faturamento, NFe, Expedição) e depois os outros módulos. Me
+> mande o print do menu equivalente no sistema atual, ou peça uma proposta.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
 esta seção para a conversa seguinte saber de onde continuar.

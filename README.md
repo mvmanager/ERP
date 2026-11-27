@@ -110,6 +110,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   módulo), ícone e nome do módulo, **› nome da área** e os **tópicos** da área (cada
   um abre uma lista com seus itens).
 - **Logo** → tela inicial. **Ícone do módulo** → início do módulo (tela de áreas).
+- Dentro da área a barra fica enxuta para caber todos os tópicos numa linha: sem relógio,
+  sem o nome do usuário (só a bolinha com a inicial) e sem o aviso "mais tópicos". Em telas
+  estreitas os tópicos descem para uma segunda linha; no celular as listas ocupam a largura
+  da tela.
 - O nome da área é só informativo: **não há troca rápida de área pela barra de cima**
   (foi retirada para não confundir com os tópicos). Para mudar de área, volta-se às áreas.
 - Área sem tópicos definidos mostra "tópicos a definir".
@@ -207,6 +211,20 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - **Notas de crédito de comissão:** emitir e desfazer na mesma janela.
   - **Acerto de comissões:** fechamento do período.
   - **Relatório de comissões.**
+- **Follow-up** (funcionalidade própria, será criada do zero): Follow-up · Atividades dos
+  representantes (os dois tratam de acompanhamento; podem até virar uma coisa só).
+- **Consultas** e **Relatórios**: o antigo "Demonstrativos" (27 itens) dividido em dois.
+  - **Consultas:** Entregas (consulta de entregas + plano de entregas) · Atendimentos (SAC) ·
+    Ocorrências e alterações (ocorrências dos pedidos, alterações de data de entrega e de
+    embarque, ocorrências de bloqueio de entrega e de preço por intervalo de m²).
+  - **Relatórios:** Análise de vendas (junta vendas por representante, por representante
+    meta × real, por supervisor meta × real, por grupo de produtos, comparativo e ranking) ·
+    Previsão de faturamento · Evolução de preços (por produto ou por cliente) · Produtos
+    não vendidos · Indicador OTIF (On Time In Full).
+  - Consulta/relação de pedidos, pedidos por cliente e pedidos faturados ficam em
+    **Pedidos › Pedidos** (com filtros). Últimas compras e ocorrências do cliente vão para
+    a **ficha do cliente**. Relação de entregas geradas de pedidos HP **sai**.
+  - "Depois vemos se tiramos algo": a lista pode encolher.
 - Outros tópicos serão acrescentados conforme forem definidos.
 
 ## Próximos passos
