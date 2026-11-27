@@ -108,9 +108,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Dentro de uma área (padrão para todos)
 - Barra de cima baixa e colada à esquerda: logo, "‹ Áreas" (volta para as áreas do
   módulo), ícone e nome do módulo, **› nome da área** e os **tópicos** da área (cada
-  um abre uma lista com seus itens). O logo volta para a tela inicial.
-- Clicar no nome da área abre a lista das outras áreas do módulo, para **trocar de
-  área sem voltar**.
+  um abre uma lista com seus itens).
+- **Logo** → tela inicial. **Ícone do módulo** → início do módulo (tela de áreas).
+- O nome da área é só informativo: **não há troca rápida de área pela barra de cima**
+  (foi retirada para não confundir com os tópicos). Para mudar de área, volta-se às áreas.
 - Área sem tópicos definidos mostra "tópicos a definir".
 - A área abre **vazia** (só um desenho discreto ao fundo). Nada aparece até
   a pessoa escolher um item — para não confundir quem usa.

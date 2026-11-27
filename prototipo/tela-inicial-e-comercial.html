@@ -535,10 +535,9 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
 /* seletor de área na barra de cima do módulo */
 .areasel{position:relative;display:flex;align-items:center;gap:2px}
 .areasel .chev{color:var(--line-2);font-size:18px;line-height:1}
-.areabtn{border:0;background:transparent;display:flex;align-items:center;gap:6px;font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:17px;color:var(--kraft);cursor:pointer;padding:3px 8px;border-radius:8px;white-space:nowrap}
-.areabtn:hover,.areabtn[aria-expanded="true"]{background:var(--kraft-soft)}
-.areabtn svg{width:12px;height:12px;color:var(--muted);transition:transform .25s}
-.areabtn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.areabtn{display:flex;align-items:center;gap:6px;cursor:default;font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:17px;color:var(--kraft);cursor:pointer;padding:3px 8px;border-radius:8px;white-space:nowrap}
+.topmod a.ic{text-decoration:none;transition:transform .2s,filter .2s}
+.topmod a.ic:hover{transform:translateY(-1px) scale(1.06);filter:brightness(1.06)}
 .mdrop button.atual{background:var(--surface-2)}
 .mdrop button.atual .t::after{content:" · aberta";font-weight:400;color:var(--muted);font-size:12px}
 
@@ -1036,12 +1035,11 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
     <div class="topmod" id="topMod" hidden>
       <span class="sep" aria-hidden="true"></span>
       <a class="volta" id="volta" href="#inicio">‹ Início</a>
-      <span class="ic" id="mhIcon"></span>
+      <a class="ic" id="mhIcon" href="#" title="Ir para o início do módulo"></a>
       <b id="modTitulo" title="Minimizar todas as janelas">Comercial</b>
       <div class="areasel" id="areaSel" hidden>
         <span class="chev" aria-hidden="true">›</span>
-        <button class="areabtn" id="areaBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Trocar de área"><span id="areaNome">Vendas</span></button>
-        <div class="mdrop" id="areaDrop" role="menu" hidden></div>
+        <span class="areabtn" id="areaBtn">Vendas</span>
       </div>
       <nav class="menubar" id="menubar" aria-label="Tópicos"></nav>
     </div>
@@ -1614,7 +1612,7 @@ function mostrarTela(){
   $('envpill').hidden = tela !== 'inicio';
   document.body.classList.toggle('modo-modulo', tela === 'mesa');
   fecharMenus(); fecharArea();
-  if (atual) { $('mhIcon').innerHTML = svg(atual.m.k); $('modTitulo').textContent = atual.m.nome; }
+  if (atual) { $('mhIcon').innerHTML = svg(atual.m.k); $('mhIcon').href = '#' + atual.m.slug; $('modTitulo').textContent = atual.m.nome; }
   const volta = $('volta');
   if (tela === 'mesa' && atual.a) { volta.href = '#' + atual.m.slug; volta.textContent = '‹ Áreas'; volta.title = 'Voltar para as áreas de ' + atual.m.nome; }
   else { volta.href = '#inicio'; volta.textContent = '‹ Início'; volta.title = 'Voltar para a tela inicial'; }
@@ -1719,8 +1717,7 @@ function montarMesa(){
   const { m, a } = atual;
   $('areaSel').hidden = !a;
   if (a) {
-    $('areaBtn').innerHTML = `<span>${a.nome}</span>${ico('seta')}`;
-    $('areaDrop').innerHTML = m.areas.map(x => `<button type="button" role="menuitem" data-area="${x.k}"${x === a ? ' class="atual"' : ''}><span class="i">${svg(x.k)}</span><span class="t">${x.nome}</span><span class="d">${x.d}</span></button>`).join('');
+    $('areaBtn').textContent = a.nome;
   }
   topicos = TOPICOS[atual.ctx] || [];
   menubar.setAttribute('aria-label', 'Tópicos de ' + (a ? a.nome : m.nome));
@@ -1749,18 +1746,7 @@ menubar.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => { if (!e.target.closest('#menubar')) fecharMenus(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fecharMenus(); fecharArea(); } });
 
-/* trocar de área sem voltar: clique no nome da área na barra de cima */
-function fecharArea(){ $('areaDrop').hidden = true; $('areaBtn').setAttribute('aria-expanded','false'); }
-$('areaBtn').addEventListener('click', () => {
-  const abrir = $('areaDrop').hidden;
-  fecharMenus(); fecharArea();
-  $('areaDrop').hidden = !abrir; $('areaBtn').setAttribute('aria-expanded', String(abrir));
-});
-$('areaDrop').addEventListener('click', (e) => {
-  const b = e.target.closest('[data-area]'); if (!b) return;
-  fecharArea(); location.hash = atual.m.slug + '/' + b.dataset.area;
-});
-document.addEventListener('click', (e) => { if (!e.target.closest('#areaSel')) fecharArea(); });
+function fecharArea(){} // (a troca rápida de área pela barra de cima foi retirada)
 
 /* ════ Janelas dentro da área (cada área tem as suas) ════ */
 const mesa = $('mesa'), barraJan = $('barraJan');
