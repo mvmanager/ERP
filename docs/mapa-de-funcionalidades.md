@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **16 com funcionalidades definidas**, **126 funcionalidades**.
+Situação: **31 áreas**, **17 com funcionalidades definidas**, **146 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -65,13 +65,22 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Pesagem — *a definir*
 
-### PCP — *a definir*
+### PCP
+
+- **Pedidos:** Pedidos a programar
+- **Ordens de fabricação:** Ordens de fabricação · Emissão de OF e etiquetas
+- **Programação:** Programação da onduladeira · Sequenciamento da produção
+- **Materiais:** Necessidades de materiais · Revisão de consumos
+- **Capacidade:** Horas extras e jornada · Paradas previstas
+- **Cadastros:** Calendário, turnos e equipes · Regras de produção · Corrugado · Parâmetros de PCP
+- **Consultas:** Painel de atividades (PCA) · Andamento das OFs · Carga máquina e utilização
 
 ### Segurança — *a definir*
 
 ### Reporte de produção
 
 - **Apontamentos:** Ajuste de paradas e máquina ociosa
+- **Consultas:** Produção por período · Paradas · Refugo · Apontamentos
 
 ### Manutenção
 

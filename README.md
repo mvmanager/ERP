@@ -199,7 +199,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Suprimentos (o que já veio de outras áreas)
 - **Materiais › Estoque de segurança:** Previsão de consumo e estoque de segurança (com
   parâmetros por subgrupo) · Análise do estoque de segurança (composição e previsão mensal).
-- **Compras › Serviços:** Serviços de terceiros.
+- **Compras › Serviços:** Serviços de terceiros (inclui OS de terceiros para estoque, do PCP).
 
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba
@@ -225,8 +225,29 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   *Preventiva:* Programa de preventiva e lubrificação (com a agenda) · Tarefas de preventiva e
   lubrificação. *Cadastros:* Grupos de manutenção. *Consultas:* Histórico e análise de OS
   (encerradas, por máquina, por período) · Histórico dos componentes.
-- **Reporte de produção** — *Apontamentos:* Ajuste de paradas e máquina ociosa (o resto da
-  área ainda a definir).
+- **Reporte de produção** — *Apontamentos:* Ajuste de paradas e máquina ociosa. *Consultas*
+  (vieram do PCP): Produção por período (relatório + volume produzido) · Paradas · Refugo
+  (por OF + estratificação) · Apontamentos.
+
+### Industrial › PCP (a partir do sistema atual: ~60 itens → 16)
+- Tudo de uma **OF (ordem de fabricação)** fica dentro da própria OF.
+- **Pedidos:** Pedidos a programar (liberar no PCP ou devolver para Vendas).
+- **Ordens de fabricação:** Ordens de fabricação (gerar, alterar quantidade e chapas, recursos
+  empenhados, troca de máquina, observação, histórico padrão, cancelar OF/saldo, ajustar mão
+  de obra, encerrar OF da integração Aucavili) · Emissão de OF e etiquetas.
+- **Programação:** Programação da onduladeira (submenus "Corrugado") · Sequenciamento da
+  produção (sequenciar, alterar, cancelar).
+- **Materiais:** Necessidades de materiais (explosão dos pedidos, compras para OF, sugestão de
+  compra de chapas, empenhados) · Revisão de consumos (demanda independente, baixa automática).
+- **Capacidade:** Horas extras e jornada · Paradas previstas (máquinas e ferramentas).
+- **Cadastros:** Calendário, turnos e equipes · Regras de produção (transferência, bloqueio de
+  máquina para sequenciar, lavagem de tinteiros, histórico padrão) · Corrugado · Parâmetros
+  (inclui layouts do PCA e volume para carga máquina).
+- **Consultas:** Painel de atividades (PCA) · Andamento das OFs · Carga máquina e utilização.
+- **Foram para outras áreas:** relatórios de produção, paradas, refugo e apontamentos →
+  Reporte de produção · OS de terceiros para estoque → Suprimentos › Compras (Serviços).
+- **A confirmar:** "Auditor lógico operacional" (ferramenta técnica? tirar ou levar ao
+  Suporte). "Meus relatórios" do PCP já é coberto pelos Meus atalhos da tela inicial.
 
 ### Industrial › Engenharia de produto (a partir do sistema atual, enxuto)
 - Recebe as solicitações de amostra, clichê e desenvolvimento do Portal do representante.

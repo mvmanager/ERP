@@ -1956,6 +1956,46 @@ const TOPICOS = {
     { nome:'Apontamentos', itens:[
       { ic:'relogio', t:'Ajuste de paradas e máquina ociosa', d:'Corrigir paradas e tempo ocioso apontados' },
     ]},
+    /* Consultas vindas do PCP do sistema atual */
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Produção por período', d:'Relatório de produção e volume produzido' },
+      { ic:'relogio', t:'Paradas', d:'Paradas da produção, por máquina e motivo' },
+      { ic:'alerta', t:'Refugo', d:'Refugo por OF e estratificação por motivo' },
+      { ic:'lupa', t:'Apontamentos', d:'Apontamentos feitos na produção' },
+    ]},
+  ],
+  /* Industrial › PCP (a partir do sistema atual: ~60 itens → 16). Tudo de uma OF fica na OF. */
+  'industrial/pcp': [
+    { nome:'Pedidos', itens:[
+      { ic:'importar', t:'Pedidos a programar', d:'Liberar no PCP ou devolver para Vendas' },
+    ]},
+    { nome:'Ordens de fabricação', itens:[
+      { ic:'doc', t:'Ordens de fabricação', d:'Gerar, alterar, cancelar, recursos, troca de máquina e mão de obra' },
+      { ic:'impr', t:'Emissão de OF e etiquetas', d:'Emitir a OF e (re)emitir etiquetas de acompanhamento' },
+    ]},
+    { nome:'Programação', itens:[
+      { ic:'tabela', t:'Programação da onduladeira', d:'Combinações e programação do corrugado' },
+      { ic:'troca', t:'Sequenciamento da produção', d:'Sequenciar, alterar e cancelar a sequência por máquina' },
+    ]},
+    { nome:'Materiais', itens:[
+      { ic:'caixa', t:'Necessidades de materiais', d:'Explosão dos pedidos, compras para OF, sugestão de chapas, empenhados' },
+      { ic:'lupa', t:'Revisão de consumos', d:'Demanda independente e baixa automática' },
+    ]},
+    { nome:'Capacidade', itens:[
+      { ic:'relogio', t:'Horas extras e jornada', d:'Pedir prolongamento de jornada e autorizar horas extras' },
+      { ic:'alerta', t:'Paradas previstas', d:'Máquinas e ferramentas com parada prevista' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'calendario', t:'Calendário, turnos e equipes', d:'Calendário, jornadas por máquina, turmas, equipes e tempos' },
+      { ic:'regua', t:'Regras de produção', d:'Transferência, bloqueios para sequenciar, lavagem de tinteiros' },
+      { ic:'caixa', t:'Corrugado', d:'Cadastros da onduladeira' },
+      { ic:'engrenagem', t:'Parâmetros de PCP', d:'Inclui layouts do painel e volume para carga máquina' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'grafico', t:'Painel de atividades (PCA)', d:'Visão geral das atividades da produção' },
+      { ic:'tabela', t:'Andamento das OFs', d:'Andamento, sequenciadas, saldo por operação, estoques no processo' },
+      { ic:'tendencia', t:'Carga máquina e utilização', d:'Carga das máquinas e uso de máquinas e mão de obra' },
+    ]},
   ],
   /* Suprimentos: vieram da Engenharia de produto do sistema atual. */
   'suprimentos/materiais': [
@@ -1966,7 +2006,7 @@ const TOPICOS = {
   ],
   'suprimentos/compras': [
     { nome:'Serviços', itens:[
-      { ic:'troca', t:'Serviços de terceiros', d:'Serviços contratados de fora' },
+      { ic:'troca', t:'Serviços de terceiros', d:'Serviços contratados de fora, inclusive OS de terceiros para estoque' },
     ]},
   ],
   'comercial/vendas': [
