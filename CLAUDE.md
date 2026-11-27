@@ -5,12 +5,13 @@
 Antes de qualquer outra coisa, diga ao usuário onde o projeto parou e qual é o
 próximo passo, com estas palavras (pode adaptar levemente):
 
-> O protótipo da **tela inicial** e do **módulo Comercial** está aprovado e salvo
-> aqui no repositório (`prototipo/tela-inicial-e-comercial.html`, com fotos em
+> O protótipo da **tela inicial**, das **áreas de cada módulo** e do **Comercial › Vendas** está salvo
+> aqui no repositório (`prototipo/tela-inicial-e-comercial.html`, link para ver:
+> https://claude.ai/artifact/KrHFXtBn5s9YtySNMPGRM1, fotos em
 > `docs/fotos/` e todas as decisões no `README.md`).
 >
 > O próximo passo combinado é desenhar o conteúdo da primeira janela:
-> **Prospects e clientes** (Comercial › Cadastros). Se tiver os campos que vocês
+> **Prospects e clientes** (Comercial › Vendas › Cadastros). Se tiver os campos que vocês
 > preenchem hoje no cadastro de prospect/cliente — ou um desenho da tela — me
 > mande que eu monto em cima.
 

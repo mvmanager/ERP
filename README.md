@@ -12,11 +12,16 @@ Abra os arquivos da pasta `prototipo/` direto no navegador (duplo clique):
 
 | Arquivo | O que mostra |
 |---|---|
-| `prototipo/tela-inicial-e-comercial.html` | Tela inicial e módulo Comercial (aprovados). Clique em **Comercial** para entrar no módulo. |
+| `prototipo/tela-inicial-e-comercial.html` | Tela inicial, áreas de cada módulo e a área Vendas do Comercial. Clique em **Comercial** e depois em **Vendas**. |
 | `prototipo/caixinhas-de-papelao.html` | Os seis desenhos de caixa usados no efeito dos módulos. |
 | `prototipo/estilos-de-tela-pesquisa.html` | Pesquisa inicial: nove estilos de organizar telas usados por outros sistemas. |
 
-Fotos das telas estão em `docs/fotos/`.
+Fotos das telas estão em `docs/fotos/`. As fotos 03 a 06 são de antes da divisão em
+áreas (a barra de cima mostrava só "Comercial", sem "› Vendas"); o comportamento das
+janelas continua o mesmo.
+
+Para ver o protótipo sem baixar nada: https://claude.ai/artifact/KrHFXtBn5s9YtySNMPGRM1
+(link privado do dono da conta).
 
 Os números, clientes e pedidos do protótipo são **exemplos**. A busca do assistente
 usa uma lista fixa de telas e relatórios; no sistema real ela consultará o catálogo
@@ -36,22 +41,50 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - quando não existe exatamente, mostra o que tem de mais próximo;
   - quando não existe nada parecido, oferece **pedir ao desenvolvedor uma análise**
     (gera um protocolo; no sistema real vai para uma fila de melhorias).
-- **Módulos em destaque** (grade de cartões, estilo "aplicativos"):
-  Comercial, Orçamentos, Engenharia de Produto, PCP, Produção, Estoque, Compras,
-  Qualidade, Expedição, Financeiro, Indicadores e Cadastros.
-  - Amostras, clicheria, facas e desenvolvimento ficam dentro de **Engenharia de Produto**.
+- **Módulos em destaque** (grade de cartões, estilo "aplicativos"). Cada módulo grande
+  é dividido em **áreas**, porque pessoas diferentes trabalham em áreas diferentes:
+
+  | Módulo | Áreas |
+  |---|---|
+  | Comercial | Vendas, Crédito, Faturamento, NFe, Expedição |
+  | Orçamentos | (sem áreas por enquanto) |
+  | Engenharia de Produto | (sem áreas por enquanto: amostras, clicheria, facas e desenvolvimento) |
+  | Industrial | Engenharia industrial, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
+  | Suprimentos | Compras, Materiais |
+  | Qualidade | Laboratório, Qualidade, RNC, FSC |
+  | Financeiro | Administração financeira, Contas a pagar, Contas a receber |
+  | Controladoria | Fiscal, Contabilidade, Custos, Ativo imobilizado |
+  | Recursos Humanos | Folha de pagamento, Treinamento |
+  | Suporte | Portaria, Suporte |
+  | Gerencial | Relatórios |
+  | Cadastros | (sem áreas por enquanto) |
+
+  - No cartão do módulo aparecem os nomes das áreas.
   - Ao passar o mouse: o cartão sobe, inclina levemente, ganha uma luz suave e uma
-    **caixinha de papelão** entra pelo canto (faca em Engenharia, onda em Produção,
-    pilha no pallet em Expedição, caixa que abre nos demais).
+    **caixinha de papelão** entra pelo canto (faca em Engenharia de Produto, onda em
+    Industrial, pilha no pallet em Suprimentos, caixa que abre nos demais).
   - Selo vermelho com a quantidade de pendências do módulo.
 - **Pendências** abaixo dos módulos: só aparecem os módulos com solicitações esperando
   o usuário, com a quantidade por tipo.
 
-### Dentro de um módulo (padrão para todos)
-- Barra de cima baixa e colada à esquerda: logo, "‹ Início", ícone e nome do módulo,
-  e os **tópicos** do módulo (cada um abre uma lista com seus itens).
-- A área do módulo abre **vazia** (só um desenho discreto ao fundo). Nada aparece até
+### Áreas do módulo (padrão para todos)
+- Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
+  inicial**: título do módulo e uma grade de cartões, um por área, com a mesma caixinha
+  ao passar o mouse (pilha no pallet em Expedição e Materiais, onda em PCP e Reporte de
+  produção) e o selo de pendências de cada área.
+- No sistema real, cada pessoa vê só as áreas liberadas para ela.
+
+### Dentro de uma área (padrão para todos)
+- Barra de cima baixa e colada à esquerda: logo, "‹ Áreas" (volta para as áreas do
+  módulo), ícone e nome do módulo, **› nome da área** e os **tópicos** da área (cada
+  um abre uma lista com seus itens). O logo volta para a tela inicial.
+- Clicar no nome da área abre a lista das outras áreas do módulo, para **trocar de
+  área sem voltar**.
+- Área sem tópicos definidos mostra "tópicos a definir".
+- A área abre **vazia** (só um desenho discreto ao fundo). Nada aparece até
   a pessoa escolher um item — para não confundir quem usa.
+- Cada área guarda **as suas próprias janelas**: ao trocar de área elas ficam
+  guardadas e reaparecem quando a pessoa volta.
 - Cada item abre numa **janela**:
   - abre **grande** (ocupando toda a área); o botão □ alterna para um tamanho menor;
   - pode ser **arrastada** pela barra de título, até passar da borda do monitor;
@@ -63,14 +96,16 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - "–" minimiza e "✕" fecha, sempre visíveis.
 - Barra de título da janela numa linha só: ícone pequeno, nome e o caminho ao lado.
 
-### Comercial (tópicos definidos até agora)
+### Comercial › Vendas (tópicos definidos até agora)
 - **Cadastros:** Prospects e clientes; Endereços de entrega.
 - **Pedidos:** Consultar pedidos; Imprimir pedidos; Alterar pedidos.
 - Outros tópicos serão acrescentados conforme forem definidos.
 
 ## Próximos passos
-1. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**.
-2. Definir os demais tópicos do Comercial e dos outros módulos.
+1. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**
+   (Comercial › Vendas › Cadastros).
+2. Definir os tópicos das demais áreas e o que fazer com Orçamentos, Engenharia de
+   Produto e Cadastros (que ainda não têm áreas).
 3. Montar o sistema de verdade:
    - aplicação em Docker, banco PostgreSQL e configurações fora do código, para poder
      trocar de hospedagem sem retrabalho;

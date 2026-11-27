@@ -408,6 +408,17 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
 .vazio{border:1px dashed var(--line-2);border-radius:16px;padding:40px 20px;text-align:center;color:var(--muted);display:grid;gap:8px;justify-items:center}
 .vazio b{color:var(--ink);font-family:var(--f-display);font-size:18px}
 
+.tile .st{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* seletor de área na barra de cima do módulo */
+.areasel{position:relative;display:flex;align-items:center;gap:2px}
+.areasel .chev{color:var(--line-2);font-size:18px;line-height:1}
+.areabtn{border:0;background:transparent;display:flex;align-items:center;gap:6px;font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:17px;color:var(--kraft);cursor:pointer;padding:3px 8px;border-radius:8px;white-space:nowrap}
+.areabtn:hover,.areabtn[aria-expanded="true"]{background:var(--kraft-soft)}
+.areabtn svg{width:12px;height:12px;color:var(--muted);transition:transform .25s}
+.areabtn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mdrop button.atual{background:var(--surface-2)}
+.mdrop button.atual .t::after{content:" · aberta";font-weight:400;color:var(--muted);font-size:12px}
+
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:14px;z-index:40;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);max-width:calc(100% - 32px)}
 @media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} .tile{transform:none!important} }
 </style>
@@ -480,10 +491,15 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
     <span class="envpill" id="envpill">protótipo</span>
     <div class="topmod" id="topMod" hidden>
       <span class="sep" aria-hidden="true"></span>
-      <a class="volta" href="#inicio">‹ Início</a>
+      <a class="volta" id="volta" href="#inicio">‹ Início</a>
       <span class="ic" id="mhIcon"></span>
       <b id="modTitulo" title="Minimizar todas as janelas">Comercial</b>
-      <nav class="menubar" id="menubar" aria-label="Tópicos do Comercial"></nav>
+      <div class="areasel" id="areaSel" hidden>
+        <span class="chev" aria-hidden="true">›</span>
+        <button class="areabtn" id="areaBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Trocar de área"><span id="areaNome">Vendas</span></button>
+        <div class="mdrop" id="areaDrop" role="menu" hidden></div>
+      </div>
+      <nav class="menubar" id="menubar" aria-label="Tópicos"></nav>
     </div>
     <span class="sp"></span>
     <span class="clock" id="clock">14:32</span>
@@ -522,7 +538,7 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
 
   <section class="gut">
     <div class="max">
-      <div class="secthead" style="margin-top:18px"><h2>Módulos</h2><span>12 disponíveis para o seu perfil</span></div>
+      <div class="secthead" style="margin-top:18px"><h2>Módulos</h2><span id="qtdMod">disponíveis para o seu perfil</span></div>
       <div class="apps" id="apps"></div>
 
       <div class="wave" aria-hidden="true"></div>
@@ -545,7 +561,23 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
   </section>
 </main>
 
-<main id="view-comercial" hidden>
+<main id="view-areas" hidden>
+  <section class="mod-head gut">
+    <div class="max">
+      <div class="crumb"><a href="#inicio">Início</a><span aria-hidden="true">›</span><span id="areasCrumb">Comercial</span></div>
+      <div class="mh"><span class="ic" id="areasIc"></span><div><h1 id="areasTit">Comercial</h1><div class="sub" id="areasSub">Escolha a área</div></div></div>
+    </div>
+  </section>
+  <section class="gut">
+    <div class="max">
+      <div class="secthead" style="margin-top:26px"><h2>Áreas</h2><span>cada pessoa vê só as áreas liberadas para ela</span></div>
+      <div class="apps" id="areasGrid"></div>
+      <div class="wave" aria-hidden="true"></div>
+    </div>
+  </section>
+</main>
+
+<main id="view-modulo" hidden>
   <section class="gut">
     <div class="max">
 
@@ -558,7 +590,7 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
       <div class="mesa" id="mesa">
         <div class="fundo" aria-hidden="true">
           <svg viewBox="0 0 120 120"><use href="#cx-fechada"/></svg>
-          <p><b>Escolha um tópico acima</b> para começar.<br>As telas abrem em janelas que você pode mover, minimizar e fechar.</p>
+          <p id="fundoTxt"><b>Escolha um tópico acima</b> para começar.<br>As telas abrem em janelas que você pode mover, minimizar e fechar.</p>
         </div>
       </div>
     </div>
@@ -584,24 +616,91 @@ const I = {
   compras:'<path d="M3 4h2.5l2.2 11h10.6l2-8H6.6"/><circle cx="9.5" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/>',
   cadastros:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-6 6.5-6s5.9 2.4 6.5 6"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 14.5c1.7.8 2.8 2.9 3 5.5"/>',
   rel:'<path d="M6 2.5h9l4 4V21.5H6z"/><path d="M14.5 2.5V7h4.5M9 12h7M9 15.5h7M9 19h4"/>',
+  /* módulos novos */
+  controladoria:'<path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>',
+  rh:'<circle cx="12" cy="7.5" r="3.5"/><path d="M5 21c.7-4 3.5-6.5 7-6.5s6.3 2.5 7 6.5"/><path d="M10.2 14.8 12 18l1.8-3.2"/>',
+  industrial:'<path d="M3 21V10.5l5.5 3.5v-3.5l5.5 3.5V3.5h5V21z"/><path d="M2 21h20M7 17.5h2M12 17.5h2"/>',
+  suporte:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="4" height="6" rx="1.5"/><rect x="17" y="13.5" width="4" height="6" rx="1.5"/><path d="M19 19.5c0 1.5-2 2.5-5 2.5"/>',
+  /* áreas */
+  vendas:'<path d="M3.5 7.5h17l-1.4 12a2 2 0 0 1-2 1.5H6.9a2 2 0 0 1-2-1.5z"/><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"/>',
+  credito:'<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/>',
+  faturamento:'<path d="M5 2.5h14v19l-2.3-1.5-2.4 1.5-2.3-1.5-2.3 1.5-2.4-1.5L5 21.5z"/><path d="M8.5 7.5h7M8.5 11h7M8.5 14.5h4"/>',
+  nfe:'<path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5V7h4.5"/><path d="M9 14l2.2 2.2L16 11.5"/>',
+  pagar:'<circle cx="12" cy="12" r="9"/><path d="M12 16.5v-9M8.5 11 12 7.5l3.5 3.5"/>',
+  receber:'<circle cx="12" cy="12" r="9"/><path d="M12 7.5v9M8.5 13 12 16.5l3.5-3.5"/>',
+  fiscal:'<path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5V7h4.5"/><path d="M9.5 18l6-7"/><circle cx="10" cy="12" r="1.2"/><circle cx="15" cy="17" r="1.2"/>',
+  contabilidade:'<path d="M4 4.5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 20.5a1.5 1.5 0 0 0 2 1h13v-3M8.5 7h6"/>',
+  ativo:'<path d="M4 21V6l8-3.5L20 6v15"/><path d="M2.5 21h19M8 10h2M14 10h2M8 14h2M14 14h2M10.5 21v-3.5h3V21"/>',
+  rnc:'<path d="M12 3 2.5 20h19z"/><path d="M12 10v4.5M12 17.5h0"/>',
+  fsc:'<path d="M12 2.5 6 10h3l-4 6h14l-4-6h3z"/><path d="M12 16v5.5"/>',
+  folha:'<rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/>',
+  treinamento:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M21 9.5V15"/>',
+  pesagem:'<path d="M4 20h16l-1.5-9h-13z"/><circle cx="12" cy="6" r="2.5"/><path d="M12 8.5V11M9 15.5h6"/>',
+  seguranca:'<path d="M3 17h18M4.5 17a7.5 7.5 0 0 1 15 0"/><path d="M10 9.7V6.5h4v3.2M3 17v2.5h18V17"/>',
+  reporte:'<rect x="5" y="4" width="14" height="17.5" rx="2"/><path d="M9 2.5h6v3H9zM8.5 11h7M8.5 14.5h7M8.5 18h4"/>',
+  manutencao:'<path d="M15 3.5a5 5 0 0 0-4.6 6.9L3.5 17.3a2.1 2.1 0 0 0 3 3l6.9-6.9A5 5 0 0 0 20.5 9l-3 3-3.5-1-1-3.5 3-3a5 5 0 0 0-1-1z"/>',
+  portaria:'<path d="M3 21V8h4v13M7 11h14M7 11l3 3M11 11l3 3M15 11l3 3"/><path d="M2 21h20"/>',
 };
+Object.assign(I, { admfin:I.financeiro, materiais:I.estoque, custos:I.orcamentos, laboratorio:I.amostras, engind:I.engenharia, relatorios:I.rel });
 const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[k]}</svg>`;
 
 /* ── Módulos (exemplos de protótipo) ── */
+/* Cada módulo grande tem ÁREAS (pessoas diferentes usam áreas diferentes).
+   Ao clicar no módulo abre um submenu para escolher a área.
+   Para acrescentar uma área, basta incluir aqui. */
 const MODULOS = [
-  {k:'comercial', nome:'Comercial', st:'Carteira, follow-up e clientes', badge:4},
+  {k:'comercial', nome:'Comercial', badge:4, areas:[
+    {k:'vendas', nome:'Vendas', d:'Clientes, pedidos e follow‑up'},
+    {k:'credito', nome:'Crédito', d:'Limites e análise de crédito dos clientes'},
+    {k:'faturamento', nome:'Faturamento', d:'Faturar os pedidos'},
+    {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
+    {k:'expedicao', nome:'Expedição', d:'Cargas e romaneios'},
+  ]},
   {k:'orcamentos', nome:'Orçamentos', st:'Solicitações, precificação e filas', badge:14},
   {k:'engenharia', cx:'faca', nome:'Engenharia de Produto', st:'Desenvolvimento, amostras, clicheria e facas', badge:4},
-  {k:'pcp', nome:'PCP', st:'Programação de onduladeira e conversão'},
-  {k:'producao', cx:'onda', nome:'Produção', st:'<span class="dotc" style="background:var(--ok)"></span>4 de 5 máquinas rodando'},
-  {k:'estoque', nome:'Estoque', st:'Bobinas, chapas e produto acabado'},
-  {k:'compras', nome:'Compras', st:'Papel, tintas e insumos'},
-  {k:'qualidade', nome:'Qualidade', st:'RNC e testes físicos', badge:1},
-  {k:'expedicao', cx:'pilha', nome:'Expedição', st:'Cargas e romaneios'},
-  {k:'financeiro', nome:'Financeiro', st:'Contas a pagar e a receber'},
-  {k:'indicadores', nome:'Indicadores', st:'Margem, refile, conversão', badge:'novo', calm:true},
+  {k:'industrial', cx:'onda', nome:'Industrial', areas:[
+    {k:'engind', nome:'Engenharia industrial', d:'Processos, máquinas e capacidade'},
+    {k:'pesagem', nome:'Pesagem', d:'Balança de entrada e saída'},
+    {k:'pcp', nome:'PCP', d:'Programação de onduladeira e conversão'},
+    {k:'seguranca', nome:'Segurança', d:'Segurança do trabalho'},
+    {k:'reporte', nome:'Reporte de produção', d:'Apontamento por máquina e turno'},
+    {k:'manutencao', nome:'Manutenção', d:'Preventiva e corretiva'},
+  ]},
+  {k:'compras', cx:'pilha', nome:'Suprimentos', areas:[
+    {k:'compras', nome:'Compras', d:'Papel, tintas e insumos'},
+    {k:'materiais', nome:'Materiais', d:'Bobinas, chapas e produto acabado'},
+  ]},
+  {k:'qualidade', nome:'Qualidade', badge:1, areas:[
+    {k:'laboratorio', nome:'Laboratório', d:'Testes físicos: coluna, ECT, Mullen'},
+    {k:'qualidade', nome:'Qualidade', d:'Inspeções e controle do processo'},
+    {k:'rnc', nome:'RNC', d:'Não conformidades e respostas'},
+    {k:'fsc', nome:'FSC', d:'Cadeia de custódia e certificação'},
+  ]},
+  {k:'financeiro', nome:'Financeiro', areas:[
+    {k:'admfin', nome:'Administração financeira', d:'Fluxo de caixa, bancos e conciliação'},
+    {k:'pagar', nome:'Contas a pagar', d:'Fornecedores e vencimentos'},
+    {k:'receber', nome:'Contas a receber', d:'Cobrança e recebimentos'},
+  ]},
+  {k:'controladoria', nome:'Controladoria', areas:[
+    {k:'fiscal', nome:'Fiscal', d:'Impostos, apuração e obrigações'},
+    {k:'contabilidade', nome:'Contabilidade', d:'Lançamentos e balanço'},
+    {k:'custos', nome:'Custos', d:'Custo por produto e por máquina'},
+    {k:'ativo', nome:'Ativo imobilizado', d:'Máquinas, prédios e depreciação'},
+  ]},
+  {k:'rh', nome:'Recursos Humanos', areas:[
+    {k:'folha', nome:'Folha de pagamento', d:'Salários, férias e encargos'},
+    {k:'treinamento', nome:'Treinamento', d:'Cursos e registros de treinamento'},
+  ]},
+  {k:'suporte', nome:'Suporte', areas:[
+    {k:'portaria', nome:'Portaria', d:'Entrada de pessoas e veículos'},
+    {k:'suporte', nome:'Suporte', d:'Chamados de ajuda'},
+  ]},
+  {k:'indicadores', nome:'Gerencial', badge:'novo', calm:true, areas:[
+    {k:'relatorios', nome:'Relatórios', d:'Margem, refile, conversão e vendas'},
+  ]},
   {k:'cadastros', nome:'Cadastros', st:'Clientes, produtos e usuários'},
 ];
+MODULOS.forEach(m => { m.slug = m.nome.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-'); });
 /* Caixinha que entra no canto ao passar o mouse: faca, onda, pilha ou a caixa que abre (padrão) */
 function caixinha(tipo){
   if (tipo === 'faca') return '<span class="deco faca" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#cx-faca"/></svg></span>';
@@ -611,10 +710,10 @@ function caixinha(tipo){
 }
 const apps = document.getElementById('apps');
 apps.innerHTML = MODULOS.map(m => `
-  <button class="tile" type="button" data-open="${m.nome}">
+  <button class="tile" type="button" data-mod="${m.slug}"${m.areas ? ' aria-haspopup="true"' : ''}>
     <span class="ic">${svg(m.k)}</span>
     <span class="nm">${m.nome}</span>
-    <span class="st">${m.st}</span>
+    <span class="st">${m.st || m.areas.map(a => a.nome).join(' · ')}</span>
     ${m.badge ? `<span class="badge${m.calm?' calm':''}">${m.badge}</span>` : ''}
     ${caixinha(m.cx)}
   </button>`).join('');
@@ -685,22 +784,22 @@ try { const t = localStorage.getItem('tema'); if (t) document.documentElement.da
 
 /* ── Assistente: catálogo do sistema (exemplo) ── */
 const CATALOGO = [
-  {tipo:'Relatório', nome:'Refile por máquina', modulo:'Produção', ic:'producao', chaves:'refile perda perdas aparas desperdicio refugo maquina onduladeira volans chinesa jumbo'},
-  {tipo:'Relatório', nome:'Refugo diário', modulo:'Produção', ic:'producao', chaves:'refugo perda perdas diario dia sucata'},
-  {tipo:'Relatório', nome:'Produção por turno', modulo:'Produção', ic:'producao', chaves:'producao turno turnos metros caixas apontamento'},
-  {tipo:'Relatório', nome:'Margem por vendedor', modulo:'Indicadores', ic:'indicadores', chaves:'margem lucro vendedor representante comissao'},
-  {tipo:'Relatório', nome:'Margem por cliente', modulo:'Indicadores', ic:'indicadores', chaves:'margem lucro cliente rentabilidade'},
-  {tipo:'Relatório', nome:'Vendas por região', modulo:'Comercial', ic:'comercial', chaves:'vendas faturamento regiao estado uf cidade'},
-  {tipo:'Relatório', nome:'Conversão de orçamentos', modulo:'Comercial', ic:'comercial', chaves:'conversao orcamento orcamentos fechados taxa aprovados'},
+  {tipo:'Relatório', nome:'Refile por máquina', modulo:'Gerencial › Relatórios', ic:'producao', chaves:'refile perda perdas aparas desperdicio refugo maquina onduladeira volans chinesa jumbo'},
+  {tipo:'Relatório', nome:'Refugo diário', modulo:'Industrial › Reporte de produção', ic:'producao', chaves:'refugo perda perdas diario dia sucata'},
+  {tipo:'Relatório', nome:'Produção por turno', modulo:'Industrial › Reporte de produção', ic:'producao', chaves:'producao turno turnos metros caixas apontamento'},
+  {tipo:'Relatório', nome:'Margem por vendedor', modulo:'Gerencial › Relatórios', ic:'indicadores', chaves:'margem lucro vendedor representante comissao'},
+  {tipo:'Relatório', nome:'Margem por cliente', modulo:'Gerencial › Relatórios', ic:'indicadores', chaves:'margem lucro cliente rentabilidade'},
+  {tipo:'Relatório', nome:'Vendas por região', modulo:'Comercial › Vendas', ic:'comercial', chaves:'vendas faturamento regiao estado uf cidade'},
+  {tipo:'Relatório', nome:'Conversão de orçamentos', modulo:'Comercial › Vendas', ic:'comercial', chaves:'conversao orcamento orcamentos fechados taxa aprovados'},
   {tipo:'Tela', nome:'Orçamentos parados', modulo:'Orçamentos', ic:'orcamentos', chaves:'orcamento orcamentos parado parados atrasado atrasados fila aguardando'},
   {tipo:'Tela', nome:'Fila do custo', modulo:'Orçamentos', ic:'orcamentos', chaves:'custo fila preco precificacao'},
-  {tipo:'Tela', nome:'Programação da onduladeira', modulo:'PCP', ic:'pcp', chaves:'programacao onduladeira pcp sequencia combinacao larguras'},
-  {tipo:'Tela', nome:'Saldo de bobinas', modulo:'Estoque', ic:'estoque', chaves:'bobina bobinas papel estoque saldo toneladas'},
-  {tipo:'Relatório', nome:'Consumo de papel por mês', modulo:'Estoque', ic:'estoque', chaves:'consumo papel bobina mes mensal'},
-  {tipo:'Tela', nome:'RNCs abertas', modulo:'Qualidade', ic:'qualidade', chaves:'rnc nao conformidade reclamacao qualidade abertas'},
-  {tipo:'Relatório', nome:'Testes físicos por qualidade', modulo:'Qualidade', ic:'qualidade', chaves:'teste testes ect coluna mullen qualidade papelao'},
-  {tipo:'Tela', nome:'Cargas do dia', modulo:'Expedição', ic:'expedicao', chaves:'carga cargas expedicao entrega caminhao hoje'},
-  {tipo:'Relatório', nome:'Contas a receber', modulo:'Financeiro', ic:'financeiro', chaves:'receber contas cobranca vencimento financeiro'},
+  {tipo:'Tela', nome:'Programação da onduladeira', modulo:'Industrial › PCP', ic:'pcp', chaves:'programacao onduladeira pcp sequencia combinacao larguras'},
+  {tipo:'Tela', nome:'Saldo de bobinas', modulo:'Suprimentos › Materiais', ic:'estoque', chaves:'bobina bobinas papel estoque saldo toneladas'},
+  {tipo:'Relatório', nome:'Consumo de papel por mês', modulo:'Suprimentos › Materiais', ic:'estoque', chaves:'consumo papel bobina mes mensal'},
+  {tipo:'Tela', nome:'RNCs abertas', modulo:'Qualidade › RNC', ic:'qualidade', chaves:'rnc nao conformidade reclamacao qualidade abertas'},
+  {tipo:'Relatório', nome:'Testes físicos por qualidade', modulo:'Qualidade › Laboratório', ic:'qualidade', chaves:'teste testes ect coluna mullen qualidade papelao'},
+  {tipo:'Tela', nome:'Cargas do dia', modulo:'Comercial › Expedição', ic:'expedicao', chaves:'carga cargas expedicao entrega caminhao hoje'},
+  {tipo:'Relatório', nome:'Contas a receber', modulo:'Financeiro › Contas a receber', ic:'financeiro', chaves:'receber contas cobranca vencimento financeiro'},
   {tipo:'Ação', nome:'Novo orçamento', modulo:'Orçamentos', ic:'orcamentos', chaves:'novo criar orcamento cotacao'},
   {tipo:'Ação', nome:'Solicitar amostra', modulo:'Engenharia de Produto', ic:'engenharia', chaves:'amostra pedir solicitar nova prototipo'},
   {tipo:'Tela', nome:'Calculadora de eslote', modulo:'Engenharia de Produto', ic:'engenharia', chaves:'eslote slot cilindro calculadora aba altura maleta'},
@@ -815,30 +914,95 @@ function responderNada(texto, vemDePerto){
 const exemplos = ['Ex.: existe relatório de refile por máquina?','Ex.: onde vejo o saldo de bobinas?','Ex.: quero a margem por vendedor','Ex.: criar novo orçamento'];
 let ei = 0; setInterval(() => { if (document.activeElement !== q && !q.value) { ei = (ei+1) % exemplos.length; q.placeholder = exemplos[ei]; } }, 3500);
 
-/* ════ Navegação entre telas (#inicio / #comercial) ════ */
+/* ════ Navegação ════
+   #inicio                → tela inicial (módulos)
+   #<módulo>              → áreas do módulo, no mesmo layout da tela inicial
+   #<módulo>/<área>       → área aberta: barra de tópicos + mesa com janelas */
+const $ = (id) => document.getElementById(id);
+$('qtdMod').textContent = `${MODULOS.length} disponíveis para o seu perfil`;
+
+/* caixinha de cada área ao passar o mouse (as demais usam a caixa que abre) */
+const CX_AREA = { expedicao:'pilha', materiais:'pilha', pcp:'onda', reporte:'onda' };
+/* pendências de exemplo por área */
+const BADGE_AREA = { 'comercial/vendas':4, 'qualidade/rnc':1 };
+
+function efeitoLuz(grade){
+  grade.addEventListener('pointermove', (e) => {
+    const t = e.target.closest('.tile'); if (!t) return;
+    const r = t.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    t.style.setProperty('--mx', x + 'px'); t.style.setProperty('--my', y + 'px');
+    if (!reduz) {
+      t.style.setProperty('--ry', ((x / r.width - .5) * 6).toFixed(2) + 'deg');
+      t.style.setProperty('--rx', ((.5 - y / r.height) * 6).toFixed(2) + 'deg');
+    }
+  });
+  grade.addEventListener('pointerout', (e) => {
+    const t = e.target.closest('.tile'); if (!t || t.contains(e.relatedTarget)) return;
+    t.style.setProperty('--rx', '0deg'); t.style.setProperty('--ry', '0deg');
+  });
+}
+const areasGrid = $('areasGrid');
+efeitoLuz(areasGrid);
+
+let atual = null; // { m: módulo, a: área, ctx: "modulo/area" }
+function rota(){
+  const [ms, as] = decodeURIComponent(location.hash.slice(1)).split('/');
+  const m = MODULOS.find(x => x.slug === ms); if (!m) return null;
+  const a = m.areas && as ? m.areas.find(x => x.k === as) || null : null;
+  return { m, a, ctx: m.slug + (a ? '/' + a.k : '') };
+}
 function mostrarTela(){
-  const tela = location.hash === '#comercial' ? 'comercial' : 'inicio';
-  document.getElementById('view-inicio').hidden = tela !== 'inicio';
-  document.getElementById('view-comercial').hidden = tela !== 'comercial';
-  document.getElementById('topMod').hidden = tela !== 'comercial';
-  document.getElementById('envpill').hidden = tela === 'comercial';
-  document.body.classList.toggle('modo-modulo', tela === 'comercial');
-  document.title = tela === 'comercial' ? 'Ondulado · Comercial' : 'Ondulado · Tela Inicial';
+  atual = rota();
+  const tela = !atual ? 'inicio' : (atual.m.areas && !atual.a) ? 'areas' : 'mesa';
+  $('view-inicio').hidden = tela !== 'inicio';
+  $('view-areas').hidden = tela !== 'areas';
+  $('view-modulo').hidden = tela !== 'mesa';
+  $('topMod').hidden = tela === 'inicio';
+  $('envpill').hidden = tela !== 'inicio';
+  document.body.classList.toggle('modo-modulo', tela === 'mesa');
+  fecharMenus(); fecharArea();
+  if (atual) { $('mhIcon').innerHTML = svg(atual.m.k); $('modTitulo').textContent = atual.m.nome; }
+  const volta = $('volta');
+  if (tela === 'mesa' && atual.a) { volta.href = '#' + atual.m.slug; volta.textContent = '‹ Áreas'; volta.title = 'Voltar para as áreas de ' + atual.m.nome; }
+  else { volta.href = '#inicio'; volta.textContent = '‹ Início'; volta.title = 'Voltar para a tela inicial'; }
+  if (tela === 'areas') montarAreas();
+  if (tela === 'mesa') montarMesa(); else { $('areaSel').hidden = true; menubar.innerHTML = ''; }
+  document.title = 'Ondulado · ' + (atual ? atual.m.nome + (atual.a ? ' › ' + atual.a.nome : '') : 'Tela Inicial');
+  mostrarJanelas();
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', mostrarTela);
+
+/* clicar num módulo abre a tela de áreas dele */
 apps.addEventListener('click', (e) => {
-  const t = e.target.closest('.tile');
-  if (t && t.dataset.open === 'Comercial') { e.stopPropagation(); location.hash = 'comercial'; }
-}, true);
+  const t = e.target.closest('.tile'); if (!t) return;
+  location.hash = t.dataset.mod;
+});
 
-document.getElementById('mhIcon').innerHTML = svg('comercial');
+/* ── tela de áreas: mesmo layout da tela inicial ── */
+function montarAreas(){
+  const m = atual.m, n = m.areas.length;
+  $('areasIc').innerHTML = svg(m.k);
+  $('areasTit').textContent = m.nome;
+  $('areasCrumb').textContent = m.nome;
+  $('areasSub').textContent = `${n} ${n > 1 ? 'áreas' : 'área'} · escolha onde vai trabalhar`;
+  areasGrid.innerHTML = m.areas.map(a => {
+    const badge = BADGE_AREA[m.slug + '/' + a.k] || (m.calm && m.badge);
+    return `<button class="tile" type="button" data-area="${a.k}">
+      <span class="ic">${svg(a.k)}</span>
+      <span class="nm">${a.nome}</span>
+      <span class="st">${a.d}</span>
+      ${badge ? `<span class="badge${m.calm ? ' calm' : ''}">${badge}</span>` : ''}
+      ${caixinha(CX_AREA[a.k])}
+    </button>`;
+  }).join('');
+}
+areasGrid.addEventListener('click', (e) => {
+  const t = e.target.closest('.tile'); if (!t) return;
+  location.hash = atual.m.slug + '/' + t.dataset.area;
+});
 
-
-
-
-
-/* Tópicos do Comercial: cada um abre a lista do que tem dentro.
+/* Tópicos de cada área: cada um abre a lista do que tem dentro.
    Para acrescentar um tópico ou item, basta incluir aqui. */
 const IC = {
   pessoa:'<circle cx="10" cy="8" r="3.5"/><path d="M3.5 20c.6-3.6 3.2-6 6.5-6s5.9 2.4 6.5 6"/>',
@@ -849,54 +1013,86 @@ const IC = {
   seta:'<path d="M6 9l6 6 6-6"/>',
 };
 const ico = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]}</svg>`;
-const TOPICOS = [
-  { nome:'Cadastros', itens:[
-    { ic:'pessoa', t:'Prospects e clientes', d:'Cadastrar e consultar prospects e clientes' },
-    { ic:'local', t:'Endereços de entrega', d:'Locais de entrega de cada cliente' },
-  ]},
-  { nome:'Pedidos', itens:[
-    { ic:'lupa', t:'Consultar pedidos', d:'Buscar por cliente, número ou período' },
-    { ic:'impr', t:'Imprimir pedidos', d:'Gerar a via do pedido para impressão' },
-    { ic:'lapis', t:'Alterar pedidos', d:'Mudar quantidade, prazo ou entrega' },
-  ]},
-];
-const menubar = document.getElementById('menubar');
-menubar.innerHTML = TOPICOS.map((tp, i) => `
-  <div class="mtop">
-    <button class="mbtn" type="button" data-i="${i}" aria-haspopup="true" aria-expanded="false">${tp.nome}${ico('seta')}</button>
-    <div class="mdrop" data-i="${i}" role="menu" hidden>
-      ${tp.itens.map((it, j) => `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
-    </div>
-  </div>`).join('') + '<span class="mais">mais tópicos em breve</span>';
+const TOPICOS = {
+  'comercial/vendas': [
+    { nome:'Cadastros', itens:[
+      { ic:'pessoa', t:'Prospects e clientes', d:'Cadastrar e consultar prospects e clientes' },
+      { ic:'local', t:'Endereços de entrega', d:'Locais de entrega de cada cliente' },
+    ]},
+    { nome:'Pedidos', itens:[
+      { ic:'lupa', t:'Consultar pedidos', d:'Buscar por cliente, número ou período' },
+      { ic:'impr', t:'Imprimir pedidos', d:'Gerar a via do pedido para impressão' },
+      { ic:'lapis', t:'Alterar pedidos', d:'Mudar quantidade, prazo ou entrega' },
+    ]},
+  ],
+};
+let topicos = [];
+const menubar = $('menubar');
+function montarMesa(){
+  const { m, a } = atual;
+  $('areaSel').hidden = !a;
+  if (a) {
+    $('areaBtn').innerHTML = `<span>${a.nome}</span>${ico('seta')}`;
+    $('areaDrop').innerHTML = m.areas.map(x => `<button type="button" role="menuitem" data-area="${x.k}"${x === a ? ' class="atual"' : ''}><span class="i">${svg(x.k)}</span><span class="t">${x.nome}</span><span class="d">${x.d}</span></button>`).join('');
+  }
+  topicos = TOPICOS[atual.ctx] || [];
+  menubar.setAttribute('aria-label', 'Tópicos de ' + (a ? a.nome : m.nome));
+  menubar.innerHTML = topicos.map((tp, i) => `
+    <div class="mtop">
+      <button class="mbtn" type="button" data-i="${i}" aria-haspopup="true" aria-expanded="false">${tp.nome}${ico('seta')}</button>
+      <div class="mdrop" data-i="${i}" role="menu" hidden>
+        ${tp.itens.map((it, j) => `<button type="button" role="menuitem" data-i="${i}" data-j="${j}"><span class="i">${ico(it.ic)}</span><span class="t">${it.t}</span><span class="d">${it.d}</span></button>`).join('')}
+      </div>
+    </div>`).join('') + `<span class="mais">${topicos.length ? 'mais tópicos em breve' : 'tópicos a definir'}</span>`;
+  $('fundoTxt').innerHTML = topicos.length
+    ? '<b>Escolha um tópico acima</b> para começar.<br>As telas abrem em janelas que você pode mover, minimizar e fechar.'
+    : `Os tópicos de <b>${a ? a.nome : m.nome}</b> ainda vão ser definidos.<br>Quando estiverem prontos, aparecem na barra de cima.`;
+}
 function fecharMenus(){ menubar.querySelectorAll('.mdrop').forEach(d => d.hidden = true); menubar.querySelectorAll('.mbtn').forEach(b => b.setAttribute('aria-expanded','false')); }
 menubar.addEventListener('click', (e) => {
   const b = e.target.closest('.mbtn');
   if (b) {
     const d = menubar.querySelector(`.mdrop[data-i="${b.dataset.i}"]`); const abrir = d.hidden;
-    fecharMenus(); d.hidden = !abrir; b.setAttribute('aria-expanded', String(abrir)); return;
+    fecharMenus(); fecharArea(); d.hidden = !abrir; b.setAttribute('aria-expanded', String(abrir)); return;
   }
   const it = e.target.closest('.mdrop button'); if (!it) return;
-  const tp = TOPICOS[+it.dataset.i], item = tp.itens[+it.dataset.j];
-  fecharMenus(); abrirPagina(tp, item);
+  const tp = topicos[+it.dataset.i], item = tp.itens[+it.dataset.j];
+  fecharMenus(); abrirJanela(tp, item);
 });
 document.addEventListener('click', (e) => { if (!e.target.closest('#menubar')) fecharMenus(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharMenus(); });
-/* ════ Janelas dentro do módulo ════ */
-const mesa = document.getElementById('mesa'), barraJan = document.getElementById('barraJan');
-const JANELAS = []; let zTopo = 10, seq = 0;
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fecharMenus(); fecharArea(); } });
+
+/* trocar de área sem voltar: clique no nome da área na barra de cima */
+function fecharArea(){ $('areaDrop').hidden = true; $('areaBtn').setAttribute('aria-expanded','false'); }
+$('areaBtn').addEventListener('click', () => {
+  const abrir = $('areaDrop').hidden;
+  fecharMenus(); fecharArea();
+  $('areaDrop').hidden = !abrir; $('areaBtn').setAttribute('aria-expanded', String(abrir));
+});
+$('areaDrop').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-area]'); if (!b) return;
+  fecharArea(); location.hash = atual.m.slug + '/' + b.dataset.area;
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('#areaSel')) fecharArea(); });
+
+/* ════ Janelas dentro da área (cada área tem as suas) ════ */
+const mesa = $('mesa'), barraJan = $('barraJan');
+const JANELAS = []; let zTopo = 10, seq = 0, ativaId = null;
 const ICX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const IMAX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5.5" y="5.5" width="13" height="13" rx="2"/></svg>';
 const IMIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 12h12"/></svg>';
+const daqui = (j) => atual && j.ctx === atual.ctx;
 
 function abrirJanela(tp, item){
-  const chave = tp.nome + '›' + item.t;
+  const ctx = atual.ctx, chave = ctx + '›' + tp.nome + '›' + item.t;
   const ja = JANELAS.find(j => j.chave === chave);
   if (ja) { restaurar(ja); return; }
-  const n = JANELAS.length, el = document.createElement('section');
+  const caminho = atual.m.nome + (atual.a ? ' › ' + atual.a.nome : '') + ' › ' + tp.nome;
+  const n = JANELAS.filter(daqui).length, el = document.createElement('section');
   el.className = 'jan'; el.setAttribute('role','dialog'); el.setAttribute('aria-label', item.t);
   const inicioX = Math.max(16, (mesa.clientWidth - 1240) / 2 + 16);
   el.style.left = (inicioX + (n % 6) * 34) + 'px'; el.style.top = (14 + (n % 6) * 30) + 'px';
-  el.innerHTML = `<div class="jan-tit"><span class="i">${ico(item.ic)}</span><span class="tx"><b>${item.t}</b><span>Comercial › ${tp.nome}</span></span>
+  el.innerHTML = `<div class="jan-tit"><span class="i">${ico(item.ic)}</span><span class="tx"><b>${item.t}</b><span>${caminho}</span></span>
       <button class="jb" type="button" data-acao="min" aria-label="Minimizar ${item.t}" title="Minimizar">${IMIN}</button>
       <button class="jb" type="button" data-acao="max" aria-label="Maximizar ${item.t}" title="Maximizar ou voltar ao tamanho anterior">${IMAX}</button>
       <button class="jb x" type="button" data-acao="fechar" aria-label="Fechar ${item.t}" title="Fechar">${ICX}</button></div>
@@ -904,7 +1100,7 @@ function abrirJanela(tp, item){
       <div class="vazio"><b>Tela a desenhar</b><span>Aqui entra a tela de “${item.t}”. Vamos desenhar juntos.</span></div></div>
     <span class="jan-res" title="Arraste para mudar o tamanho" aria-hidden="true"></span>`;
   mesa.appendChild(el);
-  const jan = { id: ++seq, chave, tp, item, el, min: false };
+  const jan = { id: ++seq, chave, ctx, item, el, min: false };
   JANELAS.push(jan);
   el.addEventListener('pointerdown', () => focar(jan));
   el.querySelector('[data-acao="min"]').addEventListener('click', (e) => { e.stopPropagation(); minimizar(jan); });
@@ -917,16 +1113,17 @@ function abrirJanela(tp, item){
 }
 function focar(jan){
   JANELAS.forEach(j => j.el.classList.toggle('ativa', j === jan));
-  jan.el.style.zIndex = ++zTopo; ativaId = jan.id; desenharBarra();
+  jan.el.style.zIndex = ++zTopo; ativaId = jan.id;
 }
-let ativaId = null;
 function minimizar(jan){ jan.min = true; jan.el.hidden = true; if (ativaId === jan.id) ativaId = null; jan.el.classList.remove('ativa'); desenharBarra(); }
-function restaurar(jan){ jan.min = false; jan.el.hidden = false; focar(jan); }
+function restaurar(jan){ jan.min = false; jan.el.hidden = false; focar(jan); desenharBarra(); }
 function fechar(jan){ jan.el.remove(); JANELAS.splice(JANELAS.indexOf(jan), 1); if (ativaId === jan.id) ativaId = null; desenharBarra(); }
+/* ao trocar de área, cada janela fica guardada na sua área */
+function mostrarJanelas(){ JANELAS.forEach(j => { j.el.hidden = j.min || !daqui(j); }); desenharBarra(); }
 function desenharBarra(){
-  // só as janelas minimizadas aparecem na barrinha
-  const mins = JANELAS.filter(j => j.min);
-  barraJan.hidden = !mins.length || document.getElementById('view-comercial').hidden;
+  // só as janelas minimizadas desta área aparecem na barrinha
+  const mins = JANELAS.filter(j => j.min && daqui(j));
+  barraJan.hidden = !mins.length || $('view-modulo').hidden;
   barraJan.innerHTML = mins.map(j => `<button class="bj" type="button" data-id="${j.id}" title="Abrir ${j.item.t}"><span class="i">${ico(j.item.ic)}</span><span class="n">${j.item.t}</span></button>`).join('');
 }
 barraJan.addEventListener('click', (e) => {
@@ -934,12 +1131,13 @@ barraJan.addEventListener('click', (e) => {
   const jan = JANELAS.find(j => j.id === +b.dataset.id);
   if (jan) restaurar(jan);
 });
-/* clicar fora das janelas (na área vazia) minimiza todas */
-mesa.addEventListener('pointerdown', (e) => {
-  if (e.target.closest('.jan')) return;
-  JANELAS.forEach(j => { if (!j.min) { j.min = true; j.el.hidden = true; j.el.classList.remove('ativa'); } });
+function minimizarTodas(){
+  JANELAS.forEach(j => { if (!j.min && daqui(j)) { j.min = true; j.el.hidden = true; j.el.classList.remove('ativa'); } });
   ativaId = null; desenharBarra();
-});
+}
+/* clicar fora das janelas (na área vazia) minimiza todas */
+mesa.addEventListener('pointerdown', (e) => { if (!e.target.closest('.jan')) minimizarTodas(); });
+$('modTitulo').addEventListener('click', minimizarTodas);
 /* arrastar pela barra de título */
 function arrastavel(jan){
   const tit = jan.el.querySelector('.jan-tit');
@@ -983,11 +1181,6 @@ function alternarMax(jan){
   else { jan.antes = { left: st.left, top: st.top, width: st.width, height: st.height }; Object.assign(st, { left:'0px', top:'0px', width:'100%', height:'100%' }); jan.el.classList.add('maxi'); }
   focar(jan);
 }
-function abrirPagina(tp, item){ abrirJanela(tp, item); }
-document.getElementById('modTitulo').addEventListener('click', () => {
-  JANELAS.forEach(j => { if (!j.min) minimizar(j); });
-});
-window.addEventListener('hashchange', () => { fecharMenus(); desenharBarra(); });
 
 mostrarTela();
 </script>
