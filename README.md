@@ -46,7 +46,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
   | Módulo | Áreas |
   |---|---|
-  | Comercial | Vendas, Representantes, Crédito, Faturamento, NFe, Expedição |
+  | Comercial | Vendas, Portal do representante, Crédito, Faturamento, NFe, Expedição |
   | Industrial | Engenharia industrial, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
   | Suprimentos | Compras, Materiais |
   | Qualidade | Laboratório, Qualidade, RNC, FSC |
@@ -159,11 +159,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   pedidos de análise feitos pelo assistente de busca da tela inicial).
 - **Usuários e permissões:** criar usuários e definir quais módulos e áreas cada um vê.
 
-### Comercial › Representantes (tópicos definidos até agora)
+### Comercial › Portal do representante (tópicos definidos até agora)
 - É a área **onde os próprios representantes trabalham** (externos): criar orçamentos,
   pedir amostras, clichês etc. A administração dos representantes (cadastro, metas,
   comissões) fica em **Vendas**, que é onde trabalha o pessoal interno.
-- Nome da área ainda pode mudar (ideias: Portal do representante, Área do representante).
 - **Agenda:** Agenda dos representantes.
 
 ### Comercial › Vendas (tópicos definidos até agora)
@@ -190,7 +189,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   - **Não entram:** Digitação, Revisão e Cancelamento de programa, Marcar programas como
     transformados, Relacionar convênios produto × prospect.
   - **Vão para a ficha do cliente:** Histórico do cliente · Produto × endereço de entrega.
-  - **Vai para a área Representantes:** Agenda dos representantes.
+  - **Vai para o Portal do representante:** Agenda dos representantes.
 - **Pedidos** (baseado no menu do sistema atual): Pedidos (lançar, consultar, imprimir) ·
   **Alterar pedido** · Liberação de pedidos · Cancelar item ou entrega
   - **Alterar pedido** é uma janela só que junta as 13 alterações do sistema atual: data de
