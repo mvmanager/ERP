@@ -687,18 +687,23 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Portal do representante — primeira versão para aprovar
 - O representante vê **só o que é dele** (carteira, pedidos, comissões) e **nunca custo ou
   margem**, só preço. Não lança pedido nem cadastra cliente: faz **solicitações**.
-- **Solicitar orçamento** (o coração do Portal), em 4 blocos numa tela:
-  1. **Cliente:** da carteira (puxa contato e local de entrega) ou **cliente novo** (CNPJ com busca
-     na Receita + contato; Vendas cadastra depois).
-  2. **Produto:** **repetir** um que o cliente já compra (dizendo o que muda) ou **produto novo**:
-     escolhe o tipo com desenho (caixa normal, com tampa, corte e vinco, bandeja, chapa), medidas
-     internas, onda, papel, impressão, peso do conteúdo, empilhamento, ambiente (seco, úmido,
-     câmara fria) e FSC. "Não sei — Custos sugere" onde cabe.
-  3. **Quantidades:** escolhe várias (500, 1.000, 2.000, 5.000, 10.000…) — Custos devolve o preço
-     unitário de cada uma; preço-alvo do cliente, prazo e concorrente atual (opcionais).
-  4. **Anexos** (foto, desenho, arte) e observações.
-  Ao enviar: protocolo **SO-ano-número** e vai para Custos.
-- **Pedir amostra / clichê / desenvolvimento:** formulário curto, vai para Engenharia de produto.
+- **Solicitar orçamento:** **mesmo layout da "Solicitação de Orçamento" do CRM Salute** (ficha
+  RG 23 / Rev. 06), com as **cores do nosso ERP** (decisão do usuário). Ficha em grade:
+  cabeçalho (empresa · título · documento, data, **peso total**); Tipo (Cliente/Prospect) com
+  "Buscar informações de cliente"; Rep. resp.; CNPJ, cliente, endereço, nº, CEP, bairro, cidade,
+  UF, tel. 1 e 2, comprador(a), e-mail do comprador, concorrente, e-mail do rep., segmento, local
+  de entrega ("Usar end. do cliente" ou digitado) com distância, obs., prazo de pagamento.
+  **Informações do item** (Paletizado / A granel): por item — buscar produto, item, referência,
+  qtde, C, L, A, código de qualidade, fechamento (COLA/GRAMPO/S/F), cores, tipo de caixa
+  (MN/CV/CH/O), conjunto (componentes: caixa, colmeia, divisória, tabuleiro, separador, calço,
+  cantoneira, cinta), **área bruta, peso unitário, peso total e qtde mínima calculados** e preço
+  do concorrente; obs. por item; Adicionar item (até 25) e Clonar; anexos; legenda no rodapé.
+  Mesmas regras de cálculo do CRM Salute (chapa por tipo de caixa e onda; área × gramatura da
+  qualidade; qtde mín. = 500.000 / peso unit.). Campos obrigatórios conferidos ao enviar.
+  Listas (segmentos, prazos, qualidades) vieram do CRM Salute. Ao enviar: protocolo SO-ano-nº
+  para Custos.
+- **Pedir amostra / clichê / desenvolvimento:** vai para Engenharia de produto. Clichê e amostra vão seguir o
+  **layout do CRM Salute** também (aguardando os prints).
 - **Minhas solicitações:** todas, com etapa (Orçamento: Enviada → Em Custos → Preço pronto →
   Aprovada → Virou pedido). Com preço pronto mostra a tabela por quantidade, **PDF para o
   cliente** e **Cliente aceitou** (avisa Vendas). Campo de conversa com quem está tratando.

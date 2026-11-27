@@ -574,6 +574,76 @@ textarea.falta{border-color:var(--bad)!important}
 .po-ped-cab .pill{margin-left:auto}
 .po-ped .pd-etapas{margin:4px 0 0}
 .cl-novo-reg{display:flex}
+/* Solicitação de orçamento: layout da ficha RG 23 do CRM Salute, cores do ERP */
+.so-folha{padding:10px 12px 14px;display:grid;gap:0;font-size:12.5px}
+.so-folha table{border-collapse:collapse;width:100%}
+.so-folha td,.so-folha th{border:1px solid var(--line-2);padding:0}
+.so-cab td{padding:8px 12px;background:var(--surface)}
+.so-emp{width:22%;text-align:center;font-weight:700;font-size:11.5px;line-height:1.3}
+.so-tit{text-align:center;font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:.12em;color:var(--kraft-deep)}
+.so-doc{width:20%;font-size:11px}
+.so-doc div{display:flex;justify-content:space-between;gap:8px;padding:1px 0}
+.so-doc span{font-weight:700;color:var(--muted)}
+.so-peso{border-top:1px solid var(--line);margin-top:4px;padding-top:4px!important}
+.so-peso b{font-size:12.5px}
+.so-grade{border-top:0}
+.so-grade>tbody>tr>th,.so-grade>tr>th{background:var(--surface-2);text-align:left;font-size:11px;font-weight:700;padding:5px 8px;white-space:nowrap;color:var(--ink)}
+.so-folha th i{font-style:normal;color:var(--bad)}
+.so-folha input,.so-folha select,.so-folha textarea{width:100%;border:0;background:transparent;font:inherit;font-size:12.5px;color:var(--ink);padding:5px 8px;min-height:28px}
+.so-folha input::placeholder,.so-folha textarea::placeholder{color:var(--muted);opacity:.75}
+.so-folha input:focus,.so-folha select:focus,.so-folha textarea:focus{outline:2px solid var(--kraft);outline-offset:-2px;background:var(--surface)}
+.so-folha input.num{text-align:right}
+.so-ajuda{display:block;font-size:10px;color:var(--muted);padding:0 8px 3px;line-height:1.2}
+.so-busca{display:inline-flex;align-items:center;gap:6px;margin:4px 6px;border:1px solid var(--line);background:var(--surface-2);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer}
+.so-busca svg{width:14px;height:14px}
+.so-lista{display:grid;margin:0 6px 6px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);max-height:160px;overflow:auto}
+.so-lista button{border:0;background:transparent;text-align:left;padding:5px 10px;cursor:pointer;font-size:12.5px}
+.so-lista button:hover{background:var(--kraft-soft)}
+.so-lista small{color:var(--muted)}
+.so-dest select{background:var(--warn-soft)}
+.so-fixo{padding:5px 8px!important}
+.so-usar{display:flex;align-items:center;gap:5px;padding:5px 8px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap;background:var(--surface-2)}
+.so-usar input{width:auto;min-height:0}
+.so-ent{display:flex;align-items:stretch}
+.so-ent input{flex:1}
+.so-usar.on{background:var(--ok);color:#fff}
+.so-dist{display:flex;align-items:center}
+.so-dist span{font-size:10.5px;font-weight:700;color:var(--muted);padding-left:8px;white-space:nowrap}
+.so-secao{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border:1px solid var(--line-2);border-top:0;background:var(--surface-2);font-size:12px}
+.so-secao span{display:flex;gap:14px;align-items:center;font-size:12px}
+.so-secao label{display:flex;gap:4px;align-items:center}
+.so-secao input{width:auto;min-height:0}
+.so-secao i{font-style:normal;color:var(--bad);font-size:11px}
+.so-rolagem{overflow-x:auto;border:1px solid var(--line-2);border-top:0}
+.so-itens{min-width:1500px}
+.so-itens td,.so-itens th{border-color:var(--line)}
+.so-itens>thead th{background:var(--surface-2);font-size:10.5px;font-weight:700;padding:5px 6px;text-align:center;line-height:1.2}
+.so-itens th.so-calc,.so-itens td.so-calc{background:color-mix(in srgb,var(--warn-soft) 70%,var(--surface));text-align:center}
+.so-itens td.so-calc{font-family:var(--f-mono);font-size:12px}
+.so-itcab td{padding:5px 8px!important;background:var(--surface);font-size:12px}
+.so-itnum{display:inline-block;background:var(--kraft-soft);border-radius:5px;padding:1px 8px;font-weight:700;margin-right:6px}
+.so-bp button{border:0;background:transparent;font-size:10.5px;font-weight:600;cursor:pointer;color:var(--ink);padding:4px}
+.so-bp svg{width:16px;height:16px;color:var(--kraft)}
+.so-n{text-align:center;font-weight:700}
+.so-forte{font-weight:700}
+.so-cores{position:relative}
+.so-cores summary{list-style:none;cursor:pointer;padding:5px 8px;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.so-cores div{position:absolute;z-index:5;background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:6px 10px;display:grid;gap:2px;box-shadow:0 10px 24px -14px var(--shadow)}
+.so-cores label{display:flex;gap:6px;align-items:center;font-size:12px;white-space:nowrap}
+.so-cores input{width:auto;min-height:0}
+.so-comps td{padding:6px 8px!important;background:var(--surface-2)}
+.so-comps table th{font-size:10px;padding:3px 5px;background:var(--surface)}
+.so-comps table td{padding:0!important;background:var(--surface)}
+.so-na{display:block;text-align:center;color:var(--line-2)}
+.so-obs td{vertical-align:top}
+.so-obsrot{font-size:10.5px;font-weight:700;text-align:center;padding-top:10px!important;color:var(--muted);background:var(--surface-2)}
+.so-obs textarea{min-height:46px;resize:vertical}
+.so-acoes-it{display:flex;gap:8px;align-items:center;padding:6px 0;flex-wrap:wrap}
+.so-anexos{display:flex;gap:6px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.so-legenda td{padding:6px 10px!important;font-size:11px;line-height:1.45;vertical-align:top;background:var(--surface-2)}
+.so-rodape{display:flex;align-items:center;gap:10px;justify-content:space-between;padding-top:8px;font-size:12px;color:var(--muted)}
+.so-erro{color:var(--bad)}
+.so-rodape .go{padding:6px 14px;font-size:13px}
 .cl-nome small b{font-size:inherit;font-family:inherit;font-weight:700;line-height:inherit}
 .pd-corpo .btn2,.pd-corpo .go{padding:5px 11px;font-size:13px}
 .ca-det>td{background:var(--surface-2);padding:6px 10px 8px!important}
@@ -3703,71 +3773,141 @@ const TIPOS_CAIXA = [
 const minhaCarteira = () => CLIENTES.filter(c => c.rep === REP_LOGADO);
 const pillSol = (s) => { const et = ETAPAS_SOL[s.tipo]; const fim = s.etapa >= et.length - 1; return `<span class="pill ${fim ? 'p-ok' : s.etapa >= 2 ? 'p-warn' : 'p-info'}">${et[s.etapa]}</span>`; };
 
-/* ── Solicitar orçamento ── */
+/* ── Solicitar orçamento: MESMO LAYOUT da "Solicitação de Orçamento" do CRM Salute (ficha RG 23),
+   com as cores do nosso ERP. Regras de cálculo iguais às do CRM Salute:
+   chapa MN = (C+L)×2+fator × L+A+fator (B/C: 40/10 · BC: 50/18); CV = C+30 × L+30; CH = C × L;
+   área = chapa/1.000.000 m²; peso unit = área × gramatura (g); qtde mín = 500.000 / peso unit. */
+const QUALIDADES = [['BFS','C',260],['1R40B','B',360],['1R40C','C',370],['1R45B','B',370],['1R45C','C',380],['1R70BC','BC',650],['1CR40B','B',360],['1CR40C','C',370],['1CR45B','B',370],['1CR45C','C',380],['1CR50B','B',410],['1CR50C','C',420],['1CR55B','B',420],['1CR55C','C',430],['3CR45B','B',380],['3CR45C','C',390],['1CR70BC','BC',650],['1CR75BC','BC',680],['1CR80BC','BC',710],['1TL50B','B',410],['1TL55C','C',430],['1TL60C','C',450],['1TL65C','C',490],['1TL70C','C',530],['1TL80BC','BC',680],['1TL90BC','BC',700]];
+const QD = Object.fromEntries(QUALIDADES.map(([n, o, g]) => [n, { onda:o, gram:g }]));
+const SEGMENTOS_SO = ['Alimentos','Avicultura (ovos)','Bebidas (refrigerantes e alcoólicos)','Chapa (produto chapa)','Cosméticos (cremes, perfumes)','Farmacêuticos (medicamentos)','Fumos','Horticultura e Fruticultura','Higiene e Limpeza','Laticínios (leite, yogurt, queijos)','Madeira e Mobiliários','Materiais de Transporte (caixa mudança)','Material Elétrico e de Comunicação','Mecânica (automobilístico)','Metalúrgica','Plásticos e Borrachas (potes, tapetes)','Proteínas (abates e processados)','Químicos e derivados (óleo, graxa)','Têxteis, Vestuários, calçados','Vidros e Cerâmicas','Outros'];
+const PRAZOS_SO = ['10 DD','14-28 DD','21-28-35 DD','28 DD','28-35-42','28-42-56 DD','30 DD','30-45 DD','30-60 DD','35 DD','42 DD','45-60 DD','30-45-60','120 DD'];
+const CORES_SO = ['Preto','Azul','Vermelho','Verde','Amarelo','Laranja','Marrom','Branco'];
+const COMPONENTES_SO = ['Caixa','Colmeia','Divisória','Tabuleiro','Separador','Calço','Cantoneira','Divisória montada','Cinta'];
+const novoItemSO = (n) => ({ n, ref:'', qtd:0, c:0, l:0, a:0, qual:'', fech:'', cores:[], tipo:'', conj:false, comps:[], preco:'', obs:'' });
+function calcSO(it){
+  const q = QD[it.qual]; if (!q || it.c <= 0 || it.l <= 0) return { area:0, pu:0, pt:0, min:0, onda: q ? q.onda : '' };
+  let cc, ll;
+  if (it.tipo === 'CV') { cc = it.c + 30; ll = it.l + 30; }
+  else if (it.tipo === 'CH' || !it.a) { cc = it.c; ll = it.l; }
+  else { const f = q.onda === 'BC' ? [50, 18] : [40, 10]; cc = (it.c + it.l) * 2 + f[0]; ll = it.l + it.a + f[1]; }
+  const area = cc * ll / 1e6, pu = area * q.gram;
+  return { area, pu, pt: pu * it.qtd / 1000, min: pu > 0 ? Math.ceil(500000 / pu) : 0, onda: q.onda };
+}
+const n2 = (v, d = 2) => (+v || 0).toLocaleString('pt-BR', { minimumFractionDigits:d, maximumFractionDigits:d });
+const sel = (k, val, ops, extra = '') => `<select data-so="${k}" ${extra}><option value="">Selecione…</option>${ops.map(o => { const [v, t] = Array.isArray(o) ? o : [o, o]; return `<option value="${esc(v)}"${String(val) === String(v) ? ' selected' : ''}>${esc(t)}</option>`; }).join('')}</select>`;
+const inp = (k, val, ph = '', extra = '') => `<input data-so="${k}" value="${esc(String(val ?? ''))}" placeholder="${esc(ph)}" ${extra}>`;
+
 TELAS.portalOrcamento = (box) => {
-  box.classList.add('cl-box'); box._q = [1000, 2000, 5000]; box._tipo = 'normal'; box._modoCli = 'carteira'; box._modoProd = 'novo'; box._anexos = [];
-  if (box._preCli) { box._cli = box._preCli; box._modoProd = (PRODUTOS_CLI[box._cli] || []).length ? 'repetir' : 'novo'; }
-  const desenha = () => {
-    const cart = minhaCarteira().filter(c => c.status === 'Ativo');
-    const cliSel = box._cli ? cliDe(box._cli) : null, prods = cliSel ? (PRODUTOS_CLI[cliSel.id] || []) : [];
-    box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><div class="cl-nome"><b>Solicitar orçamento</b><small>Quanto mais completo, mais rápido Custos devolve o preço. Você acompanha em <b>Minhas solicitações</b>.</small></div>
-      <span class="cl-acoes"><button class="go" type="button" data-po-enviar>Enviar para Custos</button></span></div>
-    <div class="pd-corpo">
-      <section class="cl-bloco"><h4>1 · Cliente <span class="po-seg"><button type="button" data-po-mcli="carteira" aria-pressed="${box._modoCli === 'carteira'}">Da minha carteira</button><button type="button" data-po-mcli="novo" aria-pressed="${box._modoCli === 'novo'}">Cliente novo</button></span></h4>
-        ${box._modoCli === 'carteira' ? `<div class="cl-grade"><label class="cf dupla"><span>Cliente</span><select id="poCli"><option value="">Escolha…</option>${cart.map(c => `<option value="${c.id}"${box._cli === c.id ? ' selected' : ''}>${esc(nomeExib(c))} · ${esc(c.end.cidade)}/${c.end.uf}</option>`).join('')}</select></label>
-            ${cliSel ? f('Contato', (cliSel.contatos[0] || {}).nome) + f('Local de entrega', (cliSel.entregas[0] || {}).nome || '') : ''}</div>`
-        : `<div class="cl-grade">${f('CNPJ', '', { ph:'00.000.000/0000-00', botao:['Buscar na Receita','po-receita'] })}${f('Razão social', box._novoRazao || '', { dupla:true, ph:'Preenchido pela Receita' })}${f('Cidade/UF', box._novoCid || '')}
-            ${f('Contato', '')}${f('Telefone', '')}${f('E-mail', '')}${f('Segmento / o que o cliente embala', '', { dupla:true })}</div>
-            <div class="cl-txt">O pessoal de Vendas cadastra o cliente com esses dados. Você não precisa preencher mais nada.</div>`}
-      </section>
-      <section class="cl-bloco"><h4>2 · Produto ${prods.length ? `<span class="po-seg"><button type="button" data-po-mprod="repetir" aria-pressed="${box._modoProd === 'repetir'}">Repetir um que ele já compra</button><button type="button" data-po-mprod="novo" aria-pressed="${box._modoProd === 'novo'}">Produto novo</button></span>` : ''}</h4>
-        ${box._modoProd === 'repetir' && prods.length ? `<div class="pd-prods">${prods.map(pr => `<label class="pd-prod po-rep"><input type="radio" name="poRep" value="${pr.cod}"> <b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda}</small></label>`).join('')}</div><div class="cl-grade">${f('O que muda?', '', { dupla:true, ph:'Ex.: nova quantidade, nova arte, papel diferente' })}</div>`
-        : `<div class="po-tipos">${TIPOS_CAIXA.map(([k, n, d]) => `<button type="button" class="po-tipo" data-po-tipo="${k}" aria-pressed="${box._tipo === k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${d}</svg>${n}</button>`).join('')}</div>
-          <div class="cl-grade">
-            ${f('Descrição', '', { dupla:true, ph:'Ex.: caixa para 12 garrafas de 1 L' })}
-            ${box._tipo === 'chapa' ? f('Comprimento (mm)', '') + f('Largura (mm)', '') : f('Comprimento interno (mm)', '') + f('Largura interna (mm)', '') + f('Altura interna (mm)', '')}
-            ${f('Onda', 'BC', { opcoes:['B','C','BC','E','Não sei — Custos sugere'] })}
-            ${f('Papel / cor', 'Kraft', { opcoes:['Kraft','Branco','Não sei — Custos sugere'] })}
-            ${f('Impressão', 'Sem impressão', { opcoes:['Sem impressão','1 cor','2 cores','3 cores','4 cores'] })}
-            ${f('Peso do conteúdo (kg)', '')}${f('Empilhamento (caixas)', '')}
-            ${f('Ambiente', 'Seco', { opcoes:['Seco','Úmido','Câmara fria / congelado'] })}
-            ${f('Selo FSC', 'Não', { opcoes:['Não','Sim'] })}</div>`}
-      </section>
-      <section class="cl-bloco"><h4>3 · Quantidades <small>Custos devolve o preço unitário de cada uma</small></h4>
-        <div class="po-qtds">${[500, 1000, 2000, 3000, 5000, 10000, 20000].map(q => `<button type="button" class="chip" data-po-q="${q}" aria-pressed="${box._q.includes(q)}">${q.toLocaleString('pt-BR')}</button>`).join('')}<label class="cf po-outra"><input placeholder="Outra"></label></div>
-        <div class="cl-grade">${f('Preço-alvo do cliente (R$/un)', '', { ph:'Se ele já disse quanto paga hoje' })}${f('Prazo desejado', '')}${f('Concorrente atual', '')}</div>
-      </section>
-      <section class="cl-bloco"><h4>4 · Anexos e observações</h4>
-        <div class="po-anexos">${box._anexos.map(a => `<span class="pd-ent">📎 ${esc(a)}</span>`).join('')}<button type="button" class="pd-mais" data-po-anexo>+ Foto, desenho ou arte</button></div>
-        <div class="cl-grade">${f('Observações para Custos', '', { texto:true, larga:true })}</div>
-      </section>
-    </div></div>`;
-    box.querySelectorAll('input,select,textarea').forEach(el => el.disabled = false);
-  };
-  box.addEventListener('change', (e) => { if (e.target.id === 'poCli') { box._cli = +e.target.value || null; box._modoProd = (PRODUTOS_CLI[box._cli] || []).length ? 'repetir' : 'novo'; desenha(); } });
-  box.addEventListener('click', (e) => {
-    const t = (s) => e.target.closest(s);
-    if (t('[data-po-mcli]')) { box._modoCli = t('[data-po-mcli]').dataset.poMcli; box._cli = null; box._modoProd = 'novo'; return desenha(); }
-    if (t('[data-po-mprod]')) { box._modoProd = t('[data-po-mprod]').dataset.poMprod; return desenha(); }
-    if (t('[data-po-tipo]')) { box._tipo = t('[data-po-tipo]').dataset.poTipo; return desenha(); }
-    if (t('[data-po-q]')) { const q = +t('[data-po-q]').dataset.poQ; box._q = box._q.includes(q) ? box._q.filter(x => x !== q) : box._q.concat(q).sort((a, b) => a - b); return desenha(); }
-    if (t('[data-acao-f="po-receita"]')) { box._novoRazao = 'Bebidas Serra Clara Ltda'; box._novoCid = 'Jundiaí/SP'; desenha(); return toast('Dados trazidos da Receita (exemplo)'); }
-    if (t('[data-po-anexo]')) { box._anexos.push('foto-produto-' + (box._anexos.length + 1) + '.jpg'); return desenha(); }
-    if (t('[data-po-enviar]')) {
-      if (box._modoCli === 'carteira' && !box._cli) return toast('Escolha o cliente');
-      if (!box._q.length) return toast('Escolha pelo menos uma quantidade');
-      const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0');
-      const c = box._cli ? cliDe(box._cli) : null;
-      SOLICITACOES.unshift({ p:n, tipo:'Orçamento', cli: c ? nomeExib(c) : (box._novoRazao || 'Cliente novo'), novo: !c, prod: (box.querySelector('input[placeholder^="Ex.: caixa"]') || {}).value || 'Produto', data:'27/11', etapa:0, resp:'Custos' });
-      box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para <b>Custos</b>.<br>Quantidades: ${box._q.map(q => q.toLocaleString('pt-BR')).join(' · ')}. Você recebe aviso quando o preço estiver pronto.</span></div>
-        <div><button class="btn2" type="button" data-po-nova>Nova solicitação</button></div></div>`;
-      document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
-      return;
-    }
-    if (t('[data-po-nova]')) { box._cli = null; box._anexos = []; box._q = [1000, 2000, 5000]; return desenha(); }
-  });
-  desenha();
+  box.classList.add('cl-box');
+  const st = box._so = { tipo:'', cli:null, rep: REP_LOGADO, cnpj:'', nome:'', end:'', num:'', cep:'', bairro:'', cidade:'', uf:'', tel1:'', tel2:'', comprador:'', email:'', concorrente:'', segmento:'', entrega:'', usarEnd:false, dist:'', obs:'', prazo:'', paletizado:false, granel:false, itens:[ novoItemSO(1) ], ativo:0 };
+  if (box._preCli) preencherCli(st, box._preCli);
+  desenharSO(box);
+  box.addEventListener('input', (e) => lerCampoSO(box, e.target, false));
+  box.addEventListener('change', (e) => lerCampoSO(box, e.target, true));
+  box.addEventListener('click', (e) => cliqueSO(box, e));
 };
+function preencherCli(st, id){
+  const c = cliDe(id); if (!c) return;
+  const k = c.contatos[0] || {};
+  Object.assign(st, { tipo: ehCli(c) ? 'Cliente' : 'Prospect', cli:id, cnpj:c.cnpj, nome:c.razao, end:c.end.log, num:c.end.num, cep:c.end.cep, bairro:c.end.bairro, cidade:c.end.cidade, uf:c.end.uf,
+    tel1:k.tel || '', tel2:k.cel || '', comprador:k.nome || '', email:k.email || '', segmento: SEGMENTOS_SO.find(s => norm(s).includes(norm(c.segmento).slice(0,5))) || '', prazo:'28-42-56 DD' });
+}
+function lerCampoSO(box, el, redesenha){
+  const k = el.dataset.so; if (!k) return;
+  const st = box._so, v = el.type === 'checkbox' ? el.checked : el.value;
+  const m = k.match(/^it(\d+)\.(\w+)$/), mc = k.match(/^it(\d+)\.comp(\d+)\.(\w+)$/);
+  if (mc) { const comp = st.itens[+mc[1]].comps[+mc[2]]; comp[mc[3]] = ['qtd','c','l','a'].includes(mc[3]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
+  else if (m) { const it = st.itens[+m[1]]; it[m[2]] = ['qtd','c','l','a'].includes(m[2]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
+  else st[k] = v;
+  if (k === 'tipo' && v === 'Cliente' && !st.cli) toast('Use "Buscar informações de cliente" para puxar os dados');
+  if (redesenha && (k === 'usarEnd' || /\.(qual|tipo)$/.test(k))) { if (k === 'usarEnd' && v) st.entrega = st.end ? `${st.end}, ${st.num} · ${st.cidade}/${st.uf}` : ''; return desenharSO(box); }
+  atualizarCalcSO(box);
+}
+function atualizarCalcSO(box){
+  const st = box._so; let tot = 0;
+  st.itens.forEach((it, i) => { const r = calcSO(it); tot += r.pt;
+    const set = (s, t) => { const e = box.querySelector(`[data-calc="${i}.${s}"]`); if (e) e.textContent = t; };
+    set('area', n2(r.area, 4)); set('pu', n2(r.pu, 1)); set('pt', n2(r.pt)); set('min', r.min ? un(r.min) : '0'); });
+  const h = box.querySelector('[data-so-peso]'); if (h) h.textContent = n2(tot);
+}
+function desenharSO(box){
+  const st = box._so, nItens = st.itens.length;
+  const tot = st.itens.reduce((a, it) => a + calcSO(it).pt, 0);
+  const R = (rot, obrig) => `<th>${rot}${obrig ? ' <i>*</i>' : ''}</th>`;
+  box.innerHTML = `<div class="so-folha">
+  <table class="so-cab"><tr>
+    <td class="so-emp">SALUTE INDÚSTRIA<br>PAPELÃO ONDULADO LTDA</td>
+    <td class="so-tit">SOLICITAÇÃO DE ORÇAMENTO</td>
+    <td class="so-doc"><div><span>DOCUMENTO:</span><b>RG 23 / Rev. 06</b></div><div><span>DATA:</span><b>27/11/2026</b></div><div class="so-peso"><span>PESO TOTAL (Kgs.):</span><b data-so-peso>${n2(tot)}</b></div></td>
+  </tr></table>
+  <table class="so-grade">
+    <colgroup><col style="width:12%"><col style="width:20%"><col style="width:6%"><col style="width:8%"><col style="width:12%"><col style="width:24%"><col style="width:9%"><col style="width:9%"></colgroup>
+    <tr>${R('TIPO:', 1)}<td>${sel('tipo', st.tipo, ['Cliente','Prospect'])}<small class="so-ajuda">Cliente: já fez pedido · Prospect: ainda não fez pedido</small></td>
+      <td colspan="3"><button type="button" class="so-busca" data-so-buscar>${LUPA} Buscar informações de cliente</button>${st.buscando ? `<div class="so-lista">${minhaCarteira().map(c => `<button type="button" data-so-cli="${c.id}"><b>${esc(nomeExib(c))}</b> <small>${c.cnpj} · ${esc(c.end.cidade)}</small></button>`).join('')}</div>` : ''}</td>
+      ${R('REP. RESP.:', 1)}<td colspan="2" class="so-dest">${sel('rep', st.rep, [REP_LOGADO])}</td></tr>
+    <tr>${R('CNPJ:')}<td colspan="3">${inp('cnpj', st.cnpj, '00.000.000/0000-00')}</td>${R('CLIENTE:', 1)}<td colspan="3">${inp('nome', st.nome, 'Nome do cliente / prospect *')}</td></tr>
+    <tr>${R('ENDEREÇO:')}<td>${inp('end', st.end, 'Rua / Av.')}</td>${R('Nº:')}<td>${inp('num', st.num, 'Nº')}</td>${R('CEP:')}<td>${inp('cep', st.cep, '00000-000')}</td><td colspan="2">${inp('bairro', st.bairro, 'Bairro')}</td></tr>
+    <tr>${R('CIDADE:')}<td>${inp('cidade', st.cidade, 'Cidade')}</td>${R('UF:')}<td>${inp('uf', st.uf, 'SP')}</td>${R('TEL. 1:')}<td>${inp('tel1', st.tel1, '(11) 00000-0000')}</td>${R('TEL. 2:')}<td>${inp('tel2', st.tel2, '(11) 00000-0000')}</td></tr>
+    <tr>${R('COMPRADOR(A):')}<td colspan="3">${inp('comprador', st.comprador, 'Nome do comprador')}</td>${R('E-MAIL (COMPRADOR):', 1)}<td colspan="3">${inp('email', st.email, 'email@empresa.com.br')}</td></tr>
+    <tr>${R('CONCORRENTE:')}<td colspan="3">${inp('concorrente', st.concorrente, 'Nome do concorrente')}</td>${R('E-MAIL (REP.):')}<td colspan="3" class="so-fixo">matheus@salute.exemplo</td></tr>
+    <tr>${R('SEGMENTO:', 1)}<td colspan="3">${sel('segmento', st.segmento, SEGMENTOS_SO)}</td>${R('LOCAL ENTREGA:', 1)}<td colspan="2"><div class="so-ent"><label class="so-usar${st.usarEnd ? ' on' : ''}"><input type="checkbox" data-so="usarEnd"${st.usarEnd ? ' checked' : ''}> Usar end. do cliente</label>${inp('entrega', st.entrega, 'Ou digite o endereço manualmente…')}</div></td><td class="so-dist"><span>DIST. (KM)</span>${inp('dist', st.dist || (st.usarEnd ? '12' : ''), '0')}</td></tr>
+    <tr>${R('OBS.:')}<td colspan="3">${inp('obs', st.obs, 'Observações gerais')}</td>${R('PRAZO PAGAMENTO:', 1)}<td colspan="3">${sel('prazo', st.prazo, PRAZOS_SO)}</td></tr>
+  </table>
+  <div class="so-secao"><b>INFORMAÇÕES DO ITEM</b><span><label><input type="checkbox" data-so="paletizado"${st.paletizado ? ' checked' : ''}> Paletizado</label><label><input type="checkbox" data-so="granel"${st.granel ? ' checked' : ''}> A granel</label><i>* Obrigatório</i></span></div>
+  <div class="so-rolagem"><table class="so-itens"><thead><tr><th>BUSCAR PROD.</th><th>ITEM</th>${R('REFERÊNCIA', 1)}${R('QTDE.', 1)}${R('C (mm)', 1)}${R('L (mm)', 1)}<th>A (mm)</th>${R('CÓD. QUALIDADE', 1)}${R('FECHAMENTO', 1)}<th>CORES</th>${R('TIPO CAIXA', 1)}<th>CONJ.</th><th class="so-calc">ÁREA BRUTA (m²)</th><th class="so-calc">PESO UNIT. (Gr.)</th><th class="so-calc">PESO TOTAL (Kg.)</th><th class="so-calc">QTDE. MÍN. (UN.)</th><th>PREÇO CONC. (R$/Unit.)</th></tr></thead>
+  <tbody>${st.itens.map((it, i) => { const r = calcSO(it), k = (c) => `it${i}.${c}`; return `
+    <tr class="so-itcab"><td colspan="17"><span class="so-itnum">ITEM ${it.n}</span> Este item é: <span class="po-seg"><button type="button" data-so-conj="${i}.0" aria-pressed="${!it.conj}">Único</button><button type="button" data-so-conj="${i}.1" aria-pressed="${it.conj}">Conjunto</button></span>${nItens > 1 ? `<button type="button" class="pd-x" data-so-rm="${i}" title="Remover item">×</button>` : ''}</td></tr>
+    <tr><td class="so-bp"><button type="button" data-so-prod="${i}">${IIMG}<br>Buscar produto</button></td><td class="so-n">${it.n}</td>
+      <td>${inp(k('ref'), it.ref, 'Ref.')}</td><td>${inp(k('qtd'), it.qtd || '', '0', 'class="num"')}</td><td>${inp(k('c'), it.c || '', '0', 'class="num"')}</td><td>${inp(k('l'), it.l || '', '0', 'class="num"')}</td><td>${inp(k('a'), it.a || '', '0', 'class="num"')}</td>
+      <td>${sel(k('qual'), it.qual, QUALIDADES.map(q => q[0]), 'class="so-forte"')}</td><td>${sel(k('fech'), it.fech, [['COLA','COLA'],['GRAMPO','GRAMPO'],['S/ F.','S/ F.']])}</td>
+      <td><details class="so-cores"><summary>${it.cores.length ? esc(it.cores.join(', ')) : 'Selecionar cores…'}</summary><div>${CORES_SO.map(c => `<label><input type="checkbox" data-so-cor="${i}" value="${c}"${it.cores.includes(c) ? ' checked' : ''}> ${c}</label>`).join('')}</div></details></td>
+      <td>${sel(k('tipo'), it.tipo, [['MN','MN'],['CV','CV'],['CH','CH'],['O','O']])}</td><td class="so-n">${it.conj ? it.comps.length + 1 : '—'}</td>
+      <td class="so-calc" data-calc="${i}.area">${n2(r.area, 4)}</td><td class="so-calc" data-calc="${i}.pu">${n2(r.pu, 1)}</td><td class="so-calc" data-calc="${i}.pt">${n2(r.pt)}</td><td class="so-calc" data-calc="${i}.min">${r.min ? un(r.min) : '0'}</td>
+      <td>${inp(k('preco'), it.preco, 'R$ 0,00', 'class="num"')}</td></tr>
+    ${it.conj ? `<tr class="so-comps"><td colspan="17"><table><thead><tr><th>COMPONENTE</th><th>REFERÊNCIA</th><th>QTDE.</th><th>C (mm)</th><th>L (mm)</th><th>A (mm)</th><th>CÓD. QUALIDADE</th><th></th></tr></thead><tbody>${it.comps.map((cp, j) => { const kk = (c) => `it${i}.comp${j}.${c}`; return `<tr><td>${sel(kk('tipo'), cp.tipo, COMPONENTES_SO)}</td><td>${inp(kk('ref'), cp.ref, 'Ref.')}</td><td>${inp(kk('qtd'), cp.qtd || '', '0', 'class="num"')}</td><td>${inp(kk('c'), cp.c || '', '0', 'class="num"')}</td><td>${inp(kk('l'), cp.l || '', '0', 'class="num"')}</td><td>${cp.tipo === 'Caixa' ? inp(kk('a'), cp.a || '', '0', 'class="num"') : '<span class="so-na">✕</span>'}</td><td>${sel(kk('qual'), cp.qual, QUALIDADES.map(q => q[0]))}</td><td><button type="button" class="pd-x" data-so-rmc="${i}.${j}">×</button></td></tr>`; }).join('')}</tbody></table><button type="button" class="pd-mais" data-so-addc="${i}">+ Componente</button></td></tr>` : ''}
+    <tr class="so-obs"><td class="so-obsrot">OBS.</td><td colspan="16"><textarea data-so="${k('obs')}" placeholder="Observações sobre este item (especificações, detalhes, restrições…)">${esc(it.obs)}</textarea></td></tr>`; }).join('')}
+  </tbody></table></div>
+  <div class="so-acoes-it"><button type="button" class="pd-mais" data-so-add${nItens >= 25 ? ' disabled' : ''}>+ Adicionar item (${nItens}/25)</button><button type="button" class="pd-mais" data-so-clonar>⧉ Clonar</button>
+    <span class="so-anexos">${(st.anexos || []).map(a => `<span class="pd-ent">📎 ${esc(a)}</span>`).join('')}<button type="button" class="pd-mais" data-so-anexo>+ Anexo (foto, desenho, arte)</button></span></div>
+  <table class="so-legenda"><tr>
+    <td><b>FECHAMENTOS:</b><br>COLA — Colada<br>GRAMPO — Grampeada<br>S/ F. — Sem fechamento</td>
+    <td><b>TIPOS DE ONDAS:</b><br>B — Onda B (3 mm)<br>C — Onda C (4,5 mm)<br>BC — Onda BC (7 mm)</td>
+    <td><b>TIPO DE CAIXA:</b><br>MN — Maleta normal (RSC)<br>CV — Corte e vinco<br>CH — Chapa · O — Outros</td>
+    <td><b>OBSERVAÇÕES:</b><br>Qtd mín. = qtd mínima de produção<br>Área bruta = chapa C × L / 1.000.000<br>Peso unit. = área × gramatura (g)</td>
+  </tr></table>
+  <div class="so-rodape"><span>A onda e a gramatura vêm do código de qualidade.</span><button type="button" class="go" data-so-enviar>Enviar para Custos</button></div>
+  </div>`;
+}
+function cliqueSO(box, e){
+  const st = box._so, t = (s) => e.target.closest(s);
+  if (t('[data-so-buscar]')) { st.buscando = !st.buscando; return desenharSO(box); }
+  if (t('[data-so-cli]')) { preencherCli(st, +t('[data-so-cli]').dataset.soCli); st.buscando = false; desenharSO(box); return toast('Dados do cliente preenchidos'); }
+  if (t('[data-so-conj]')) { const [i, v] = t('[data-so-conj]').dataset.soConj.split('.'); const it = st.itens[+i]; it.conj = v === '1'; if (it.conj && !it.comps.length) it.comps.push({ tipo:'Divisória', ref:'', qtd:0, c:0, l:0, a:0, qual:'' }); return desenharSO(box); }
+  if (t('[data-so-addc]')) { st.itens[+t('[data-so-addc]').dataset.soAddc].comps.push({ tipo:'Divisória', ref:'', qtd:0, c:0, l:0, a:0, qual:'' }); return desenharSO(box); }
+  if (t('[data-so-rmc]')) { const [i, j] = t('[data-so-rmc]').dataset.soRmc.split('.'); st.itens[+i].comps.splice(+j, 1); return desenharSO(box); }
+  if (t('[data-so-add]')) { if (st.itens.length < 25) st.itens.push(novoItemSO(st.itens.length + 1)); return desenharSO(box); }
+  if (t('[data-so-clonar]')) { if (st.itens.length >= 25) return; const u = st.itens[st.itens.length - 1]; st.itens.push({ ...JSON.parse(JSON.stringify(u)), n: st.itens.length + 1 }); return desenharSO(box); }
+  if (t('[data-so-rm]')) { st.itens.splice(+t('[data-so-rm]').dataset.soRm, 1); st.itens.forEach((it, i) => it.n = i + 1); return desenharSO(box); }
+  if (t('[data-so-prod]')) { const i = +t('[data-so-prod]').dataset.soProd, prods = st.cli ? (PRODUTOS_CLI[st.cli] || []) : [];
+    if (!prods.length) return toast(st.cli ? 'Este cliente ainda não tem produtos' : 'Busque o cliente primeiro');
+    const pr = prods[0], [c, l, a] = pr.med.split('×').map(Number); Object.assign(st.itens[i], { ref: pr.cod, c, l, a: a || 0, tipo: a ? 'MN' : 'CH', qual: pr.onda === 'BC' ? '1CR70BC' : pr.onda === 'B' ? '1CR40B' : '1CR40C', fech:'COLA' });
+    desenharSO(box); return toast('Produto da carteira: ' + pr.desc); }
+  const cor = e.target.closest('[data-so-cor]');
+  if (cor && e.target.tagName === 'INPUT') { const it = st.itens[+cor.dataset.soCor]; it.cores = e.target.checked ? it.cores.concat(e.target.value) : it.cores.filter(x => x !== e.target.value); e.target.closest('details').querySelector('summary').textContent = it.cores.length ? it.cores.join(', ') : 'Selecionar cores…'; return; }
+  if (t('[data-so-anexo]')) { st.anexos = (st.anexos || []).concat('arquivo-' + ((st.anexos || []).length + 1) + '.pdf'); return desenharSO(box); }
+  if (t('[data-so-enviar]')) {
+    const falta = [];
+    if (!st.tipo) falta.push('Tipo'); if (!st.nome) falta.push('Cliente'); if (!st.email) falta.push('E-mail do comprador'); if (!st.segmento) falta.push('Segmento');
+    if (!st.entrega && !st.usarEnd) falta.push('Local de entrega'); if (!st.prazo) falta.push('Prazo de pagamento');
+    st.itens.forEach(it => { const f = []; if (!it.ref) f.push('Referência'); if (!it.qtd) f.push('Qtde'); if (!it.c) f.push('C'); if (!it.l) f.push('L'); if (!it.qual) f.push('Cód. qualidade'); if (!it.fech) f.push('Fechamento'); if (!it.tipo) f.push('Tipo caixa'); if (f.length) falta.push(`Item ${it.n}: ${f.join(', ')}`); });
+    if (falta.length) { box.querySelector('.so-rodape span').innerHTML = `<b class="so-erro">Falta preencher:</b> ${esc(falta.join(' · '))}`; return toast('Preencha os campos obrigatórios (*)'); }
+    const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0');
+    SOLICITACOES.unshift({ p:n, tipo:'Orçamento', cli: st.nome, novo: st.tipo === 'Prospect' && !st.cli, prod: st.itens.map(it => it.ref).join(', '), data:'27/11', etapa:0, resp:'Custos' });
+    document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
+    box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para <b>Custos</b> · ${st.itens.length} ${st.itens.length > 1 ? 'itens' : 'item'} · peso total ${n2(st.itens.reduce((a, it) => a + calcSO(it).pt, 0))} kg.<br>Você acompanha em Minhas solicitações.</span></div><div><button class="btn2" type="button" data-so-nova>Nova solicitação</button></div></div>`;
+  }
+  if (t('[data-so-nova]')) { box._preCli = null; TELAS.portalOrcamento(box); }
+}
 
 /* ── Pedir amostra / clichê / desenvolvimento (mesmo formulário, tipo diferente) ── */
 const telaPedidoSimples = (tipo, oQue, para) => (box) => {
