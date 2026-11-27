@@ -187,7 +187,15 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
     transformados, Relacionar convênios produto × prospect.
   - **Vão para a ficha do cliente:** Histórico do cliente · Produto × endereço de entrega.
   - **Vai para a área Representantes:** Agenda dos representantes.
-- **Pedidos:** Consultar pedidos; Imprimir pedidos; Alterar pedidos.
+- **Pedidos** (baseado no menu do sistema atual):
+  - **Pedidos:** Pedidos (lançar, consultar, imprimir) · Liberação de pedidos ·
+    Cancelar item ou entrega
+  - **Alterações no pedido:** Data de entrega e quantidade · Prazo de pagamento do item ·
+    Preço do pedido · OC de uma entrega · Advertência por entrega · Comissão do item ·
+    Representante do pedido · Endereço de entrega · Endereço de cobrança · Destinação do
+    item · Cliente do pedido · Transação do item · Transportador e tipo de frete
+  - **Não entram:** Importar pedidos via arquivo EDI (já está em Operações) e Gerar
+    entrega a partir de pedido horizonte planejado.
 - Outros tópicos serão acrescentados conforme forem definidos.
 
 ## Próximos passos
