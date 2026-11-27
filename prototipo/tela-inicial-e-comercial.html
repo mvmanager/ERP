@@ -555,6 +555,27 @@ textarea.falta{border-color:var(--bad)!important}
 .pd-faixas{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 .pd-faixas b{color:var(--ink);font-weight:600}
 .pd-itens .pill{font-size:10px;padding:1px 6px}
+/* Portal do representante */
+.po-seg{display:inline-flex;margin-left:10px;border:1px solid var(--line-2);border-radius:8px;overflow:hidden;text-transform:none;letter-spacing:0}
+.po-seg button{border:0;background:transparent;padding:2px 10px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.po-seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.po-tipos{display:flex;flex-wrap:wrap;gap:6px}
+.po-tipo{display:flex;align-items:center;gap:6px;border:1px solid var(--line-2);background:var(--surface);border-radius:9px;padding:5px 10px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
+.po-tipo svg{width:20px;height:20px;color:var(--kraft)}
+.po-tipo[aria-pressed="true"]{border-color:var(--kraft);background:var(--kraft-soft)}
+.po-qtds{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.po-qtds .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.po-outra input{width:90px;padding:3px 8px!important}
+.po-anexos{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.po-rep{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.po-peds{display:grid;gap:6px}
+.po-ped{border:1px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--surface)}
+.po-ped-cab{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px}
+.po-ped-cab .pill{margin-left:auto}
+.po-ped .pd-etapas{margin:4px 0 0}
+.cl-novo-reg{display:flex}
+.cl-nome small b{font-size:inherit;font-family:inherit;font-weight:700;line-height:inherit}
+.pd-corpo .btn2,.pd-corpo .go{padding:5px 11px;font-size:13px}
 .ca-det>td{background:var(--surface-2);padding:6px 10px 8px!important}
 .ca-det .pd-tab th{background:transparent;position:static}
 .ca-tot td{font-weight:700;border-top:2px solid var(--line-2)}
@@ -1974,25 +1995,25 @@ const TOPICOS = {
      produto) e o pessoal interno analisa, cadastra o cliente e converte em pedido. */
   'comercial/representantes': [
     { nome:'Solicitações', itens:[
-      { ic:'etiqueta', t:'Solicitar orçamento', d:'Com os dados do cliente e do produto; Custos calcula o preço' },
-      { ic:'caixa', t:'Pedir amostra', d:'Amostra de caixa para o cliente aprovar' },
-      { ic:'impr', t:'Pedir clichê', d:'Clichê novo ou alteração de arte' },
-      { ic:'regua', t:'Pedir desenvolvimento de produto', d:'Faca, caixa nova ou mudança de projeto' },
-      { ic:'lupa', t:'Minhas solicitações', d:'Acompanhar todas: em análise, aprovada, virou pedido' },
+      { ic:'etiqueta', t:'Solicitar orçamento', d:'Com os dados do cliente e do produto; Custos calcula o preço', tela:'portalOrcamento' },
+      { ic:'caixa', t:'Pedir amostra', d:'Amostra de caixa para o cliente aprovar', tela:'portalAmostra' },
+      { ic:'impr', t:'Pedir clichê', d:'Clichê novo ou alteração de arte', tela:'portalCliche' },
+      { ic:'regua', t:'Pedir desenvolvimento de produto', d:'Faca, caixa nova ou mudança de projeto', tela:'portalDesenv' },
+      { ic:'lupa', t:'Minhas solicitações', d:'Acompanhar todas: em análise, aprovada, virou pedido', tela:'portalSolicitacoes' },
     ]},
     { nome:'Meus clientes', itens:[
-      { ic:'pessoa', t:'Carteira de clientes', d:'Só os clientes dele, com resumo e últimas compras' },
+      { ic:'pessoa', t:'Carteira de clientes', d:'Só os clientes dele, com resumo e últimas compras', tela:'portalCarteira' },
     ]},
     { nome:'Meus pedidos', itens:[
-      { ic:'caminhao', t:'Acompanhar pedidos', d:'Em que etapa está cada pedido: programado, produção, expedição' },
+      { ic:'caminhao', t:'Acompanhar pedidos', d:'Em que etapa está cada pedido: programado, produção, expedição', tela:'portalPedidos' },
     ]},
     { nome:'Agenda', itens:[
-      { ic:'calendario', t:'Agenda', d:'Visitas e compromissos' },
-      { ic:'agenda', t:'Registrar visita ou contato', d:'Aparece para o interno em Vendas › Follow-up' },
+      { ic:'calendario', t:'Agenda', d:'Visitas e compromissos', tela:'portalAgenda' },
+      { ic:'agenda', t:'Registrar visita ou contato', d:'Aparece para o interno em Vendas › Follow-up', tela:'portalVisita' },
     ]},
     { nome:'Meus números', itens:[
-      { ic:'percent', t:'Minhas comissões', d:'Comissões do período' },
-      { ic:'alvo', t:'Minhas vendas × meta', d:'Quanto vendeu e quanto falta para a meta' },
+      { ic:'percent', t:'Minhas comissões', d:'Comissões do período', tela:'portalComissoes' },
+      { ic:'alvo', t:'Minhas vendas × meta', d:'Quanto vendeu e quanto falta para a meta', tela:'portalMeta' },
     ]},
   ],
   /* Industrial › Engenharia de produto (a partir do sistema atual, enxuto: 38 itens → 12 aqui).
@@ -3654,6 +3675,231 @@ TELAS.comRelatorio = (box) => {
       <td><span class="rel-barras">${v.map(x => `<i style="height:${Math.max(4, Math.round(x / Math.max(...v) * 22))}px"></i>`).join('')}</span></td></tr>`).join('')}
     </tbody></table></div>`;
   box.addEventListener('click', (e) => { if (e.target.closest('[data-rel-xls]')) toast('Exportaria para planilha'); });
+};
+
+/* ════ Portal do representante (Comercial › Portal do representante) ════
+   Onde o representante (externo) trabalha. Vê SÓ o que é dele (carteira, pedidos, comissões).
+   Nunca vê custo nem margem — só preço. Não lança pedido nem cadastra cliente: faz solicitações.
+   Integrações (ver README): solicitação de orçamento → Custos; amostra/clichê/desenvolvimento →
+   Engenharia de produto; cliente novo → Vendas cadastra; andamento volta para Minhas solicitações;
+   pedidos (etapas) → Meus pedidos; acerto de comissões → Minhas comissões; visitas → Vendas › Follow-up. */
+const REP_LOGADO = 'Matheus';
+const SOLICITACOES = [
+  { p:'SO-2026-0118', tipo:'Orçamento', cli:'Passo Firme', novo:true, prod:'Caixa para calçados (individual)', data:'26/11', etapa:1, resp:'Custos' },
+  { p:'SO-2026-0112', tipo:'Orçamento', cli:'Horizonte', prod:'Caixa congelados 8 kg (nova)', data:'20/11', etapa:2, resp:'Custos',
+    faixas:[ [1000, 4.12], [2000, 3.95], [5000, 3.78], [10000, 3.66] ] },
+  { p:'SO-2026-0109', tipo:'Amostra', cli:'Horizonte', prod:'Caixa congelados 8 kg', data:'18/11', etapa:1, resp:'Engenharia de produto' },
+  { p:'SO-2026-0097', tipo:'Orçamento', cli:'Serra Azul', prod:'Caixa embutidos 6 kg', data:'04/11', etapa:4, resp:'Vendas', pedido:'4509' },
+  { p:'SO-2026-0090', tipo:'Clichê', cli:'Serra Azul', prod:'Nova arte: logo 2027', data:'29/10', etapa:3, resp:'Engenharia de produto' },
+];
+const ETAPAS_SOL = { 'Orçamento':['Enviada','Em Custos','Preço pronto','Aprovada','Virou pedido'], 'Amostra':['Enviada','Em análise','Em produção','Enviada ao cliente'], 'Clichê':['Enviada','Arte em análise','Aprovação do cliente','Pronto'], 'Desenvolvimento':['Enviada','Em análise','Projeto pronto','Concluído'] };
+const TIPOS_CAIXA = [
+  ['normal','Caixa normal','<path d="M4 8l8-4 8 4v9l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v9"/>'],
+  ['tampa','Caixa com tampa','<path d="M3 7h18v3H3z"/><path d="M5 10v9h14v-9"/>'],
+  ['corte','Corte e vinco','<path d="M3 6h18v12H3z"/><path d="M3 10h18M3 14h18M9 6v12M15 6v12" stroke-dasharray="2 2"/>'],
+  ['bandeja','Bandeja','<path d="M3 10l3 7h12l3-7z"/><path d="M3 10h18"/>'],
+  ['chapa','Chapa','<path d="M3 9l9-4 9 4-9 4z"/>'],
+];
+const minhaCarteira = () => CLIENTES.filter(c => c.rep === REP_LOGADO);
+const pillSol = (s) => { const et = ETAPAS_SOL[s.tipo]; const fim = s.etapa >= et.length - 1; return `<span class="pill ${fim ? 'p-ok' : s.etapa >= 2 ? 'p-warn' : 'p-info'}">${et[s.etapa]}</span>`; };
+
+/* ── Solicitar orçamento ── */
+TELAS.portalOrcamento = (box) => {
+  box.classList.add('cl-box'); box._q = [1000, 2000, 5000]; box._tipo = 'normal'; box._modoCli = 'carteira'; box._modoProd = 'novo'; box._anexos = [];
+  if (box._preCli) { box._cli = box._preCli; box._modoProd = (PRODUTOS_CLI[box._cli] || []).length ? 'repetir' : 'novo'; }
+  const desenha = () => {
+    const cart = minhaCarteira().filter(c => c.status === 'Ativo');
+    const cliSel = box._cli ? cliDe(box._cli) : null, prods = cliSel ? (PRODUTOS_CLI[cliSel.id] || []) : [];
+    box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><div class="cl-nome"><b>Solicitar orçamento</b><small>Quanto mais completo, mais rápido Custos devolve o preço. Você acompanha em <b>Minhas solicitações</b>.</small></div>
+      <span class="cl-acoes"><button class="go" type="button" data-po-enviar>Enviar para Custos</button></span></div>
+    <div class="pd-corpo">
+      <section class="cl-bloco"><h4>1 · Cliente <span class="po-seg"><button type="button" data-po-mcli="carteira" aria-pressed="${box._modoCli === 'carteira'}">Da minha carteira</button><button type="button" data-po-mcli="novo" aria-pressed="${box._modoCli === 'novo'}">Cliente novo</button></span></h4>
+        ${box._modoCli === 'carteira' ? `<div class="cl-grade"><label class="cf dupla"><span>Cliente</span><select id="poCli"><option value="">Escolha…</option>${cart.map(c => `<option value="${c.id}"${box._cli === c.id ? ' selected' : ''}>${esc(nomeExib(c))} · ${esc(c.end.cidade)}/${c.end.uf}</option>`).join('')}</select></label>
+            ${cliSel ? f('Contato', (cliSel.contatos[0] || {}).nome) + f('Local de entrega', (cliSel.entregas[0] || {}).nome || '') : ''}</div>`
+        : `<div class="cl-grade">${f('CNPJ', '', { ph:'00.000.000/0000-00', botao:['Buscar na Receita','po-receita'] })}${f('Razão social', box._novoRazao || '', { dupla:true, ph:'Preenchido pela Receita' })}${f('Cidade/UF', box._novoCid || '')}
+            ${f('Contato', '')}${f('Telefone', '')}${f('E-mail', '')}${f('Segmento / o que o cliente embala', '', { dupla:true })}</div>
+            <div class="cl-txt">O pessoal de Vendas cadastra o cliente com esses dados. Você não precisa preencher mais nada.</div>`}
+      </section>
+      <section class="cl-bloco"><h4>2 · Produto ${prods.length ? `<span class="po-seg"><button type="button" data-po-mprod="repetir" aria-pressed="${box._modoProd === 'repetir'}">Repetir um que ele já compra</button><button type="button" data-po-mprod="novo" aria-pressed="${box._modoProd === 'novo'}">Produto novo</button></span>` : ''}</h4>
+        ${box._modoProd === 'repetir' && prods.length ? `<div class="pd-prods">${prods.map(pr => `<label class="pd-prod po-rep"><input type="radio" name="poRep" value="${pr.cod}"> <b>${esc(pr.desc)}</b><small>${pr.cod} · ${pr.med} · onda ${pr.onda}</small></label>`).join('')}</div><div class="cl-grade">${f('O que muda?', '', { dupla:true, ph:'Ex.: nova quantidade, nova arte, papel diferente' })}</div>`
+        : `<div class="po-tipos">${TIPOS_CAIXA.map(([k, n, d]) => `<button type="button" class="po-tipo" data-po-tipo="${k}" aria-pressed="${box._tipo === k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${d}</svg>${n}</button>`).join('')}</div>
+          <div class="cl-grade">
+            ${f('Descrição', '', { dupla:true, ph:'Ex.: caixa para 12 garrafas de 1 L' })}
+            ${box._tipo === 'chapa' ? f('Comprimento (mm)', '') + f('Largura (mm)', '') : f('Comprimento interno (mm)', '') + f('Largura interna (mm)', '') + f('Altura interna (mm)', '')}
+            ${f('Onda', 'BC', { opcoes:['B','C','BC','E','Não sei — Custos sugere'] })}
+            ${f('Papel / cor', 'Kraft', { opcoes:['Kraft','Branco','Não sei — Custos sugere'] })}
+            ${f('Impressão', 'Sem impressão', { opcoes:['Sem impressão','1 cor','2 cores','3 cores','4 cores'] })}
+            ${f('Peso do conteúdo (kg)', '')}${f('Empilhamento (caixas)', '')}
+            ${f('Ambiente', 'Seco', { opcoes:['Seco','Úmido','Câmara fria / congelado'] })}
+            ${f('Selo FSC', 'Não', { opcoes:['Não','Sim'] })}</div>`}
+      </section>
+      <section class="cl-bloco"><h4>3 · Quantidades <small>Custos devolve o preço unitário de cada uma</small></h4>
+        <div class="po-qtds">${[500, 1000, 2000, 3000, 5000, 10000, 20000].map(q => `<button type="button" class="chip" data-po-q="${q}" aria-pressed="${box._q.includes(q)}">${q.toLocaleString('pt-BR')}</button>`).join('')}<label class="cf po-outra"><input placeholder="Outra"></label></div>
+        <div class="cl-grade">${f('Preço-alvo do cliente (R$/un)', '', { ph:'Se ele já disse quanto paga hoje' })}${f('Prazo desejado', '')}${f('Concorrente atual', '')}</div>
+      </section>
+      <section class="cl-bloco"><h4>4 · Anexos e observações</h4>
+        <div class="po-anexos">${box._anexos.map(a => `<span class="pd-ent">📎 ${esc(a)}</span>`).join('')}<button type="button" class="pd-mais" data-po-anexo>+ Foto, desenho ou arte</button></div>
+        <div class="cl-grade">${f('Observações para Custos', '', { texto:true, larga:true })}</div>
+      </section>
+    </div></div>`;
+    box.querySelectorAll('input,select,textarea').forEach(el => el.disabled = false);
+  };
+  box.addEventListener('change', (e) => { if (e.target.id === 'poCli') { box._cli = +e.target.value || null; box._modoProd = (PRODUTOS_CLI[box._cli] || []).length ? 'repetir' : 'novo'; desenha(); } });
+  box.addEventListener('click', (e) => {
+    const t = (s) => e.target.closest(s);
+    if (t('[data-po-mcli]')) { box._modoCli = t('[data-po-mcli]').dataset.poMcli; box._cli = null; box._modoProd = 'novo'; return desenha(); }
+    if (t('[data-po-mprod]')) { box._modoProd = t('[data-po-mprod]').dataset.poMprod; return desenha(); }
+    if (t('[data-po-tipo]')) { box._tipo = t('[data-po-tipo]').dataset.poTipo; return desenha(); }
+    if (t('[data-po-q]')) { const q = +t('[data-po-q]').dataset.poQ; box._q = box._q.includes(q) ? box._q.filter(x => x !== q) : box._q.concat(q).sort((a, b) => a - b); return desenha(); }
+    if (t('[data-acao-f="po-receita"]')) { box._novoRazao = 'Bebidas Serra Clara Ltda'; box._novoCid = 'Jundiaí/SP'; desenha(); return toast('Dados trazidos da Receita (exemplo)'); }
+    if (t('[data-po-anexo]')) { box._anexos.push('foto-produto-' + (box._anexos.length + 1) + '.jpg'); return desenha(); }
+    if (t('[data-po-enviar]')) {
+      if (box._modoCli === 'carteira' && !box._cli) return toast('Escolha o cliente');
+      if (!box._q.length) return toast('Escolha pelo menos uma quantidade');
+      const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0');
+      const c = box._cli ? cliDe(box._cli) : null;
+      SOLICITACOES.unshift({ p:n, tipo:'Orçamento', cli: c ? nomeExib(c) : (box._novoRazao || 'Cliente novo'), novo: !c, prod: (box.querySelector('input[placeholder^="Ex.: caixa"]') || {}).value || 'Produto', data:'27/11', etapa:0, resp:'Custos' });
+      box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para <b>Custos</b>.<br>Quantidades: ${box._q.map(q => q.toLocaleString('pt-BR')).join(' · ')}. Você recebe aviso quando o preço estiver pronto.</span></div>
+        <div><button class="btn2" type="button" data-po-nova>Nova solicitação</button></div></div>`;
+      document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
+      return;
+    }
+    if (t('[data-po-nova]')) { box._cli = null; box._anexos = []; box._q = [1000, 2000, 5000]; return desenha(); }
+  });
+  desenha();
+};
+
+/* ── Pedir amostra / clichê / desenvolvimento (mesmo formulário, tipo diferente) ── */
+const telaPedidoSimples = (tipo, oQue, para) => (box) => {
+  box.classList.add('cl-box');
+  const desenha = () => { box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><div class="cl-nome"><b>Pedir ${tipo.toLowerCase()}</b><small>Vai para ${para}. Você acompanha em Minhas solicitações.</small></div><span class="cl-acoes"><button class="go" type="button" data-ps-enviar>Enviar</button></span></div>
+    <div class="pd-corpo"><section class="cl-bloco"><div class="cl-grade">
+      <label class="cf"><span>Cliente</span><select>${minhaCarteira().filter(c => c.status === 'Ativo').map(c => `<option>${esc(nomeExib(c))}</option>`).join('')}</select></label>
+      ${f('Produto', '', { ph:'Qual produto (ou descreva o novo)' })}${f('Para quando', '')}${f('Quantidade', tipo === 'Amostra' ? '3' : '')}
+      ${f(oQue, '', { texto:true, larga:true })}</div>
+      <div class="po-anexos"><button type="button" class="pd-mais" data-po-anexo>+ Anexar arquivo</button></div></section></div></div>`;
+    box.querySelectorAll('input,select,textarea').forEach(el => el.disabled = false); };
+  box.addEventListener('click', (e) => {
+    if (e.target.closest('[data-po-anexo]')) return toast('Abriria a escolha de arquivo');
+    if (e.target.closest('[data-ps-enviar]')) {
+      const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0');
+      SOLICITACOES.unshift({ p:n, tipo, cli: box.querySelector('select').value, prod: box.querySelector('input').value || tipo, data:'27/11', etapa:0, resp: para.replace(/^a |^à /, '') });
+      document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
+      box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para ${para}.</span></div></div>`;
+    }
+  });
+  desenha();
+};
+TELAS.portalAmostra = telaPedidoSimples('Amostra', 'O que o cliente quer testar', 'a Engenharia de produto');
+TELAS.portalCliche = telaPedidoSimples('Clichê', 'O que é (arte nova, alteração) e cores', 'a Engenharia de produto');
+TELAS.portalDesenv = telaPedidoSimples('Desenvolvimento', 'O que precisa ser desenvolvido', 'a Engenharia de produto');
+
+/* ── Minhas solicitações ── */
+TELAS.portalSolicitacoes = (box) => {
+  box.classList.add('cl-box'); box.dataset.poLista = ''; box._sel = null;
+  const desenha = () => {
+    if (box._sel) {
+      const s = SOLICITACOES.find(x => x.p === box._sel), et = ETAPAS_SOL[s.tipo];
+      box.innerHTML = `<div class="cl-ficha"><div class="cl-cab"><button class="voltar" type="button" data-ps-volta>‹ Lista</button><div class="cl-nome"><b>${s.p} · ${s.tipo}</b><small>${esc(s.cli)}${s.novo ? ' (cliente novo)' : ''} · ${esc(s.prod)} · enviada em ${s.data}</small></div>${pillSol(s)}</div>
+        <ol class="pd-etapas">${et.map((e, i) => `<li class="${i < s.etapa ? 'feita' : i === s.etapa ? 'atual' : ''}"><span>${i < s.etapa ? '✓' : i + 1}</span>${e}</li>`).join('')}</ol>
+        <div class="pd-corpo">
+          <section class="cl-bloco"><h4>Com quem está</h4><p class="cl-txt">${esc(s.resp)}${s.etapa === 0 ? ' · ainda não foi aberta' : ''}</p></section>
+          ${s.faixas ? `<section class="cl-bloco"><h4>Preço pronto <small>preço unitário por quantidade · válido 30 dias</small></h4><table class="pd-tab"><thead><tr><th>Quantidade</th><th class="num">Preço unitário</th><th class="num">Total</th></tr></thead><tbody>${s.faixas.map(([q, v]) => `<tr><td>${un(q)}</td><td class="num">${brl(v)}</td><td class="num">${brl(q * v)}</td></tr>`).join('')}</tbody></table>
+            <div class="cl-dica">Leve ao cliente. Quando ele aceitar, avise Vendas: o orçamento é aprovado e vira pedido.</div><div><button class="go" type="button" data-ps-aceito>Cliente aceitou</button> <button class="btn2" type="button" data-ps-pdf>PDF para o cliente</button></div></section>` : ''}
+          ${s.pedido ? `<section class="cl-bloco"><h4>Virou o pedido ${s.pedido}</h4><p class="cl-txt">Acompanhe em Meus pedidos.</p></section>` : ''}
+          <section class="cl-bloco"><h4>Conversa</h4><div class="so-edicao-sempre cl-novo-reg"><input placeholder="Escreva uma dúvida ou complemento para ${esc(s.resp)}…"><button class="mini" type="button" data-ps-msg>Enviar</button></div></section>
+        </div></div>`; return;
+    }
+    box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Tudo que você pediu, e em que pé está.</span></div><div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Protocolo</th><th>Tipo</th><th>Cliente</th><th>Produto</th><th>Enviada</th><th>Com quem</th><th>Situação</th></tr></thead><tbody>
+      ${SOLICITACOES.map(s => `<tr data-ps="${s.p}"><td class="mono">${s.p}</td><td>${s.tipo}</td><td><b>${esc(s.cli)}</b>${s.novo ? ' <span class="pill p-info">novo</span>' : ''}</td><td>${esc(s.prod)}</td><td>${s.data}</td><td>${esc(s.resp)}</td><td>${pillSol(s)}</td></tr>`).join('')}</tbody></table></div>`;
+  };
+  box._redesenha = desenha;
+  box.addEventListener('click', (e) => {
+    const r = e.target.closest('[data-ps]'); if (r) { box._sel = r.dataset.ps; return desenha(); }
+    if (e.target.closest('[data-ps-volta]')) { box._sel = null; return desenha(); }
+    if (e.target.closest('[data-ps-aceito]')) { const s = SOLICITACOES.find(x => x.p === box._sel); s.etapa = 3; s.resp = 'Vendas'; desenha(); return toast('Vendas foi avisada para aprovar e gerar o pedido'); }
+    if (e.target.closest('[data-ps-pdf]')) return toast('Geraria o PDF do orçamento com a cara da empresa');
+    if (e.target.closest('[data-ps-msg]')) { const i = box.querySelector('.cl-novo-reg input'); if (i.value) { toast('Mensagem enviada'); i.value = ''; } }
+  });
+  desenha();
+};
+
+/* ── Carteira de clientes (só os dele) ── */
+TELAS.portalCarteira = (box) => {
+  box.classList.add('cl-box'); box._sel = null;
+  const desenha = () => {
+    const l = minhaCarteira();
+    if (box._sel) {
+      const c = cliDe(box._sel), peds = PEDIDOS.filter(p => p.cli === c.id);
+      box.innerHTML = `<div class="cl-ficha"><div class="cl-cab"><button class="voltar" type="button" data-pc-volta>‹ Carteira</button><span class="av grande">${esc(nomeExib(c)).slice(0,2).toUpperCase()}</span><div class="cl-nome"><b>${esc(nomeExib(c))}</b><small>${esc(c.razao)} · ${esc(c.end.cidade)}/${c.end.uf}</small></div>
+        <span class="cl-acoes"><button class="go" type="button" data-pc-orc>Solicitar orçamento</button></span></div>
+        ${c.advert.vendas ? `<div class="cl-aviso">${IAVISO}<span><b>Aviso:</b> ${esc(c.advert.vendas)}</span></div>` : ''}
+        <div class="pd-corpo">
+          ${ehCli(c) ? `<div class="cl-kpis"><div class="cl-kpi"><span>Compras 12 meses</span><b>${c.resumo.fat12}</b></div><div class="cl-kpi"><span>Último pedido</span><b>${c.resumo.ultimo}</b></div><div class="cl-kpi"><span>Pedidos em aberto</span><b>${c.resumo.abertos}</b></div><div class="cl-kpi${c.credito.atraso ? ' ruim' : ''}"><span>Crédito</span><b>${c.credito.atraso ? 'Atenção' : 'Ok'}</b></div></div>` : '<div class="cl-dica">Prospect: ainda não comprou.</div>'}
+          <section class="cl-bloco"><h4>Contatos</h4><div class="cl-contatos">${c.contatos.map(k => `<div class="cl-contato"><div class="av">${k.nome.split(' ').map(x => x[0]).slice(0,2).join('')}</div><div><b>${esc(k.nome)}</b><small>${esc(k.depto)}</small><span>${esc(k.cel || k.tel)}</span><span>${esc(k.email)}</span></div></div>`).join('') || '<p class="cl-txt">Sem contatos.</p>'}</div></section>
+          <section class="cl-bloco"><h4>Produtos que compra</h4>${(PRODUTOS_CLI[c.id] || []).length ? `<table class="pd-tab"><tbody>${PRODUTOS_CLI[c.id].map(pr => `<tr><td><b>${esc(pr.desc)}</b></td><td>${pr.med}</td><td>onda ${pr.onda}</td><td class="num">a partir de ${brl(pr.faixas[pr.faixas.length - 1].preco)}/un</td></tr>`).join('')}</tbody></table>` : '<p class="cl-txt">Nenhum ainda.</p>'}</section>
+          <section class="cl-bloco"><h4>Últimos pedidos</h4>${peds.length ? `<table class="pd-tab"><tbody>${peds.map(p => `<tr><td class="mono">${p.n}</td><td>${p.data}</td><td class="num">${brl(totalPed(p))}</td><td>${pillEtapa(p)}</td></tr>`).join('')}</tbody></table>` : '<p class="cl-txt">Nenhum.</p>'}</section>
+          <div class="cl-dica">Você vê só os clientes da sua carteira. Custos, margens e limites de crédito não aparecem aqui.</div>
+        </div></div>`; return;
+    }
+    box.innerHTML = `<div class="cl-topo"><span class="cl-txt"><b>${l.length}</b> clientes na sua carteira</span></div><div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Cliente</th><th>Cidade</th><th>Último pedido</th><th class="num">Compras 12 meses</th><th>Situação</th></tr></thead><tbody>
+      ${l.map(c => `<tr data-pc="${c.id}"><td><b>${esc(nomeExib(c))}</b><small class="cl-txt"> ${esc(c.razao)}</small></td><td>${esc(c.end.cidade)}/${c.end.uf}</td><td>${ehCli(c) ? c.resumo.ultimo : '—'}</td><td class="num">${ehCli(c) ? c.resumo.fat12 : '—'}</td><td>${!ehCli(c) ? '<span class="pill p-info">Prospect</span>' : c.status !== 'Ativo' ? '<span class="pill p-bad">Sem comprar</span>' : '<span class="pill p-ok">Ativo</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+  };
+  box.addEventListener('click', (e) => {
+    const r = e.target.closest('[data-pc]'); if (r) { box._sel = +r.dataset.pc; return desenha(); }
+    if (e.target.closest('[data-pc-volta]')) { box._sel = null; return desenha(); }
+    if (e.target.closest('[data-pc-orc]')) {
+      const tp = TOPICOS['comercial/representantes'][0], it = tp.itens[0];
+      abrirJanela(tp, it);
+      const j = JANELAS.find(x => x.chave === atual.ctx + '›' + tp.nome + '›' + it.t), velho = j.el.querySelector('.jan-corpo');
+      const novo = document.createElement('div'); novo.className = 'jan-corpo'; novo._preCli = box._sel; velho.replaceWith(novo); TELAS.portalOrcamento(novo);
+    }
+  });
+  desenha();
+};
+
+/* ── Meus pedidos: em que etapa está cada um ── */
+TELAS.portalPedidos = (box) => {
+  box.classList.add('cl-box');
+  const meus = PEDIDOS.filter(p => p.rep === REP_LOGADO).sort((a, b) => b.n.localeCompare(a.n));
+  box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Seus pedidos e em que etapa estão.</span></div><div class="pd-linhas po-peds">${meus.map(p => { const c = cliDe(p.cli); return `<div class="po-ped">
+    <div class="po-ped-cab"><b class="mono">${p.n}</b> <b>${esc(nomeExib(c))}</b> <span class="cl-txt">emitido ${p.data.slice(0,5)} · entrega ${p.itens[0].ents[0].data.slice(0,5)} · ${brl(totalPed(p))}</span> ${pillEtapa(p)}</div>
+    ${etapasHTML(p)}</div>`; }).join('')}</div>`;
+};
+
+/* ── Agenda e visitas ── */
+const AGENDA = [ ['28/11 09:00','Visita: Horizonte','Apresentar caixa congelados 8 kg'], ['28/11 14:30','Ligação: Passo Firme','Retorno do orçamento SO-2026-0118'], ['02/12 10:00','Visita: Serra Azul','Acompanhar pedido 4509'] ];
+TELAS.portalAgenda = (box) => {
+  box.classList.add('cl-box');
+  box.innerHTML = `<div class="cl-topo"><span class="cl-txt">Próximos compromissos</span><button class="go cl-novo" type="button" data-ag-novo>＋ Compromisso</button></div><div class="pd-linhas"><table class="pd-tab"><tbody>${AGENDA.map(a => `<tr><td class="mono">${a[0]}</td><td><b>${esc(a[1])}</b></td><td>${esc(a[2])}</td></tr>`).join('')}</tbody></table></div>`;
+  box.addEventListener('click', (e) => { if (e.target.closest('[data-ag-novo]')) toast('Abriria o formulário de compromisso'); });
+};
+TELAS.portalVisita = (box) => {
+  box.classList.add('cl-box');
+  box.innerHTML = `<div class="cl-ficha editando"><div class="cl-cab"><div class="cl-nome"><b>Registrar visita ou contato</b><small>Aparece para Vendas em Follow-up › Atividades dos representantes</small></div><span class="cl-acoes"><button class="go" type="button" data-rv-ok>Registrar</button></span></div>
+    <div class="pd-corpo"><section class="cl-bloco"><div class="cl-grade">
+      <label class="cf"><span>Cliente</span><select>${minhaCarteira().map(c => `<option>${esc(nomeExib(c))}</option>`).join('')}</select></label>
+      ${f('Como', 'Visita', { opcoes:['Visita','Ligação','WhatsApp','E-mail'] })}${f('Data', '27/11/2026')}${f('Próximo passo', '', { ph:'Ex.: retornar em 15 dias' })}
+      ${f('O que foi conversado', '', { texto:true, larga:true })}</div></section></div></div>`;
+  box.querySelectorAll('input,select,textarea').forEach(el => el.disabled = false);
+  box.addEventListener('click', (e) => { if (e.target.closest('[data-rv-ok]')) toast('Registrado: Vendas já vê em Follow-up'); });
+};
+
+/* ── Meus números ── */
+TELAS.portalComissoes = (box) => {
+  box.classList.add('cl-box');
+  const meu = (ACERTO['2026-11'] || []).find(x => x.rep === REP_LOGADO) || { com:0, aj:0, fat:0, det:[] }, hist = HIST_COM[REP_LOGADO] || [];
+  box.innerHTML = `<div class="pd-corpo"><div class="cl-kpis"><div class="cl-kpi"><span>Faturado em 11/2026</span><b>${brl(meu.fat)}</b></div><div class="cl-kpi"><span>Comissão de 11/2026</span><b>${brl(meu.com + meu.aj)}</b></div><div class="cl-kpi"><span>Pagamento</span><b>15/12/2026</b></div></div>
+    <section class="cl-bloco"><h4>Por nota</h4>${meu.det.length ? `<table class="pd-tab"><thead><tr><th>Documento</th><th>Cliente</th><th>Data</th><th class="num">Base</th><th class="num">Comissão</th></tr></thead><tbody>${meu.det.map(d => `<tr><td class="mono">${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td class="num">${brl(d[3])}</td><td class="num">${brl(d[4])}</td></tr>`).join('')}</tbody></table>` : '<p class="cl-txt">Sem notas no período.</p>'}</section>
+    <section class="cl-bloco"><h4>Últimos meses</h4><table class="pd-tab"><tbody><tr>${MESES_COM.map((m, i) => `<td class="num"><small class="cl-txt">${m}</small><br>${brl(hist[i] || 0)}</td>`).join('')}</tr></tbody></table></section>
+    <div class="cl-dica">Você vê só a sua comissão. Hoje: o que é faturado no mês é pago no dia 15 do mês seguinte.</div></div>`;
+};
+TELAS.portalMeta = (box) => {
+  box.classList.add('cl-box');
+  const meta = 260000, real = 186200, pct = Math.round(real / meta * 100);
+  box.innerHTML = `<div class="pd-corpo"><div class="cl-kpis"><div class="cl-kpi"><span>Meta de 11/2026</span><b>${brl(meta)}</b></div><div class="cl-kpi"><span>Vendido</span><b>${brl(real)}</b></div><div class="cl-kpi"><span>Falta</span><b>${brl(meta - real)}</b></div></div>
+    <div class="cl-credito"><div><span>Atingido</span><b>${pct}%</b></div><div class="meta"><i style="width:${pct}%"></i></div><small>Faltam 3 dias úteis no mês</small></div>
+    <section class="cl-bloco"><h4>Por cliente</h4><table class="pd-tab"><tbody><tr><td><b>Horizonte</b></td><td class="num">${brl(128500)}</td></tr><tr><td><b>Serra Azul</b></td><td class="num">${brl(57700)}</td></tr></tbody></table></section></div>`;
 };
 
 mostrarTela();

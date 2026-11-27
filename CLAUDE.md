@@ -17,7 +17,8 @@ próximo passo, com estas palavras (pode adaptar levemente):
 >
 > Agora estamos na fase de **construção**: desenhar cada tela por dentro e montar a base do
 > sistema de verdade. Já desenhadas no protótipo: a **ficha de Prospects e clientes**
-> (aprovada, com ajustes de compactação) e **Pedidos** (primeira versão, esperando aprovação).
+> (aprovada), **Pedidos** e **Comissões** (Vendas) e o **Portal do representante** (primeira
+> versão, esperando aprovação). Orçamentos (Vendas/Custos) vem depois do Portal aprovado.
 > Ver README › Telas desenhadas por dentro.
 > Regra: o sistema atual é só referência de campos; o desenho é do nosso jeito.
 

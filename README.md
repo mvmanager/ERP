@@ -684,6 +684,31 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Relatório:** comissão por representante nos últimos meses, total e mini-gráfico de tendência;
   exportar planilha.
 
+### Portal do representante — primeira versão para aprovar
+- O representante vê **só o que é dele** (carteira, pedidos, comissões) e **nunca custo ou
+  margem**, só preço. Não lança pedido nem cadastra cliente: faz **solicitações**.
+- **Solicitar orçamento** (o coração do Portal), em 4 blocos numa tela:
+  1. **Cliente:** da carteira (puxa contato e local de entrega) ou **cliente novo** (CNPJ com busca
+     na Receita + contato; Vendas cadastra depois).
+  2. **Produto:** **repetir** um que o cliente já compra (dizendo o que muda) ou **produto novo**:
+     escolhe o tipo com desenho (caixa normal, com tampa, corte e vinco, bandeja, chapa), medidas
+     internas, onda, papel, impressão, peso do conteúdo, empilhamento, ambiente (seco, úmido,
+     câmara fria) e FSC. "Não sei — Custos sugere" onde cabe.
+  3. **Quantidades:** escolhe várias (500, 1.000, 2.000, 5.000, 10.000…) — Custos devolve o preço
+     unitário de cada uma; preço-alvo do cliente, prazo e concorrente atual (opcionais).
+  4. **Anexos** (foto, desenho, arte) e observações.
+  Ao enviar: protocolo **SO-ano-número** e vai para Custos.
+- **Pedir amostra / clichê / desenvolvimento:** formulário curto, vai para Engenharia de produto.
+- **Minhas solicitações:** todas, com etapa (Orçamento: Enviada → Em Custos → Preço pronto →
+  Aprovada → Virou pedido). Com preço pronto mostra a tabela por quantidade, **PDF para o
+  cliente** e **Cliente aceitou** (avisa Vendas). Campo de conversa com quem está tratando.
+- **Carteira de clientes:** só os dele; ficha resumida (compras, último pedido, crédito
+  ok/atenção — sem valores de limite —, contatos, produtos que compra, últimos pedidos, avisos)
+  e atalho "Solicitar orçamento" já com o cliente.
+- **Acompanhar pedidos:** cada pedido com a linha de etapas.
+- **Agenda** e **Registrar visita ou contato** (vai para Vendas › Follow-up).
+- **Minhas comissões** (mês, por nota, pagamento dia 15, últimos meses) e **Vendas × meta**.
+
 ## Integrações entre módulos (anotadas até agora)
 **Regra:** ao desenhar ou construir qualquer tela, as integrações dela são anotadas aqui **na
 mesma hora**. Lista viva: cada tela desenhada acrescenta aqui o que recebe e entrega. Quando todos os
@@ -714,6 +739,16 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Notas de crédito (desfazer) | Contas a pagar | retira o valor |
 | Acerto / Notas | Portal › Minhas comissões | o que cada representante vê |
 | Devoluções (Faturamento) | Acerto | estorno de comissão |
+| Portal › Solicitar orçamento | Controladoria › Custos (fila) | cliente, produto, medidas, quantidades, anexos |
+| Portal › Solicitar orçamento (cliente novo) | Vendas › Prospects e clientes | dados para cadastrar (CNPJ, contato) |
+| Custos (preço pronto) | Portal › Minhas solicitações | preço unitário por quantidade (sem custo/margem) |
+| Portal › "Cliente aceitou" | Vendas › Orçamentos | aprovar e converter em pedido |
+| Portal › Pedir amostra / clichê / desenvolvimento | Industrial › Engenharia de produto | solicitação com anexos |
+| Engenharia de produto (andamento) | Portal › Minhas solicitações | etapa da amostra/clichê/desenvolvimento |
+| Ficha do cliente + Pedidos | Portal › Carteira | resumo do cliente, sem custo e sem limite de crédito |
+| Pedidos (etapas) | Portal › Acompanhar pedidos | etapa de cada pedido do representante |
+| Portal › Registrar visita | Vendas › Follow-up › Atividades dos representantes | o que foi conversado e próximo passo |
+| Metas de vendas (Vendas › Cadastros) + Faturamento | Portal › Vendas × meta | meta e realizado |
 
 ## Ligação com equipamentos da fábrica (plano)
 - O sistema poderá receber dados de **máquinas** (velocidade, metros, caixas, paradas),
