@@ -233,7 +233,8 @@ h2{font-family:var(--f-display);font-weight:700;font-stretch:92%;font-size:22px;
 .tile:hover,.tile:focus-visible{transform:translateY(-3px) rotateX(var(--rx)) rotateY(var(--ry))}
 .tile:hover .ic{transform:rotate(-4deg) scale(1.04)}
 /* título do módulo na tela de áreas: 60% menor */
-#view-areas .mh{gap:8px;margin-top:10px}
+#view-areas .mh{gap:8px;margin-top:0}
+#view-areas .mh .voltar{margin-right:6px}
 #view-areas .mh .ic{width:24px;height:24px;border-radius:7px;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 4px 8px -5px var(--kraft-deep)}
 #view-areas .mh .ic svg{width:13px;height:13px}
 #view-areas .mh h1{font-size:18px;letter-spacing:-.01em}
@@ -627,8 +628,7 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
 <main id="view-areas" hidden>
   <section class="mod-head gut">
     <div class="max">
-      <button class="voltar" id="voltarBtn" type="button">‹ Voltar</button>
-      <div class="mh"><span class="ic" id="areasIc"></span><h1 id="areasTit">Comercial</h1></div>
+      <div class="mh"><button class="voltar" id="voltarBtn" type="button">‹ Voltar</button><span class="ic" id="areasIc"></span><h1 id="areasTit">Comercial</h1></div>
     </div>
   </section>
   <section class="gut">

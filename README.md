@@ -78,7 +78,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Áreas do módulo (padrão para todos)
 - Clicar num módulo que tem áreas abre a **tela de áreas**, no **mesmo layout da tela
   inicial**: botão **‹ Voltar** (volta para a tela de onde a pessoa veio; se abriu direto,
-  para o Início), título do módulo **pequeno** (ícone e nome, sem frases de apoio) e
+  para o Início), título do módulo **pequeno** (ícone e nome na mesma linha do Voltar, sem frases de apoio) e
   uma grade de cartões compactos, um por área, com a mesma caixinha
   ao passar o mouse (pilha no pallet em Expedição e Materiais, onda em PCP e Reporte de
   produção, faca em Engenharia industrial) e o selo de pendências de cada área.
