@@ -622,10 +622,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   últimos contatos.
 - **Seções** na lateral (no lugar das 14 abas do sistema atual): Resumo · Dados da empresa ·
   Endereços e unidades · Contatos · Comercial · Entrega e logística · Fiscal e nota ·
-  Financeiro e crédito · Advertências · Informações extras · Histórico · Integrações (só TI).
+  Financeiro e crédito · Avisos · Informações extras · Histórico · Integrações (só TI).
 - **Ver primeiro, editar depois:** os campos aparecem como texto; o botão **Editar** libera e
   mostra **Salvar / Cancelar**.
-- **Advertências por setor viram aviso automático** na tela de cada setor quando trabalhar com
+- **Avisos por setor** (no sistema atual, "Advertências") **aparecem sozinhos** na tela de cada setor quando trabalhar com
   o cliente (a de Vendas já aparece no topo da ficha).
 - **Contatos** marcados para receber automaticamente cobrança, NF-e, certificado e EDI.
 - **Configurações técnicas** (EDI, e-mail do certificado) ficam na seção **Integrações**, só
