@@ -10,10 +10,11 @@ próximo passo, com estas palavras (pode adaptar levemente):
 > https://claude.ai/artifact/KrHFXtBn5s9YtySNMPGRM1, fotos em
 > `docs/fotos/` e todas as decisões no `README.md`).
 >
-> O próximo passo combinado é desenhar o conteúdo da primeira janela:
-> **Prospects e clientes** (Comercial › Vendas › Cadastros). Se tiver os campos que vocês
-> preenchem hoje no cadastro de prospect/cliente — ou um desenho da tela — me
-> mande que eu monto em cima.
+> Agora estamos montando o **mapa de funcionalidades** de todo o sistema, "no grosso":
+> para cada módulo e área, quais **tópicos** (menus) e **funcionalidades** (itens que abrem
+> janelas) existem. Os detalhes de cada tela vêm depois. Já está fechado:
+> Comercial › Vendas › Cadastros. Me mande o print do próximo menu do sistema atual
+> (ex.: Vendas › Eventos, Pedidos, Comissões, Demonstrativos) dizendo o que tirar ou juntar.
 
 Depois disso, siga o que o usuário pedir. Quando o próximo passo mudar, atualize
 esta seção para a conversa seguinte saber de onde continuar.
@@ -25,6 +26,8 @@ esta seção para a conversa seguinte saber de onde continuar.
 - O usuário fala português e não é programador: explique em linguagem de negócio,
   sem jargão técnico, e mostre as telas com fotos/prints quando mudar algo visual.
 - Ele prefere ver e aprovar o visual no protótipo antes de construir de verdade.
+- Níveis do sistema: **Módulo › Área › Tópico › Funcionalidade** (o usuário chamava
+  funcionalidade de "característica"). O mapa completo fica no `README.md`.
 - Todas as decisões de tela já aprovadas estão no `README.md`. Siga-as em telas novas
   (cores de papelão, módulos que abrem vazios, itens abrindo em janelas móveis etc.).
 

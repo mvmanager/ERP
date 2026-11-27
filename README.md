@@ -177,10 +177,14 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - Outros tópicos serão acrescentados conforme forem definidos.
 
 ## Próximos passos
-1. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**
+1. **Mapa de funcionalidades (passo atual):** fechar, "no grosso", os tópicos e as
+   funcionalidades de **todas** as áreas de todos os módulos, a partir dos menus do
+   sistema atual (prints) e de propostas onde não houver equivalente. Decidir também em
+   qual módulo entram orçamentos, engenharia de produto (amostras, clicheria, facas) e os
+   cadastros gerais.
+   Níveis: **Módulo › Área › Tópico › Funcionalidade**.
+2. Desenhar o conteúdo das janelas, começando por **Prospects e clientes**
    (Comercial › Vendas › Cadastros).
-2. Definir os tópicos das demais áreas e em qual módulo entram orçamentos,
-   engenharia de produto (amostras, clicheria, facas) e os cadastros gerais.
 3. Montar o sistema de verdade:
    - aplicação em Docker, banco PostgreSQL e configurações fora do código, para poder
      trocar de hospedagem sem retrabalho;
