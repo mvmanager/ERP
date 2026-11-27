@@ -199,7 +199,28 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 ### Suprimentos (o que já veio de outras áreas)
 - **Materiais › Estoque de segurança:** Previsão de consumo e estoque de segurança (com
   parâmetros por subgrupo) · Análise do estoque de segurança (composição e previsão mensal).
-- **Compras › Serviços:** Serviços de terceiros (inclui OS de terceiros para estoque, do PCP).
+
+### Suprimentos › Compras (a partir do sistema atual: ~48 itens → 17)
+- A compra anda em etapas (requisição → cotação → ordem de compra); cada etapa é uma tela.
+  Tudo do fornecedor fica na **ficha do fornecedor**.
+- **Processo de compra:** Requisições de compra (pedir, assinar, confirmar, aprovar, empenho de
+  verbas) · Cotações (solicitar normal e N/N, emitir, registrar normal e simplificado,
+  alterar, analisar, cancelar proposta) · Ordens de compra (registrar, imprimir, enviar por
+  e-mail, alterar, validar alterações, cancelar) · Sugestão de ressuprimento · Importação.
+- **Fornecedores:** Fornecedores (com endereços, nome fantasia, limite de crédito para
+  compras, materiais × fornecedor/embalagem/referências e listas de preço) · Avaliação de
+  fornecedores (IQF).
+- **Preços e serviços:** Tabela de preços de chapas · Serviços de terceiros (inclui OS de
+  terceiros para estoque, vinda do PCP, tabela de preços de serviços e confirmação da
+  execução).
+- **Cadastros:** Condições de pagamento · Grupos de compras · Alçadas de aprovação · Observações
+  padrão para OC · Equivalência de qualidades · Parâmetros.
+- **Consultas:** Gestão de entregas (inclui entregas parciais) · Gestão de compras.
+- **Para outros lugares:** Transportadores → Expedição › Transporte de cargas (cadastro único
+  de transportadoras). "Informe retroativo de últimas compras" parece ferramenta de
+  implantação (carga de histórico) — sem menu, a confirmar.
+- A pensar depois: Condições de pagamento (Compras) e Prazos de pagamento (Vendas) podem ser
+  um cadastro só.
 
 ### Controladoria › Fiscal (tópicos definidos até agora)
 - **Cadastros:** Convênios de impostos (ICMS, IPI, PIS, COFINS, IBS/CBS numa tela, uma aba

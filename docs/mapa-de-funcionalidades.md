@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **18 com funcionalidades definidas**, **154 funcionalidades**.
+Situação: **31 áreas**, **18 com funcionalidades definidas**, **170 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -98,7 +98,11 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Compras
 
-- **Serviços:** Serviços de terceiros
+- **Processo de compra:** Requisições de compra · Cotações · Ordens de compra · Sugestão de ressuprimento · Importação
+- **Fornecedores:** Fornecedores · Avaliação de fornecedores (IQF)
+- **Preços e serviços:** Tabela de preços de chapas · Serviços de terceiros
+- **Cadastros:** Condições de pagamento · Grupos de compras · Alçadas de aprovação · Observações padrão para OC · Equivalência de qualidades · Parâmetros de compras
+- **Consultas:** Gestão de entregas · Gestão de compras
 
 ### Materiais
 

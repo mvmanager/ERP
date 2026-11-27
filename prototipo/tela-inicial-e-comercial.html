@@ -1875,7 +1875,7 @@ const TOPICOS = {
       { ic:'predio', t:'Armazéns e localizações', d:'Armazéns e onde cada produto fica guardado' },
       { ic:'caixa', t:'Embalagens', d:'Embalagens, embalagens móveis e qual embalagem cada produto usa' },
       { ic:'etiqueta', t:'Etiquetas e volumes', d:'Modelos de etiqueta e tipos de volume' },
-      { ic:'caminhao', t:'Transporte de cargas', d:'Veículos, transportadoras e tipos de carga' },
+      { ic:'caminhao', t:'Transporte de cargas', d:'Transportadoras (cadastro único), veículos e tipos de carga' },
       { ic:'engrenagem', t:'Parâmetros de expedição', d:'Configurações gerais da Expedição' },
     ]},
     { nome:'Operações', itens:[
@@ -2023,9 +2023,35 @@ const TOPICOS = {
       { ic:'tendencia', t:'Análise do estoque de segurança', d:'Composição e previsão mensal' },
     ]},
   ],
+  /* Suprimentos › Compras (a partir do sistema atual: ~48 itens → 17). A compra anda em etapas
+     (requisição → cotação → ordem de compra); tudo do fornecedor fica na ficha do fornecedor. */
   'suprimentos/compras': [
-    { nome:'Serviços', itens:[
-      { ic:'troca', t:'Serviços de terceiros', d:'Serviços contratados de fora, inclusive OS de terceiros para estoque' },
+    { nome:'Processo de compra', itens:[
+      { ic:'doc', t:'Requisições de compra', d:'Pedir, assinar, confirmar, aprovar e empenhar verba' },
+      { ic:'tabela', t:'Cotações', d:'Solicitar, registrar, comparar e escolher propostas' },
+      { ic:'check', t:'Ordens de compra', d:'Registrar, imprimir, enviar por e-mail, alterar e cancelar' },
+      { ic:'tendencia', t:'Sugestão de ressuprimento', d:'O que precisa ser comprado para repor o estoque' },
+      { ic:'importar', t:'Importação', d:'Compras do exterior' },
+    ]},
+    { nome:'Fornecedores', itens:[
+      { ic:'predio', t:'Fornecedores', d:'Ficha completa: endereços, materiais, listas de preço e limite de crédito' },
+      { ic:'estrela', t:'Avaliação de fornecedores (IQF)', d:'Avaliar e acompanhar o índice de qualidade do fornecedor' },
+    ]},
+    { nome:'Preços e serviços', itens:[
+      { ic:'tabela', t:'Tabela de preços de chapas', d:'Preços de chapas compradas de terceiros' },
+      { ic:'troca', t:'Serviços de terceiros', d:'Preços, ordens de serviço e confirmação da execução' },
+    ]},
+    { nome:'Cadastros', itens:[
+      { ic:'calendario', t:'Condições de pagamento', d:'Condições negociadas com fornecedores' },
+      { ic:'caixa', t:'Grupos de compras', d:'Como as compras são agrupadas' },
+      { ic:'cadeado', t:'Alçadas de aprovação', d:'Até quanto cada pessoa pode aprovar' },
+      { ic:'texto', t:'Observações padrão para OC', d:'Textos que saem na ordem de compra' },
+      { ic:'troca', t:'Equivalência de qualidades', d:'Qualidades de papel que podem substituir umas às outras' },
+      { ic:'engrenagem', t:'Parâmetros de compras', d:'Configurações gerais de Compras' },
+    ]},
+    { nome:'Consultas', itens:[
+      { ic:'caminhao', t:'Gestão de entregas', d:'Entregas dos fornecedores, inclusive parciais' },
+      { ic:'grafico', t:'Gestão de compras', d:'Compras por período, fornecedor e grupo' },
     ]},
   ],
   'comercial/vendas': [
