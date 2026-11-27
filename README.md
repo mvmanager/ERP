@@ -613,8 +613,14 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   referência de campos: `docs/referencias/cadastro-prospect-cliente.md`.
 - **Lista** com busca (nome, CNPJ, cidade), filtros (todos, clientes, prospects, inativos) e
   botão **＋ Novo prospect**.
-- **Novo prospect começa pelo CNPJ:** o sistema busca razão social, endereço e situação na
-  Receita; a pessoa só completa. CEP também preenche o endereço sozinho.
+- **Novo prospect começa pelo CNPJ** (aprovado): consulta a base pública da Receita e preenche
+  razão social, fantasia, endereço, situação cadastral (alerta se não estiver ativa), natureza
+  jurídica, porte, data de abertura, CNAE (sugere o segmento) e telefone/e-mail quando houver.
+  Inscrição estadual vem do SINTEGRA (alguns estados só por serviço pago). CEP também
+  preenche o endereço sozinho.
+- **Cadastro em etapas:** no prospect só o essencial (CNPJ, representante, área, contato,
+  interesse); fiscal, financeiro, crédito, entrega e cobrança só quando **virar cliente**.
+- Reconsulta periódica da Receita: **não por enquanto** (decisão do usuário).
 - **Prospect e cliente na mesma ficha:** botão **Virar cliente** — nada é recadastrado; aparecem
   as seções de fiscal, financeiro e crédito.
 - **Abre num resumo**, não num formulário: faturamento 12 meses, margem, pedidos em aberto,
