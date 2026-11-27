@@ -662,6 +662,18 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
       <path d="M68 80 l10 -7 h28 l-10 7z" fill="var(--k1)"/>
       <path d="M79 80 l10 -7 h5 l-10 7z" fill="var(--tape)"/>
     </g>
+    <!-- Representantes: pessoa com maleta -->
+    <g id="il-representante">
+      <ellipse cx="60" cy="106" rx="46" ry="6" fill="var(--shadow)"/>
+      <circle cx="46" cy="30" r="15" fill="var(--k1)"/>
+      <path d="M14 102 c0 -32 14 -46 32 -46 s32 14 32 46z" fill="var(--k4)"/>
+      <path d="M40 56 l6 14 l6 -14" fill="var(--tape)"/>
+      <path d="M44 62 l2 26 l2 -26z" fill="var(--k5)"/>
+      <path d="M74 64 v-7 a4 4 0 0 1 4 -4 h12 a4 4 0 0 1 4 4 v7" fill="none" stroke="var(--k5)" stroke-width="4"/>
+      <rect x="62" y="64" width="44" height="38" rx="5" fill="var(--k3)"/>
+      <path d="M62 78 h44" stroke="var(--k4)" stroke-width="2.5"/>
+      <rect x="79" y="74" width="10" height="9" rx="2" fill="var(--tape)"/>
+    </g>
     <!-- Crédito: cartão e escudo -->
     <g id="il-cartao">
       <ellipse cx="58" cy="106" rx="46" ry="5" fill="var(--shadow)"/>
@@ -1093,6 +1105,7 @@ const I = {
   suporte:'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13.5" width="4" height="6" rx="1.5"/><rect x="17" y="13.5" width="4" height="6" rx="1.5"/><path d="M19 19.5c0 1.5-2 2.5-5 2.5"/>',
   /* áreas */
   vendas:'<path d="M3.5 7.5h17l-1.4 12a2 2 0 0 1-2 1.5H6.9a2 2 0 0 1-2-1.5z"/><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"/>',
+  representantes:'<circle cx="9" cy="7" r="3.5"/><path d="M2.5 20c.5-3.8 3-6 6.5-6 1.4 0 2.6.3 3.6 1"/><rect x="13" y="14" width="9" height="7" rx="1.5"/><path d="M15.5 14v-1.5h4V14"/>',
   credito:'<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6 15h4"/>',
   faturamento:'<path d="M5 2.5h14v19l-2.3-1.5-2.4 1.5-2.3-1.5-2.3 1.5-2.4-1.5L5 21.5z"/><path d="M8.5 7.5h7M8.5 11h7M8.5 14.5h4"/>',
   nfe:'<path d="M6 2.5h9l4 4v15H6z"/><path d="M14.5 2.5V7h4.5"/><path d="M9 14l2.2 2.2L16 11.5"/>',
@@ -1121,6 +1134,7 @@ const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const MODULOS = [
   {k:'comercial', nome:'Comercial', badge:4, areas:[
     {k:'vendas', nome:'Vendas', d:'Clientes, pedidos e follow‑up'},
+    {k:'representantes', nome:'Representantes', d:'Cadastro, carteira e comissões'},
     {k:'credito', nome:'Crédito', d:'Limites e análise de crédito dos clientes'},
     {k:'faturamento', nome:'Faturamento', d:'Faturar os pedidos'},
     {k:'nfe', nome:'NFe', d:'Emitir e consultar notas fiscais'},
@@ -1199,6 +1213,8 @@ const RELATORIOS = [
   {id:'conversao', nome:'Conversão de orçamentos', mod:'comercial', area:'vendas', d:'Orçamentos enviados × fechados'},
   {id:'carteira', nome:'Carteira de pedidos', mod:'comercial', area:'vendas', d:'Pedidos em aberto por cliente'},
   {id:'followups', nome:'Follow-ups da semana', mod:'comercial', area:'vendas', d:'Contatos marcados com clientes'},
+  {id:'comissoes', nome:'Comissões de representantes', mod:'comercial', area:'representantes', d:'Valores a pagar por representante'},
+  {id:'vendas-rep', nome:'Vendas por representante', mod:'comercial', area:'representantes', d:'Volume e margem de cada carteira'},
   {id:'limite', nome:'Clientes com limite estourado', mod:'comercial', area:'credito', d:'Crédito usado acima do liberado'},
   {id:'fat-mes', nome:'Faturamento do mês', mod:'comercial', area:'faturamento', d:'Notas emitidas por dia e por cliente'},
   {id:'entregas', nome:'Entregas por período', mod:'comercial', area:'expedicao', d:'Cargas, romaneios e atrasos'},
@@ -1470,7 +1486,7 @@ $('qtdMod').textContent = `${MODULOS.length} disponíveis para o seu perfil`;
 
 /* caixinha de cada área ao passar o mouse (as demais usam a caixa que abre) */
 const CX_AREA = {
-  vendas:'il-pedido', credito:'il-cartao', faturamento:'il-fatura', nfe:'il-nfe', expedicao:'il-caminhao',
+  vendas:'il-pedido', representantes:'il-representante', credito:'il-cartao', faturamento:'il-fatura', nfe:'il-nfe', expedicao:'il-caminhao',
   engind:'il-planta', pesagem:'il-balanca', pcp:'il-quadro', seguranca:'il-capacete', reporte:'onda', manutencao:'il-chave',
   compras:'il-carrinho', materiais:'pilha',
   laboratorio:'il-frasco', qualidade:'il-lupa', rnc:'il-rnc', fsc:'il-arvore',

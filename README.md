@@ -46,7 +46,7 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 
   | Módulo | Áreas |
   |---|---|
-  | Comercial | Vendas, Crédito, Faturamento, NFe, Expedição |
+  | Comercial | Vendas, Representantes, Crédito, Faturamento, NFe, Expedição |
   | Industrial | Engenharia industrial, Pesagem, PCP, Segurança, Reporte de produção, Manutenção |
   | Suprimentos | Compras, Materiais |
   | Qualidade | Laboratório, Qualidade, RNC, FSC |
