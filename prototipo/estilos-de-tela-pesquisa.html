@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Estilos de Tela para ERP</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: galeria em grade de "janelas" esquemáticas, cada uma com ficha (de onde vem, prós, contras, para o papelão) */
+:root{
+  --bg:#eef0f2; --surface:#ffffff; --ink:#1b2128; --muted:#5d6874; --line:#d6dbe0;
+  --kraft:#b7792a; --kraft-soft:#f3e4cc; --blue:#2f5d8a; --blue-soft:#dbe6f1;
+  --ok:#2e7d4f; --ok-soft:#d8eedf; --warn:#a86a00; --warn-soft:#f8e7c4; --bad:#b3372e; --bad-soft:#f6d9d6;
+  --mock-bg:#f7f8fa; --mock-bar:#e3e7ec;
+  --f-display:"Space Grotesk", "Segoe UI", Arial, sans-serif;
+  --f-body:"Inter", "Segoe UI", Arial, sans-serif;
+  --f-mono:"JetBrains Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#14181d; --surface:#1c2229; --ink:#e6eaee; --muted:#9aa5b1; --line:#2f3741;
+  --kraft:#d79b4a; --kraft-soft:#3a2d1b; --blue:#7fa8d1; --blue-soft:#1f3042;
+  --ok:#6cc391; --ok-soft:#1c3427; --warn:#e0a640; --warn-soft:#3a2e15; --bad:#e6837a; --bad-soft:#3d1f1c;
+  --mock-bg:#161b21; --mock-bar:#262e37; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#14181d; --surface:#1c2229; --ink:#e6eaee; --muted:#9aa5b1; --line:#2f3741;
+  --kraft:#d79b4a; --kraft-soft:#3a2d1b; --blue:#7fa8d1; --blue-soft:#1f3042;
+  --ok:#6cc391; --ok-soft:#1c3427; --warn:#e0a640; --warn-soft:#3a2e15; --bad:#e6837a; --bad-soft:#3d1f1c;
+  --mock-bg:#161b21; --mock-bar:#262e37; color-scheme:dark }
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+header.intro{display:grid;gap:12px;max-width:72ch;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--kraft)}
+h1{font-family:var(--f-display);font-size:clamp(28px,4.2vw,42px);line-height:1.1;margin:0;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:22px;margin:0;text-wrap:balance}
+h3{font-family:var(--f-display);font-size:19px;margin:0}
+p{margin:0}
+.lead{color:var(--muted);font-size:16px}
+.nota{font-size:13px;color:var(--muted);border-left:3px solid var(--kraft);padding:4px 0 4px 12px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:14px;min-width:0}
+.card-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.num{font-family:var(--f-mono);font-size:12px;color:var(--kraft)}
+.desc{color:var(--muted);font-size:14px}
+.ficha{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px}
+.ficha div{min-width:0}
+.ficha b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.ficha .full{grid-column:1/-1}
+.links{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:13px}
+a{color:var(--blue)} a:focus-visible{outline:2px solid var(--kraft);outline-offset:2px}
+@media (max-width:480px){ .ficha{grid-template-columns:1fr} }
+
+/* ── janela esquemática ── */
+.mock{container-type:inline-size;background:var(--mock-bg);border:1px solid var(--line);border-radius:8px;overflow:hidden;aspect-ratio:16/10;max-width:100%;display:flex;flex-direction:column}
+.mbar{height:6.5%;background:var(--mock-bar);display:flex;align-items:center;gap:1.2cqw;padding:0 2cqw;flex:none}
+.mbar i{width:1.4cqw;height:1.4cqw;border-radius:50%;background:var(--line);display:block}
+.mbar span{margin-left:1.5cqw;color:var(--muted);font-family:var(--f-mono);font-size:1.7cqw}
+.mbody{flex:1;min-height:0;padding:2.4cqw;display:flex;flex-direction:column;gap:1.8cqw;font-size:2.15cqw;line-height:1.3;overflow:hidden}
+.t{font-weight:700;font-family:var(--f-display)}
+.m{color:var(--muted)}
+.mono{font-family:var(--f-mono)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:1cqw}
+.pill{display:inline-block;border-radius:2cqw;padding:.2cqw 1.2cqw;font-size:1.7cqw;font-weight:600}
+.ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .bad{background:var(--bad-soft);color:var(--bad)} .info{background:var(--blue-soft);color:var(--blue)} .kr{background:var(--kraft-soft);color:var(--kraft)}
+
+/* 1 grade de apps */
+.apps{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:2cqw;align-content:center;padding:0 3cqw}
+.app{display:grid;justify-items:center;gap:.8cqw;text-align:center;position:relative}
+.app .ic{width:8.5cqw;height:8.5cqw;border-radius:2cqw;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:3cqw;color:#fff}
+.app .bd{position:absolute;top:-1cqw;right:2.4cqw;background:var(--bad);color:#fff;border-radius:2cqw;font-size:1.5cqw;padding:0 .9cqw;font-weight:700}
+/* 2 tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw}
+.tile{padding:1.6cqw;display:grid;gap:.6cqw;min-height:15cqw;align-content:space-between}
+.tile .big{font-family:var(--f-display);font-size:4.6cqw;font-weight:700;line-height:1}
+.grp{font-size:1.8cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+/* 3 role center */
+.cues{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4cqw}
+.cue{padding:1.4cqw;border-left:.8cqw solid var(--kraft)}
+.cue .big{font-family:var(--f-display);font-size:4.2cqw;font-weight:700;line-height:1.1}
+.acts{display:flex;gap:1.2cqw;flex-wrap:wrap}
+.btn{background:var(--ink);color:var(--surface);border-radius:1cqw;padding:.7cqw 1.6cqw;font-weight:600;font-size:1.8cqw}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.rows{display:grid;gap:.6cqw}
+.row{display:grid;grid-template-columns:1.2fr 2fr 1fr 1fr;gap:1cqw;padding:.8cqw 1.2cqw;align-items:center}
+/* 4 esteira */
+.kan{flex:1;min-height:0;display:grid;grid-template-columns:repeat(6,1fr);gap:1.2cqw}
+.col{background:var(--mock-bar);border-radius:1cqw;padding:1cqw;display:flex;flex-direction:column;gap:.9cqw;min-width:0}
+.col .h{font-weight:700;font-size:1.8cqw;display:flex;justify-content:space-between}
+.kc{background:var(--surface);border:1px solid var(--line);border-radius:.8cqw;padding:.8cqw;font-size:1.65cqw;display:grid;gap:.3cqw;border-left:.6cqw solid var(--blue)}
+.kc.late{border-left-color:var(--bad)} .kc.k{border-left-color:var(--kraft)}
+/* 5 comando */
+.cmdwrap{flex:1;display:grid;place-items:center;position:relative}
+.cmdwrap .bgtxt{position:absolute;inset:0;padding:2cqw;color:var(--line);font-size:1.8cqw;overflow:hidden}
+.cmd{position:relative;width:72%;background:var(--surface);border:1px solid var(--line);border-radius:1.4cqw;box-shadow:0 2cqw 5cqw rgba(0,0,0,.18);overflow:hidden}
+.cmd .in{padding:1.6cqw 2cqw;border-bottom:1px solid var(--line);font-size:2.6cqw;display:flex;gap:1.4cqw;align-items:center}
+.caret{width:.3cqw;height:3cqw;background:var(--kraft);display:inline-block}
+.cmd .res{display:grid}
+.cmd .r{display:grid;grid-template-columns:auto 1fr auto;gap:1.4cqw;padding:1cqw 2cqw;align-items:center;font-size:2cqw}
+.cmd .r.sel{background:var(--blue-soft)}
+.kbd{font-family:var(--f-mono);font-size:1.5cqw;border:1px solid var(--line);border-radius:.6cqw;padding:0 .8cqw;color:var(--muted)}
+/* 6 gantt */
+.gantt{flex:1;display:grid;grid-template-columns:14% 1fr;gap:.9cqw 1.2cqw;align-content:start}
+.hours{display:grid;grid-template-columns:repeat(8,1fr);font-family:var(--f-mono);font-size:1.5cqw;color:var(--muted)}
+.lane{position:relative;height:5.4cqw;background:var(--surface);border:1px solid var(--line);border-radius:.8cqw}
+.bar{position:absolute;top:12%;bottom:12%;border-radius:.6cqw;padding:0 .8cqw;font-size:1.55cqw;display:flex;align-items:center;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden}
+.mlabel{font-size:1.8cqw;font-weight:600;display:flex;align-items:center}
+.now{position:absolute;top:-1cqw;bottom:-1cqw;width:.3cqw;background:var(--bad)}
+/* 7 mapa */
+.planta{flex:1;position:relative;background:repeating-linear-gradient(0deg,transparent 0 3.9cqw,var(--line) 3.9cqw 4cqw),repeating-linear-gradient(90deg,transparent 0 3.9cqw,var(--line) 3.9cqw 4cqw);border-radius:1cqw}
+.maq{position:absolute;background:var(--surface);border:2px solid var(--ink);border-radius:.8cqw;padding:.8cqw;font-size:1.7cqw;display:grid;gap:.3cqw}
+.dot{display:inline-block;width:1.4cqw;height:1.4cqw;border-radius:50%;vertical-align:middle;margin-right:.6cqw}
+.fl{position:absolute;height:.4cqw;background:var(--kraft)}
+/* 8 inbox */
+.inbox{flex:1;display:grid;grid-template-columns:26% 1fr;gap:1.6cqw;min-height:0}
+.ifold{display:grid;gap:.6cqw;align-content:start;font-size:1.9cqw}
+.ifold div{padding:.6cqw 1cqw;border-radius:.8cqw;display:flex;justify-content:space-between}
+.ifold .on{background:var(--kraft-soft);color:var(--kraft);font-weight:700}
+.task{display:grid;grid-template-columns:auto 1fr auto;gap:1.2cqw;padding:1cqw 1.2cqw;align-items:center;font-size:1.9cqw}
+.chk{width:2.2cqw;height:2.2cqw;border:2px solid var(--muted);border-radius:.6cqw}
+/* 9 ficha 360 */
+.f360{flex:1;display:grid;grid-template-columns:1fr 34%;gap:1.6cqw;min-height:0}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
+.kpis .box{padding:1cqw}
+.kpis .big{font-family:var(--f-display);font-weight:700;font-size:3.2cqw}
+.tabs{display:flex;gap:2cqw;border-bottom:1px solid var(--line);font-size:1.9cqw;padding-bottom:.6cqw}
+.tabs .on{font-weight:700;border-bottom:.4cqw solid var(--kraft)}
+.tl{display:grid;gap:1cqw;font-size:1.75cqw;padding:1.2cqw}
+.tl div{border-left:.4cqw solid var(--line);padding-left:1.2cqw}
+
+section.combo{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;display:grid;gap:14px}
+.combo ol{margin:0;padding-left:20px;display:grid;gap:8px}
+section.ref{margin-top:28px;display:grid;gap:12px}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.ref-grid .box2{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:6px;font-size:14px}
+.ref-grid .box2 span{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Pesquisa de referência · sistemas de gestão</div>
+    <h1>Nove jeitos de organizar as telas de um ERP</h1>
+    <p class="lead">Desenhos esquemáticos dos estilos de navegação que os sistemas de gestão do mercado usam, já com exemplos do dia a dia de uma indústria de papelão. Cada um traz onde ver o sistema real e o que ele faria bem ou mal para vocês.</p>
+    <p class="nota">Os desenhos são meus, feitos para comparar as ideias. As telas originais dos sistemas comerciais têm direitos de imagem; use os links de cada ficha para ver as reais ou testar as demonstrações.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 1</span><h3>Grade de aplicativos</h3></div>
+      <div class="mock" role="img" aria-label="Tela inicial com ícones grandes de cada módulo, como a tela de um celular">
+        <div class="mbar"><i></i><i></i><i></i><span>início</span></div>
+        <div class="mbody">
+          <div class="t">Bom dia, Nilson</div>
+          <div class="apps">
+            <div class="app"><div class="ic" style="background:#2f5d8a">Co</div>Comercial<span class="bd">4</span></div>
+            <div class="app"><div class="ic" style="background:#b7792a">Or</div>Orçamentos<span class="bd">12</span></div>
+            <div class="app"><div class="ic" style="background:#5b6b7a">En</div>Engenharia</div>
+            <div class="app"><div class="ic" style="background:#2e7d4f">PC</div>PCP<span class="bd">2</span></div>
+            <div class="app"><div class="ic" style="background:#7a4f9a">Pr</div>Produção</div>
+            <div class="app"><div class="ic" style="background:#8a6a2f">Es</div>Estoque</div>
+            <div class="app"><div class="ic" style="background:#b3372e">Qu</div>Qualidade<span class="bd">1</span></div>
+            <div class="app"><div class="ic" style="background:#3c7f86">Ex</div>Expedição</div>
+            <div class="app"><div class="ic" style="background:#4a5560">Fi</div>Financeiro</div>
+            <div class="app"><div class="ic" style="background:#1b2128">In</div>Indicadores</div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">A tela inicial é um conjunto de ícones, como no celular. Cada ícone abre um módulo, que por dentro tem seu próprio menu no topo.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Muito fácil de entender; cada pessoa só vê os ícones que pode usar.</div>
+        <div><b>Contra</b>Para ir de um módulo a outro, volta sempre ao início. Não mostra o que está pendente.</div>
+        <div class="full"><b>No papelão</b>Bom como porta de entrada, mas sozinho não ajuda a acompanhar um pedido que passa por vários setores.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://odoo.com/trial" target="_blank" rel="noopener">Odoo (teste grátis)</a></div>
+    </article>
+
+    <!-- 2 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 2</span><h3>Blocos com números ao vivo</h3></div>
+      <div class="mock" role="img" aria-label="Tela inicial com blocos agrupados por assunto, cada bloco mostrando um número atualizado">
+        <div class="mbar"><i></i><i></i><i></i><span>painel</span></div>
+        <div class="mbody">
+          <div class="grp">Comercial</div>
+          <div class="tiles">
+            <div class="box tile"><span>Orçamentos aguardando</span><span class="big">12</span><span class="m">3 há mais de 2 dias</span></div>
+            <div class="box tile"><span>Margem média do mês</span><span class="big">27,8%</span><span class="pill ok">+1,2 pt</span></div>
+            <div class="box tile"><span>Pedidos fechados</span><span class="big">R$ 1,4 mi</span><span class="m">novembro</span></div>
+            <div class="box tile"><span>Follow-ups hoje</span><span class="big">9</span><span class="pill warn">2 atrasados</span></div>
+          </div>
+          <div class="grp">Fábrica</div>
+          <div class="tiles">
+            <div class="box tile"><span>Onduladeira</span><span class="big">182 m/min</span><span class="pill ok">rodando</span></div>
+            <div class="box tile"><span>Refile do dia</span><span class="big">3,1%</span><span class="pill warn">meta 2,5%</span></div>
+            <div class="box tile"><span>OPs atrasadas</span><span class="big">3</span><span class="pill bad">ver</span></div>
+            <div class="box tile"><span>Bobinas em estoque</span><span class="big">412 t</span><span class="m">18 dias</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">Cada bloco é uma porta para uma tarefa e já mostra um número atualizado. Os blocos se agrupam por assunto.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Em um olhar, a pessoa sabe o que precisa de atenção antes de clicar.</div>
+        <div><b>Contra</b>Com muitos blocos vira um "mosaico" cansativo. Exige definir bem quais números importam.</div>
+        <div class="full"><b>No papelão</b>Forte para gerência e diretoria: margem, refile, OPs atrasadas e estoque de bobina na mesma tela.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://www.sap.com/products/try-sap.html" target="_blank" rel="noopener">SAP (Fiori, demonstração)</a></div>
+    </article>
+
+    <!-- 3 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 3</span><h3>Central por função</h3></div>
+      <div class="mock" role="img" aria-label="Tela inicial feita para o cargo da pessoa: pilhas de pendências, botões de ação e a lista de trabalho">
+        <div class="mbar"><i></i><i></i><i></i><span>central do vendedor</span></div>
+        <div class="mbody">
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span class="t">Central do vendedor · Nilson</span><span class="m">qui, 26 nov</span></div>
+          <div class="cues">
+            <div class="box cue"><div class="m">Orçamentos devolvidos</div><div class="big">2</div></div>
+            <div class="box cue"><div class="m">Preço pronto p/ enviar</div><div class="big">5</div></div>
+            <div class="box cue" style="border-left-color:var(--bad)"><div class="m">Clientes sem contato 30d</div><div class="big">7</div></div>
+            <div class="box cue" style="border-left-color:var(--ok)"><div class="m">Pedidos em produção</div><div class="big">11</div></div>
+          </div>
+          <div class="acts"><span class="btn">+ Novo orçamento</span><span class="btn sec">Revisar preço</span><span class="btn sec">Pedir amostra</span></div>
+          <div class="rows">
+            <div class="box row"><span class="mono">ORC-1107</span><span>NBF Time Relógios</span><span class="pill info">no custo</span><span class="m">2 dias</span></div>
+            <div class="box row"><span class="mono">ORC-1099</span><span>Quinta do Nini</span><span class="pill ok">preço pronto</span><span class="m">hoje</span></div>
+            <div class="box row"><span class="mono">ORC-1094</span><span>JPDB</span><span class="pill bad">devolvido</span><span class="m">ontem</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">Cada cargo tem a sua tela inicial: o vendedor vê os orçamentos dele, o PCP vê as OPs, o gerente vê os indicadores. No topo, "pilhas" com o que está pendente.</p>
+      <div class="ficha">
+        <div><b>A favor</b>A pessoa abre o sistema e já sabe o que fazer hoje. Ninguém se perde em menus que não usa.</div>
+        <div><b>Contra</b>Precisa desenhar uma central para cada cargo (vendedor, orçamentista, PCP, produção, gerente).</div>
+        <div class="full"><b>No papelão</b>Encaixa bem com as filas que vocês já têm (orçamentista, desenvolvimento, custo): cada fila vira a central de um cargo.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://www.microsoft.com/dynamics-365/products/business-central" target="_blank" rel="noopener">Microsoft Dynamics 365 Business Central</a></div>
+    </article>
+
+    <!-- 4 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 4</span><h3>Esteira do pedido</h3></div>
+      <div class="mock" role="img" aria-label="Colunas com as etapas do fluxo, do orçamento à expedição, e cartões de cada pedido andando entre elas">
+        <div class="mbar"><i></i><i></i><i></i><span>fluxo dos pedidos</span></div>
+        <div class="mbody">
+          <div class="kan">
+            <div class="col"><div class="h">Orçamento <span class="m">8</span></div>
+              <div class="kc k"><b class="mono">ORC-1107</b>NBF · caixa MN<span class="m">Carlos</span></div>
+              <div class="kc k"><b class="mono">ORC-1106</b>Miriam Gomes</div></div>
+            <div class="col"><div class="h">Desenvolv. <span class="m">3</span></div>
+              <div class="kc"><b class="mono">ORC-1101</b>LOX Metalúrgica<span class="pill info">faca nova</span></div></div>
+            <div class="col"><div class="h">Custo <span class="m">4</span></div>
+              <div class="kc late"><b class="mono">ORC-1094</b>JPDB<span class="pill bad">3 dias</span></div></div>
+            <div class="col"><div class="h">Pedido <span class="m">6</span></div>
+              <div class="kc"><b class="mono">PED-882</b>Calmax · 50 mil</div></div>
+            <div class="col"><div class="h">Produção <span class="m">9</span></div>
+              <div class="kc"><b class="mono">OP-2231</b>Volans · 62%</div>
+              <div class="kc"><b class="mono">OP-2229</b>Onduladeira</div></div>
+            <div class="col"><div class="h">Expedição <span class="m">2</span></div>
+              <div class="kc"><b class="mono">PED-875</b>MTA Brasil<span class="pill ok">sai hoje</span></div></div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">O fluxo da empresa vira um quadro de colunas. Cada pedido é um cartão que anda da esquerda para a direita, do orçamento até a entrega.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Todo mundo vê onde cada pedido está parado. Atrasos saltam aos olhos pela cor.</div>
+        <div><b>Contra</b>Com centenas de pedidos, o quadro precisa de bons filtros (por cliente, vendedor, máquina).</div>
+        <div class="full"><b>No papelão</b>É a cara do processo de vocês: orçamento, desenvolvimento, custo, pedido, PCP, produção, expedição. Ótimo como visão geral.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://monday.com" target="_blank" rel="noopener">monday.com</a> <a href="https://trello.com" target="_blank" rel="noopener">Trello</a></div>
+    </article>
+
+    <!-- 5 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 5</span><h3>Busca e comando universal</h3></div>
+      <div class="mock" role="img" aria-label="Caixa de busca no centro da tela que acha clientes, orçamentos e ações enquanto se digita">
+        <div class="mbar"><i></i><i></i><i></i><span>Ctrl + K</span></div>
+        <div class="mbody">
+          <div class="cmdwrap">
+            <div class="bgtxt">ORC-1107 · NBF Time Relógios · Orçamentista · Prospect ... ORC-1106 · Miriam Gomes ... OP-2231 · Volans ...</div>
+            <div class="cmd">
+              <div class="in"><span>jpdb</span><span class="caret"></span></div>
+              <div class="res">
+                <div class="r sel"><span class="pill kr">Cliente</span><span>JPDB · carteira do Nilson</span><span class="kbd">Enter</span></div>
+                <div class="r"><span class="pill info">Orçamento</span><span class="mono">ORC-1094 · JPDB</span><span class="m">no custo</span></div>
+                <div class="r"><span class="pill ok">Produto</span><span>CX 400×300×250 · 2KL80BC</span><span class="m">nº 51322</span></div>
+                <div class="r"><span class="pill warn">Ação</span><span>Novo orçamento para JPDB</span><span class="kbd">N</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">Em qualquer tela, um atalho abre uma caixa de busca que encontra tudo (cliente, orçamento, produto, OP) e também executa ações ("novo orçamento para JPDB").</p>
+      <div class="ficha">
+        <div><b>A favor</b>Quem usa muito o sistema fica rapidíssimo. Resolve o "não acho o cliente".</div>
+        <div><b>Contra</b>Sozinho não serve: quem é novo precisa ver as opções. Funciona como complemento.</div>
+        <div class="full"><b>No papelão</b>Excelente para vendedor e orçamentista, que vivem procurando cliente, produto e número de orçamento.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://linear.app" target="_blank" rel="noopener">Linear</a> (sistema de gestão de tarefas, referência nesse estilo)</div>
+    </article>
+
+    <!-- 6 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 6</span><h3>Quadro de máquinas</h3></div>
+      <div class="mock" role="img" aria-label="Uma linha por máquina, com as ordens de produção como barras ao longo das horas do dia">
+        <div class="mbar"><i></i><i></i><i></i><span>programação · quinta 26/11</span></div>
+        <div class="mbody">
+          <div class="gantt">
+            <span></span><div class="hours"><span>06h</span><span>08h</span><span>10h</span><span>12h</span><span>14h</span><span>16h</span><span>18h</span><span>20h</span></div>
+            <span class="mlabel">Onduladeira</span><div class="lane"><span class="bar" style="left:1%;width:30%;background:#2f5d8a">OP-2229 · BC 1300</span><span class="bar" style="left:33%;width:22%;background:#2f5d8a">OP-2233 · C 1800</span><span class="bar" style="left:57%;width:12%;background:#b3372e">troca</span><span class="now" style="left:44%"></span></div>
+            <span class="mlabel">Volans</span><div class="lane"><span class="bar" style="left:4%;width:40%;background:#b7792a">OP-2231 · Calmax</span><span class="bar" style="left:47%;width:25%;background:#b7792a">OP-2235</span><span class="now" style="left:44%"></span></div>
+            <span class="mlabel">Chinesa</span><div class="lane"><span class="bar" style="left:10%;width:26%;background:#2e7d4f">OP-2228</span><span class="bar" style="left:62%;width:30%;background:#2e7d4f">OP-2236</span><span class="now" style="left:44%"></span></div>
+            <span class="mlabel">Jumbo</span><div class="lane"><span class="bar" style="left:20%;width:48%;background:#7a4f9a">OP-2230 · LOX</span><span class="now" style="left:44%"></span></div>
+            <span class="mlabel">Tomasoni</span><div class="lane"><span class="bar" style="left:2%;width:16%;background:#3c7f86">OP-2224</span><span class="bar" style="left:50%;width:20%;background:#3c7f86">OP-2237</span><span class="now" style="left:44%"></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">Uma linha por máquina e as ordens de produção como barras ao longo do dia. Arrastar uma barra muda a programação.</p>
+      <div class="ficha">
+        <div><b>A favor</b>O PCP enxerga gargalos, máquinas ociosas e trocas de uma vez só.</div>
+        <div><b>Contra</b>É uma tela especializada e mais trabalhosa de construir. Só faz sentido para o PCP e a produção.</div>
+        <div class="full"><b>No papelão</b>É o padrão nos sistemas feitos para caixa de papelão. Junta bem com a calculadora de eslote por cilindro que já temos.</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://www.advantive.com/products/kiwiplan/" target="_blank" rel="noopener">Kiwiplan</a> <a href="https://amtechsoftware.com/" target="_blank" rel="noopener">Amtech</a> (sistemas para indústria de papelão)</div>
+    </article>
+
+    <!-- 7 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 7</span><h3>Mapa da fábrica</h3></div>
+      <div class="mock" role="img" aria-label="Planta da fábrica desenhada, com cada máquina mostrando situação e velocidade, ligadas pelo fluxo do material">
+        <div class="mbar"><i></i><i></i><i></i><span>fábrica agora</span></div>
+        <div class="mbody">
+          <div class="planta">
+            <div class="maq" style="left:3%;top:10%;width:20%"><b>Bobinas</b><span>412 t · 18 dias</span></div>
+            <div class="fl" style="left:23%;top:20%;width:7%"></div>
+            <div class="maq" style="left:30%;top:6%;width:30%"><b><span class="dot" style="background:var(--ok)"></span>Onduladeira</b><span>182 m/min · OP-2229</span><span class="m">refile 3,1%</span></div>
+            <div class="fl" style="left:60%;top:20%;width:6%"></div>
+            <div class="maq" style="left:66%;top:6%;width:30%"><b>Chapas</b><span>38 pallets aguardando</span></div>
+            <div class="maq" style="left:3%;top:56%;width:21%"><b><span class="dot" style="background:var(--ok)"></span>Volans</b><span>OP-2231 · 62%</span></div>
+            <div class="maq" style="left:27%;top:56%;width:21%"><b><span class="dot" style="background:var(--warn)"></span>Chinesa</b><span>setup · 25 min</span></div>
+            <div class="maq" style="left:51%;top:56%;width:21%"><b><span class="dot" style="background:var(--bad)"></span>Jumbo</b><span>parada · manutenção</span></div>
+            <div class="maq" style="left:75%;top:56%;width:22%"><b>Expedição</b><span>2 cargas hoje</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">A tela é a planta da fábrica. Cada máquina mostra se está rodando, parada ou em ajuste, e o que está produzindo. Clicar abre os detalhes.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Muito visual, ótimo para TV no chão de fábrica e para a diretoria.</div>
+        <div><b>Contra</b>Só é confiável se as máquinas informarem o status (apontamento ou sensores). Sem isso, fica desatualizado.</div>
+        <div class="full"><b>No papelão</b>Ideia boa para uma segunda fase, quando o apontamento de produção estiver no sistema.</div>
+      </div>
+      <div class="links">Onde ver: sistemas de chão de fábrica (MES) como os da <a href="https://www.advantive.com/products/kiwiplan/" target="_blank" rel="noopener">Kiwiplan</a></div>
+    </article>
+
+    <!-- 8 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 8</span><h3>Caixa de entrada de tarefas</h3></div>
+      <div class="mock" role="img" aria-label="Lista do que depende da pessoa hoje, como uma caixa de e-mail, separada em atrasado, hoje e próximos">
+        <div class="mbar"><i></i><i></i><i></i><span>minhas tarefas</span></div>
+        <div class="mbody">
+          <div class="inbox">
+            <div class="ifold"><div class="on">Hoje <span>6</span></div><div>Atrasadas <span>2</span></div><div>Próximos dias <span>9</span></div><div>Aguardando outros <span>4</span></div><div>Feitas <span class="m">31</span></div></div>
+            <div class="rows">
+              <div class="box task"><span class="chk"></span><span><b>Enviar preço</b> · ORC-1099 Quinta do Nini <span class="m">· custo liberou às 9h</span></span><span class="pill ok">hoje</span></div>
+              <div class="box task"><span class="chk"></span><span><b>Corrigir medida</b> · ORC-1094 JPDB <span class="m">· devolvido pelo custo</span></span><span class="pill bad">atrasada</span></div>
+              <div class="box task"><span class="chk"></span><span><b>Ligar para comprador</b> · LOX Metalúrgica <span class="m">· follow-up 7 dias</span></span><span class="pill warn">hoje</span></div>
+              <div class="box task"><span class="chk"></span><span><b>Aprovar amostra</b> · CA-1031 Calmax <span class="m">· setor concluiu</span></span><span class="pill ok">hoje</span></div>
+              <div class="box task"><span class="chk"></span><span><b>Revisar preço</b> · item 2 · ORC-1018-R2 <span class="m">· pedido do cliente</span></span><span class="pill info">amanhã</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">O sistema junta numa lista só tudo que depende da pessoa, vindo de qualquer módulo, como uma caixa de e-mail. Concluiu, risca e some.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Nada fica esquecido entre setores. Quem passa o serviço adiante sabe que o próximo vai ver.</div>
+        <div><b>Contra</b>Exige que o sistema gere as tarefas certas; tarefa demais vira ruído e as pessoas ignoram.</div>
+        <div class="full"><b>No papelão</b>Resolve o "fica parado esperando alguém ver" entre comercial, desenvolvimento, custo e amostras.</div>
+      </div>
+      <div class="links">Onde ver: a ideia vem de apps de tarefas como <a href="https://culturedcode.com/things/" target="_blank" rel="noopener">Things</a> e da caixa de entrada do e-mail</div>
+    </article>
+
+    <!-- 9 -->
+    <article class="card">
+      <div class="card-head"><span class="num">Estilo 9</span><h3>Ficha 360</h3></div>
+      <div class="mock" role="img" aria-label="Página de um cliente com números principais no topo, abas de assuntos e a linha do tempo de tudo que aconteceu ao lado">
+        <div class="mbar"><i></i><i></i><i></i><span>cliente · JPDB</span></div>
+        <div class="mbody">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:2cqw"><span class="t">JPDB Comércio de Embalagens</span><span class="pill kr">Nilson · desde 2019</span></div>
+          <div class="f360">
+            <div style="display:grid;gap:1.4cqw;align-content:start">
+              <div class="kpis">
+                <div class="box"><div class="m">Compras 12 meses</div><div class="big">R$ 386 mil</div></div>
+                <div class="box"><div class="m">Margem média</div><div class="big">24%</div></div>
+                <div class="box"><div class="m">Produtos ativos</div><div class="big">17</div></div>
+                <div class="box"><div class="m">Último pedido</div><div class="big">12 d</div></div>
+              </div>
+              <div class="tabs"><span class="on">Produtos</span><span>Orçamentos</span><span>Pedidos</span><span>Amostras</span><span>Contatos</span></div>
+              <div class="rows">
+                <div class="box row"><span class="mono">51322</span><span>CX 400×300×250</span><span>2KL80BC</span><span class="m">R$ 3,42</span></div>
+                <div class="box row"><span class="mono">51340</span><span>Divisória 12 células</span><span>1CR40B</span><span class="m">R$ 0,88</span></div>
+              </div>
+            </div>
+            <div class="box tl">
+              <b>Linha do tempo</b>
+              <div><span class="m">hoje</span><br>ORC-1094 devolvido pelo custo</div>
+              <div><span class="m">10/11</span><br>Transferido do Sandro para o Nilson</div>
+              <div><span class="m">02/11</span><br>Pedido PED-861 faturado</div>
+              <div><span class="m">28/10</span><br>Amostra CA-1012 aprovada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="desc">Tudo sobre um cliente (ou um pedido) numa página: números no topo, abas por assunto e a linha do tempo de tudo que aconteceu ao lado.</p>
+      <div class="ficha">
+        <div><b>A favor</b>Acaba com o "abre cinco telas para entender um cliente". A história fica registrada.</div>
+        <div><b>Contra</b>É uma tela de consulta e acompanhamento; o trabalho do dia a dia acontece em outras.</div>
+        <div class="full"><b>No papelão</b>Perfeita para cliente, produto e pedido. Teria evitado a confusão de "de quem é o JPDB".</div>
+      </div>
+      <div class="links">Onde ver: <a href="https://www.salesforce.com/br/" target="_blank" rel="noopener">Salesforce</a> <a href="https://www.hubspot.com/" target="_blank" rel="noopener">HubSpot</a></div>
+    </article>
+
+  </div>
+
+  <section class="combo">
+    <h2>Os estilos se combinam</h2>
+    <p class="desc">Nenhum sistema bom usa um estilo só. Uma combinação que encaixa no jeito que a empresa trabalha seria:</p>
+    <ol>
+      <li><b>Central por função</b> como tela inicial de cada cargo, com a <b>caixa de entrada de tarefas</b> embutida ("o que depende de mim hoje").</li>
+      <li><b>Busca e comando universal</b> disponível em qualquer tela, no lugar do menu lateral.</li>
+      <li><b>Esteira do pedido</b> como visão geral do fluxo, do orçamento à expedição.</li>
+      <li><b>Ficha 360</b> para cliente, produto e pedido.</li>
+      <li><b>Quadro de máquinas</b> no PCP e <b>blocos com números</b> para gerência; o <b>mapa da fábrica</b> fica para uma segunda fase.</li>
+    </ol>
+    <p class="nota">É só uma sugestão de partida. Seus desenhos à caneta é que vão definir o caminho; se algum estilo aqui te chamou atenção, vale aproveitar nos desenhos.</p>
+  </section>
+
+  <section class="ref">
+    <h2>Para ver telas reais e testar</h2>
+    <div class="ref-grid">
+      <div class="box2"><a href="https://odoo.com/trial" target="_blank" rel="noopener">Odoo</a><span>ERP completo, código aberto. Teste grátis online de 30 dias, dá para clicar em tudo.</span></div>
+      <div class="box2"><a href="https://frappe.io/erpnext" target="_blank" rel="noopener">ERPNext</a><span>ERP de código aberto, com telas de "área de trabalho" por assunto.</span></div>
+      <div class="box2"><a href="https://www.sap.com/products/try-sap.html" target="_blank" rel="noopener">SAP</a><span>Referência dos blocos com números (Fiori). Tem demonstrações guiadas.</span></div>
+      <div class="box2"><a href="https://www.microsoft.com/dynamics-365/products/business-central" target="_blank" rel="noopener">Business Central</a><span>Microsoft; referência da central por função.</span></div>
+      <div class="box2"><a href="https://www.advantive.com/products/kiwiplan/" target="_blank" rel="noopener">Kiwiplan</a><span>Feito para indústria de papelão ondulado: programação de onduladeira e chão de fábrica.</span></div>
+      <div class="box2"><a href="https://amtechsoftware.com/" target="_blank" rel="noopener">Amtech</a><span>ERP para embalagem e papelão ondulado: orçamento, programação, produção e financeiro.</span></div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

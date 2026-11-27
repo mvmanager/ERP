@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Caixinhas de Papelão</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: galeria de 6 desenhos de caixa; cada opção tem o desenho grande e um cartão de módulo com o efeito ao passar o mouse */
+:root{
+  --paper:#f3ece1; --surface:#fffaf2; --surface-2:#f8f0e4; --ink:#2a1f16; --muted:#7a6652; --line:#dccbb2; --line-2:#cdb898;
+  --k1:#e2b47a; --k2:#c88a48; --k3:#a8692e; --k4:#7d4c22; --k5:#5a3517; --tape:#d9c39b; --hole:#4a2c12;
+  --kraft:#a8692e; --kraft-hi:#d39a5c; --kraft-deep:#6b4120; --shadow:rgba(80,50,20,.16); --glow:rgba(212,145,72,.22); --luz:rgba(226,170,105,.16);
+  --f-display:"Archivo","Segoe UI",Arial,sans-serif; --f-body:"Inter","Segoe UI",Arial,sans-serif; --f-mono:"IBM Plex Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#16110c; --surface:#241b13; --surface-2:#2b2117; --ink:#f2e7d7; --muted:#b39c82; --line:#3b2e22; --line-2:#4d3c2b;
+  --k1:#e9bf88; --k2:#d29554; --k3:#b0733a; --k4:#875427; --k5:#5e3818; --tape:#cbb48b; --hole:#1c1108;
+  --kraft:#d69a56; --kraft-hi:#f0c48e; --kraft-deep:#8a5528; --shadow:rgba(0,0,0,.45); --glow:rgba(232,160,82,.16); --luz:rgba(240,196,142,.07); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#16110c; --surface:#241b13; --surface-2:#2b2117; --ink:#f2e7d7; --muted:#b39c82; --line:#3b2e22; --line-2:#4d3c2b;
+  --k1:#e9bf88; --k2:#d29554; --k3:#b0733a; --k4:#875427; --k5:#5e3818; --tape:#cbb48b; --hole:#1c1108;
+  --kraft:#d69a56; --kraft-hi:#f0c48e; --kraft-deep:#8a5528; --shadow:rgba(0,0,0,.45); --glow:rgba(232,160,82,.16); --luz:rgba(240,196,142,.07); color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:36px 60px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.intro{display:grid;gap:8px;max-width:70ch;margin-bottom:26px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--kraft)}
+h1{font-family:var(--f-display);font-weight:800;font-stretch:88%;font-size:clamp(28px,4vw,42px);line-height:1.05;margin:0;text-wrap:balance}
+.intro p{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr));gap:20px}
+.op{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:14px;min-width:0}
+.op header{display:flex;align-items:baseline;gap:10px}
+.op .n{font-family:var(--f-mono);font-size:12px;color:var(--kraft)}
+.op h2{font-family:var(--f-display);font-weight:700;font-stretch:95%;font-size:19px;margin:0}
+.op p{margin:0;font-size:14px;color:var(--muted)}
+.stage{height:190px;border-radius:14px;background:radial-gradient(circle at 50% 70%,var(--glow),transparent 65%),var(--surface-2);display:grid;place-items:center;border:1px solid var(--line)}
+.stage svg{width:150px;height:150px;overflow:visible}
+
+/* cartão de módulo de exemplo */
+.grid{perspective:1100px}
+.tile{--mx:50%;--my:50%;--rx:0deg;--ry:0deg;isolation:isolate;position:relative;display:grid;grid-template-rows:auto 1fr auto;gap:12px;min-height:168px;padding:18px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--surface-2));cursor:pointer;text-align:left;overflow:hidden;font:inherit;color:inherit;width:100%;
+  box-shadow:0 1px 2px var(--shadow);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.tile{transform:rotateX(var(--rx)) rotateY(var(--ry))}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(240px circle at var(--mx) var(--my),var(--luz),transparent 65%);opacity:0;transition:opacity .4s}
+.tile:hover::before,.tile:focus-visible::before{opacity:1}
+.tile .ic{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.tile:hover .ic{transform:translateY(-2px) rotate(-4deg) scale(1.04)}
+.tile:hover,.tile:focus-visible{transform:translateY(-5px) rotateX(var(--rx)) rotateY(var(--ry));border-color:color-mix(in srgb,var(--kraft) 55%,var(--line));box-shadow:0 22px 40px -20px var(--shadow)}
+.tile:focus-visible{outline:2px solid var(--kraft);outline-offset:3px}
+.tile .ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--kraft-hi),var(--kraft) 48%,var(--kraft-deep));box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 8px 16px -8px var(--kraft-deep)}
+.tile .ic svg{width:23px;height:23px}
+.tile .nm{font-family:var(--f-display);font-weight:700;font-stretch:96%;font-size:18px;position:relative;z-index:1}
+.tile .st{font-size:13px;color:var(--muted);position:relative;z-index:1;max-width:62%}
+.tile .deco{position:absolute;right:-8px;bottom:-14px;width:128px;height:128px;opacity:0;transform:translate(18px,18px) rotate(8deg) scale(.9);transition:opacity .45s,transform .55s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.tile:hover .deco,.tile:focus-visible .deco{opacity:1;transform:none}
+.tile .deco.faca{right:12px;bottom:6px;width:112px;height:112px}
+.tile .deco.onda{right:8px;bottom:-2px;width:118px;height:118px}
+.tile .deco svg{width:100%;height:100%;overflow:visible}
+
+/* opção 2: abas abrem */
+.abre .fechada{transition:opacity .35s} .abre .aberta{opacity:0;transition:opacity .35s}
+.tile:hover .abre .fechada,.stage:hover .abre .fechada{opacity:0}
+.tile:hover .abre .aberta,.stage:hover .abre .aberta{opacity:1}
+
+.nota{margin-top:26px;font-size:14px;color:var(--muted);border-left:3px solid var(--kraft);padding:4px 0 4px 12px;max-width:80ch}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} .tile{transform:none!important} }
+</style>
+</head>
+<body>
+
+<!-- Desenhos reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 1 caixa fechada com fita -->
+    <g id="cx-fechada">
+      <ellipse cx="60" cy="106" rx="40" ry="7" fill="var(--shadow)"/>
+      <path d="M20 40 L60 60 L60 100 L20 80Z" fill="var(--k3)"/>
+      <path d="M60 60 L100 40 L100 80 L60 100Z" fill="var(--k4)"/>
+      <path d="M60 20 L100 40 L60 60 L20 40Z" fill="var(--k1)"/>
+      <path d="M36 32 L44 28 L84 48 L76 52Z" fill="var(--tape)" opacity=".95"/>
+      <path d="M76 52 L84 48 L84 60 L76 64Z" fill="var(--tape)" opacity=".8"/>
+      <path d="M60 60 L60 100" stroke="var(--k5)" stroke-width=".8" opacity=".5"/>
+      <path d="M26 52 L42 60 M26 57 L38 63" stroke="var(--k5)" stroke-width="1.2" opacity=".45" stroke-linecap="round"/>
+    </g>
+    <!-- 2a caixa aberta -->
+    <g id="cx-aberta">
+      <ellipse cx="60" cy="106" rx="40" ry="7" fill="var(--shadow)"/>
+      <path d="M60 20 L100 40 L60 60 L20 40Z" fill="var(--hole)"/>
+      <path d="M20 40 L60 60 L60 100 L20 80Z" fill="var(--k3)"/>
+      <path d="M60 60 L100 40 L100 80 L60 100Z" fill="var(--k4)"/>
+      <path d="M20 40 L60 20 L44 6 L4 26Z" fill="var(--k2)"/>
+      <path d="M60 20 L100 40 L112 22 L72 2Z" fill="var(--k2)"/>
+      <path d="M20 40 L60 60 L50 74 L8 52Z" fill="var(--k1)"/>
+      <path d="M60 60 L100 40 L114 54 L72 76Z" fill="var(--k1)"/>
+    </g>
+    <!-- 3 caixa em traço -->
+    <g id="cx-traco" fill="none" stroke="var(--kraft)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M60 20 L100 40 L60 60 L20 40Z M20 40 L20 80 L60 100 L100 80 L100 40 M60 60 L60 100"/>
+      <path d="M40 30 L80 50 L80 64" stroke-width="2.2" opacity=".8"/>
+    </g>
+    <!-- 4 caixa planificada (faca) -->
+    <g id="cx-faca" fill="none" stroke-linejoin="round">
+      <rect x="6" y="38" width="108" height="44" fill="var(--k1)" opacity=".55"/>
+      <path d="M6 38 h108 v44 h-108z M6 38 v-20 h26 v20 M32 18 h28 v20 M60 18 h28 v20 M88 18 h26 v20 M6 82 v20 h26 v-20 M32 102 h28 v-20 M60 102 h28 v-20 M88 102 h26 v-20" stroke="var(--k4)" stroke-width="2"/>
+      <path d="M114 42 l8 4 v28 l-8 4" stroke="var(--k4)" stroke-width="2"/>
+      <path d="M32 38 v44 M60 38 v44 M88 38 v44" stroke="var(--k4)" stroke-width="1.6" stroke-dasharray="4 3"/>
+      <path d="M6 38 h108 M6 82 h108" stroke="var(--kraft)" stroke-width="1.6" stroke-dasharray="4 3"/>
+    </g>
+    <!-- 5 corte da onda -->
+    <g id="cx-onda">
+      <rect x="4" y="40" width="112" height="8" rx="2" fill="var(--k2)"/>
+      <rect x="4" y="74" width="112" height="8" rx="2" fill="var(--k2)"/>
+      <path d="M4 61 q7 -15 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0" fill="none" stroke="var(--k4)" stroke-width="3.2"/>
+      <path d="M4 48 v26 M116 48 v26" stroke="var(--k5)" stroke-width="1" opacity=".5"/>
+      <text x="60" y="104" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" fill="var(--muted)">capa · miolo · capa</text>
+    </g>
+    <!-- 6 pilha no pallet -->
+    <g id="cx-pilha">
+      <ellipse cx="60" cy="112" rx="50" ry="6" fill="var(--shadow)"/>
+      <path d="M10 98 h100 v6 h-100z" fill="var(--k5)"/>
+      <path d="M14 104 h10 v6 h-10z M55 104 h10 v6 h-10z M96 104 h10 v6 h-10z" fill="var(--k5)"/>
+      <g><path d="M12 64 h46 v34 h-46z" fill="var(--k3)"/><path d="M12 64 l8 -6 h46 l-8 6z" fill="var(--k1)"/><path d="M58 64 l8 -6 v34 l-8 6z" fill="var(--k4)"/><path d="M30 64 v-1 h10" stroke="var(--tape)" stroke-width="3"/></g>
+      <g><path d="M60 64 h46 v34 h-46z" fill="var(--k3)"/><path d="M60 64 l8 -6 h46 l-8 6z" fill="var(--k1)"/><path d="M106 64 l8 -6 v34 l-8 6z" fill="var(--k4)"/></g>
+      <g class="cx3"><path d="M34 30 h46 v34 h-46z" fill="var(--k2)"/><path d="M34 30 l8 -6 h46 l-8 6z" fill="var(--k1)"/><path d="M80 30 l8 -6 v34 l-8 6z" fill="var(--k4)"/><path d="M52 30 l8 -6" stroke="var(--tape)" stroke-width="5"/></g>
+    </g>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Opções para o efeito dos módulos</div>
+    <h1>Seis caixinhas de papelão</h1>
+    <p>Cada opção mostra o desenho e um cartão de módulo. Passe o mouse no cartão: ele sobe, inclina acompanhando o mouse, ganha uma luz suave e a caixinha entra pelo canto. No celular, toque e segure.</p>
+  </header>
+
+  <div class="grid">
+    <article class="op">
+      <header><span class="n">Opção 1</span><h2>Caixa fechada com fita</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" role="img" aria-label="Caixa de papelão fechada com fita adesiva"><use href="#cx-fechada"/></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8.5 6.5h7M8.5 11h1M12 11h1M8.5 14.5h1M12 14.5h1"/></svg></span><span class="nm">Orçamentos</span><span class="st">Solicitações, precificação e filas</span><span class="deco"><svg viewBox="0 0 120 120"><use href="#cx-fechada"/></svg></span></button>
+      <p>A mais clássica e fácil de reconhecer. Funciona bem em qualquer módulo.</p>
+    </article>
+
+    <article class="op">
+      <header><span class="n">Opção 2</span><h2>Caixa que abre as abas</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" class="abre" role="img" aria-label="Caixa que abre as abas ao passar o mouse"><g class="fechada"><use href="#cx-fechada"/></g><g class="aberta"><use href="#cx-aberta"/></g></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 8l9-5 9 5-9 5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></span><span class="nm">Estoque</span><span class="st">Bobinas, chapas e produto acabado</span><span class="deco"><svg viewBox="0 0 120 120" class="abre"><g class="fechada"><use href="#cx-fechada"/></g><g class="aberta"><use href="#cx-aberta"/></g></svg></span></button>
+      <p>Com o mouse em cima, a caixa "abre", passando a ideia de entrar no módulo. É a mais divertida.</p>
+    </article>
+
+    <article class="op">
+      <header><span class="n">Opção 3</span><h2>Caixa em traço</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" role="img" aria-label="Caixa desenhada só com o contorno"><use href="#cx-traco"/></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="nm">Comercial</span><span class="st">Carteira, follow-up e clientes</span><span class="deco"><svg viewBox="0 0 120 120"><use href="#cx-traco"/></svg></span></button>
+      <p>Só o contorno, mais leve e discreta. Combina com um sistema mais sóbrio.</p>
+    </article>
+
+    <article class="op">
+      <header><span class="n">Opção 4</span><h2>Caixa planificada (faca)</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" role="img" aria-label="Caixa aberta e planificada, como o desenho da faca"><use href="#cx-faca"/></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21L21 3v18z"/><path d="M8 21v-2M12 21v-3M16 21v-2"/></svg></span><span class="nm">Engenharia de Produto</span><span class="st">Desenvolvimento, amostras e facas</span><span class="deco faca"><svg viewBox="0 0 120 120"><use href="#cx-faca"/></svg></span></button>
+      <p>A caixa aberta como sai da faca, com as linhas de vinco tracejadas. Só quem é do ramo reconhece.</p>
+    </article>
+
+    <article class="op">
+      <header><span class="n">Opção 5</span><h2>Corte da onda</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" role="img" aria-label="Corte do papelão mostrando a onda entre as duas capas"><use href="#cx-onda"/></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg></span><span class="nm">Produção</span><span class="st">Onduladeira e conversão</span><span class="deco onda"><svg viewBox="0 0 120 120"><use href="#cx-onda"/></svg></span></button>
+      <p>O papelão visto de lado: capa, miolo ondulado e capa. Combina com a linha ondulada que já usamos na tela.</p>
+    </article>
+
+    <article class="op">
+      <header><span class="n">Opção 6</span><h2>Pilha no pallet</h2></header>
+      <div class="stage"><svg viewBox="0 0 120 120" class="pilha" role="img" aria-label="Pilha de caixas em cima de um pallet"><use href="#cx-pilha"/></svg></div>
+      <button class="tile" type="button"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 6h12v10H2zM14 10h4.5l3.5 3.5V16h-8z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></span><span class="nm">Expedição</span><span class="st">Cargas e romaneios</span><span class="deco"><svg viewBox="0 0 120 120" class="pilha"><g><use href="#cx-pilha"/></g></svg></span></button>
+      <p>Caixas paletizadas. Fica bem em Expedição e Estoque.</p>
+    </article>
+  </div>
+
+  <p class="nota">Também dá para misturar: cada módulo com o seu desenho (pilha no pallet em Expedição, faca em Engenharia, onda em Produção, caixa fechada nos demais).</p>
+</div>
+<script>
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.tile').forEach(t => {
+  t.addEventListener('pointermove', (e) => {
+    const r = t.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    t.style.setProperty('--mx', x + 'px'); t.style.setProperty('--my', y + 'px');
+    if (!reduz) { t.style.setProperty('--ry', ((x / r.width - .5) * 6).toFixed(2) + 'deg'); t.style.setProperty('--rx', ((.5 - y / r.height) * 6).toFixed(2) + 'deg'); }
+  });
+  t.addEventListener('pointerleave', () => { t.style.setProperty('--rx', '0deg'); t.style.setProperty('--ry', '0deg'); });
+});
+</script>
+
+</body>
+</html>
