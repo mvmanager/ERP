@@ -19,8 +19,22 @@ do nosso jeito (decisão do usuário: "o nosso diferencial será nesses detalhes
 **Aba Contato** (vários contatos por prospect)
 - Nome · Departamento · DDD · Fone · Ramal · Fax · Celular · E-mail · Data de nascimento · Status
 
-## Cliente
-- (aguardando prints)
+## Cliente (sistema atual, tela VD007)
+
+**Aba Gerais**
+- Cliente (código) · Nome / Razão social · Natureza jurídica · CNPJ / CPF
+- Indicador de I.E. · Inscrição estadual
+- Segmento econômico · Status · Código original · Nosso código no cliente
+- Quadro "Relacionamento atual"
+
+**Outras abas (só os nomes; conteúdo não enviado):** Endereço · Adicionais · Regras para vendas ·
+Regras para vendas II · Contatos · Entrega / Cobrança · Advertências · Restrições de vencimento ·
+Padrões EDI · Atributos extras · Certificados · Financeiro · Ocorrências (na consulta).
+
+**Consulta:** navegação registro a registro e "aproximar por" (busca).
+**Relatório:** filtros por faixa de clientes, UF, município, representante, segmento; situação
+(ativos/inativos); resumido ou completo; ordem por código ou razão social; "só clientes sem área
+de vendas/representante"; imprimir, visualizar, exportar para planilha.
 
 ## Já decidido que entra na ficha (ver README)
 Unidades do cliente, alterar nome fantasia, endereços de cobrança e de entrega (vários),
