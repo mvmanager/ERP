@@ -252,10 +252,17 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   *Cadastros:* Tipos e famílias de padrões · Homologação de marcas · Parâmetros (inclui
   personalização do código do relatório). *Consultas:* Rastreabilidade de lotes (lote de
   fabricação × lotes de insumos).
-- **Laboratório** — *Instrumentos:* Instrumentos de medição (cadastro + movimentação) ·
-  Aferições (a vencer + demonstrativo). *Análises:* Métodos de análise · Contratipos.
-- **A confirmar:** onde ficam hoje os **testes físicos** (coluna, ECT, Mullen…) e as
-  **RNC** e o **FSC** — não aparecem neste menu.
+- **Laboratório** (módulo Laboratório atual + parte da Garantia da Qualidade):
+  *Inspeções:* Inspeção de materiais (recebimento, amostras, revalidação de AR, troca de lote
+  do fornecedor) · Inspeção de produtos (produtos + amostras de acabados).
+  *Ensaios:* Ensaios e amostragem (ensaios + intervalos p/ amostragem) · Ensaios por material e
+  produto (material × ensaio, subgrupo × ensaio, produto × ensaio, copiar ensaios) · Métodos
+  de análise · Contratipos.
+  *Instrumentos:* Instrumentos de medição (cadastro + movimentação) · Aferições.
+  *Consultas:* ARs e histórico de inspeção (ARs por vencimento, movimentação do AR, histórico,
+  skip lote) · Rejeitados e material para testes · Inspeção de produtos (inclui
+  acompanhamento por lote da onduladeira).
+- **A confirmar:** se existe menu de **RNC** e de **FSC** no sistema atual.
 
 ### Controladoria › Custos (tópicos definidos até agora)
 - **Orçamentos:** Fila de solicitações de orçamento · Calcular preço (motor de precificação

@@ -1935,14 +1935,27 @@ const TOPICOS = {
       { ic:'troca', t:'Rastreabilidade de lotes', d:'Quais lotes de insumos entraram em cada lote fabricado' },
     ]},
   ],
+  /* Qualidade › Laboratório: inspeções e ensaios (módulo Laboratório do sistema atual) +
+     instrumentos, métodos e contratipos (vindos da Garantia da Qualidade). */
   'qualidade/laboratorio': [
+    { nome:'Inspeções', itens:[
+      { ic:'lupa', t:'Inspeção de materiais', d:'Inspeção no recebimento e de amostras; revalidação de AR; troca de lote' },
+      { ic:'check', t:'Inspeção de produtos', d:'Inspeção de produtos e de amostras de acabados' },
+    ]},
+    { nome:'Ensaios', itens:[
+      { ic:'regua', t:'Ensaios e amostragem', d:'Testes (coluna, ECT, Mullen…) e intervalos de amostragem' },
+      { ic:'tabela', t:'Ensaios por material e produto', d:'Quais testes cada material, subgrupo e produto exige' },
+      { ic:'doc', t:'Métodos de análise', d:'Como cada teste é feito' },
+      { ic:'percent', t:'Contratipos', d:'Padrões de cor para impressão' },
+    ]},
     { nome:'Instrumentos', itens:[
       { ic:'regua', t:'Instrumentos de medição', d:'Cadastro e movimentação dos instrumentos' },
       { ic:'calendario', t:'Aferições', d:'Aferições a vencer e histórico por equipamento' },
     ]},
-    { nome:'Análises', itens:[
-      { ic:'lupa', t:'Métodos de análise', d:'Como cada teste é feito' },
-      { ic:'percent', t:'Contratipos', d:'Padrões de cor para impressão' },
+    { nome:'Consultas', itens:[
+      { ic:'tabela', t:'ARs e histórico de inspeção', d:'ARs por vencimento, movimentação, histórico e skip lote' },
+      { ic:'xcirc', t:'Rejeitados e material para testes', d:'Volumes rejeitados e material separado para teste' },
+      { ic:'grafico', t:'Inspeção de produtos', d:'Resultados por produto e por lote da onduladeira' },
     ]},
   ],
   /* Industrial: o menu "Engenharia Industrial" do sistema atual é quase todo manutenção.

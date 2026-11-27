@@ -1,7 +1,7 @@
 # Mapa de funcionalidades
 
 Gerado a partir do protótipo em 27/11/2026. Níveis: **Módulo › Área › Tópico › Funcionalidade**.
-Situação: **31 áreas**, **19 com funcionalidades definidas**, **202 funcionalidades**.
+Situação: **31 áreas**, **19 com funcionalidades definidas**, **209 funcionalidades**.
 As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ## Comercial
@@ -117,8 +117,10 @@ As decisões e o porquê de cada agrupamento estão no `README.md`.
 
 ### Laboratório
 
+- **Inspeções:** Inspeção de materiais · Inspeção de produtos
+- **Ensaios:** Ensaios e amostragem · Ensaios por material e produto · Métodos de análise · Contratipos
 - **Instrumentos:** Instrumentos de medição · Aferições
-- **Análises:** Métodos de análise · Contratipos
+- **Consultas:** ARs e histórico de inspeção · Rejeitados e material para testes · Inspeção de produtos
 
 ### Qualidade
 
