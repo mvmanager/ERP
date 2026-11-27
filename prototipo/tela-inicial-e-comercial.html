@@ -1849,13 +1849,21 @@ const TOPICOS = {
       { ic:'importar', t:'Declaração de exportação', d:'Documentos de exportação' },
     ]},
   ],
-  /* Comercial › NFe: a parte fiscal eletrônica das notas (vinda do Faturamento atual). */
+  /* Comercial › NFe: parte fiscal eletrônica (o que se faz com a Receita). Junta o menu de NFe
+     do sistema atual e o que veio do Faturamento. Tudo da nota fica na própria nota. */
   'comercial/nfe': [
     { nome:'Operações', itens:[
-      { ic:'xcirc', t:'Cancelamento de nota fiscal', d:'Cancelar uma nota já emitida' },
-      { ic:'troca', t:'Estorno de nota autorizada', d:'Estornar uma nota autorizada pela Receita' },
-      { ic:'alerta', t:'Inutilizar número de nota', d:'Inutilizar formulário ou número de nota' },
-      { ic:'lapis', t:'Carta de correção', d:'Corrigir informações de uma nota emitida' },
+      { grupo:'Notas' },
+      { ic:'doc', t:'Gerenciar notas', d:'Situação na SEFAZ, DANFE; cancelar, estornar e carta de correção' },
+      { ic:'caixa', t:'Lotes de envio', d:'Lotes de notas enviados à Receita' },
+      { ic:'alerta', t:'Inutilizar número de nota', d:'Inutilizar números ou formulários não usados' },
+      { grupo:'Distribuição' },
+      { ic:'caminhao', t:'Distribuição das notas', d:'Enviar ao cliente e ao transportador, com histórico de envios' },
+      { ic:'importar', t:'Exportar XML', d:'Baixar os XMLs das notas' },
+    ]},
+    { nome:'Configurações', itens:[
+      { ic:'troca', t:'Conexão com a SEFAZ', d:'Endereços da Receita e certificado digital' },
+      { ic:'engrenagem', t:'Parâmetros de NFe', d:'Configurações e validação dos XMLs (só administrador e TI)' },
     ]},
   ],
   'comercial/vendas': [

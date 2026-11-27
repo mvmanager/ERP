@@ -233,10 +233,17 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
 - **Consultas:** a definir (falta o print de Demonstrativos).
 - Cancelamento, estorno, inutilização de número e carta de correção **vão para NFe**.
 
-### Comercial › NFe (tópicos definidos até agora)
-- Parte fiscal eletrônica das notas (o que se faz com a Receita).
-- **Operações:** Cancelamento de nota fiscal · Estorno de nota autorizada · Inutilizar
-  número de nota · Carta de correção.
+### Comercial › NFe (proposta, a partir do sistema atual)
+- Parte fiscal eletrônica das notas (o que se faz com a Receita). Junta o menu de NFe do
+  sistema atual (10 itens) e os 4 que vieram do Faturamento → 7 funcionalidades.
+- **Operações:**
+  - **Notas:** Gerenciar notas (situação na SEFAZ, DANFE e, a partir da própria nota:
+    cancelar, estornar, carta de correção) · Lotes de envio · Inutilizar número de nota
+    (junta a solicitação de inutilização da NFe e a do Faturamento).
+  - **Distribuição:** Distribuição das notas (envio ao cliente e transportador + histórico
+    de envios) · Exportar XML.
+- **Configurações** (só administrador e TI): Conexão com a SEFAZ (serviço + certificado
+  digital) · Parâmetros de NFe (inclui os schemas de validação dos XMLs).
 
 ### Comercial › Vendas (tópicos definidos até agora)
 - **Orçamentos:** Orçamentos (chegam de Custos já com preço: consultar, negociar, aprovar e
