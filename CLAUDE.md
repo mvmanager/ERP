@@ -68,6 +68,10 @@ esta seção para a conversa seguinte saber de onde continuar.
 - Permissões (módulo, área, carteira do representante, campos editáveis) conferidas **no
   servidor** a cada leitura e gravação — não basta esconder botão.
 - Histórico/auditoria de alterações sensíveis (preço, limite de crédito, comissão, permissões).
+- **RLS (Row Level Security) no PostgreSQL desde o início** (decisão do usuário): segunda tranca
+  no próprio banco. Obrigatório para **separar as empresas** (cada linha tem a empresa dona;
+  nenhuma empresa vê dado de outra). Usar também para **carteira do representante** e
+  **comissões**. Acesso de manutenção do TI separado e controlado.
 
 ## Hospedagem (plano)
 

@@ -735,6 +735,10 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
   digital, senhas de serviços, chaves) em cofre de segredos, nunca no código; senhas com hash;
   HTTPS; custos/margens/precificação nunca vão para a tela de quem não pode ver; auditoria de
   alterações sensíveis.
+- **RLS (segurança por linha) no banco desde o início** (decidido): o próprio banco só devolve
+  as linhas que cada um pode ver — separa as **empresas** (nenhuma vê dados de outra), a
+  **carteira de cada representante** e as **comissões**. É uma segunda tranca, além da
+  conferência no servidor.
 
 ## Hospedagem (plano)
 - **Durante a construção:** Render, na mesma conta já usada, com dados fictícios.
