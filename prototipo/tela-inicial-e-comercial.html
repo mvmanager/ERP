@@ -601,6 +601,8 @@ textarea.falta{border-color:var(--bad)!important}
 .so-lista button:hover{background:var(--kraft-soft)}
 .so-lista small{color:var(--muted)}
 .so-dest select{background:var(--warn-soft)}
+.so-cep{position:relative}
+.so-cep span{position:absolute;right:6px;top:7px;font-size:10px;color:var(--muted)}
 .so-fixo{padding:5px 8px!important}
 .so-usar{display:flex;align-items:center;gap:5px;padding:5px 8px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap;background:var(--surface-2)}
 .so-usar input{width:auto;min-height:0}
@@ -3819,9 +3821,25 @@ function lerCampoSO(box, el, redesenha){
   if (mc) { const comp = st.itens[+mc[1]].comps[+mc[2]]; comp[mc[3]] = ['qtd','c','l','a'].includes(mc[3]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
   else if (m) { const it = st.itens[+m[1]]; it[m[2]] = ['qtd','c','l','a'].includes(m[2]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
   else st[k] = v;
+  if (k === 'cep') { const d = String(v).replace(/\D/g, ''); if (d.length === 8 && d !== st._cepBuscado) { st._cepBuscado = d; buscarCepSO(box, d); } }
   if (k === 'tipo' && v === 'Cliente' && !st.cli) toast('Use "Buscar informações de cliente" para puxar os dados');
   if (redesenha && (k === 'usarEnd' || /\.(qual|tipo)$/.test(k))) { if (k === 'usarEnd' && v) st.entrega = st.end ? `${st.end}, ${st.num} · ${st.cidade}/${st.uf}` : ''; return desenharSO(box); }
   atualizarCalcSO(box);
+}
+/* CEP → endereço. No sistema de verdade a consulta passa pelo servidor (ViaCEP / BrasilAPI). */
+const CEPS_EXEMPLO = { '13010000':['Rua das Indústrias','Centro','Campinas','SP'], '14800000':['Rodovia SP-255','Zona Rural','Araraquara','SP'], '01310100':['Avenida Paulista','Bela Vista','São Paulo','SP'], '08780000':['Rua Principal','Centro','Mogi das Cruzes','SP'] };
+async function buscarCepSO(box, d){
+  const st = box._so, aviso = (t) => { const e = box.querySelector('[data-so-cepst]'); if (e) e.textContent = t; };
+  aviso('buscando…');
+  let r = null;
+  try { const ctl = new AbortController(); setTimeout(() => ctl.abort(), 3500);
+    const j = await (await fetch('https://viacep.com.br/ws/' + d + '/json/', { signal: ctl.signal })).json();
+    if (!j.erro) r = [j.logradouro, j.bairro, j.localidade, j.uf]; } catch {}
+  if (!r && CEPS_EXEMPLO[d]) r = CEPS_EXEMPLO[d];
+  if (!r) { aviso('CEP não encontrado'); return; }
+  Object.assign(st, { cep: d.slice(0,5) + '-' + d.slice(5), end: r[0] || st.end, bairro: r[1] || st.bairro, cidade: r[2], uf: r[3] });
+  desenharSO(box); const n = box.querySelector('[data-so="num"]'); if (n) n.focus();
+  toast('Endereço preenchido pelo CEP');
 }
 function atualizarCalcSO(box){
   const st = box._so; let tot = 0;
@@ -3838,20 +3856,20 @@ function desenharSO(box){
   <table class="so-cab"><tr>
     <td class="so-emp">SALUTE INDÚSTRIA<br>PAPELÃO ONDULADO LTDA</td>
     <td class="so-tit">SOLICITAÇÃO DE ORÇAMENTO</td>
-    <td class="so-doc"><div><span>DOCUMENTO:</span><b>RG 23 / Rev. 06</b></div><div><span>DATA:</span><b>27/11/2026</b></div><div class="so-peso"><span>PESO TOTAL (Kgs.):</span><b data-so-peso>${n2(tot)}</b></div></td>
+    <td class="so-doc"><div><span>DOCUMENTO:</span><b></b></div><div><span>DATA:</span><b></b></div><div class="so-peso"><span>PESO TOTAL (Kgs.):</span><b data-so-peso>${n2(tot)}</b></div></td>
   </tr></table>
   <table class="so-grade">
     <colgroup><col style="width:12%"><col style="width:20%"><col style="width:6%"><col style="width:8%"><col style="width:12%"><col style="width:24%"><col style="width:9%"><col style="width:9%"></colgroup>
-    <tr>${R('TIPO:', 1)}<td>${sel('tipo', st.tipo, ['Cliente','Prospect'])}<small class="so-ajuda">Cliente: já fez pedido · Prospect: ainda não fez pedido</small></td>
+    <tr>${R('TIPO:', 1)}<td>${sel('tipo', st.tipo, ['Cliente','Prospect'])}</td>
       <td colspan="3"><button type="button" class="so-busca" data-so-buscar>${LUPA} Buscar informações de cliente</button>${st.buscando ? `<div class="so-lista">${minhaCarteira().map(c => `<button type="button" data-so-cli="${c.id}"><b>${esc(nomeExib(c))}</b> <small>${c.cnpj} · ${esc(c.end.cidade)}</small></button>`).join('')}</div>` : ''}</td>
-      ${R('REP. RESP.:', 1)}<td colspan="2" class="so-dest">${sel('rep', st.rep, [REP_LOGADO])}</td></tr>
+      ${R('REP. RESP.:', 1)}<td colspan="2" class="so-fixo"><b>${esc(REP_LOGADO)}</b></td></tr>
     <tr>${R('CNPJ:')}<td colspan="3">${inp('cnpj', st.cnpj, '00.000.000/0000-00')}</td>${R('CLIENTE:', 1)}<td colspan="3">${inp('nome', st.nome, 'Nome do cliente / prospect *')}</td></tr>
-    <tr>${R('ENDEREÇO:')}<td>${inp('end', st.end, 'Rua / Av.')}</td>${R('Nº:')}<td>${inp('num', st.num, 'Nº')}</td>${R('CEP:')}<td>${inp('cep', st.cep, '00000-000')}</td><td colspan="2">${inp('bairro', st.bairro, 'Bairro')}</td></tr>
+    <tr>${R('ENDEREÇO:')}<td>${inp('end', st.end, 'Rua / Av.')}</td>${R('Nº:')}<td>${inp('num', st.num, 'Nº')}</td>${R('CEP:')}<td class="so-cep">${inp('cep', st.cep, '00000-000', 'maxlength="9" inputmode="numeric"')}<span data-so-cepst></span></td><td colspan="2">${inp('bairro', st.bairro, 'Bairro')}</td></tr>
     <tr>${R('CIDADE:')}<td>${inp('cidade', st.cidade, 'Cidade')}</td>${R('UF:')}<td>${inp('uf', st.uf, 'SP')}</td>${R('TEL. 1:')}<td>${inp('tel1', st.tel1, '(11) 00000-0000')}</td>${R('TEL. 2:')}<td>${inp('tel2', st.tel2, '(11) 00000-0000')}</td></tr>
     <tr>${R('COMPRADOR(A):')}<td colspan="3">${inp('comprador', st.comprador, 'Nome do comprador')}</td>${R('E-MAIL (COMPRADOR):', 1)}<td colspan="3">${inp('email', st.email, 'email@empresa.com.br')}</td></tr>
     <tr>${R('CONCORRENTE:')}<td colspan="3">${inp('concorrente', st.concorrente, 'Nome do concorrente')}</td>${R('E-MAIL (REP.):')}<td colspan="3" class="so-fixo">matheus@salute.exemplo</td></tr>
     <tr>${R('SEGMENTO:', 1)}<td colspan="3">${sel('segmento', st.segmento, SEGMENTOS_SO)}</td>${R('LOCAL ENTREGA:', 1)}<td colspan="2"><div class="so-ent"><label class="so-usar${st.usarEnd ? ' on' : ''}"><input type="checkbox" data-so="usarEnd"${st.usarEnd ? ' checked' : ''}> Usar end. do cliente</label>${inp('entrega', st.entrega, 'Ou digite o endereço manualmente…')}</div></td><td class="so-dist"><span>DIST. (KM)</span>${inp('dist', st.dist || (st.usarEnd ? '12' : ''), '0')}</td></tr>
-    <tr>${R('OBS.:')}<td colspan="3">${inp('obs', st.obs, 'Observações gerais')}</td>${R('PRAZO PAGAMENTO:', 1)}<td colspan="3">${sel('prazo', st.prazo, PRAZOS_SO)}</td></tr>
+    <tr>${R('OBS.:')}<td colspan="3">${inp('obs', st.obs, 'Observações gerais')}</td>${R('PRAZO PAGAMENTO:', 1)}<td colspan="3">${inp('prazo', st.prazo, 'Digite para buscar (ex.: 28)', 'list="soPrazos" autocomplete="off"')}<datalist id="soPrazos">${PRAZOS_SO.map(x => `<option value="${x}">`).join('')}</datalist></td></tr>
   </table>
   <div class="so-secao"><b>INFORMAÇÕES DO ITEM</b><span><label><input type="checkbox" data-so="paletizado"${st.paletizado ? ' checked' : ''}> Paletizado</label><label><input type="checkbox" data-so="granel"${st.granel ? ' checked' : ''}> A granel</label><i>* Obrigatório</i></span></div>
   <div class="so-rolagem"><table class="so-itens"><thead><tr><th>BUSCAR PROD.</th><th>ITEM</th>${R('REFERÊNCIA', 1)}${R('QTDE.', 1)}${R('C (mm)', 1)}${R('L (mm)', 1)}<th>A (mm)</th>${R('CÓD. QUALIDADE', 1)}${R('FECHAMENTO', 1)}<th>CORES</th>${R('TIPO CAIXA', 1)}<th>CONJ.</th><th class="so-calc">ÁREA BRUTA (m²)</th><th class="so-calc">PESO UNIT. (Gr.)</th><th class="so-calc">PESO TOTAL (Kg.)</th><th class="so-calc">QTDE. MÍN. (UN.)</th><th>PREÇO CONC. (R$/Unit.)</th></tr></thead>

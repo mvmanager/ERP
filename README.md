@@ -698,6 +698,10 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   (MN/CV/CH/O), conjunto (componentes: caixa, colmeia, divisória, tabuleiro, separador, calço,
   cantoneira, cinta), **área bruta, peso unitário, peso total e qtde mínima calculados** e preço
   do concorrente; obs. por item; Adicionar item (até 25) e Clonar; anexos; legenda no rodapé.
+  Ajustes do usuário: **documento e data em branco** (preenchidos quando a solicitação é
+  enviada); **Rep. resp. = nome do usuário logado**, fixo; Tipo sem frase explicativa; **prazo de
+  pagamento é campo de digitar com busca**; **CEP busca o endereço sozinho** (rua, bairro,
+  cidade, UF) — no sistema de verdade a consulta passa pelo servidor (ViaCEP / BrasilAPI).
   Mesmas regras de cálculo do CRM Salute (chapa por tipo de caixa e onda; área × gramatura da
   qualidade; qtde mín. = 500.000 / peso unit.). Campos obrigatórios conferidos ao enviar.
   Listas (segmentos, prazos, qualidades) vieram do CRM Salute. Ao enviar: protocolo SO-ano-nº
@@ -746,6 +750,8 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Devoluções (Faturamento) | Acerto | estorno de comissão |
 | Portal › Solicitar orçamento | Controladoria › Custos (fila) | cliente, produto, medidas, quantidades, anexos |
 | Portal › Solicitar orçamento (cliente novo) | Vendas › Prospects e clientes | dados para cadastrar (CNPJ, contato) |
+| Serviço de CEP (ViaCEP/BrasilAPI, via servidor) | Portal › Solicitar orçamento (e todo campo de CEP) | rua, bairro, cidade, UF |
+| Vendas › Prazos de pagamento (cadastro) | Portal › Solicitar orçamento | lista para buscar o prazo |
 | Custos (preço pronto) | Portal › Minhas solicitações | preço unitário por quantidade (sem custo/margem) |
 | Portal › "Cliente aceitou" | Vendas › Orçamentos | aprovar e converter em pedido |
 | Portal › Pedir amostra / clichê / desenvolvimento | Industrial › Engenharia de produto | solicitação com anexos |
