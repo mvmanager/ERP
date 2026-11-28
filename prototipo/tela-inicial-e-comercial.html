@@ -602,6 +602,22 @@ textarea.falta{border-color:var(--bad)!important}
 .so-lista small{color:var(--muted)}
 .so-dest select{background:var(--warn-soft)}
 .so-cep{position:relative}
+.so-rasc{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding:5px 10px;border-radius:8px;background:var(--surface-2);font-size:12.5px}
+.so-rasc .mini{margin-left:auto;padding:3px 8px;font-size:12px}
+.so-av{margin:6px 0 0}
+.so-dist span i{font-style:normal;color:var(--ok);font-weight:600}
+.so-confere{margin-top:8px;padding:8px 12px;border-radius:9px;background:var(--warn-soft);font-size:12.5px}
+.so-confere ul{margin:4px 0 6px;padding-left:18px}
+.so-confere span{display:flex;gap:8px;justify-content:flex-end}
+.so-confere .go{padding:5px 12px;font-size:12.5px}
+.so-rodape small{margin-left:auto;font-size:11px;color:var(--muted)}
+.pc-srch{flex:0 1 320px;margin-left:auto}
+.pc-acao{text-align:right;white-space:nowrap}
+.pc-acao .mini{padding:3px 9px;font-size:12px}
+.ps-pdf{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.ps-pdf input{flex:0 1 240px;padding:5px 8px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
+.ps-pdf>span{margin-left:10px;color:var(--muted)}
+#notifMenu{left:auto;right:0;min-width:340px}
 .so-cep span{position:absolute;right:6px;top:7px;font-size:10px;color:var(--muted)}
 .so-fixo{padding:5px 8px!important}
 .so-usar{display:flex;align-items:center;gap:5px;padding:5px 8px;font-size:11.5px;font-weight:700;cursor:pointer;white-space:nowrap;background:var(--surface-2)}
@@ -1387,9 +1403,12 @@ table.cli{width:100%;border-collapse:collapse;min-width:760px;font-size:14px}
         <button type="button" role="menuitem" data-ajuda="meus"><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></span><span class="t">Meus chamados</span><span class="d">Acompanhe suas solicitações pelo protocolo</span></button>
       </div>
     </div>
-    <button class="iconbtn" type="button" aria-label="Notificações: 3 novas">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="dotn"></span>
-    </button>
+    <div class="ajuda" id="notif">
+      <button class="iconbtn" id="notifBtn" type="button" aria-label="Notificações" aria-haspopup="true" aria-expanded="false" title="Notificações">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg><span class="dotn"></span>
+      </button>
+      <div class="mdrop ajuda-menu notif-menu" id="notifMenu" role="menu" hidden></div>
+    </div>
     <div class="avatar" title="Matheus · Vendedor"><b>M</b><span>Matheus · Vendedor</span></div>
   </div>
 </header>
@@ -2909,6 +2928,31 @@ document.addEventListener('keydown', (e) => {
   fecharAjuda(); if (modalCh) fecharModalCh(); else if (capEl) sairCaptura();
 });
 
+/* ── Notificações (sino). No sistema de verdade vêm do servidor, só as do usuário; também vão por e-mail. ── */
+const NOTIF_FIXAS = [ { t:'Pedido 4509 saiu para entrega', d:'Serra Azul · hoje 07:40', tela:'portalPedidos' } ];
+function listaNotif(){
+  return SOLICITACOES.filter(s => s.tipo === 'Orçamento' && s.etapa === 2 && !s.visto).map(s => ({ t:`Preço pronto · ${s.p}`, d:`${s.cli} · ${s.prod}`, sol:s.p, preco:true }))
+    .concat(SOLICITACOES.filter(s => s.tipo !== 'Orçamento' && s.etapa >= 2 && !s.visto).map(s => ({ t:`${s.tipo}: ${ETAPAS_SOL[s.tipo][s.etapa]} · ${s.p}`, d:`${s.cli} · ${s.prod}`, sol:s.p })))
+    .concat(NOTIF_FIXAS.filter(n => !n.visto));
+}
+const notifBtn = $('notifBtn'), notifMenu = $('notifMenu');
+function marcarNotif(){ const n = listaNotif().length; notifBtn.querySelector('.dotn').hidden = !n; notifBtn.setAttribute('aria-label', n ? `Notificações: ${n} novas` : 'Notificações'); }
+function fecharNotif(){ notifMenu.hidden = true; notifBtn.setAttribute('aria-expanded', 'false'); }
+notifBtn.addEventListener('click', () => {
+  const abrir = notifMenu.hidden; fecharMenus(); fecharArea(); fecharAjuda(); fecharNotif(); if (!abrir) return;
+  const l = listaNotif();
+  notifMenu.innerHTML = l.length ? l.map((n, i) => `<button type="button" role="menuitem" data-nt="${i}"><span class="i">${n.preco ? '💲' : '🔔'}</span><span class="t">${esc(n.t)}</span><span class="d">${esc(n.d)}</span></button>`).join('') : '<p class="cl-txt" style="margin:8px 10px">Nada novo por aqui.</p>';
+  notifMenu._l = l; notifMenu.hidden = false; notifBtn.setAttribute('aria-expanded', 'true');
+});
+notifMenu.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-nt]'); if (!b) return; const n = notifMenu._l[+b.dataset.nt]; fecharNotif();
+  if (n.sol) { SOLICITACOES.find(s => s.p === n.sol).visto = true; abrirTelaPortal('portalSolicitacoes', (x) => { x._abrir = n.sol; }); }
+  else { n.visto = true; abrirTelaPortal(n.tela); }
+  marcarNotif();
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('#notif')) fecharNotif(); });
+setTimeout(marcarNotif, 0);
+
 /* ── modo de captura ── */
 let capEl = null;
 function entrarCaptura(){
@@ -3758,7 +3802,7 @@ TELAS.comRelatorio = (box) => {
 const REP_LOGADO = 'Matheus';
 const SOLICITACOES = [
   { p:'SO-2026-0118', tipo:'Orçamento', cli:'Passo Firme', novo:true, prod:'Caixa para calçados (individual)', data:'26/11', etapa:1, resp:'Custos' },
-  { p:'SO-2026-0112', tipo:'Orçamento', cli:'Horizonte', prod:'Caixa congelados 8 kg (nova)', data:'20/11', etapa:2, resp:'Custos',
+  { p:'SO-2026-0112', tipo:'Orçamento', cli:'Horizonte', prod:'Caixa congelados 8 kg (nova)', data:'20/11', etapa:2, resp:'Custos', email:'renata@horizonte.exemplo',
     faixas:[ [1000, 4.12], [2000, 3.95], [5000, 3.78], [10000, 3.66] ] },
   { p:'SO-2026-0109', tipo:'Amostra', cli:'Horizonte', prod:'Caixa congelados 8 kg', data:'18/11', etapa:1, resp:'Engenharia de produto' },
   { p:'SO-2026-0097', tipo:'Orçamento', cli:'Serra Azul', prod:'Caixa embutidos 6 kg', data:'04/11', etapa:4, resp:'Vendas', pedido:'4509' },
@@ -3785,7 +3829,22 @@ const SEGMENTOS_SO = ['Alimentos','Avicultura (ovos)','Bebidas (refrigerantes e 
 const PRAZOS_SO = ['10 DD','14-28 DD','21-28-35 DD','28 DD','28-35-42','28-42-56 DD','30 DD','30-45 DD','30-60 DD','35 DD','42 DD','45-60 DD','30-45-60','120 DD'];
 const CORES_SO = ['Preto','Azul','Vermelho','Verde','Amarelo','Laranja','Marrom','Branco'];
 const COMPONENTES_SO = ['Caixa','Colmeia','Divisória','Tabuleiro','Separador','Calço','Cantoneira','Divisória montada','Cinta'];
-const novoItemSO = (n) => ({ n, ref:'', qtd:0, c:0, l:0, a:0, qual:'', fech:'', cores:[], tipo:'', conj:false, comps:[], preco:'', obs:'' });
+const novoItemSO = (n) => ({ n, ref:'', qtd:0, c:0, l:0, a:0, qual:'', fech:'', cores:[], tipo:'', conj:false, comps:[], preco:'', alvo:'', obs:'' });
+/* Rascunho automático: no protótipo fica no navegador; no sistema de verdade fica no servidor, por usuário. */
+const RASC_SO = 'rascunhoOrcamento';
+function lerRascunhoSO(){ try { const r = JSON.parse(localStorage.getItem(RASC_SO)); if (r && r.st) return r; } catch {} return null; }
+function apagarRascunhoSO(){ try { localStorage.removeItem(RASC_SO); } catch {} }
+function salvarRascunhoSO(box){
+  const st = box._so; if (!st || !st._mexeu) return;
+  clearTimeout(box._rt); box._rt = setTimeout(() => {
+    const quando = new Date().toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+    try { localStorage.setItem(RASC_SO, JSON.stringify({ quando, st })); } catch {}
+    const e = box.querySelector('[data-so-salvo]'); if (e) e.textContent = 'Rascunho salvo ' + quando.replace(',', ' às');
+  }, 500);
+}
+/* Distância até a fábrica. No sistema de verdade o servidor calcula pelo endereço (serviço de mapas). */
+const DIST_FABRICA = { 'campinas':12, 'sumare':25, 'hortolandia':18, 'americana':38, 'jundiai':45, 'limeira':55, 'piracicaba':70, 'sorocaba':90, 'sao paulo':95, 'mogi das cruzes':140, 'mogi guacu':65, 'araraquara':190, 'ribeirao preto':225, 'pocos de caldas':170, 'pouso alegre':160 };
+function distSO(st){ const alvo = ' ' + norm(st.usarEnd ? st.cidade || '' : st.entrega || '').replace(/\s+/g, ' ') + ' '; for (const [c, k] of Object.entries(DIST_FABRICA)) if (alvo.includes(' ' + c + ' ')) return k; return ''; }
 function calcSO(it){
   const q = QD[it.qual]; if (!q || it.c <= 0 || it.l <= 0) return { area:0, pu:0, pt:0, min:0, onda: q ? q.onda : '' };
   let cc, ll;
@@ -3803,6 +3862,7 @@ TELAS.portalOrcamento = (box) => {
   box.classList.add('cl-box');
   const st = box._so = { tipo:'', cli:null, rep: REP_LOGADO, cnpj:'', nome:'', end:'', num:'', cep:'', bairro:'', cidade:'', uf:'', tel1:'', tel2:'', comprador:'', email:'', concorrente:'', segmento:'', entrega:'', usarEnd:false, dist:'', obs:'', prazo:'', paletizado:false, granel:false, itens:[ novoItemSO(1) ], ativo:0 };
   if (box._preCli) preencherCli(st, box._preCli);
+  else { const r = lerRascunhoSO(); if (r) { Object.assign(st, r.st, { buscando:false }); st._rascunho = r.quando; } }
   desenharSO(box);
   box.addEventListener('input', (e) => lerCampoSO(box, e.target, false));
   box.addEventListener('change', (e) => lerCampoSO(box, e.target, true));
@@ -3812,7 +3872,8 @@ function preencherCli(st, id){
   const c = cliDe(id); if (!c) return;
   const k = c.contatos[0] || {};
   Object.assign(st, { tipo: ehCli(c) ? 'Cliente' : 'Prospect', cli:id, cnpj:c.cnpj, nome:c.razao, end:c.end.log, num:c.end.num, cep:c.end.cep, bairro:c.end.bairro, cidade:c.end.cidade, uf:c.end.uf,
-    tel1:k.tel || '', tel2:k.cel || '', comprador:k.nome || '', email:k.email || '', segmento: SEGMENTOS_SO.find(s => norm(s).includes(norm(c.segmento).slice(0,5))) || '', prazo:'28-42-56 DD' });
+    tel1:k.tel || '', tel2:k.cel || '', comprador:k.nome || '', email:k.email || '', segmento: SEGMENTOS_SO.find(s => norm(s).includes(norm(c.segmento).slice(0,5))) || '', prazo:'28-42-56 DD', outraCarteira:false });
+  st._cnpjBuscado = c.cnpj.replace(/\D/g, ''); st._cepBuscado = c.end.cep.replace(/\D/g, '');
 }
 function lerCampoSO(box, el, redesenha){
   const k = el.dataset.so; if (!k) return;
@@ -3821,7 +3882,10 @@ function lerCampoSO(box, el, redesenha){
   if (mc) { const comp = st.itens[+mc[1]].comps[+mc[2]]; comp[mc[3]] = ['qtd','c','l','a'].includes(mc[3]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
   else if (m) { const it = st.itens[+m[1]]; it[m[2]] = ['qtd','c','l','a'].includes(m[2]) ? (+String(v).replace(/\./g, '').replace(',', '.') || 0) : v; }
   else st[k] = v;
+  st._mexeu = true;
+  if (k === 'dist') st.distManual = String(v).trim() !== '';
   if (k === 'cep') { const d = String(v).replace(/\D/g, ''); if (d.length === 8 && d !== st._cepBuscado) { st._cepBuscado = d; buscarCepSO(box, d); } }
+  if (k === 'cnpj') { const d = String(v).replace(/\D/g, ''); if (d.length === 14) { st.cnpj = el.value = fmtCnpj(d); } if (d.length === 14 && d !== st._cnpjBuscado) { st._cnpjBuscado = d; buscarCnpjSO(box, d); } }
   if (k === 'tipo' && v === 'Cliente' && !st.cli) toast('Use "Buscar informações de cliente" para puxar os dados');
   if (redesenha && (k === 'usarEnd' || /\.(qual|tipo)$/.test(k))) { if (k === 'usarEnd' && v) st.entrega = st.end ? `${st.end}, ${st.num} · ${st.cidade}/${st.uf}` : ''; return desenharSO(box); }
   atualizarCalcSO(box);
@@ -3841,18 +3905,49 @@ async function buscarCepSO(box, d){
   desenharSO(box); const n = box.querySelector('[data-so="num"]'); if (n) n.focus();
   toast('Endereço preenchido pelo CEP');
 }
+/* CNPJ → dados da Receita. No sistema de verdade: o servidor confere primeiro se o CNPJ já está na
+   nossa base (e de qual carteira) e só depois consulta a Receita (BrasilAPI / ReceitaWS).
+   Se for de outra carteira, o representante NÃO recebe os dados desse cliente: só o aviso. */
+const CNPJS_EXEMPLO = {
+  '11222333000181': ['Doces Bela Vista Ltda','Rua das Flores','120','13030-000','Jardim Paulista','Campinas','SP','(19) 3333-4444','compras@belavista.exemplo'],
+  '22333444000172': ['Hortifruti Boa Colheita Ltda','Estrada Municipal','km 4','13840-000','Zona Rural','Mogi Guaçu','SP','(19) 3861-2200',''],
+};
+const fmtCnpj = (d) => d.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+async function buscarCnpjSO(box, d){
+  const st = box._so, aviso = (t) => { const e = box.querySelector('[data-so-cnpjst]'); if (e) e.textContent = t; };
+  const ja = CLIENTES.find(c => c.cnpj.replace(/\D/g, '') === d);
+  if (ja && ja.rep === REP_LOGADO) { preencherCli(st, ja.id); desenharSO(box); return toast('Cliente da sua carteira: dados preenchidos'); }
+  if (ja) { Object.assign(st, { cli:null, outraCarteira:true, cnpj: fmtCnpj(d), tipo: ehCli(ja) ? 'Cliente' : 'Prospect' }); desenharSO(box); return toast('Este CNPJ já é atendido por outro representante'); }
+  st.outraCarteira = false; aviso('buscando na Receita…');
+  let r = null;
+  try { const ctl = new AbortController(); setTimeout(() => ctl.abort(), 4000);
+    const j = await (await fetch('https://brasilapi.com.br/api/cnpj/v1/' + d, { signal: ctl.signal })).json();
+    if (j && j.razao_social) { const t = String(j.ddd_telefone_1 || '').replace(/\D/g, '');
+      r = [j.razao_social, [j.descricao_tipo_de_logradouro, j.logradouro].filter(Boolean).join(' '), j.numero || '', String(j.cep || '').replace(/^(\d{5})(\d{3})$/, '$1-$2'), j.bairro || '', j.municipio || '', j.uf || '',
+        t.length >= 10 ? `(${t.slice(0,2)}) ${t.slice(2,-4)}-${t.slice(-4)}` : '', (j.email || '').toLowerCase()]; } } catch {}
+  if (!r && CNPJS_EXEMPLO[d]) r = CNPJS_EXEMPLO[d];
+  if (!r) { aviso('CNPJ não encontrado'); return; }
+  const cid = r[5].toLowerCase().replace(/(^|\s)\S/g, (x) => x.toUpperCase()).replace(/ (De|Da|Do|Das|Dos) /g, (x) => x.toLowerCase());
+  Object.assign(st, { tipo:'Prospect', cli:null, cnpj: fmtCnpj(d), nome:r[0], end:r[1], num:r[2], cep:r[3], bairro:r[4], cidade:cid, uf:r[6], tel1: r[7] || st.tel1, email: r[8] || st.email });
+  st._cepBuscado = r[3].replace(/\D/g, '');
+  desenharSO(box); const c = box.querySelector('[data-so="comprador"]'); if (c) c.focus();
+  toast('Dados preenchidos pela Receita · CNPJ novo, vai como Prospect');
+}
 function atualizarCalcSO(box){
   const st = box._so; let tot = 0;
   st.itens.forEach((it, i) => { const r = calcSO(it); tot += r.pt;
     const set = (s, t) => { const e = box.querySelector(`[data-calc="${i}.${s}"]`); if (e) e.textContent = t; };
     set('area', n2(r.area, 4)); set('pu', n2(r.pu, 1)); set('pt', n2(r.pt)); set('min', r.min ? un(r.min) : '0'); });
   const h = box.querySelector('[data-so-peso]'); if (h) h.textContent = n2(tot);
+  if (!st.distManual) { const e = box.querySelector('[data-so="dist"]'); if (e && document.activeElement !== e) e.value = distSO(st); }
+  salvarRascunhoSO(box);
 }
 function desenharSO(box){
   const st = box._so, nItens = st.itens.length;
   const tot = st.itens.reduce((a, it) => a + calcSO(it).pt, 0);
   const R = (rot, obrig) => `<th>${rot}${obrig ? ' <i>*</i>' : ''}</th>`;
   box.innerHTML = `<div class="so-folha">
+  ${st._rascunho ? `<div class="so-rasc">Rascunho de <b>${esc(st._rascunho.replace(',', ' às'))}</b> recuperado: continue de onde parou. <button type="button" class="mini" data-so-descartar>Descartar e começar do zero</button></div>` : ''}
   <table class="so-cab"><tr>
     <td class="so-emp">SALUTE INDÚSTRIA<br>PAPELÃO ONDULADO LTDA</td>
     <td class="so-tit">SOLICITAÇÃO DE ORÇAMENTO</td>
@@ -3863,27 +3958,28 @@ function desenharSO(box){
     <tr>${R('TIPO:', 1)}<td>${sel('tipo', st.tipo, ['Cliente','Prospect'])}</td>
       <td colspan="3"><button type="button" class="so-busca" data-so-buscar>${LUPA} Buscar informações de cliente</button>${st.buscando ? `<div class="so-lista">${minhaCarteira().map(c => `<button type="button" data-so-cli="${c.id}"><b>${esc(nomeExib(c))}</b> <small>${c.cnpj} · ${esc(c.end.cidade)}</small></button>`).join('')}</div>` : ''}</td>
       ${R('REP. RESP.:', 1)}<td colspan="2" class="so-fixo"><b>${esc(REP_LOGADO)}</b></td></tr>
-    <tr>${R('CNPJ:')}<td colspan="3">${inp('cnpj', st.cnpj, '00.000.000/0000-00')}</td>${R('CLIENTE:', 1)}<td colspan="3">${inp('nome', st.nome, 'Nome do cliente / prospect *')}</td></tr>
+    <tr>${R('CNPJ:')}<td colspan="3" class="so-cep">${inp('cnpj', st.cnpj, 'Digite o CNPJ: busca na Receita', 'maxlength="18" inputmode="numeric"')}<span data-so-cnpjst></span></td>${R('CLIENTE:', 1)}<td colspan="3">${inp('nome', st.nome, 'Nome do cliente / prospect *')}</td></tr>
     <tr>${R('ENDEREÇO:')}<td>${inp('end', st.end, 'Rua / Av.')}</td>${R('Nº:')}<td>${inp('num', st.num, 'Nº')}</td>${R('CEP:')}<td class="so-cep">${inp('cep', st.cep, '00000-000', 'maxlength="9" inputmode="numeric"')}<span data-so-cepst></span></td><td colspan="2">${inp('bairro', st.bairro, 'Bairro')}</td></tr>
     <tr>${R('CIDADE:')}<td>${inp('cidade', st.cidade, 'Cidade')}</td>${R('UF:')}<td>${inp('uf', st.uf, 'SP')}</td>${R('TEL. 1:')}<td>${inp('tel1', st.tel1, '(11) 00000-0000')}</td>${R('TEL. 2:')}<td>${inp('tel2', st.tel2, '(11) 00000-0000')}</td></tr>
     <tr>${R('COMPRADOR(A):')}<td colspan="3">${inp('comprador', st.comprador, 'Nome do comprador')}</td>${R('E-MAIL (COMPRADOR):', 1)}<td colspan="3">${inp('email', st.email, 'email@empresa.com.br')}</td></tr>
     <tr>${R('CONCORRENTE:')}<td colspan="3">${inp('concorrente', st.concorrente, 'Nome do concorrente')}</td>${R('E-MAIL (REP.):')}<td colspan="3" class="so-fixo">matheus@salute.exemplo</td></tr>
-    <tr>${R('SEGMENTO:', 1)}<td colspan="3">${sel('segmento', st.segmento, SEGMENTOS_SO)}</td>${R('LOCAL ENTREGA:', 1)}<td colspan="2"><div class="so-ent"><label class="so-usar${st.usarEnd ? ' on' : ''}"><input type="checkbox" data-so="usarEnd"${st.usarEnd ? ' checked' : ''}> Usar end. do cliente</label>${inp('entrega', st.entrega, 'Ou digite o endereço manualmente…')}</div></td><td class="so-dist"><span>DIST. (KM)</span>${inp('dist', st.dist || (st.usarEnd ? '12' : ''), '0')}</td></tr>
+    <tr>${R('SEGMENTO:', 1)}<td colspan="3">${sel('segmento', st.segmento, SEGMENTOS_SO)}</td>${R('LOCAL ENTREGA:', 1)}<td colspan="2"><div class="so-ent"><label class="so-usar${st.usarEnd ? ' on' : ''}"><input type="checkbox" data-so="usarEnd"${st.usarEnd ? ' checked' : ''}> Usar end. do cliente</label>${inp('entrega', st.entrega, 'Ou digite o endereço manualmente…')}</div></td><td class="so-dist"><span>DIST. (KM)${st.distManual ? '' : ' <i>auto</i>'}</span>${inp('dist', st.distManual ? st.dist : distSO(st), '—', 'title="Calculada pelo endereço de entrega. Pode corrigir."')}</td></tr>
     <tr>${R('OBS.:')}<td colspan="3">${inp('obs', st.obs, 'Observações gerais')}</td>${R('PRAZO PAGAMENTO:', 1)}<td colspan="3">${inp('prazo', st.prazo, 'Digite para buscar (ex.: 28)', 'list="soPrazos" autocomplete="off"')}<datalist id="soPrazos">${PRAZOS_SO.map(x => `<option value="${x}">`).join('')}</datalist></td></tr>
   </table>
+  ${st.outraCarteira ? `<div class="cl-aviso so-av">${IAVISO}<span><b>Este CNPJ já é atendido por outro representante.</b> Os dados desse cliente não aparecem para você. Se enviar, a solicitação passa primeiro pela <b>supervisão</b>, que decide quem atende.</span></div>` : ''}
   <div class="so-secao"><b>INFORMAÇÕES DO ITEM</b><span><label><input type="checkbox" data-so="paletizado"${st.paletizado ? ' checked' : ''}> Paletizado</label><label><input type="checkbox" data-so="granel"${st.granel ? ' checked' : ''}> A granel</label><i>* Obrigatório</i></span></div>
-  <div class="so-rolagem"><table class="so-itens"><thead><tr><th>BUSCAR PROD.</th><th>ITEM</th>${R('REFERÊNCIA', 1)}${R('QTDE.', 1)}${R('C (mm)', 1)}${R('L (mm)', 1)}<th>A (mm)</th>${R('CÓD. QUALIDADE', 1)}${R('FECHAMENTO', 1)}<th>CORES</th>${R('TIPO CAIXA', 1)}<th>CONJ.</th><th class="so-calc">ÁREA BRUTA (m²)</th><th class="so-calc">PESO UNIT. (Gr.)</th><th class="so-calc">PESO TOTAL (Kg.)</th><th class="so-calc">QTDE. MÍN. (UN.)</th><th>PREÇO CONC. (R$/Unit.)</th></tr></thead>
+  <div class="so-rolagem"><table class="so-itens"><thead><tr><th>BUSCAR PROD.</th><th>ITEM</th>${R('REFERÊNCIA', 1)}${R('QTDE.', 1)}${R('C (mm)', 1)}${R('L (mm)', 1)}<th>A (mm)</th>${R('CÓD. QUALIDADE', 1)}${R('FECHAMENTO', 1)}<th>CORES</th>${R('TIPO CAIXA', 1)}<th>CONJ.</th><th class="so-calc">ÁREA BRUTA (m²)</th><th class="so-calc">PESO UNIT. (Gr.)</th><th class="so-calc">PESO TOTAL (Kg.)</th><th class="so-calc">QTDE. MÍN. (UN.)</th><th>PREÇO CONC. (R$/Unit.)</th><th>PREÇO ALVO (R$/Unit.)</th></tr></thead>
   <tbody>${st.itens.map((it, i) => { const r = calcSO(it), k = (c) => `it${i}.${c}`; return `
-    <tr class="so-itcab"><td colspan="17"><span class="so-itnum">ITEM ${it.n}</span> Este item é: <span class="po-seg"><button type="button" data-so-conj="${i}.0" aria-pressed="${!it.conj}">Único</button><button type="button" data-so-conj="${i}.1" aria-pressed="${it.conj}">Conjunto</button></span>${nItens > 1 ? `<button type="button" class="pd-x" data-so-rm="${i}" title="Remover item">×</button>` : ''}</td></tr>
+    <tr class="so-itcab"><td colspan="18"><span class="so-itnum">ITEM ${it.n}</span> Este item é: <span class="po-seg"><button type="button" data-so-conj="${i}.0" aria-pressed="${!it.conj}">Único</button><button type="button" data-so-conj="${i}.1" aria-pressed="${it.conj}">Conjunto</button></span>${nItens > 1 ? `<button type="button" class="pd-x" data-so-rm="${i}" title="Remover item">×</button>` : ''}</td></tr>
     <tr><td class="so-bp"><button type="button" data-so-prod="${i}">${IIMG}<br>Buscar produto</button></td><td class="so-n">${it.n}</td>
       <td>${inp(k('ref'), it.ref, 'Ref.')}</td><td>${inp(k('qtd'), it.qtd || '', '0', 'class="num"')}</td><td>${inp(k('c'), it.c || '', '0', 'class="num"')}</td><td>${inp(k('l'), it.l || '', '0', 'class="num"')}</td><td>${inp(k('a'), it.a || '', '0', 'class="num"')}</td>
       <td>${sel(k('qual'), it.qual, QUALIDADES.map(q => q[0]), 'class="so-forte"')}</td><td>${sel(k('fech'), it.fech, [['COLA','COLA'],['GRAMPO','GRAMPO'],['S/ F.','S/ F.']])}</td>
       <td><details class="so-cores"><summary>${it.cores.length ? esc(it.cores.join(', ')) : 'Selecionar cores…'}</summary><div>${CORES_SO.map(c => `<label><input type="checkbox" data-so-cor="${i}" value="${c}"${it.cores.includes(c) ? ' checked' : ''}> ${c}</label>`).join('')}</div></details></td>
       <td>${sel(k('tipo'), it.tipo, [['MN','MN'],['CV','CV'],['CH','CH'],['O','O']])}</td><td class="so-n">${it.conj ? it.comps.length + 1 : '—'}</td>
       <td class="so-calc" data-calc="${i}.area">${n2(r.area, 4)}</td><td class="so-calc" data-calc="${i}.pu">${n2(r.pu, 1)}</td><td class="so-calc" data-calc="${i}.pt">${n2(r.pt)}</td><td class="so-calc" data-calc="${i}.min">${r.min ? un(r.min) : '0'}</td>
-      <td>${inp(k('preco'), it.preco, 'R$ 0,00', 'class="num"')}</td></tr>
-    ${it.conj ? `<tr class="so-comps"><td colspan="17"><table><thead><tr><th>COMPONENTE</th><th>REFERÊNCIA</th><th>QTDE.</th><th>C (mm)</th><th>L (mm)</th><th>A (mm)</th><th>CÓD. QUALIDADE</th><th></th></tr></thead><tbody>${it.comps.map((cp, j) => { const kk = (c) => `it${i}.comp${j}.${c}`; return `<tr><td>${sel(kk('tipo'), cp.tipo, COMPONENTES_SO)}</td><td>${inp(kk('ref'), cp.ref, 'Ref.')}</td><td>${inp(kk('qtd'), cp.qtd || '', '0', 'class="num"')}</td><td>${inp(kk('c'), cp.c || '', '0', 'class="num"')}</td><td>${inp(kk('l'), cp.l || '', '0', 'class="num"')}</td><td>${cp.tipo === 'Caixa' ? inp(kk('a'), cp.a || '', '0', 'class="num"') : '<span class="so-na">✕</span>'}</td><td>${sel(kk('qual'), cp.qual, QUALIDADES.map(q => q[0]))}</td><td><button type="button" class="pd-x" data-so-rmc="${i}.${j}">×</button></td></tr>`; }).join('')}</tbody></table><button type="button" class="pd-mais" data-so-addc="${i}">+ Componente</button></td></tr>` : ''}
-    <tr class="so-obs"><td class="so-obsrot">OBS.</td><td colspan="16"><textarea data-so="${k('obs')}" placeholder="Observações sobre este item (especificações, detalhes, restrições…)">${esc(it.obs)}</textarea></td></tr>`; }).join('')}
+      <td>${inp(k('preco'), it.preco, 'R$ 0,00', 'class="num"')}</td><td>${inp(k('alvo'), it.alvo, 'R$ 0,00', 'class="num" title="Quanto o cliente quer pagar"')}</td></tr>
+    ${it.conj ? `<tr class="so-comps"><td colspan="18"><table><thead><tr><th>COMPONENTE</th><th>REFERÊNCIA</th><th>QTDE.</th><th>C (mm)</th><th>L (mm)</th><th>A (mm)</th><th>CÓD. QUALIDADE</th><th></th></tr></thead><tbody>${it.comps.map((cp, j) => { const kk = (c) => `it${i}.comp${j}.${c}`; return `<tr><td>${sel(kk('tipo'), cp.tipo, COMPONENTES_SO)}</td><td>${inp(kk('ref'), cp.ref, 'Ref.')}</td><td>${inp(kk('qtd'), cp.qtd || '', '0', 'class="num"')}</td><td>${inp(kk('c'), cp.c || '', '0', 'class="num"')}</td><td>${inp(kk('l'), cp.l || '', '0', 'class="num"')}</td><td>${cp.tipo === 'Caixa' ? inp(kk('a'), cp.a || '', '0', 'class="num"') : '<span class="so-na">✕</span>'}</td><td>${sel(kk('qual'), cp.qual, QUALIDADES.map(q => q[0]))}</td><td><button type="button" class="pd-x" data-so-rmc="${i}.${j}">×</button></td></tr>`; }).join('')}</tbody></table><button type="button" class="pd-mais" data-so-addc="${i}">+ Componente</button></td></tr>` : ''}
+    <tr class="so-obs"><td class="so-obsrot">OBS.</td><td colspan="17"><textarea data-so="${k('obs')}" placeholder="Observações sobre este item (especificações, detalhes, restrições…)">${esc(it.obs)}</textarea></td></tr>`; }).join('')}
   </tbody></table></div>
   <div class="so-acoes-it"><button type="button" class="pd-mais" data-so-add${nItens >= 25 ? ' disabled' : ''}>+ Adicionar item (${nItens}/25)</button><button type="button" class="pd-mais" data-so-clonar>⧉ Clonar</button>
     <span class="so-anexos">${(st.anexos || []).map(a => `<span class="pd-ent">📎 ${esc(a)}</span>`).join('')}<button type="button" class="pd-mais" data-so-anexo>+ Anexo (foto, desenho, arte)</button></span></div>
@@ -3893,11 +3989,18 @@ function desenharSO(box){
     <td><b>TIPO DE CAIXA:</b><br>MN — Maleta normal (RSC)<br>CV — Corte e vinco<br>CH — Chapa · O — Outros</td>
     <td><b>OBSERVAÇÕES:</b><br>Qtd mín. = qtd mínima de produção<br>Área bruta = chapa C × L / 1.000.000<br>Peso unit. = área × gramatura (g)</td>
   </tr></table>
-  <div class="so-rodape"><span>A onda e a gramatura vêm do código de qualidade.</span><button type="button" class="go" data-so-enviar>Enviar para Custos</button></div>
+  ${st._confere ? `<div class="so-confere"><b>Confira antes de enviar:</b><ul>${st._confere.map(a => `<li>${esc(a)}</li>`).join('')}</ul><span><button type="button" class="mini" data-so-corrigir>Corrigir</button><button type="button" class="go" data-so-enviar-mesmo>Enviar assim mesmo</button></span></div>` : ''}
+  <div class="so-rodape"><span>A onda e a gramatura vêm do código de qualidade.</span><small data-so-salvo>${st._mexeu || st._rascunho ? 'Rascunho salvo automaticamente' : ''}</small><button type="button" class="go" data-so-enviar>${st.outraCarteira ? 'Enviar para a supervisão' : 'Enviar para Custos'}</button></div>
   </div>`;
+  salvarRascunhoSO(box);
 }
 function cliqueSO(box, e){
   const st = box._so, t = (s) => e.target.closest(s);
+  if (e.target.closest('button,input[type=checkbox]') && !t('[data-so-enviar],[data-so-nova],[data-so-descartar]')) st._mexeu = true;
+  if (t('[data-so-descartar]')) { apagarRascunhoSO(); box._preCli = null; const novo = document.createElement('div'); novo.className = 'jan-corpo'; box.replaceWith(novo); TELAS.portalOrcamento(novo); return toast('Rascunho descartado'); }
+  if (t('[data-so-corrigir]')) { st._confere = null; return desenharSO(box); }
+  if (t('[data-so-enviar-mesmo]')) return enviarSO(box, true);
+  if (t('[data-so-enviar]')) return enviarSO(box, false);
   if (t('[data-so-buscar]')) { st.buscando = !st.buscando; return desenharSO(box); }
   if (t('[data-so-cli]')) { preencherCli(st, +t('[data-so-cli]').dataset.soCli); st.buscando = false; desenharSO(box); return toast('Dados do cliente preenchidos'); }
   if (t('[data-so-conj]')) { const [i, v] = t('[data-so-conj]').dataset.soConj.split('.'); const it = st.itens[+i]; it.conj = v === '1'; if (it.conj && !it.comps.length) it.comps.push({ tipo:'Divisória', ref:'', qtd:0, c:0, l:0, a:0, qual:'' }); return desenharSO(box); }
@@ -3913,18 +4016,27 @@ function cliqueSO(box, e){
   const cor = e.target.closest('[data-so-cor]');
   if (cor && e.target.tagName === 'INPUT') { const it = st.itens[+cor.dataset.soCor]; it.cores = e.target.checked ? it.cores.concat(e.target.value) : it.cores.filter(x => x !== e.target.value); e.target.closest('details').querySelector('summary').textContent = it.cores.length ? it.cores.join(', ') : 'Selecionar cores…'; return; }
   if (t('[data-so-anexo]')) { st.anexos = (st.anexos || []).concat('arquivo-' + ((st.anexos || []).length + 1) + '.pdf'); return desenharSO(box); }
-  if (t('[data-so-enviar]')) {
-    const falta = [];
-    if (!st.tipo) falta.push('Tipo'); if (!st.nome) falta.push('Cliente'); if (!st.email) falta.push('E-mail do comprador'); if (!st.segmento) falta.push('Segmento');
-    if (!st.entrega && !st.usarEnd) falta.push('Local de entrega'); if (!st.prazo) falta.push('Prazo de pagamento');
-    st.itens.forEach(it => { const f = []; if (!it.ref) f.push('Referência'); if (!it.qtd) f.push('Qtde'); if (!it.c) f.push('C'); if (!it.l) f.push('L'); if (!it.qual) f.push('Cód. qualidade'); if (!it.fech) f.push('Fechamento'); if (!it.tipo) f.push('Tipo caixa'); if (f.length) falta.push(`Item ${it.n}: ${f.join(', ')}`); });
-    if (falta.length) { box.querySelector('.so-rodape span').innerHTML = `<b class="so-erro">Falta preencher:</b> ${esc(falta.join(' · '))}`; return toast('Preencha os campos obrigatórios (*)'); }
-    const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0');
-    SOLICITACOES.unshift({ p:n, tipo:'Orçamento', cli: st.nome, novo: st.tipo === 'Prospect' && !st.cli, prod: st.itens.map(it => it.ref).join(', '), data:'27/11', etapa:0, resp:'Custos' });
-    document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
-    box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para <b>Custos</b> · ${st.itens.length} ${st.itens.length > 1 ? 'itens' : 'item'} · peso total ${n2(st.itens.reduce((a, it) => a + calcSO(it).pt, 0))} kg.<br>Você acompanha em Minhas solicitações.</span></div><div><button class="btn2" type="button" data-so-nova>Nova solicitação</button></div></div>`;
-  }
-  if (t('[data-so-nova]')) { box._preCli = null; TELAS.portalOrcamento(box); }
+  if (t('[data-so-nova]')) { box._preCli = null; const novo = document.createElement('div'); novo.className = 'jan-corpo'; box.replaceWith(novo); TELAS.portalOrcamento(novo); }
+}
+/* Envio com conferência: o que falta barra; o que parece estranho só avisa (o servidor confere tudo de novo). */
+function enviarSO(box, forcar){
+  const st = box._so, falta = [], avisos = [];
+  if (!st.tipo) falta.push('Tipo'); if (!st.nome && !st.outraCarteira) falta.push('Cliente'); if (!st.email) falta.push('E-mail do comprador'); if (!st.segmento) falta.push('Segmento');
+  if (!st.entrega && !st.usarEnd) falta.push('Local de entrega'); if (!st.prazo) falta.push('Prazo de pagamento');
+  st.itens.forEach(it => { const f = []; if (!it.ref) f.push('Referência'); if (!it.qtd) f.push('Qtde'); if (!it.c) f.push('C'); if (!it.l) f.push('L');
+    if (it.tipo === 'MN' && !it.a) f.push('A (altura: obrigatória em caixa maleta)'); if (!it.qual) f.push('Cód. qualidade'); if (!it.fech) f.push('Fechamento'); if (!it.tipo) f.push('Tipo caixa');
+    if (f.length) falta.push(`Item ${it.n}: ${f.join(', ')}`);
+    const r = calcSO(it); if (it.qtd && r.min && it.qtd < r.min) avisos.push(`Item ${it.n}: quantidade ${un(it.qtd)} está abaixo da mínima de produção (${un(r.min)} un.). O preço tende a sair alto.`);
+    if (it.conj && !it.comps.some(cp => cp.qtd && cp.c && cp.l)) avisos.push(`Item ${it.n}: marcado como conjunto, mas os componentes estão sem medida ou quantidade.`); });
+  if (st.tipo === 'Prospect' && !st.cnpj) avisos.push('Prospect sem CNPJ: Vendas vai precisar dele para cadastrar.');
+  if (!st.distManual && !distSO(st) && (st.entrega || st.usarEnd)) avisos.push('Não foi possível calcular a distância da entrega: Custos vai estimar o frete.');
+  if (falta.length) { st._confere = null; desenharSO(box); box.querySelector('.so-rodape span').innerHTML = `<b class="so-erro">Falta preencher:</b> ${esc(falta.join(' · '))}`; return toast('Preencha os campos obrigatórios (*)'); }
+  if (avisos.length && !forcar) { st._confere = avisos; desenharSO(box); box.querySelector('.so-confere').scrollIntoView({ block:'nearest' }); return; }
+  const n = 'SO-2026-' + String(Math.max(...SOLICITACOES.map(s => +s.p.slice(-4))) + 1).padStart(4, '0'), para = st.outraCarteira ? 'Supervisão' : 'Custos';
+  SOLICITACOES.unshift({ p:n, tipo:'Orçamento', cli: st.nome || st.cnpj, novo: st.tipo === 'Prospect' && !st.cli, prod: st.itens.map(it => it.ref).join(', '), data:'', etapa:0, resp: para, email: st.email, comprador: st.comprador });
+  apagarRascunhoSO(); st._mexeu = false;
+  document.querySelectorAll('[data-po-lista]').forEach(b => b._redesenha && b._redesenha());
+  box.innerHTML = `<div class="cl-novo-tela"><div class="okbox"><span>✓</span><span>Solicitação <b class="proto">${n}</b> enviada para <b>${para}</b> · ${st.itens.length} ${st.itens.length > 1 ? 'itens' : 'item'} · peso total ${n2(st.itens.reduce((a, it) => a + calcSO(it).pt, 0))} kg.<br>${st.outraCarteira ? 'A supervisão decide quem atende este cliente. ' : ''}Quando o preço ficar pronto, você recebe um aviso no sino e por e-mail.</span></div><div><button class="btn2" type="button" data-so-nova>Nova solicitação</button></div></div>`;
 }
 
 /* ── Pedir amostra / clichê / desenvolvimento (mesmo formulário, tipo diferente) ── */
@@ -3954,7 +4066,7 @@ TELAS.portalDesenv = telaPedidoSimples('Desenvolvimento', 'O que precisa ser des
 
 /* ── Minhas solicitações ── */
 TELAS.portalSolicitacoes = (box) => {
-  box.classList.add('cl-box'); box.dataset.poLista = ''; box._sel = null;
+  box.classList.add('cl-box'); box.dataset.poLista = ''; box._sel = box._abrir || null;
   const desenha = () => {
     if (box._sel) {
       const s = SOLICITACOES.find(x => x.p === box._sel), et = ETAPAS_SOL[s.tipo];
@@ -3963,7 +4075,7 @@ TELAS.portalSolicitacoes = (box) => {
         <div class="pd-corpo">
           <section class="cl-bloco"><h4>Com quem está</h4><p class="cl-txt">${esc(s.resp)}${s.etapa === 0 ? ' · ainda não foi aberta' : ''}</p></section>
           ${s.faixas ? `<section class="cl-bloco"><h4>Preço pronto <small>preço unitário por quantidade · válido 30 dias</small></h4><table class="pd-tab"><thead><tr><th>Quantidade</th><th class="num">Preço unitário</th><th class="num">Total</th></tr></thead><tbody>${s.faixas.map(([q, v]) => `<tr><td>${un(q)}</td><td class="num">${brl(v)}</td><td class="num">${brl(q * v)}</td></tr>`).join('')}</tbody></table>
-            <div class="cl-dica">Leve ao cliente. Quando ele aceitar, avise Vendas: o orçamento é aprovado e vira pedido.</div><div><button class="go" type="button" data-ps-aceito>Cliente aceitou</button> <button class="btn2" type="button" data-ps-pdf>PDF para o cliente</button></div></section>` : ''}
+            <div class="cl-dica">Leve ao cliente. Quando ele aceitar, avise Vendas: o orçamento é aprovado e vira pedido.</div><div class="ps-pdf"><button class="go" type="button" data-ps-aceito>Cliente aceitou</button><span>Enviar PDF ao comprador:</span><input data-ps-email value="${esc(s.email || '')}" placeholder="email do comprador"><button class="btn2" type="button" data-ps-pdf>Enviar PDF</button><button class="mini" type="button" data-ps-ver>Ver PDF</button></div>${s.pdfEnviado ? `<div class="cl-txt">✓ PDF enviado para ${esc(s.pdfEnviado)}</div>` : ''}</section>` : ''}
           ${s.pedido ? `<section class="cl-bloco"><h4>Virou o pedido ${s.pedido}</h4><p class="cl-txt">Acompanhe em Meus pedidos.</p></section>` : ''}
           <section class="cl-bloco"><h4>Conversa</h4><div class="so-edicao-sempre cl-novo-reg"><input placeholder="Escreva uma dúvida ou complemento para ${esc(s.resp)}…"><button class="mini" type="button" data-ps-msg>Enviar</button></div></section>
         </div></div>`; return;
@@ -3976,11 +4088,26 @@ TELAS.portalSolicitacoes = (box) => {
     const r = e.target.closest('[data-ps]'); if (r) { box._sel = r.dataset.ps; return desenha(); }
     if (e.target.closest('[data-ps-volta]')) { box._sel = null; return desenha(); }
     if (e.target.closest('[data-ps-aceito]')) { const s = SOLICITACOES.find(x => x.p === box._sel); s.etapa = 3; s.resp = 'Vendas'; desenha(); return toast('Vendas foi avisada para aprovar e gerar o pedido'); }
-    if (e.target.closest('[data-ps-pdf]')) return toast('Geraria o PDF do orçamento com a cara da empresa');
+    if (e.target.closest('[data-ps-ver]')) return toast('Abriria o PDF do orçamento com a cara da empresa (só preço, sem custo)');
+    if (e.target.closest('[data-ps-pdf]')) { const s = SOLICITACOES.find(x => x.p === box._sel), em = box.querySelector('[data-ps-email]').value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return toast('Informe um e-mail válido');
+      s.pdfEnviado = em; desenha(); return toast('PDF enviado para ' + em); }
     if (e.target.closest('[data-ps-msg]')) { const i = box.querySelector('.cl-novo-reg input'); if (i.value) { toast('Mensagem enviada'); i.value = ''; } }
   });
   desenha();
 };
+
+/* Abre uma tela do Portal já preparada (cliente escolhido, solicitação aberta…), de qualquer lugar. */
+function abrirTelaPortal(tela, prep){
+  const ir = () => {
+    const tp = TOPICOS['comercial/representantes'].find(x => x.itens.some(i => i.tela === tela)), it = tp.itens.find(i => i.tela === tela);
+    abrirJanela(tp, it);
+    const j = JANELAS.find(x => x.chave === atual.ctx + '›' + tp.nome + '›' + it.t), velho = j.el.querySelector('.jan-corpo');
+    const novo = document.createElement('div'); novo.className = 'jan-corpo'; if (prep) prep(novo); velho.replaceWith(novo); TELAS[tela](novo);
+  };
+  if (!atual || atual.ctx !== 'comercial/representantes') { location.hash = 'comercial/representantes'; setTimeout(ir, 80); } else ir();
+}
+const abrirOrcamentoCom = (id) => abrirTelaPortal('portalOrcamento', (n) => { n._preCli = id; });
 
 /* ── Carteira de clientes (só os dele) ── */
 TELAS.portalCarteira = (box) => {
@@ -4000,18 +4127,16 @@ TELAS.portalCarteira = (box) => {
           <div class="cl-dica">Você vê só os clientes da sua carteira. Custos, margens e limites de crédito não aparecem aqui.</div>
         </div></div>`; return;
     }
-    box.innerHTML = `<div class="cl-topo"><span class="cl-txt"><b>${l.length}</b> clientes na sua carteira</span></div><div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Cliente</th><th>Cidade</th><th>Último pedido</th><th class="num">Compras 12 meses</th><th>Situação</th></tr></thead><tbody>
-      ${l.map(c => `<tr data-pc="${c.id}"><td><b>${esc(nomeExib(c))}</b><small class="cl-txt"> ${esc(c.razao)}</small></td><td>${esc(c.end.cidade)}/${c.end.uf}</td><td>${ehCli(c) ? c.resumo.ultimo : '—'}</td><td class="num">${ehCli(c) ? c.resumo.fat12 : '—'}</td><td>${!ehCli(c) ? '<span class="pill p-info">Prospect</span>' : c.status !== 'Ativo' ? '<span class="pill p-bad">Sem comprar</span>' : '<span class="pill p-ok">Ativo</span>'}</td></tr>`).join('')}</tbody></table></div>`;
+    box.innerHTML = `<div class="cl-topo"><span class="cl-txt"><b>${l.length}</b> clientes na sua carteira</span><label class="srch pc-srch">${LUPA}<input data-pc-busca placeholder="Buscar por nome, CNPJ ou cidade…" autocomplete="off"></label></div><div class="pd-linhas"><table class="pd-tab"><thead><tr><th>Cliente</th><th>CNPJ</th><th>Cidade</th><th>Último pedido</th><th class="num">Compras 12 meses</th><th>Situação</th><th></th></tr></thead><tbody>
+      ${l.map(c => `<tr data-pc="${c.id}" data-pc-txt="${esc(norm(nomeExib(c) + ' ' + c.razao + ' ' + c.cnpj.replace(/\D/g, '') + ' ' + c.end.cidade))}"><td><b>${esc(nomeExib(c))}</b><small class="cl-txt"> ${esc(c.razao)}</small></td><td class="mono">${c.cnpj}</td><td>${esc(c.end.cidade)}/${c.end.uf}</td><td>${ehCli(c) ? c.resumo.ultimo : '—'}</td><td class="num">${ehCli(c) ? c.resumo.fat12 : '—'}</td><td>${!ehCli(c) ? '<span class="pill p-info">Prospect</span>' : c.status !== 'Ativo' ? '<span class="pill p-bad">Sem comprar</span>' : '<span class="pill p-ok">Ativo</span>'}</td><td class="pc-acao"><button type="button" class="mini" data-pc-orc-id="${c.id}">Gerar solicitação de orçamento</button></td></tr>`).join('')}</tbody></table></div>`;
   };
+  box.addEventListener('input', (e) => { if (!e.target.matches('[data-pc-busca]')) return; const q = norm(e.target.value).trim(), qd = e.target.value.replace(/\D/g, '');
+    box.querySelectorAll('[data-pc-txt]').forEach(tr => tr.hidden = !!q && !tr.dataset.pcTxt.includes(q) && !(qd.length > 2 && tr.dataset.pcTxt.includes(qd))); });
   box.addEventListener('click', (e) => {
+    const o = e.target.closest('[data-pc-orc-id]'); if (o) return abrirOrcamentoCom(+o.dataset.pcOrcId);
     const r = e.target.closest('[data-pc]'); if (r) { box._sel = +r.dataset.pc; return desenha(); }
     if (e.target.closest('[data-pc-volta]')) { box._sel = null; return desenha(); }
-    if (e.target.closest('[data-pc-orc]')) {
-      const tp = TOPICOS['comercial/representantes'][0], it = tp.itens[0];
-      abrirJanela(tp, it);
-      const j = JANELAS.find(x => x.chave === atual.ctx + '›' + tp.nome + '›' + it.t), velho = j.el.querySelector('.jan-corpo');
-      const novo = document.createElement('div'); novo.className = 'jan-corpo'; novo._preCli = box._sel; velho.replaceWith(novo); TELAS.portalOrcamento(novo);
-    }
+    if (e.target.closest('[data-pc-orc]')) abrirOrcamentoCom(box._sel);
   });
   desenha();
 };

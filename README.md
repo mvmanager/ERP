@@ -702,6 +702,24 @@ do sistema (com IA) respeitando o que cada usuário pode acessar.
   enviada); **Rep. resp. = nome do usuário logado**, fixo; Tipo sem frase explicativa; **prazo de
   pagamento é campo de digitar com busca**; **CEP busca o endereço sozinho** (rua, bairro,
   cidade, UF) — no sistema de verdade a consulta passa pelo servidor (ViaCEP / BrasilAPI).
+  **Melhorias aprovadas:**
+  - **CNPJ busca na Receita** e preenche razão social, endereço, telefone e e-mail; CNPJ novo vai
+    como Prospect. Se o CNPJ já é da carteira dele, puxa o cadastro nosso.
+  - **CNPJ de outra carteira:** aviso "já atendido por outro representante"; ele **não vê os dados**
+    desse cliente e a solicitação vai primeiro para a **supervisão** decidir quem atende.
+  - **Carteira de clientes** com busca (nome, CNPJ, cidade) e botão **"Gerar solicitação de
+    orçamento"** em cada cliente, que abre a ficha já preenchida (no lugar de "repetir orçamento").
+  - **Rascunho automático:** salva enquanto digita; ao voltar, "Rascunho recuperado" com opção de
+    descartar. No sistema de verdade o rascunho fica no servidor, por usuário.
+  - **Distância calculada sozinha** pelo endereço de entrega (marca "auto"; pode corrigir).
+  - **Conferência antes de enviar:** o que falta barra (inclui altura obrigatória em caixa maleta);
+    o que parece estranho só avisa (quantidade abaixo da mínima, conjunto sem componentes, prospect
+    sem CNPJ, distância não calculada) com "Corrigir" ou "Enviar assim mesmo".
+  - **Preço-alvo** por item (quanto o cliente quer pagar), ao lado do preço do concorrente.
+  - **Aviso de preço pronto** no sino (e por e-mail); clicar abre a solicitação. Nela, **"Enviar PDF ao
+    comprador"** com o e-mail do comprador já preenchido (PDF só com preço, nunca custo).
+  - Ficaram para depois: ajuda para escolher a qualidade (virá numa funcionalidade própria), arte
+    obrigatória, desenho da caixa aberta, caixas por palete, alerta de solicitação repetida.
   Mesmas regras de cálculo do CRM Salute (chapa por tipo de caixa e onda; área × gramatura da
   qualidade; qtde mín. = 500.000 / peso unit.). Campos obrigatórios conferidos ao enviar.
   Listas (segmentos, prazos, qualidades) vieram do CRM Salute. Ao enviar: protocolo SO-ano-nº
@@ -751,6 +769,11 @@ módulos tiverem suas funcionalidades, faremos uma **revisão geral de integraç
 | Portal › Solicitar orçamento | Controladoria › Custos (fila) | cliente, produto, medidas, quantidades, anexos |
 | Portal › Solicitar orçamento (cliente novo) | Vendas › Prospects e clientes | dados para cadastrar (CNPJ, contato) |
 | Serviço de CEP (ViaCEP/BrasilAPI, via servidor) | Portal › Solicitar orçamento (e todo campo de CEP) | rua, bairro, cidade, UF |
+| Receita (BrasilAPI/ReceitaWS, via servidor) + Vendas › Prospects e clientes | Portal › Solicitar orçamento | dados do CNPJ; se já é nosso, de qual carteira |
+| Portal › Solicitar orçamento (CNPJ de outra carteira) | Vendas › Supervisão | decide quem atende antes de ir para Custos |
+| Serviço de mapas (via servidor) | Portal › Solicitar orçamento | distância da entrega até a fábrica (frete) |
+| Custos (preço pronto) | Sino de notificações + e-mail do representante | aviso com link para a solicitação |
+| Portal › Minhas solicitações | E-mail do comprador (cliente) | PDF do orçamento (só preço) |
 | Vendas › Prazos de pagamento (cadastro) | Portal › Solicitar orçamento | lista para buscar o prazo |
 | Custos (preço pronto) | Portal › Minhas solicitações | preço unitário por quantidade (sem custo/margem) |
 | Portal › "Cliente aceitou" | Vendas › Orçamentos | aprovar e converter em pedido |
